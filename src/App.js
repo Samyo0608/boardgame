@@ -1,6 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import "normalize.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import { HashRouter, Route, Switch, Link } from "react-router-dom";
 
 function App() {
   return (
