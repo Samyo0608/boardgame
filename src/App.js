@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import "normalize.css";
+import { HashRouter, Route, Switch, Link } from "react-router-dom";
 
 function App() {
   return (
