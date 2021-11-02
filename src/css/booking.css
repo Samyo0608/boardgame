@@ -1,0 +1,50 @@
+.bookingIndexBox {
+  position: relative;
+  z-index: -1;
+  margin: auto;
+  max-width: 100%;
+}
+
+.bookingIndex {
+  border-radius: 20px;
+  object-fit: contain;
+  opacity: 0.5;
+  width: 800px;
+  display: block;
+  margin: auto;
+}
+
+.sixRoom {
+  position: relative;
+  left: 850px;
+  text-align: left;
+  padding: 20px;
+}
+
+.fourRoom {
+  position: relative;
+  right: -90px;
+  text-align: left;
+}
+
+.roomExplain {
+  /* position: absolute; */
+  font-size: 180%;
+}
+.roomExplainWord {
+  z-index: 7;
+  position: absolute;
+  margin: 100px 320px;
+}
+
+.roomExplainBg {
+  position: absolute;
+  z-index: 3;
+  border-radius: 20px;
+  width: 660px;
+  height: 450px;
+  background: #fff;
+  opacity: 0.6;
+  left: 430px;
+  bottom: -640px;
+}
