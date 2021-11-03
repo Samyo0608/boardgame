@@ -1,22 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import "../../App.css";
+//import PropTypes from 'prop-types'
+// import "../../App.css";
 import "../../css/contest.css"
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDice } from '@fortawesome/free-solid-svg-icons' // <-- import faDice
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faDice } from '@fortawesome/free-solid-svg-icons' // <-- import faDice
 import {Container, Row,Col,} from 'react-bootstrap'
 
 
 function index(props) {
     return (
         <>
-        <div className="p-3">
+        {/* <div className="p-3">
             <h2 className=""> <FontAwesomeIcon icon={faDice}  />活動資訊</h2> 
         </div>
-        <div className="line" />
+        <div className="line" /> */}
         
+        <h2 className="text-center">活動資訊</h2>
+      <div className="titleLineBox">
+        <img alt="" className="titleLine" src="img/index/line.png" />
+      </div>
+
         <div className="searchBar m-3 p-2 ">
         {/* <div className="searchBarWhite p-2"></div> */}
             <form action="" className="d-inline">

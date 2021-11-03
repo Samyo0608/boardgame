@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import Footer from "./components/Footer.js";
 import index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
+import contest from "./pages/contest/contest_index.js"
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
-import Footer from "./components/Footer.js";
-import index from "./pages/discuss/index";
+
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
           <Switch>
             <Route exact={true} path="/" component={index} />
             <Route exact={true} path="/booking" component={booking} />
+            <Route exact={true} path="/contest" component={contest}/>
           </Switch>
         </HashRouter>
       </div>
