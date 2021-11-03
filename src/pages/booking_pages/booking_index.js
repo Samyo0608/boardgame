@@ -1,9 +1,22 @@
 // 場地租賃
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/booking.css";
-import React from "react";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const booking_index = () => {
+function Booking() {
+  const [value, setValue] = useState(new Date());
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
       {/* 包廂介紹 */}
@@ -11,7 +24,6 @@ const booking_index = () => {
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
-
       {/*六人房*/}
       <div className="sixRoom">
         {/*六人房照片*/}
@@ -34,7 +46,7 @@ const booking_index = () => {
       {/*四人房*/}
       <div className="fourRoom">
         {/*四人房照片*/}
-        <img alt="" className="fourRoomImg" src="img/booking/fourRoom.png" />
+        <img alt="" className="fourRoomImg" src="img/booking/fourRoom-1.png" />
         {/* 四人房-文字介紹 */}
         <div className="fourRoomText">
           <h5>【四人包廂】</h5>
@@ -50,9 +62,7 @@ const booking_index = () => {
           </button>
         </div>
       </div>
-
       {/* 場地租借 */}
-      <div className="site"></div>
       <h2 className="text-center">場地租借</h2>
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
@@ -64,6 +74,26 @@ const booking_index = () => {
         </button>
         <button className="btn btn-info siteButton4" href="/#">
           四人房
+        </button>
+      </div>
+      <div className="site">
+        {/* 場地租借日曆 */}
+        <div className="calendar">
+          <Calendar onChange={setValue} value={value} />
+        </div>
+        {/* 場地租借照片 */}
+        <div className="siteImg">
+          <Slider {...settings}>
+            <div>
+              <img alt="" className="" src="img/booking/siteIndex-3.jpg" />
+            </div>
+            <div>
+              <img alt="" className="" src="img/booking/siteIndex-4.jpg" />
+            </div>
+          </Slider>
+        </div>
+        <button className="btn btn-info siteBook" href="/#">
+          前往訂購
         </button>
       </div>
 
@@ -81,6 +111,6 @@ const booking_index = () => {
       </div>
     </>
   );
-};
+}
 
-export default booking_index;
+export default Booking;
