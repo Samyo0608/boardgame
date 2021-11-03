@@ -4,6 +4,5 @@
 
 .bodyWidth {
   max-width: 1200px;
-  min-height: calc(100vh - 120px);
-  margin: auto;
+  margin: 0 auto;
 }
