@@ -120,3 +120,12 @@
   color: #2196d4;
   font-weight: bold;
 }
+
+.display0,
+.display1,
+.display2,
+.display3,
+.display4,
+.display5 {
+  display: block;
+}

@@ -109,8 +109,6 @@ function TopNavbar(props) {
                   id="navbarScrollingDropdown"
                   display={v.display}
                   onMouseEnter={(e) => {
-                    const newNavItem = [...navbarItem];
-                    newNavItem[i].display = "block";
                     setSelect(v.title);
                     setDisplay(e.target.display);
                   }}

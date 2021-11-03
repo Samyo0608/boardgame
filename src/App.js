@@ -4,24 +4,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
 import TopNavbar from "./components/Navbar";
+import Login from "./pages/login";
 
 function App() {
   return (
     <>
-      <TopNavbar />
       <div className="bodyWidth">
+        <TopNavbar className="" />
         <HashRouter>
           <Switch>
-            <Route exact={true} path="/" component={index} />
-            <Route
-              exact={true}
-              path="/booking_index"
-              component={booking_index}
-            />
+            <Route exact={true} path="/" component={Login} />
           </Switch>
         </HashRouter>
       </div>
-      <Footer />
     </>
   );
 }
