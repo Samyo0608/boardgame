@@ -6,6 +6,9 @@ import Footer from "./components/Footer.js";
 import index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import Footer from "./components/Footer.js";
+import index from "./pages/discuss/index";
+
 
 function App() {
   return (
