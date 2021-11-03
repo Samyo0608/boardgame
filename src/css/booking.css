@@ -1,0 +1,108 @@
+/*包廂介紹*/
+.sixRoom {
+  position: relative;
+  margin: 20px auto;
+  left: 150px;
+}
+.fourRoom {
+  position: relative;
+  margin: 20px auto;
+  right: 150px;
+}
+
+/* 包廂介紹-六人房照片 */
+.sixRoomImg {
+  width: 500px;
+  float: left;
+  margin: 0 30px;
+  border-radius: 10px;
+}
+.fourRoomImg {
+  width: 500px;
+  float: right;
+  margin: 0 30px;
+  border-radius: 10px;
+}
+
+/* 包廂介紹的文字 */
+/* 六人房 */
+.sixRoomText {
+  text-align: left;
+  padding: 40px;
+}
+
+/* 四人房 */
+.fourRoomText {
+  text-align: right;
+  padding: 40px;
+}
+
+/* 包廂內文的背景 */
+.roomTextBg6 {
+  /* display: inline-block; */
+  border-radius: 10px;
+  margin: 10px auto;
+  padding: 10px;
+  min-width: 1120px;
+  height: 500px;
+  background: rgb(188, 250, 240);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+}
+
+.roomTextBg4 {
+  border-radius: 10px;
+  margin: 200px 40px;
+  min-width: 800px;
+  height: 500px;
+  background: rgb(201, 211, 243);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+}
+
+/* 場地租借 */
+
+/* 場地租借按鈕 */
+.siteButton {
+  text-align: center;
+  margin: 20px auto;
+}
+.siteButton6 {
+  margin-right: 10px;
+}
+.siteButton4 {
+  margin-right: 10px;
+}
+
+/* 包廂說明 */
+
+/* 包廂說明文字大小 */
+.roomExplain {
+  /* position: absolute; */
+  font-size: 180%;
+}
+/* 包廂說明文字位置 */
+.roomExplainWord {
+  z-index: 7;
+  position: absolute;
+  margin: 100px 320px;
+}
+/* 包廂說明的內文背景 */
+.roomExplainBg {
+  position: absolute;
+  z-index: 3;
+  border-radius: 20px;
+  width: 660px;
+  height: 450px;
+  background: #fff;
+  opacity: 0.6;
+  left: 430px;
+  margin: 20px 0px;
+}
+
+/* 包廂說明的照片尺寸 */
+.bookingIndex {
+  border-radius: 10px;
+  /* opacity: 0.5; */
+  width: 800px;
+  display: block;
+  margin: auto;
+}
