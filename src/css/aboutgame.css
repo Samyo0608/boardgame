@@ -1,0 +1,85 @@
+.box {
+    width: 1000px;
+    height: 500px;
+    box-shadow: 8px 8px 5px rgb(189, 186, 186);
+    border-radius: 5px;
+    background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+    text-align:left;
+    margin-left: 100px;
+} 
+.box2 {
+    width: 1000px;
+    height: 550px;
+    background-image:url("../img/BK.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    text-align:left;
+    margin-left: 100px;
+    margin-top: 80px;
+    border-radius: 10px;
+} 
+
+
+.text1{
+    margin-top: 60px;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+.p6 {
+    background-color: rgb(59, 137, 255);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .p7{
+      float:none;
+      margin-left:400px;
+      margin-top:-500px;
+
+  }
+  .abb {
+    float:left;
+    width: 550px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 50px;
+  }
+  .favorite4 {
+    margin-left: 180px;
+    margin-right:10px;
+    margin-top: 30px;
+  }
+  .buy4 {
+    margin-top:30px;
+  }
+
+  .btn0 {
+    float: left;
+    margin-top: 15px;
+    margin-left:25px; 
+    padding-left: 60px;
+    padding-right:60px;
+    display: inline;
+    font-size:20px;
+    font-weight: bold;
+    
+  }
+  .bt1 {
+  
+    display: inline;
+  }
+  .bt2 {
+    display: inline;
+  }
+  .bt3 {
+    display: inline;
+  }
+  .forum{
+      float:right;
+      margin-top: 250px;
+      margin-right: -100px;
+  }
