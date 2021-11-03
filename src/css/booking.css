@@ -1,40 +1,48 @@
 /*包廂介紹*/
 .sixRoom {
-  position: relative;
+  width: 1000px;
+  border-radius: 10px;
   margin: 20px auto;
   left: 150px;
+  background: rgb(183, 227, 248);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 .fourRoom {
-  position: relative;
-  margin: 20px auto;
+  width: 1000px;
+  border-radius: 10px;
+  margin: 30px auto;
   right: 150px;
+  background: rgb(183, 227, 248);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
 /* 包廂介紹-六人房照片 */
 .sixRoomImg {
   width: 500px;
   float: left;
-  margin: 0 30px;
+  margin: 40px 30px;
   border-radius: 10px;
 }
+/* 包廂介紹-四人房照片 */
 .fourRoomImg {
   width: 500px;
   float: right;
-  margin: 0 30px;
+  margin: 40px 30px;
   border-radius: 10px;
 }
 
 /* 包廂介紹的文字 */
-/* 六人房 */
+/* 六人房文字 */
 .sixRoomText {
-  text-align: left;
+  text-align: center;
   padding: 40px;
+  font-size: 20px;
 }
-
-/* 四人房 */
+/* 四人房文字 */
 .fourRoomText {
-  text-align: right;
+  text-align: center;
   padding: 40px;
+  font-size: 20px;
 }
 
 /* 包廂內文的背景 */
@@ -70,6 +78,39 @@
 }
 .siteButton4 {
   margin-right: 10px;
+}
+/* 日曆及照片輪播位置 */
+.site {
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  position: relative;
+  margin: 20px auto;
+  background: rgb(183, 227, 248);
+}
+/* 場地租借日曆 */
+.calendar {
+  position: relative;
+  left: 50px;
+  top: 50px;
+}
+.siteImg {
+  position: relative;
+  top: -300px;
+  left: 450px;
+  width: 500px;
+  height: 380px;
+  border: 1px solid transparent;
+}
+.siteImg img {
+  width: 100%;
+  height: 100%;
+}
+.siteBook {
+  position: relative;
+  top: -310px;
+  left: 180px;
 }
 
 /* 包廂說明 */
