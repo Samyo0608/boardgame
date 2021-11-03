@@ -3,25 +3,19 @@ import "./App.css";
 import "normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import CustomerServicePage from "./page/customer_service/index";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bodyWidth">
+      <BrowserRouter>
+        <Switch>
+          <Route path="/customer_service">
+            <CustomerServicePage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

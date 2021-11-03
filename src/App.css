@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.bodyWidth {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: aqua;
+  margin: 0 auto;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
