@@ -3,7 +3,8 @@ import "normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
-
+import Footer from "./components/Footer.js";
+import index from "./page/discuss/index";
 
 function App() {
   return (
