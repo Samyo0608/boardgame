@@ -1,7 +1,7 @@
 import "./App.css";
 import "normalize.css";
 import React from "react";
-import CustomerServicePage from "./page/customer_service/index";
+import CustomerServicePage from "./pages/customer_service/index";
 import Footer from "./components/Footer.js";
 import index from "./pages/discuss/index.js";
 import booking_index from "./pages/booking_pages/booking_index.js";
