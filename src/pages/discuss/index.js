@@ -22,6 +22,7 @@ const rentType = [
 const index = () => {
   return (
     <div className="container overflow-hidden">
+
       {/* banner */}
       <div className="bannerBox">
         <img className="banner" src="img/index/banner.jpg" alt="" />
@@ -35,11 +36,11 @@ const index = () => {
               2021年10月營業時間異動
             </a>
           </div>
+
         </div>
       </div>
 
       {/* 推薦桌遊標題+插圖 */}
-
       <div className="position-relative">
         <h2 className="text-center">推薦桌遊</h2>
         <div className="titleLineBox">
@@ -324,6 +325,7 @@ const index = () => {
         </a>
       </div>
     </div>
+
   );
 };
 
