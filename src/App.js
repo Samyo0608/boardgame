@@ -1,12 +1,11 @@
 import "./App.css";
 import "normalize.css";
 import React from "react";
-import CustomerServicePage from "./pages/customer_service/index";
+import CustomerServicePage from "./pages/customer_service/faq";
 import Footer from "./components/Footer.js";
 import index from "./pages/discuss/index.js";
 import booking_index from "./pages/booking_pages/booking_index.js";
 import { HashRouter, Route, Switch, } from "react-router-dom";
-
 function App() {
   return (
     <>
@@ -21,7 +20,7 @@ function App() {
             />
             <Route
               exact={true}
-              path="/customer_service"
+              path="/faq"
               component={CustomerServicePage}
             />
           </Switch>
