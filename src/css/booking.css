@@ -4,7 +4,7 @@
   border-radius: 10px;
   margin: 20px auto;
   left: 150px;
-  background: rgb(183, 227, 248);
+  background: rgb(255, 253, 231);
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 .fourRoom {
@@ -12,7 +12,7 @@
   border-radius: 10px;
   margin: 30px auto;
   right: 150px;
-  background: rgb(183, 227, 248);
+  background: rgb(255, 253, 231);
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
@@ -38,11 +38,26 @@
   padding: 40px;
   font-size: 20px;
 }
+/* 六人房按鈕 */
+.sixRoomText button {
+  background: #6dd0cd;
+}
+.sixRoomText button:hover {
+  background: #0abbb5;
+}
+
 /* 四人房文字 */
 .fourRoomText {
   text-align: center;
   padding: 40px;
   font-size: 20px;
+}
+/* 四人房按鈕 */
+.fourRoomText button {
+  background: #6dd0cd;
+}
+.fourRoomText button:hover {
+  background: #0abbb5;
 }
 
 /* 包廂內文的背景 */
@@ -53,7 +68,7 @@
   padding: 10px;
   min-width: 1120px;
   height: 500px;
-  background: rgb(188, 250, 240);
+  background: rgb(255, 253, 231);
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
@@ -62,7 +77,7 @@
   margin: 200px 40px;
   min-width: 800px;
   height: 500px;
-  background: rgb(201, 211, 243);
+  background: rgb(255, 253, 231);
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
@@ -75,10 +90,21 @@
 }
 .siteButton6 {
   margin-right: 10px;
+  background: #6dd0cd;
 }
 .siteButton4 {
   margin-right: 10px;
+  background: #6dd0cd;
 }
+.siteButton6:hover {
+  margin-right: 10px;
+  background: #0abbb5;
+}
+.siteButton4:hover {
+  margin-right: 10px;
+  background: #0abbb5;
+}
+
 /* 日曆及照片輪播位置 */
 .site {
   width: 1000px;
@@ -87,7 +113,7 @@
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
   position: relative;
   margin: 20px auto;
-  background: rgb(183, 227, 248);
+  background: rgb(255, 253, 231);
 }
 /* 場地租借日曆 */
 .calendar {
@@ -111,6 +137,10 @@
   position: relative;
   top: -310px;
   left: 180px;
+  background: #6dd0cd;
+}
+.siteBook:hover {
+  background: #0abbb5;
 }
 
 /* 包廂說明 */
