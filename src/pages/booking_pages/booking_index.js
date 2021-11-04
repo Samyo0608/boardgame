@@ -7,9 +7,12 @@ import "react-calendar/dist/Calendar.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { render } from "@testing-library/react";
 
 function Booking() {
+  // 時間套件
   const [value, setValue] = useState(new Date());
+  // 輪播套件
   var settings = {
     dots: true,
     infinite: true,
@@ -92,7 +95,7 @@ function Booking() {
             </div>
           </Slider>
         </div>
-        <button className="btn btn-info siteBook" href="/#">
+        <button className="btn btn-info siteBook" id="">
           前往訂購
         </button>
       </div>
