@@ -4,8 +4,8 @@ import React from 'react'
 import "../../css/contest.css"
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faDice } from '@fortawesome/free-solid-svg-icons' // <-- import faDice
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons' // <-- import faSearch
 import {Container, Row,Col,} from 'react-bootstrap'
 
 
@@ -19,15 +19,14 @@ function index(props) {
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
 
-    <div className="searchBar ">
-        <div className="d-inline">
+    <div className="searchBar row">
+        <div className="d-flex">
             <form action="" className="d-inline">
-                <input type="search" className=""/>
-            </form> 
-        </div>
-        <div>
-            <form action="" className="d-inline">
-            <input type="checkbox" className="" value="" id="card" />
+          
+                <input type="search" className="" id="search"/>
+                <FontAwesomeIcon icon={faSearch} className="searchIcon"/>
+               
+                <input type="checkbox" className="" value="" id="card" />
                 <label For="card" className="fs-3 fontColor">卡牌</label>
                 <input type="checkbox" className="" value="" id="family"/>
                 <label for="family" className="fs-3 fontColor">家庭</label>
@@ -36,7 +35,7 @@ function index(props) {
                 <label className="fs-3 fontColor">
                     <span className="deleButton">&#10005; 清除結果</span>
                 </label>
-            </form>
+            </form> 
         </div>
     </div>
         
