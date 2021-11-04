@@ -57,7 +57,7 @@ function Booking() {
           <p>❮ 假日 ❯</p>
           <p>一小時：$200元，整日：$300元</p>
           <p>以上收費單位以人數計算</p>
-          <button className="btn btn-info" href="/#">
+          <button className="btn" href="/#">
             場地租借
           </button>
         </div>
@@ -69,10 +69,10 @@ function Booking() {
       </div>
       {/* 場地租借按鈕 */}
       <div className="siteButton">
-        <button className="btn btn-info siteButton6" href="/#">
+        <button className="btn siteButton6" href="/#">
           六人房
         </button>
-        <button className="btn btn-info siteButton4" href="/#">
+        <button className="btn siteButton4" href="/#">
           四人房
         </button>
       </div>
