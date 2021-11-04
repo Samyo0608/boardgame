@@ -1,8 +1,15 @@
+@import "normalize.css";
+
 .App {
   text-align: center;
 }
 
 .bodyWidth {
   max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bodyWidth {
+  width: 1200px;
   margin: 0 auto;
 }
