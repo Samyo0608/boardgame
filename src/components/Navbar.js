@@ -32,7 +32,6 @@ function TopNavbar(props) {
       secondItem2: "門市資訊",
       url1: "#action1",
       url2: "#action2",
-      display: "block",
     },
     {
       title: "活動",
@@ -40,19 +39,15 @@ function TopNavbar(props) {
       secondItem2: "投票活動",
       url1: "#action1",
       url2: "#action2",
-      display: "block",
     },
     {
       title: "租賃服務",
-      display: "block",
     },
     {
       title: "產品頁面",
-      display: "block",
     },
     {
       title: "討論區",
-      display: "block",
     },
     {
       title: "客服中心",
@@ -62,17 +57,9 @@ function TopNavbar(props) {
       url1: "#action1",
       url2: "#action2",
       url3: "#action3",
-      display: "block",
     },
   ];
 
-  const details = (navbarItem) => {
-    const state = [];
-    for (let i = 0; i < navbarItem.length; i++) {
-      state.push({ ...navbarItem[i], show: false });
-    }
-    return state;
-  };
   return (
     <Container fluid>
       <Navbar expand="lg" variant="light" bg="">
@@ -99,6 +86,7 @@ function TopNavbar(props) {
         >
           {navbarItem.map((v, i) => {
             const clsname = v.title === select ? "active" : "";
+            const displayDiv = v.title === select ? "d-block" : "d-none";
             return (
               <div className="d-flex flex-column align-items-center">
                 <a
@@ -110,11 +98,9 @@ function TopNavbar(props) {
                   display={v.display}
                   onMouseEnter={(e) => {
                     setSelect(v.title);
-                    setDisplay(e.target.display);
                   }}
                   onMouseLeave={(e) => {
                     setSelect("");
-                    setDisplay("d-none");
                   }}
                 >
                   <div className="d-flex justify-content-between align-items-center">
@@ -123,17 +109,18 @@ function TopNavbar(props) {
                 </a>
 
                 <div
-                  className={`${display} secondLink`}
+                  className={`${displayDiv} secondLink`}
                   onMouseEnter={(e) => {
+                    setSelect(v.title);
                     setDisplay("block");
                   }}
                   onMouseLeave={(e) => {
+                    setSelect("");
                     setDisplay("d-none");
                   }}
                 >
                   <a href={`${v.url1}`}>{v.secondItem1}</a>
                   <a href={`${v.url2}`}>{v.secondItem2}</a>
-                  {/* {v.secondItem3.length > 0 ? aLink : null} */}
                   <a href={`${v.url3}`}>{v.secondItem3}</a>
                 </div>
               </div>

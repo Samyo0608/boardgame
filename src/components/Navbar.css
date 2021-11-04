@@ -1,5 +1,5 @@
 .searchInput {
-  max-width: 120px;
+  max-width: 150px;
   position: relative;
 }
 
@@ -35,13 +35,16 @@
 }
 
 .secondLink {
+  background: #fff;
+  border-radius: 5px;
   position: absolute;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid #000000; */
-  top: 70%;
+  border: 1px solid #000000;
+  top: 65%;
   max-width: 100px;
   text-align: center;
+  opacity: 80%;
 }
 
 .secondLink a {
@@ -119,13 +122,4 @@
   border-radius: 20px;
   color: #2196d4;
   font-weight: bold;
-}
-
-.display0,
-.display1,
-.display2,
-.display3,
-.display4,
-.display5 {
-  display: block;
 }
