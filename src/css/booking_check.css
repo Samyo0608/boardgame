@@ -12,7 +12,7 @@
 }
 /* 場地租借日曆 */
 .calendarCheck {
-  background: brown;
+  /* background: brown; */
   position: relative;
   left: 50px;
   top: 50px;
@@ -20,10 +20,23 @@
 /* 前往訂購按鈕 */
 .siteBookCheck {
   position: relative;
-  top: 70px;
-  left: 180px;
   background: #6dd0cd;
+  font-size: 20px;
 }
 .siteBookCheck:hover {
   background: #0abbb5;
+}
+
+/* 訂購人輸入欄位 */
+.subCheck {
+  position: relative;
+  width: 800px;
+  height: 650px;
+  background: rgb(255, 253, 231);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  margin: 20px auto;
+  padding: 60px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 25px;
 }
