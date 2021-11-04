@@ -7,6 +7,10 @@ import index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import bookingCheck from "./pages/booking_pages/booking_check.js";
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import TopNavbar from "./components/Navbar";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import MemberCenter from "./pages/memberCenter";
 
 function App() {
   return (
