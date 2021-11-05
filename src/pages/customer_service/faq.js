@@ -3,12 +3,8 @@ import "../../css/faq.css";
 import React from "react";
 const CustomerServicePage = () => {
   return (
+   
     <div className="container d-flex justify-content-center flex-column">
-      <img
-        src="/img/customer_service/FAQ_header.png"
-        alt=""
-        class="FAQ_header"
-      />
       {/* 搜尋列 */}
       <div id="search_container" class="search_css">
         <div class="fax_input_wrapper">
@@ -34,13 +30,13 @@ const CustomerServicePage = () => {
             />
           </div>
         </div>
-
         <img
           src="/img/customer_service/Family_games.png"
           alt="Family_games"
           class="Family_games_picture"
         />
       </div>
+      
       <div class="FAQ_outer">
         {/* 外框背景 */}
         <div class="FAQ_Content">
@@ -53,11 +49,11 @@ const CustomerServicePage = () => {
               class="front_page_icon"
             />
             <span>首頁&nbsp;>&nbsp;客服中心&nbsp;>&nbsp;會員常見問題</span>
-            {/* <img
+            <img
               src="/img/customer_service/dice.png"
               alt=""
               class="dice_icon"
-            /> */}
+            />
           </div>
 
           <div class="abreast">
@@ -70,15 +66,15 @@ const CustomerServicePage = () => {
                   alt=""
                   class="content_icon"
                 />
-                <h2>常會員見問題</h2>
+                <h4>常會員見問題</h4>
               </div>
               <div>
                 <img
                   src="/img/customer_service/shopping_icon.png"
                   alt=""
-                  class="content_icon2"
+                  class="content_icon"
                 />
-                <h2>購物常見問題</h2>
+                <h4>購物常見問題</h4>
               </div>
               <div>
                 <img
@@ -86,7 +82,7 @@ const CustomerServicePage = () => {
                   alt=""
                   class="content_icon"
                 />
-                <h2>配送取貨問題</h2>
+                <h4>配送取貨問題</h4>
               </div>
               <div>
                 <img
@@ -94,7 +90,7 @@ const CustomerServicePage = () => {
                   alt=""
                   class="content_icon"
                 />
-                <h2>退換貨及退款</h2>
+                <h4>退換貨及退款</h4>
               </div>
               <div>
                 <img
@@ -102,24 +98,22 @@ const CustomerServicePage = () => {
                   alt=""
                   class="content_icon"
                 />
-                <h2>發票常見問題</h2>
+                <h4>發票常見問題</h4>
               </div>
             </div>
 
             <div class="content_question">
               {/* 內文問題框架 */}
-              <h2>&nbsp;&nbsp;&nbsp;&nbsp;會員常見問題:</h2>
+              <h3>&nbsp;&nbsp;&nbsp;&nbsp;會員常見問題:</h3>
               {/* 問題標題 */}
-              <ul>
+              <ul class="question_list">
                 {/* 問題項目 */}
                 <li>
                   <div class="abreast2">
                     <div>
-                      <h3>Q1. 該如何加入會員呢？</h3>
+                      <h4>Q1. 該如何加入會員呢？</h4>
                     </div>
-                    <div class="stretch_button">
-                      
-                    </div>
+                    <div class="stretch_button"></div>
                   </div>
                   <div class="answer">
                     電腦版：請您點選右上角「登入/註冊」，可選擇「手機號碼驗證註冊」或「使用Facebook快速註冊」。
@@ -130,7 +124,7 @@ const CustomerServicePage = () => {
                 <li>
                   <div class="abreast2">
                     <div>
-                      <h3>Q2. 忘記密碼怎麼辦？</h3>
+                      <h4>Q2. 忘記密碼怎麼辦？</h4>
                     </div>
                     <div class="stretch_button"></div>
                   </div>
@@ -142,7 +136,7 @@ const CustomerServicePage = () => {
                 <li>
                   <div class="abreast2">
                     <div>
-                      <h3>Q3. 忘記登入的會員帳號？</h3>
+                      <h4>Q3. 忘記登入的會員帳號？</h4>
                     </div>
                     <div class="stretch_button"></div>
                   </div>
@@ -151,7 +145,7 @@ const CustomerServicePage = () => {
                 <li>
                   <div class="abreast2">
                     <div>
-                      <h3>Q4. 該如何修改個人資料及密碼？</h3>
+                      <h4>Q4. 該如何修改個人資料及密碼？</h4>
                     </div>
                     <div class="stretch_button"></div>
                   </div>
@@ -165,7 +159,7 @@ const CustomerServicePage = () => {
                 <li>
                   <div class="abreast2">
                     <div>
-                      <h3>Q7. 如何透過「線上客服」聯繫？？</h3>
+                      <h4>Q5. 如何透過「線上客服」聯繫？？</h4>
                     </div>
                     <div class="stretch_button"></div>
                   </div>
@@ -192,7 +186,7 @@ const CustomerServicePage = () => {
                     class="document_icon"
                     alt=""
                   />
-                  <h3>客服留言</h3>
+                  <h4>客服留言</h4>
                   <p>我們會定時查看，</p>
                   <p>盡快回覆您!</p>
                 </div>
