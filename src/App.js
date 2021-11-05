@@ -11,6 +11,7 @@ import TopNavbar from "./components/Navbar";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import MemberCenter from "./pages/memberCenter";
+import MemSelf from "./pages/memberCenter/memSelf";
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
             <Route exact={true} path="/memberCenter" component={MemberCenter} />
             <Route exact={true} path="/booking" component={booking} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
+            <Route
+              exact={true}
+              path="/memberCenter/memSelf"
+              component={MemSelf}
+            />
           </Switch>
         </HashRouter>
         <Footer />

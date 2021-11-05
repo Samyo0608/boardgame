@@ -26,7 +26,7 @@ function MemberCenter(props) {
             <p className="bold h3 text-black lineHight">預約中</p>
             <p className="text-danger h2 mt-3 bold">1</p>
           </div>
-          <div className="col-sm status active">
+          <div className="col-sm status active-mem">
             <p className="bold h3 text-black lineHight">訂購中</p>
             <p className="text-danger h2 mt-3 bold">1</p>
           </div>
