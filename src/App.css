@@ -5,6 +5,7 @@
 }
 
 .bodyWidth {
+  position: relative;
   width: 1200px;
   min-height: calc(100vh - 120px);
   margin: 0 auto;
