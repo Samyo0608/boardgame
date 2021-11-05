@@ -41,6 +41,7 @@
 /* 六人房按鈕 */
 .sixRoomText button {
   background: #6dd0cd;
+  font-size: 20px;
 }
 .sixRoomText button:hover {
   background: #0abbb5;
@@ -55,6 +56,7 @@
 /* 四人房按鈕 */
 .fourRoomText button {
   background: #6dd0cd;
+  font-size: 20px;
 }
 .fourRoomText button:hover {
   background: #0abbb5;
@@ -88,13 +90,17 @@
   text-align: center;
   margin: 20px auto;
 }
+/* 場地租借按鈕-六人房 */
 .siteButton6 {
   margin-right: 10px;
   background: #6dd0cd;
+  font-size: 20px;
 }
+/* 場地租借按鈕-四人房 */
 .siteButton4 {
   margin-right: 10px;
   background: #6dd0cd;
+  font-size: 20px;
 }
 .siteButton6:hover {
   margin-right: 10px;
@@ -133,11 +139,13 @@
   width: 100%;
   height: 100%;
 }
+/* 前往訂購按鈕 */
 .siteBook {
   position: relative;
   top: -310px;
   left: 180px;
   background: #6dd0cd;
+  font-size: 20px;
 }
 .siteBook:hover {
   background: #0abbb5;
