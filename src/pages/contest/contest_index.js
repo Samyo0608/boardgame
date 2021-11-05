@@ -1,7 +1,6 @@
 import React from 'react'
 //import PropTypes from 'prop-types'
-// import "../../App.css";
-import "../../css/contest.css"
+import "../../css/contest.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
