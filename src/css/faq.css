@@ -1,0 +1,166 @@
+/* 搜尋列 */
+.search_css {
+  display: flex;
+}
+.FAQ_picture {
+  width: 550px;
+}
+.Family_games_picture {
+  margin-top: 40px;
+  width: 600px;
+  height: 280px;
+}
+.fax_input_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.inputWrapper_frame {
+  border: 1px solid rgb(204, 201, 201);
+  border-radius: 50px;
+  box-shadow: 3px 3px 5px 1px #cccccc;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 30px;
+  top: -60px;
+  width: 500px;
+}
+.search_icon {
+  width: 30px;
+  margin-left: 20px;
+}
+.input_content {
+  border: 0px;
+  padding: 0px;
+  margin-left: 3vh;
+  border-radius: 0px;
+  border: none;
+  font-size: 2.5vh;
+}
+.input_content:focus {
+  outline: none;
+}
+/* 外框背景 */
+.FAQ_outer {
+  margin-top: -50px;
+  border: rgb(15, 15, 15) 1px solid;
+  background-image: url("../img/customer_service/leaf_border.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* 內文框架 */
+.FAQ_Content {
+  box-shadow: 3px 3px 3px 3px #a0a0a0;
+  border: 2px #e0e0e0 solid;
+  background-color: #ffffffa3;
+  width: 1100px;
+  margin: 30px;
+}
+/* 內文標題*/
+.content_title {
+  display: flex;
+  align-items: center;
+  border: 3px #d3cece solid;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.front_page_icon {
+  width: 30px;
+  margin: 10px;
+}
+.dice_icon {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 125px;
+}
+/* 分類&問題並排框 */
+.abreast {
+  display: flex;
+}
+/* 內文左側分類 */
+.content_category {
+  border: 1px #d3cece solid;
+  width: 350px;
+}
+.content_category div {
+  margin: 50px 0px;
+}
+.content_category h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+.content_icon {
+  float: left;
+  margin: 0px 6px;
+}
+
+/* 內文問題框架 */
+.content_question {
+  border-left: 3px #d3cece solid;
+  font-size: 16px;
+}
+/* 內文問題 */
+.content_question h3 {
+  border-bottom: 4px #d3cece solid;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 10px;
+}
+.content_question h4 {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 10px 10px 0px;
+}
+.question_list {
+  padding: 0px;
+}
+.content_question li {
+  margin-left: 20px;
+  list-style-type: none;
+  padding-bottom: 20px;
+  border-bottom: 4px #d3cece solid;
+}
+.abreast2 {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 860px;
+}
+.stretch_button {
+  /* border: solid rgb(0, 0, 0) ; */
+  margin-top: 10px;
+  width: 30px;
+  background-image: url(../img/customer_service/open_button.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.answer {
+  padding-right: 80px;
+}
+/* 客服留言連結 */
+.expand_down {
+  text-align: center;
+  opacity: 0.7;
+}
+.drop_down {
+  width: 16px;
+  margin: -5px 10px 0px 10px;
+}
+.document_icon {
+  float: left;
+  padding: 25px 25px 25px 15px;
+}
+.link_message {
+  border: solid #aaa5a5;
+  margin-top: -20px;
+  margin-left: 50px;
+  font-weight: bold;
+  width: 260px;
+}
+.link_message p {
+  margin-bottom: 5px;
+}
+
+.flex-column {
+  flex-direction: column;
+}
