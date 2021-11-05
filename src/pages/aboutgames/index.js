@@ -77,16 +77,8 @@ function Aboutgame(props) {
 </a>
 </div>
 
-
-
-
-
-
-
-
         </>
     )
 }
-
 
 export default  Aboutgame

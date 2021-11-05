@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/Footer.css";
-import imgUrl from "../img/LOGO.png";
 
 function Footer(props) {
   return (
@@ -29,7 +28,7 @@ function Footer(props) {
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="#/discuss">
               討論區
             </a>
           </li>
@@ -43,7 +42,7 @@ function Footer(props) {
         <div className="footerLine"></div>
         {/* footer LOGO+文字 */}
         <div className="d-flex mt-2 mx-5 justify-content-evenly align-items-center">
-          <img className="footImg mx-5" src={imgUrl} alt="" />
+          <img className="footImg mx-5" src="img/LOGO.png" alt="" />
           <p className="footerText text-center  mb-0">
             此網站為專題發表成果用，如有侵權請立即告知，會立即刪除相關資訊
           </p>

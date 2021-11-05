@@ -1,17 +1,20 @@
 import React from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import "../../css/memSelf.css";
+import Sidebar from "../../components/memberSidebar/index";
 
 function MemSelf(props) {
   return (
     <Container className="mt-5">
-      <div className="row">
-        <div className="col-3 sidebar"></div>
-        <div className="col-9 rightDetail d-flex flex-column justify-content-center align-items-center">
+      <div className="d-flex">
+        <div className="me-4 sidebarRange">
+          <Sidebar />
+        </div>
+        <div className=" rightDetail d-flex flex-column justify-content-center align-items-center">
           <p className="h2 bold titleMargin">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
-            <div>會員照片</div>
+            <img alt="" src="img/memberCenter/memberhead.png" />
             <Button>更換頭像</Button>
           </div>
           <Form className="formSize bold">
@@ -145,7 +148,7 @@ function MemSelf(props) {
                     controlId="city"
                     className="col-2 d-flex align-items-center"
                   >
-                    <Form.Select defaultValue="桃園市" className="me-2">
+                    <Form.Select defaultValue="桃園市">
                       <option value="台北市">台北市</option>
                       <option value="新北市">新北市</option>
                       <option value="桃園市">桃園市</option>
@@ -158,7 +161,7 @@ function MemSelf(props) {
                     controlId="district"
                     className="col-2 d-flex align-items-center"
                   >
-                    <Form.Select defaultValue="中壢區" className="me-2">
+                    <Form.Select defaultValue="中壢區">
                       <option value="中壢區">中壢區</option>
                       <option value="楊梅區">楊梅區</option>
                       <option value="桃園區">桃園區</option>
