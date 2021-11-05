@@ -37,14 +37,12 @@
   padding: 40px;
   font-size: 20px;
 }
-
 /* 四人房文字 */
 .fourRoomText {
   text-align: center;
   padding: 40px;
   font-size: 20px;
 }
-
 /* 包廂內文的小裝飾圖 */
 .sixRoomTextLine {
   width: 380px;
@@ -67,7 +65,6 @@
   left: -80px;
   top: 410px;
 }
-
 /* 場地租借 */
 
 /* 場地租借按鈕 */
@@ -136,29 +133,7 @@
   background: #0abbb5;
 }
 
-/* 訂購人輸入欄位 */
-.subCheck {
-  position: relative;
-  width: 800px;
-  height: 650px;
-  background: rgb(255, 253, 231);
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
-  margin: 20px auto;
-  padding: 60px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 25px;
-}
-/* 前往訂購按鈕 */
-.siteBookCheck {
-  position: relative;
-  background: #6dd0cd;
-  font-size: 20px;
-  margin: 20px auto;
-}
-.siteBookCheck:hover {
-  background: #0abbb5;
-}
+
 /* 包廂說明 */
 
 /* 包廂說明文字大小 */
@@ -184,7 +159,6 @@
   left: 430px;
   margin: 20px 0px;
 }
-
 /* 包廂說明的照片尺寸 */
 .bookingIndex {
   border-radius: 10px;
@@ -194,7 +168,6 @@
   margin: 20px auto;
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
-
 /* 骰子圖片 */
 .diceImg {
   width: 350px;

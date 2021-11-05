@@ -16,6 +16,10 @@ import MemberCenter from "./pages/memberCenter";
 import MemSelf from "./pages/memberCenter/memSelf";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
+import Aboutgame from "./pages/aboutgames";
+import Product from "./pages/product";
+
+
 
 
 function App() {
@@ -40,6 +44,8 @@ function App() {
             <Route exact={true} path="/contest" component={contest} />
             <Route exact={true} path="/contestInfo" component={contestInfo} />
             <Route exact={true} path="/vote" component={vote} />
+            <Route exact={true} path="/Product" component={Product} />
+            <Route exact={true} path="/Aboutgame" component={Aboutgame} />
           </Switch>
         </HashRouter>
         <Footer />

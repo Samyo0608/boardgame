@@ -169,7 +169,6 @@ function Booking() {
           前往訂購
         </a>
       </div>
-
       {/* 包廂說明圖+圖片 */}
       <h2 className="text-center">包廂說明</h2>
       <div className="titleLineBox">

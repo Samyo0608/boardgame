@@ -32,7 +32,6 @@ function BookingCheck() {
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
-
       <div className="siteCheck"> */}
       {/* 場地租借日曆 */}
       {/* <div className="calendarCheck">
@@ -50,7 +49,6 @@ function BookingCheck() {
           </Slider>
         </div>
       </div> */}
-
       {/* 訂購確認表單 */}
       <h2 className="text-center">訂購確認</h2>
       <div className="titleLineBox">
