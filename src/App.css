@@ -3,6 +3,13 @@
 }
 
 .bodyWidth {
-  max-width: 1200px;
+  width: 1200px;
+  min-height: calc(100vh - 120px);
   margin: 0 auto;
+  background-color: white;
+  border: 1px solid rgb(211, 210, 210);
+}
+
+#root {
+  background-color: rgb(241, 241, 241);
 }
