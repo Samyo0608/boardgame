@@ -1,7 +1,6 @@
-.sidebar {
+.sidebarRange {
   max-width: 300px;
   width: 100%;
-  background: #ccc;
   height: 800px;
 }
 
@@ -26,7 +25,7 @@
   width: 120px;
 }
 
-.changeImg div {
+.changeImg img {
   width: 150px;
   height: 150px;
   border: 1px solid #000000;
