@@ -7,7 +7,7 @@ import { HashRouter, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import Product from "./pages/product/index";  // 選擇自己分頁的路徑
-import Aboutgame from "./pages/aboutgames/index2"; 
+import Aboutgame from "./pages/aboutgames/index"; 
 import Footer from"./components/Footer";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route exact={true} path="/product" component={Product} /> 
         </Switch>
         <Switch>
-          <Route exact={true} path="/aboutgames" component={ Aboutgame} /> 
+          <Route exact={true} path="/aboutgames" component={Aboutgame} /> 
         </Switch>
       </HashRouter>
     </div>
