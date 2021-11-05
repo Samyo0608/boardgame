@@ -11,7 +11,6 @@
   width: 1000px;
   border-radius: 10px;
   margin: 30px auto;
-  right: 150px;
   background: rgb(255, 253, 231);
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
@@ -20,14 +19,14 @@
 .sixRoomImg {
   width: 500px;
   float: left;
-  margin: 40px 30px;
+  margin: 20px 30px;
   border-radius: 10px;
 }
 /* 包廂介紹-四人房照片 */
 .fourRoomImg {
   width: 500px;
   float: right;
-  margin: 40px 30px;
+  margin: 20px 30px;
   border-radius: 10px;
 }
 
@@ -38,51 +37,34 @@
   padding: 40px;
   font-size: 20px;
 }
-/* 六人房按鈕 */
-.sixRoomText button {
-  background: #6dd0cd;
-  font-size: 20px;
-}
-.sixRoomText button:hover {
-  background: #0abbb5;
-}
-
 /* 四人房文字 */
 .fourRoomText {
   text-align: center;
   padding: 40px;
   font-size: 20px;
 }
-/* 四人房按鈕 */
-.fourRoomText button {
-  background: #6dd0cd;
-  font-size: 20px;
+/* 包廂內文的小裝飾圖 */
+.sixRoomTextLine {
+  width: 380px;
+  height: 2px;
+  background: #000;
+  position: relative;
+  right: -530px;
+  top: -5px;
 }
-.fourRoomText button:hover {
-  background: #0abbb5;
+.fourRoomTextLine {
+  width: 380px;
+  height: 2px;
+  background: #000;
+  margin: 10px;
 }
-
-/* 包廂內文的背景 */
-.roomTextBg6 {
-  /* display: inline-block; */
-  border-radius: 10px;
-  margin: 10px auto;
-  padding: 10px;
-  min-width: 1120px;
-  height: 500px;
-  background: rgb(255, 253, 231);
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+.Meeple {
+  width: 250px;
+  position: absolute;
+  z-index: 2;
+  left: -80px;
+  top: 410px;
 }
-
-.roomTextBg4 {
-  border-radius: 10px;
-  margin: 200px 40px;
-  min-width: 800px;
-  height: 500px;
-  background: rgb(255, 253, 231);
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
-}
-
 /* 場地租借 */
 
 /* 場地租借按鈕 */
@@ -151,6 +133,7 @@
   background: #0abbb5;
 }
 
+
 /* 包廂說明 */
 
 /* 包廂說明文字大小 */
@@ -176,12 +159,20 @@
   left: 430px;
   margin: 20px 0px;
 }
-
 /* 包廂說明的照片尺寸 */
 .bookingIndex {
   border-radius: 10px;
   /* opacity: 0.5; */
   width: 800px;
   display: block;
-  margin: auto;
+  margin: 20px auto;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+}
+/* 骰子圖片 */
+.diceImg {
+  width: 350px;
+  position: absolute;
+  z-index: 2;
+  bottom: -2130px;
+  right: 410px;
 }

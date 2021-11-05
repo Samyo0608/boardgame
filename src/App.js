@@ -20,6 +20,8 @@ import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 
 
+
+
 function App() {
   return (
     <>
@@ -46,7 +48,7 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
           </Switch>
         </HashRouter>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

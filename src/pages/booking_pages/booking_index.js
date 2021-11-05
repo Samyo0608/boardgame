@@ -20,6 +20,12 @@ function Booking() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  //   表單欄位統一尺寸
+  const formStyle = {
+    width: "400px",
+    height: "70px",
+    margin: "5px",
+  };
   return (
     <>
       {/* 包廂介紹 */}
@@ -40,10 +46,8 @@ function Booking() {
           <p>一小時：$200元，整日：$300元</p>
           <p>❮ 假日 ❯</p>
           <p>一小時：$250元，整日：$350元</p>
-          <p>以上收費單位以人數計算</p>
-          <button className="btn btn-info" href="/#">
-            場地租借
-          </button>
+          <div className="sixRoomTextLine"></div>
+          <p>※以上收費單位以人數計算</p>
         </div>
       </div>
       {/*四人房*/}
@@ -59,10 +63,8 @@ function Booking() {
           <p>一小時：$150元，整日：$250元</p>
           <p>❮ 假日 ❯</p>
           <p>一小時：$200元，整日：$300元</p>
-          <p>以上收費單位以人數計算</p>
-          <button className="btn" href="/#">
-            場地租借
-          </button>
+          <div className="fourRoomTextLine"></div>
+          <p>※以上收費單位以人數計算</p>
         </div>
       </div>
       {/* 場地租借 */}
@@ -72,9 +74,9 @@ function Booking() {
       </div>
       {/* 場地租借按鈕 */}
       <div className="siteButton">
-        <button className="btn siteButton6" href="/#">
+        <a className="btn siteButton6" href="/#">
           六人房
-        </button>
+        </a>
         <button className="btn siteButton4" href="/#">
           四人房
         </button>
@@ -95,11 +97,78 @@ function Booking() {
             </div>
           </Slider>
         </div>
-        <button className="btn btn-info siteBook" id="">
-          前往訂購
-        </button>
       </div>
 
+      {/* 訂購確認表單 */}
+      <h2 className="text-center">訂購確認</h2>
+      <div className="titleLineBox">
+        <img alt="" className="titleLine" src="img/index/line.png" />
+      </div>
+      <div className="subCheck">
+        {/* 房型下拉選單 */}
+        <div className="mb-3">
+          <label className="form-label">房型： </label>
+          <select
+            className="form-control-lg"
+            style={formStyle}
+            id="room"
+            name="room"
+          >
+            <option selected>房型...</option>
+            <option value="fourRoom">四人房</option>
+            <option value="sixRoom">六人房</option>
+          </select>
+        </div>
+        {/* 姓名填寫表格 */}
+        <div className="mb-3">
+          <label className="form-label">姓名： </label>
+          <input
+            type="text"
+            className="form-control-lg"
+            style={formStyle}
+            id="name"
+            placeholder="姓名"
+          />
+        </div>
+        {/* 電話填寫表格 */}
+        <div className="mb-3">
+          <label className="form-label">電話： </label>
+          <input
+            type="text"
+            className="form-control-lg"
+            style={formStyle}
+            id="phone"
+            placeholder="電話"
+          />
+        </div>
+        {/* 信箱填寫表格 */}
+        <div class="mb-3">
+          <label class="form-label"> 信箱： </label>
+          <input
+            type="email"
+            className="form-control-lg"
+            style={formStyle}
+            id="email"
+            placeholder="name@example.com"
+          />
+        </div>
+        {/* 時間選取欄位 */}
+        <div class="mb-3">
+          <label class="form-label">時間： </label>
+          <input
+            type="date"
+            className="form-control-lg"
+            style={formStyle}
+            id="date"
+            name="date"
+          ></input>
+          <img alt="" className="Meeple" src="img/booking/Meeple.png" />
+        </div>
+        {/* 訂購確認按鈕 */}
+        <a className="btn siteBookCheck" href="#/bookingCheck">
+          前往訂購
+        </a>
+      </div>
       {/* 包廂說明圖+圖片 */}
       <h2 className="text-center">包廂說明</h2>
       <div className="titleLineBox">
@@ -111,6 +180,9 @@ function Booking() {
           className="bookingIndex"
           src="img/booking/roomExplainBg.jpg"
         />
+      </div>
+      <div>
+        <img alt="" className="diceImg" src="img/booking/dice.png"></img>
       </div>
     </>
   );
