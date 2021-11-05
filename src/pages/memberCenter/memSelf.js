@@ -182,7 +182,7 @@ function MemSelf(props) {
               type="submit"
               className="mt-5 btnWidth ms-5"
             >
-              Submit
+              確認
             </Button>
           </Form>
         </div>
