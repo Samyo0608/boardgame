@@ -27,7 +27,7 @@ function Footer(props) {
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="#/discuss">
               討論區
             </a>
           </li>

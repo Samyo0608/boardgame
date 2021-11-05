@@ -1,3 +1,4 @@
+/* 橫幅 */
 .bannerBox {
   max-width: 600px;
   height: 300px;
@@ -10,15 +11,15 @@
   height: 100%;
 }
 
+/* 公告 */
 .news {
   position: relative;
-
   border: 2px solid red;
   border-radius: 5px;
   margin-left: 50%;
   transform: translateX(-50%);
   width: 70%;
-  margin-bottom: 150px;
+  margin-bottom: 130px;
 }
 
 .loud {
@@ -41,12 +42,13 @@
   width: 100%;
 }
 
+/* 推薦標題插圖 */
 .commendPicBox {
-  position: relative;
+  position: absolute;
   z-index: 0;
-  left: 70%;
-  bottom: 180px;
-  max-width: 300px;
+  right: 80px;
+  bottom: -20px;
+  width: 300px;
 }
 
 .commendPic {
@@ -56,7 +58,592 @@
 
 .recommendBox {
   position: relative;
-  width: 600px;
+  width: 100%;
+  height: 650px;
+  background-color: #fffed9;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  /* border: 1px solid rgb(211, 211, 211); */
+  box-shadow: 0px 0px 2px rgb(175, 175, 175);
+}
+
+/* 推薦分類按鈕 */
+.recommendType {
+  font-weight: bold;
+  width: 100px;
+  color: black;
+  border-radius: 30px;
+  transition: 0.4s;
+}
+.recommendType:hover {
+  color: black;
+  background-color: white;
+  box-shadow: 1px 1px 2px rgb(175, 175, 175);
+}
+
+/* 推薦內容 */
+.recommendProductBox {
+  background-color: white;
+  padding-top: 15px;
+  margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 240px;
+  height: 240px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgb(206, 206, 206);
+  transition: 0.4s;
+}
+.recommendProductBox:hover {
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+}
+
+.recommendProductBoxM {
+  background-color: white;
+  padding-top: 20px;
+  width: 500px;
   height: 500px;
-  background-color: wheat;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgb(206, 206, 206);
+  transition: 0.4s;
+}
+
+.recommendProductBoxM:hover {
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+}
+
+.rcmpMb {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
+  width: 350px;
+  height: 350px;
+}
+
+.rcmpMi {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.rcmpB {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+}
+
+.rcmpI {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.recommendCartM {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  border-radius: 20px;
+  width: 130px;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+}
+.recommendCart {
+  position: absolute;
+  bottom: 7px;
+  right: 15px;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+}
+
+/* 分類標籤 */
+.recommendTag {
+  position: absolute;
+  top: 7px;
+  left: -18px;
+  width: 30px;
+  height: 30px;
+}
+
+.tagImg {
+  width: 85px;
+}
+.tagText {
+  color: white;
+  width: 50px;
+  position: relative;
+  bottom: 26px;
+  left: 8px;
+}
+.moreButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #e4e4e4;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* 場地出租插圖 */
+.rentPicBox {
+  position: absolute;
+  z-index: 0;
+  left: 1%;
+  top: -120px;
+  max-width: 270px;
+}
+
+.rentPic {
+  object-fit: contain;
+  width: 100%;
+}
+
+/* 場地出租 */
+.clanderContentBox {
+  margin: auto;
+  margin-top: 50px;
+  width: 95%;
+  height: 500px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 2px rgb(163, 163, 163);
+}
+
+.clanderArrow {
+  margin-left: 8px;
+  margin-right: 8px;
+  color: rgb(170, 170, 170);
+}
+
+.clanderDate {
+  margin-top: 18px;
+}
+
+.clanderAlarm {
+  position: relative;
+  left: 340px;
+}
+
+.roomBox {
+  margin: auto;
+  width: 420px;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.roomImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.roomArrow {
+  font-size: 30px;
+  color: rgb(168, 168, 168);
+}
+.rentButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 100px;
+}
+
+/* 投票標題插圖 */
+.votePicBox {
+  position: absolute;
+  z-index: 0;
+  right: 10px;
+  top: -100px;
+  max-width: 120px;
+}
+
+.votePic {
+  object-fit: contain;
+  width: 100%;
+}
+.voteImgBox {
+  position: relative;
+  margin: auto;
+  width: 350px;
+  height: 350px;
+}
+.voteImgB {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
+  width: 350px;
+  height: 350px;
+}
+
+.voteImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.voteCart {
+  font-weight: bold;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 20px;
+  width: 100px;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+}
+
+.rankBox {
+  position: relative;
+  height: 60px;
+  margin-top: 10px;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+.rankBox1 {
+  width: 350px;
+  background-color: #f68677;
+}
+.rankBox2 {
+  width: 270px;
+  background-color: #ffe4f0;
+}
+.rankBox3 {
+  width: 250px;
+  background-color: #fab587;
+}
+.rankBox4 {
+  width: 200px;
+  background-color: #fff3b3;
+}
+.rankBox5 {
+  width: 180px;
+  background-color: #c5ecf1;
+}
+
+.rankVote {
+  position: absolute;
+  bottom: 3px;
+  right: 20px;
+}
+.rankTitle {
+  position: absolute;
+  bottom: 3px;
+  right: -80px;
+}
+
+.rankTitle:hover {
+  text-decoration: underline solid rgb(102, 180, 253) 2px;
+}
+
+.voteLine {
+  margin: auto;
+  margin-top: 20px;
+  width: 85%;
+  height: 2px;
+  background-color: rgb(167, 167, 167);
+}
+
+.voteButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 80px;
+}
+
+/* 當期比賽標題插圖 */
+.contestTitle {
+  margin-top: 250px;
+}
+.contestPicBox {
+  position: absolute;
+  z-index: 0;
+  right: 80px;
+  bottom: -20px;
+  width: 270px;
+}
+
+.commendPic {
+  object-fit: contain;
+  width: 100%;
+}
+
+/* 比賽內容 */
+.contestBox {
+  margin: auto;
+  margin-top: 50px;
+  width: 85%;
+  height: 230px;
+  background-color: #919191;
+}
+
+.contestImgBox {
+  height: 100%;
+}
+.contestImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position: 50% -50px; */
+}
+
+.contestButton {
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  border-radius: 20px;
+  border: 2px solid white;
+  width: 100px;
+  height: 30px;
+  text-decoration: none;
+  background-color: #2196d4;
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 20px;
+}
+
+.contestMoreButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #e4e4e4;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 20px;
+  bottom: -50px;
+}
+
+/* 討論區標題 */
+.discussTitle {
+  margin-top: 200px;
+}
+
+/* 討論區插圖 */
+.discussPicBox {
+  position: absolute;
+  z-index: 0;
+  left: 1%;
+  top: -170px;
+  max-width: 210px;
+}
+.discussBox {
+  position: relative;
+  width: 100%;
+  height: 750px;
+  background-color: #fffed9;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  /* border: 1px solid rgb(211, 211, 211); */
+  box-shadow: 0px 0px 2px rgb(175, 175, 175);
+}
+.discussOutBox {
+  margin: auto;
+  margin-top: 50px;
+  width: 95%;
+  height: 620px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 2px rgb(163, 163, 163);
+}
+
+.discussInBox {
+  margin: auto;
+  margin-top: 50px;
+  width: 95%;
+  height: 100%;
+  background-color: white;
+}
+
+.discussBody tr th,
+.discussBody tr td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.discussTag {
+  position: absolute;
+  top: 4px;
+  left: 30px;
+  width: 70px;
+  height: 25px;
+  color: white;
+  border-radius: 5px;
+}
+
+.discussTag1 {
+  background-color: #f5b51b;
+}
+.discussTag2 {
+  background-color: #e73f3f;
+}
+
+.discussButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #e4e4e4;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 80px;
+  bottom: 70px;
+}
+
+/* 關於我們 */
+.aboutBox {
+  position: relative;
+  width: 100%;
+  height: 750px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px rgb(175, 175, 175);
+}
+
+.aboutBirdBox {
+  width: 110px;
+  position: absolute;
+  top: -98px;
+  right: 20px;
+}
+.aboutBird {
+  object-fit: contain;
+  width: 100%;
+}
+.aboutBarContent {
+  margin: auto;
+  position: relative;
+  width: 100%;
+  top: 100px;
+}
+.aboutBar {
+  height: 120px;
+  background-color: rgba(255, 255, 255, 0.795);
+  /* opacity: 0.85; */
+  line-height: 120px;
+}
+
+.aboutIcon1 {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: #1a85ff;
+  border-radius: 20px;
+  line-height: 22px;
+  color: white;
+  margin-right: 8px;
+}
+
+.aboutIcon2 {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: #27c412;
+  border-radius: 20px;
+  line-height: 22px;
+  color: white;
+  margin-right: 8px;
+}
+
+.aboutIcon3 {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: #ffaf1a;
+  border-radius: 20px;
+  line-height: 22px;
+  color: white;
+  margin-right: 8px;
+}
+.aboutTag {
+  color: black;
+  text-decoration: none;
+}
+.aboutContent {
+  margin: auto;
+  width: 100%;
+}
+.aboutLeft {
+  padding-left: 30px;
+  position: relative;
+  color: white;
+  height: 430px;
+  line-height: 34px;
+  background-color: rgba(58, 58, 58, 0.466);
+}
+.aboutRight {
+  height: 430px;
+  background-color: rgba(124, 124, 124, 0.486);
+}
+
+.aboutImgBox {
+  position: absolute;
+  bottom: -20px;
+  right: 10px;
+  width: 350px;
+}
+.aboutImg {
+  object-fit: contain;
+  width: 100%;
+}
+
+.mapImgBox {
+  width: 360px;
+  height: 230px;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mapImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }

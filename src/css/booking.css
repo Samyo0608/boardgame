@@ -1,61 +1,71 @@
 /*包廂介紹*/
 .sixRoom {
-  position: relative;
+  width: 1000px;
+  border-radius: 10px;
   margin: 20px auto;
   left: 150px;
+  background: rgb(255, 253, 231);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 .fourRoom {
-  position: relative;
-  margin: 20px auto;
-  right: 150px;
+  width: 1000px;
+  border-radius: 10px;
+  margin: 30px auto;
+  background: rgb(255, 253, 231);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
 /* 包廂介紹-六人房照片 */
 .sixRoomImg {
   width: 500px;
   float: left;
-  margin: 0 30px;
+  margin: 20px 30px;
   border-radius: 10px;
 }
+/* 包廂介紹-四人房照片 */
 .fourRoomImg {
   width: 500px;
   float: right;
-  margin: 0 30px;
+  margin: 20px 30px;
   border-radius: 10px;
 }
 
 /* 包廂介紹的文字 */
-/* 六人房 */
+/* 六人房文字 */
 .sixRoomText {
-  text-align: left;
+  text-align: center;
   padding: 40px;
+  font-size: 20px;
 }
 
-/* 四人房 */
+/* 四人房文字 */
 .fourRoomText {
-  text-align: right;
+  text-align: center;
   padding: 40px;
+  font-size: 20px;
 }
 
-/* 包廂內文的背景 */
-.roomTextBg6 {
-  /* display: inline-block; */
-  border-radius: 10px;
-  margin: 10px auto;
-  padding: 10px;
-  min-width: 1120px;
-  height: 500px;
-  background: rgb(188, 250, 240);
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+/* 包廂內文的小裝飾圖 */
+.sixRoomTextLine {
+  width: 380px;
+  height: 2px;
+  background: #000;
+  position: relative;
+  right: -530px;
+  top: -5px;
 }
-
-.roomTextBg4 {
-  border-radius: 10px;
-  margin: 200px 40px;
-  min-width: 800px;
-  height: 500px;
-  background: rgb(201, 211, 243);
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+.fourRoomTextLine {
+  width: 380px;
+  height: 2px;
+  background: #000;
+  margin: 10px;
+}
+.Meeple {
+  width: 250px;
+  position: absolute;
+  z-index: 2;
+  left: -80px;
+  top: 410px;
 }
 
 /* 場地租借 */
@@ -65,13 +75,90 @@
   text-align: center;
   margin: 20px auto;
 }
+/* 場地租借按鈕-六人房 */
 .siteButton6 {
   margin-right: 10px;
+  background: #6dd0cd;
+  font-size: 20px;
 }
+/* 場地租借按鈕-四人房 */
 .siteButton4 {
   margin-right: 10px;
+  background: #6dd0cd;
+  font-size: 20px;
+}
+.siteButton6:hover {
+  margin-right: 10px;
+  background: #0abbb5;
+}
+.siteButton4:hover {
+  margin-right: 10px;
+  background: #0abbb5;
 }
 
+/* 日曆及照片輪播位置 */
+.site {
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  position: relative;
+  margin: 20px auto;
+  background: rgb(255, 253, 231);
+}
+/* 場地租借日曆 */
+.calendar {
+  position: relative;
+  left: 50px;
+  top: 50px;
+}
+.siteImg {
+  position: relative;
+  top: -300px;
+  left: 450px;
+  width: 500px;
+  height: 380px;
+  border: 1px solid transparent;
+}
+.siteImg img {
+  width: 100%;
+  height: 100%;
+}
+/* 前往訂購按鈕 */
+.siteBook {
+  position: relative;
+  top: -310px;
+  left: 180px;
+  background: #6dd0cd;
+  font-size: 20px;
+}
+.siteBook:hover {
+  background: #0abbb5;
+}
+
+/* 訂購人輸入欄位 */
+.subCheck {
+  position: relative;
+  width: 800px;
+  height: 650px;
+  background: rgb(255, 253, 231);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  margin: 20px auto;
+  padding: 60px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 25px;
+}
+/* 前往訂購按鈕 */
+.siteBookCheck {
+  position: relative;
+  background: #6dd0cd;
+  font-size: 20px;
+  margin: 20px auto;
+}
+.siteBookCheck:hover {
+  background: #0abbb5;
+}
 /* 包廂說明 */
 
 /* 包廂說明文字大小 */
@@ -104,5 +191,15 @@
   /* opacity: 0.5; */
   width: 800px;
   display: block;
-  margin: auto;
+  margin: 20px auto;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+}
+
+/* 骰子圖片 */
+.diceImg {
+  width: 350px;
+  position: absolute;
+  z-index: 2;
+  bottom: -2130px;
+  right: 410px;
 }

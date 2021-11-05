@@ -1,0 +1,51 @@
+.sidebar {
+  margin: 0 auto;
+}
+
+.sidebar div {
+  display: inline-block;
+  font-family: "Microsoft JhengHei";
+  text-decoration: none;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+}
+
+.sidebar ul li {
+  list-style: none;
+}
+
+.sidebar ul li a {
+  display: inline-block;
+  width: 100%;
+  font-size: 1.25rem;
+  line-height: 50px;
+}
+
+.sidebar ul li a:hover {
+  background: #2196d4;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0.3);
+}
+
+.sidebar ul li a:hover div {
+  color: #fff;
+}
+
+.point-sidebar {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+}
+
+.pointDivSide {
+  width: 100%;
+  text-decoration: none;
+}
+
+.ms-6 {
+  margin-left: 80px;
+}
+
+.transform {
+  transform: rotate(90deg);
+}
