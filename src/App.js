@@ -12,6 +12,8 @@ import TopNavbar from "./components/Navbar";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import MemberCenter from "./pages/memberCenter";
+import vote from "./pages/contest/vote.js"
+import contestInfo from "./pages/contest/contest_info";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route exact={true} path="/booking" component={booking} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest}/>
+            <Route exact={true} path="/contestInfo" component={contestInfo}/>
+            <Route exact={true} path="/vote" component={vote}/>
 
           </Switch>
         </HashRouter>
