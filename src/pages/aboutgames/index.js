@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import "../../css/aboutgame.css";
@@ -35,7 +34,7 @@ function Aboutgame(props) {
         <div>
         <div className="box" >
         <p className="p6">島嶼爭霸</p>
-        <img className="abb" src={process.env.PUBLIC_URL + "/img/product/game1.jpg"} />
+        <img className="abb" src="/img/product/game1.jpg" alt="" />
 
       
         <div className="text1">
@@ -54,11 +53,11 @@ function Aboutgame(props) {
         </div>
         <div>
         <a href="#/">
-<img className="favorite4" src={process.env.PUBLIC_URL + "/img/product/favorite.png"} />
+<img className="favorite4" src="/img/product/favorite.png" alt="" />
 
 </a>
 <a href="#/">
-<img className="buy4" src={process.env.PUBLIC_URL + "/img/product/buy.png"} />
+<img className="buy4" src="/img/product/buy.png" alt="" />
   </a>
   </div>
         </div>
@@ -68,15 +67,13 @@ function Aboutgame(props) {
   <Button>遊戲規格</Button>
   <Button>退換貨須知</Button>
   </div>
-
-
   <div>
         <div className="box2" ></div>
         
 <h1 className="p7">遊戲名稱：諸神之戰 Cyclades
 </h1>
 <a href="#/">
-<img className="forum" src={process.env.PUBLIC_URL + "/img/product/forum.png"} />
+<img className="forum" src="/img/product/forum.png" alt=""/>
 </a>
 </div>
 
