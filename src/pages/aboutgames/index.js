@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import "../../css/aboutgame.css";
-function index(props) {
+function Aboutgame(props) {
     return (
         <>
         <ul className="d-flex  justify-content-evenly list-unstyled py-0 my-2">     
@@ -92,4 +92,4 @@ function index(props) {
 }
 
 
-export default index
+export default  Aboutgame

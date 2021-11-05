@@ -6,8 +6,8 @@ import ReactDOM from "react-dom";
 import { HashRouter, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import index from "./pages/product/index";  // 選擇自己分頁的路徑
-import index2 from "./pages/aboutgames/index2"; 
+import Product from "./pages/product/index";  // 選擇自己分頁的路徑
+import Aboutgame from "./pages/aboutgames/index2"; 
 import Footer from"./components/Footer";
 
 function App() {
@@ -16,10 +16,10 @@ function App() {
     <div className="bodyWidth">
       <HashRouter>
         <Switch>
-          <Route exact={true} path="/product" component={index} /> 
+          <Route exact={true} path="/product" component={Product} /> 
         </Switch>
         <Switch>
-          <Route exact={true} path="/aboutgames" component={index2} /> 
+          <Route exact={true} path="/aboutgames" component={ Aboutgame} /> 
         </Switch>
       </HashRouter>
     </div>

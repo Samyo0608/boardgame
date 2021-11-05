@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import "../../css/product.css";
 
 
-function index(props) {
+function Product(props) {
     return (
 <>
 <>
@@ -194,4 +194,4 @@ function index(props) {
 
 
 
-export default index
+export default Product
