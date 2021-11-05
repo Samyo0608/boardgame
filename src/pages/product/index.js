@@ -2,16 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import all from "../../img/all.png";
-import family from "../../img/family.png";
-import strategy from "../../img/strategy.png";
-import card from "../../img/card.png";
-import game1 from "../../img/game1.jpg";
-import favorite from "../../img/favorite.png";
-import buy from "../../img/buy.png";
-import favorite2 from "../../img/favorite2.png";
-import buy2 from "../../img/buy2.png";
-import crime from "../../img/crime.jpg";
+
 import "../../css/product.css";
 
 
@@ -28,11 +19,9 @@ function index(props) {
             </a>
           </li>
           <li>
-          
             <a className="gametype" href="#/">
             {/* <img className="typeImg" src={strategy} alt=""/> */}
-              策略
-              
+              策略             
             </a>
           </li>
           <li>        
@@ -47,54 +36,54 @@ function index(props) {
               家庭
             </a>
           </li>
-        </ul>
-       
+        </ul>      
         <hr className="hr1"></hr>
        {/* 第一名遊戲 */}
         <div className="shadowbox" >
         <p className="p1">島嶼爭霸</p>
-   <img className="abc" src={game1} alt=""/ >
+        <img className="abc" src={process.env.PUBLIC_URL + "/img/product/game1.jpg"} />
    <p className="p2">在群島爭霸中，我們可妥善運用神明賜予的力量，還有
 神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
 群島爭霸非常有在玩希臘神話遊戲
 </p>
 <span>$999</span>
 <a href="#/">
-<img className="favorite" src={favorite} alt=""/>
+<img className="favorite" src={process.env.PUBLIC_URL + "/img/product/favorite.png"} />
 </a>
 <a href="#/">
-<img className="buy" src={buy} alt=""/>
-</a></div>
+<img className="buy" src={process.env.PUBLIC_URL + "/img/product/buy.png"} />
+</a>
+</div>
 {/* 第二名 */}
   <div className="shadowbox2" >
   <p className="p1">島嶼爭霸</p>
-   <img className="abcd" src={game1} alt=""/>
+  <img className="abcd" src={process.env.PUBLIC_URL + "/img/product/game1.jpg"} />
    <p className="p3">在群島爭霸中，我們可妥善運用神明賜予的力量，還有
 神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
 群島爭霸非常有在玩希臘神話遊戲
 </p>
 <span>$999</span>
 <a href="#/">
-<img className="favorite2" src={favorite} alt=""/>
+<img className="favorite2" src={process.env.PUBLIC_URL + "/img/product/favorite.png"} />
 </a>
 <a href="#/">
-<img   className="buy2"  src={buy} alt=""/>
+<img className="buy2" src={process.env.PUBLIC_URL + "/img/product/buy.png"} />
   </a>
   </div>
   {/* 第三名 */}
   <div className="shadowbox3" >
   <p className="p1">島嶼爭霸</p>
-   <img className="abcde" src={game1} alt=""/>
+  <img className="abcde" src={process.env.PUBLIC_URL + "/img/product/game1.jpg"} />
    <p className="p3">在群島爭霸中，我們可妥善運用神明賜予的力量，還有
 神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
 群島爭霸非常有在玩希臘神話遊戲
 </p>
 <span>$999</span>
 <a href="#/">
-<img className="favorite2" src={favorite} alt=""/>
+<img className="favorite2" src={process.env.PUBLIC_URL + "/img/product/favorite.png"} />
 </a>
 <a href="#/">
-<img className="buy2" src={buy} alt=""/>
+<img className="buy2" src={process.env.PUBLIC_URL + "/img/product/buy.png"} />
   </a>
   </div>
   <hr  className="hr2"></hr>
@@ -106,94 +95,94 @@ function index(props) {
   </div>
   {/* 一 */}
   <div className="shadowbox4" >   
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
 </div>
  {/* 二 */}
   <div className="shadowbox4" >
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
-  </div>
+</div>
   {/* 三 */}
   <div className="shadowbox5" >   
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
-  </div>
+</div>
 {/* 六 */}
   <div className="shadowbox5" >   
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
   </div>
   {/* 五 */}
   <div className="shadowbox7" >   
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
-  </div>
+</div>
   {/* 四 */}
   <div className="shadowbox8" >   
-   <img className="pic" src={crime} alt=""/ >
+  <img className="pic" src={process.env.PUBLIC_URL + "/img/product/crime.jpg"} />
 <div>
   <p className="type">策略</p>
 </div>
 <div><p className="gamename">犯人在跳舞</p></div>
 <span>$999</span>
 <a href="#/">
-<img className="favorite3" src={favorite2} alt=""/>
+<img className="favorite3" src={process.env.PUBLIC_URL + "/img/product/favorite2.png"} />
 </a>
 <a href="#/">
-<img className="buy3" src={buy2} alt=""/>
+<img className="buy3" src={process.env.PUBLIC_URL + "/img/product/buy2.png"} />
 </a>
-  </div>
+</div>
   </>
 
         </>

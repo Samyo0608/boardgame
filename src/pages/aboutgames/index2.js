@@ -2,52 +2,42 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import game1 from "../../img/game1.jpg";
 import "../../css/aboutgame.css";
-import favorite from "../../img/favorite.png";
-import buy from "../../img/buy.png";
-import forum from "../../img/forum.png";
 function index(props) {
     return (
         <>
-        <>
-        <ul className="d-flex  justify-content-evenly list-unstyled py-0 my-2">
-       
+        <ul className="d-flex  justify-content-evenly list-unstyled py-0 my-2">     
           <li>
             <a className="gametype" href="#/">
-            {/* <img className="typeImg" src={all} alt=""/> */}
               全部
             </a>
           </li>
-          <li>
-          
-            <a className="gametype" href="#/">
-            {/* <img className="typeImg" src={strategy} alt=""/> */}
-              策略
-              
+          <li>         
+            <a className="gametype" href="#/">  
+              策略            
             </a>
           </li>
           <li>        
-            <a className="gametype" href="#/">
-            {/* <img className="typeImg" src={card} alt=""/> */}
+            <a className="gametype" href="#/">       
               卡牌
             </a>
           </li>
           <li>
-            <a className="gametype" href="#/">
-            {/* <img className="typeImg" src={family} alt=""/> */}
+            <a className="gametype" href="#/">       
               家庭
             </a>
           </li>
         </ul>
-        </>
+        
         <>
         <hr className="hr1"></hr>
         </>
         <div>
         <div className="box" >
         <p className="p6">島嶼爭霸</p>
-        <img className="abb" src={game1} alt=""/ >
+        <img className="abb" src={process.env.PUBLIC_URL + "/img/product/game1.jpg"} />
+
+      
         <div className="text1">
         <span>類型: 策略</span>
         <p></p>
@@ -64,10 +54,11 @@ function index(props) {
         </div>
         <div>
         <a href="#/">
-<img className="favorite4" src={favorite} alt=""/>
+<img className="favorite4" src={process.env.PUBLIC_URL + "/img/product/favorite.png"} />
+
 </a>
 <a href="#/">
-<img   className="buy4"  src={buy} alt=""/>
+<img className="buy4" src={process.env.PUBLIC_URL + "/img/product/buy.png"} />
   </a>
   </div>
         </div>
@@ -85,7 +76,7 @@ function index(props) {
 <h1 className="p7">遊戲名稱：諸神之戰 Cyclades
 </h1>
 <a href="#/">
-<img className="forum" src={forum} alt=""/ >
+<img className="forum" src={process.env.PUBLIC_URL + "/img/product/forum.png"} />
 </a>
 </div>
 
