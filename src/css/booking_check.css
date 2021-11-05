@@ -1,0 +1,42 @@
+/* 場地訂購確認 */
+
+/* 日曆及照片輪播位置 */
+.siteCheck {
+  width: 1000px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  position: relative;
+  margin: 20px auto;
+  background: rgb(255, 253, 231);
+}
+/* 場地租借日曆 */
+.calendarCheck {
+  /* background: brown; */
+  position: relative;
+  left: 50px;
+  top: 50px;
+}
+/* 前往訂購按鈕 */
+.siteBookCheck {
+  position: relative;
+  background: #6dd0cd;
+  font-size: 20px;
+}
+.siteBookCheck:hover {
+  background: #0abbb5;
+}
+
+/* 訂購人輸入欄位 */
+.subCheck {
+  position: relative;
+  width: 800px;
+  height: 650px;
+  background: rgb(255, 253, 231);
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
+  margin: 20px auto;
+  padding: 60px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 25px;
+}

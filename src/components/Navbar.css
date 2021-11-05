@@ -1,0 +1,125 @@
+.searchInput {
+  max-width: 150px;
+  position: relative;
+}
+
+.formControl {
+  border: none;
+  border-radius: 20px;
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.faSearch {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+.faQuestionCircle {
+  font-size: 20px;
+  color: #2196d4;
+}
+
+.navSelect {
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: inline-block;
+  max-width: 250px;
+  height: 100%;
+  line-height: 100%;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  position: relative;
+}
+
+.secondLink {
+  background: #fff;
+  border-radius: 5px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000000;
+  top: 65%;
+  max-width: 100px;
+  text-align: center;
+  opacity: 80%;
+}
+
+.secondLink a {
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 5px 10px;
+  /* border: 1px solid #000000; */
+}
+
+.secondLink a:hover {
+  background: #e9e9e9;
+}
+
+/* .outsideSec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid #000000;
+  width: 120%;
+  height: 800px;
+} */
+
+.navSelect:hover {
+  background-color: #2196d4;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.navSelect div .faSortDown:hover {
+  display: inline-block;
+}
+
+.active {
+  background-color: #2196d4;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.active.faSortDown {
+  display: inline-block;
+}
+
+.TopRightLink a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.TopRightLink a:hover {
+  color: rgb(88, 88, 88);
+}
+
+.point {
+  background: #f5b51b;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+}
+
+.name {
+  margin: 0;
+}
+
+.memberBorder {
+  text-decoration: none;
+  border: 3px solid #2196d4;
+  padding: 5px;
+  border-radius: 20px;
+  color: #2196d4;
+  font-weight: bold;
+}
