@@ -28,18 +28,18 @@ function BookingCheck() {
   return (
     <>
       {/* 場地訂購 */}
-      <h2 className="text-center">場地訂購</h2>
+      {/* <h2 className="text-center">場地訂購</h2>
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
 
-      <div className="siteCheck">
-        {/* 場地租借日曆 */}
-        <div className="calendarCheck">
+      <div className="siteCheck"> */}
+      {/* 場地租借日曆 */}
+      {/* <div className="calendarCheck">
           <Calendar onChange={setValue} value={value} />
-        </div>
-        {/* 場地租借照片 */}
-        <div className="siteImg">
+        </div> */}
+      {/* 場地租借照片 */}
+      {/* <div className="siteImg">
           <Slider {...settings}>
             <div>
               <img alt="" className="" src="img/booking/siteIndex-3.jpg" />
@@ -49,7 +49,7 @@ function BookingCheck() {
             </div>
           </Slider>
         </div>
-      </div>
+      </div> */}
 
       {/* 訂購確認表單 */}
       <h2 className="text-center">訂購確認</h2>
