@@ -17,7 +17,6 @@ import MemSelf from "./pages/memberCenter/memSelf";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
 
-
 function App() {
   return (
     <>
@@ -42,8 +41,8 @@ function App() {
             <Route exact={true} path="/vote" component={vote} />
           </Switch>
         </HashRouter>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
