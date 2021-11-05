@@ -1,3 +1,4 @@
+/* 上面 */
 .box {
     width: 1000px;
     height: 500px;
@@ -7,10 +8,12 @@
     text-align:left;
     margin-left: 100px;
 } 
+/* 下面 */
 .box2 {
     width: 1000px;
     height: 550px;
     background-image:url("../img/BK.png");
+    box-shadow: 8px 8px 5px rgb(189, 186, 186);
     background-size:contain;
     background-repeat: no-repeat;
     text-align:left;
@@ -41,6 +44,7 @@
       margin-top:-500px;
 
   }
+  /* 遊戲大圖 */
   .abb {
     float:left;
     width: 550px;
@@ -56,28 +60,24 @@
   .buy4 {
     margin-top:30px;
   }
-
+/* 按鈕 */
   .btn0 {
     float: left;
-    margin-top: 15px;
-    margin-left:25px; 
-    padding-left: 60px;
-    padding-right:60px;
-    display: inline;
+    margin-top: 45px;
+    margin-left:100px; 
+    /* padding-left: 60px;
+    padding-right:60px; */
+    display: inline-block;
     font-size:20px;
+    border:5px;
     font-weight: bold;
     
   }
-  .bt1 {
-  
-    display: inline;
-  }
-  .bt2 {
-    display: inline;
-  }
-  .bt3 {
-    display: inline;
-  }
+  .btn0 button{
+    display: inline-block;
+    margin-left:2px;
+  } 
+/* 討論區 */
   .forum{
       float:right;
       margin-top: 250px;

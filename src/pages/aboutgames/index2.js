@@ -73,9 +73,9 @@ function index(props) {
         </div>
         </div>
   <div className="btn0">
-  <div className="bt3"><Button>遊戲介紹</Button> </div>
-  <div className="bt1"><Button>遊戲規格</Button></div>
-  <div className="bt2"><Button>退換貨須知</Button></div>
+  <Button>遊戲介紹</Button>
+  <Button>遊戲規格</Button>
+  <Button>退換貨須知</Button>
   </div>
 
 
@@ -84,8 +84,11 @@ function index(props) {
         
 <h1 className="p7">遊戲名稱：諸神之戰 Cyclades
 </h1>
+<a href="#/">
 <img className="forum" src={forum} alt=""/ >
+</a>
 </div>
+
 
 
 

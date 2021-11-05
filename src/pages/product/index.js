@@ -12,8 +12,6 @@ import buy from "../../img/buy.png";
 import favorite2 from "../../img/favorite2.png";
 import buy2 from "../../img/buy2.png";
 import crime from "../../img/crime.jpg";
-
-
 import "../../css/product.css";
 
 
@@ -52,7 +50,7 @@ function index(props) {
         </ul>
        
         <hr className="hr1"></hr>
-       
+       {/* 第一名遊戲 */}
         <div className="shadowbox" >
         <p className="p1">島嶼爭霸</p>
    <img className="abc" src={game1} alt=""/ >
@@ -67,7 +65,7 @@ function index(props) {
 <a href="#/">
 <img className="buy" src={buy} alt=""/>
 </a></div>
-
+{/* 第二名 */}
   <div className="shadowbox2" >
   <p className="p1">島嶼爭霸</p>
    <img className="abcd" src={game1} alt=""/>
@@ -83,6 +81,7 @@ function index(props) {
 <img   className="buy2"  src={buy} alt=""/>
   </a>
   </div>
+  {/* 第三名 */}
   <div className="shadowbox3" >
   <p className="p1">島嶼爭霸</p>
    <img className="abcde" src={game1} alt=""/>
@@ -99,17 +98,15 @@ function index(props) {
   </a>
   </div>
   <hr  className="hr2"></hr>
+  {/* 排序紐 */}
   <div className="button0">
-  <div className="button3"><Button>價格排序</Button>
+  <Button>價格排序</Button>
+  <Button>最高</Button>
+<Button>最低</Button>
   </div>
-  <div className="button1"><Button>最高</Button>
-  </div>
-  <div className="button2"><Button>最低</Button>
-  </div>
-  </div>
+  {/* 一 */}
   <div className="shadowbox4" >   
    <img className="pic" src={crime} alt=""/ >
-   <div></div>
 <div>
   <p className="type">策略</p>
 </div>
@@ -122,7 +119,7 @@ function index(props) {
 <img className="buy3" src={buy2} alt=""/>
 </a>
 </div>
- 
+ {/* 二 */}
   <div className="shadowbox4" >
    <img className="pic" src={crime} alt=""/ >
 <div>
@@ -137,7 +134,7 @@ function index(props) {
 <img className="buy3" src={buy2} alt=""/>
 </a>
   </div>
-  
+  {/* 三 */}
   <div className="shadowbox5" >   
    <img className="pic" src={crime} alt=""/ >
 <div>
@@ -152,7 +149,7 @@ function index(props) {
 <img className="buy3" src={buy2} alt=""/>
 </a>
   </div>
-
+{/* 六 */}
   <div className="shadowbox5" >   
    <img className="pic" src={crime} alt=""/ >
 <div>
@@ -167,6 +164,7 @@ function index(props) {
 <img className="buy3" src={buy2} alt=""/>
 </a>
   </div>
+  {/* 五 */}
   <div className="shadowbox7" >   
    <img className="pic" src={crime} alt=""/ >
 <div>
@@ -181,6 +179,7 @@ function index(props) {
 <img className="buy3" src={buy2} alt=""/>
 </a>
   </div>
+  {/* 四 */}
   <div className="shadowbox8" >   
    <img className="pic" src={crime} alt=""/ >
 <div>
@@ -198,7 +197,7 @@ function index(props) {
   </>
 
         </>
-    )
+    );
 }
 
 
