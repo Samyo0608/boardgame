@@ -1,3 +1,17 @@
+:root {
+  --fontColor: RGB(97, 98, 98);
+  --shadow: #ccc;
+  --doButton: #2196d4;
+  --disButton: #ccc;
+}
 
-
-
+/* 背景圖 */
+.conInfoBg {
+  background-image: url("../img/contest/conBg02.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.conInner {
+  box-shadow: 3px 3px 3px 3px var(--shadow);
+}

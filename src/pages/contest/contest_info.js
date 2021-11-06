@@ -14,7 +14,12 @@ function contest_info(props) {
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
-
+        <div className="conInfoBg">
+        <h2 className="text-center">寶可夢卡牌報名對戰開始!
+        </h2>
+        <img alt="活動示意圖" src="img/contest/conInner01.jpg " className="conInner"/>
+       
+        </div>
         </>
     )
 }

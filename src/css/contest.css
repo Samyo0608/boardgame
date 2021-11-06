@@ -6,10 +6,9 @@
 }
 /* 背景圖 */
 .conBg {
-  /* background-image: url("../../public/img/contest/conBg.jpg"); */
-  width: 1200px;
-  margin: 0 auto;
-  opacity: 0.5;
+  background-image: url("../img/contest/conBg01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 /* 搜尋區塊開始 */
