@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import "../../css/memSelf.css";
+import "../../css/rePassword.css";
 import Sidebar from "../../components/memberSidebar/index";
 
-function MemSelf(props) {
+function RePassword(props) {
   return (
     <div className="mt-5">
       <div className="d-flex">
@@ -191,4 +191,4 @@ function MemSelf(props) {
   );
 }
 
-export default MemSelf;
+export default RePassword;
