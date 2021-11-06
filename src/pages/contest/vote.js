@@ -26,14 +26,14 @@ function vote(props) {
         </Col>
         </Row>
         <div className="voteResult">
-        <h4 className="text-center">投票活動</h4>
+        <h2 className="text-center">投票活動</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
         </div>
 
         <Row>
-            <Col></Col>
+            <Col md={12}><div className=""></div></Col>
             <Col></Col>
             <Col></Col>
         </Row>
