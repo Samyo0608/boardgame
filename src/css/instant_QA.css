@@ -1,0 +1,62 @@
+/* header */
+/* title */
+.title {
+  margin: 50px 0 0 50px;
+  font-size: 28px;
+  font-weight: bold;
+}
+.dice {
+  float: left;
+  width: 300px;
+  position: relative;
+  top: -85px;
+  left: -70px;
+}
+/* 內文外框 */
+.outer {
+  border: 1px solid rgb(255, 255, 255, 0.1);
+  background-image: url(../img/customer_service/rectangle.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 1200px;
+  height: 1000px;
+}
+/* 內文內框 */
+.inner {
+  /* border: solid black; */
+  margin: 70px 30px 50px 130px;
+  width: 1000px;
+  height: 800px;
+}
+.inner :first {
+  /* border: solid black; */
+  margin: 0;
+}
+/* 專員頭像 */
+.Commissioner_avatar {
+}
+/* 專員對話外框 */
+.dialog_box {
+  margin: 50px;
+}
+/* 專員對話框 */
+.commissioner_dialog {
+  border: 1px solid red;
+  padding: 20px;
+  position: relative;
+}
+.hack_start {
+  position: absolute;
+  left: 20px;
+  bottom: 0px;
+}
+/* 問題清單 */
+.Questions_list {
+}
+/* 底圖 */
+.commissioner {
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+}

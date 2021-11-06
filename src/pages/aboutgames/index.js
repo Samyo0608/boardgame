@@ -44,9 +44,7 @@ function Aboutgame(props) {
             <p>◎ 扮演五個重要的希臘城市，要在諸神的凝視 下來爭奪霸業。</p>
             <p>◎ 善用金錢取得眾神的信任，執行對應的動作</p>
             <p>遊戲人數：2~5人</p>
-            <br></br>
             <p>遊戲年齡：13+</p>
-            <br></br>
             <p>遊戲時間：60分鐘</p>
           </div>
           <div>
@@ -63,7 +61,7 @@ function Aboutgame(props) {
           </div>
         </div>
       </div>
-      <div className="btn0">
+      <div className="button3 ">
         <Button>遊戲介紹</Button>
         <Button>遊戲規格</Button>
         <Button>退換貨須知</Button>

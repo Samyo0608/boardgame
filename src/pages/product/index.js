@@ -21,7 +21,6 @@ function Product(props) {
           </li>
           <li>
             <a className="gametype" href="#/">
-              {/* <img className="typeImg" src={card} alt=""/> */}
               卡牌
             </a>
           </li>
@@ -31,7 +30,7 @@ function Product(props) {
             </a>
           </li>
         </ul>
-        <hr className="hr1"></hr>
+        <div className="hr"></div>
         {/* 第一名遊戲 */}
         <div className="shadowbox">
           <p className="p1">島嶼爭霸</p>
@@ -42,48 +41,72 @@ function Product(props) {
             群島爭霸非常有在玩希臘神話遊戲
           </p>
           <span>$999</span>
-          <a href="#/">
-            <img className="favorite" src="/img/product/favorite.png" alt="" />
-          </a>
-          <a href="#/">
-            <img className="buy" src="/img/product/buy.png" alt="" />
-          </a>
+          <div>
+            <p className="p5">投票數:</p>
+            <a href="#/">
+              <img
+                className="favorite"
+                src="/img/product/favorite.png"
+                alt=""
+              />
+            </a>
+            <a href="#/">
+              <img className="buy" src="/img/product/buy.png" alt="" />
+            </a>
+          </div>
+          {/* 第二名 */}
+          <div className="posi">
+            <div className="shadowbox3">
+              <p className="p1">島嶼爭霸</p>
+              <img className="abcd" src="/img/product/game1.jpg" alt="" />
+              <p className="p3">
+                在群島爭霸中，我們可妥善運用神明賜予的力量，還有
+                神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
+                群島爭霸非常有在玩希臘神話遊戲
+              </p>
+              <span>$999</span>
+              <div className="iconflex2">
+                <p className="p5">投票數:</p>
+                <a href="#/">
+                  <img
+                    className="favorite2"
+                    src="/img/product/favorite.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy2" src="/img/product/buy.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+          {/* 第三名 */}
+          <div className="posi2">
+            <div className="shadowbox3">
+              <p className="p1">島嶼爭霸</p>
+              <img className="abcde" src="/img/product/game1.jpg" alt="" />
+              <p className="p3">
+                在群島爭霸中，我們可妥善運用神明賜予的力量，還有
+                神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
+                群島爭霸非常有在玩希臘神話遊戲
+              </p>
+              <span>$999</span>
+              <div className="iconflex2">
+                <p className="p5">投票數:</p>
+                <a href="#/">
+                  <img
+                    className="favorite2"
+                    src="/img/product/favorite.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy2" src="/img/product/buy.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* 第二名 */}
-        <div className="shadowbox2">
-          <p className="p1">島嶼爭霸</p>
-          <img className="abcd" src="/img/product/game1.jpg" alt="" />
-          <p className="p3">
-            在群島爭霸中，我們可妥善運用神明賜予的力量，還有
-            神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
-            群島爭霸非常有在玩希臘神話遊戲
-          </p>
-          <span>$999</span>
-          <a href="#/">
-            <img className="favorite2" src="/img/product/favorite.png" alt="" />
-          </a>
-          <a href="#/">
-            <img className="buy2" src="/img/product/buy.png" alt="" />
-          </a>
-        </div>
-        {/* 第三名 */}
-        <div className="shadowbox3">
-          <p className="p1">島嶼爭霸</p>
-          <img className="abcde" src="/img/product/game1.jpg" alt="" />
-          <p className="p3">
-            在群島爭霸中，我們可妥善運用神明賜予的力量，還有
-            神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
-            群島爭霸非常有在玩希臘神話遊戲
-          </p>
-          <span>$999</span>
-          <a href="#/">
-            <img className="favorite2" src="/img/product/favorite.png" alt="" />
-          </a>
-          <a href="#/">
-            <img className="buy2" src="/img/product/buy.png" alt="" />
-          </a>
-        </div>
-        <hr className="hr2"></hr>
         {/* 排序紐 */}
         <div className="button0">
           <Button>價格排序</Button>
@@ -91,130 +114,151 @@ function Product(props) {
           <Button>最低</Button>
         </div>
         {/* 一 */}
-        <div className="shadowbox4">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
+        <div className="boxflex">
+          {/* 第一個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
+          {/* 第二個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
-        </div>
-        {/* 二 */}
-        <div className="shadowbox4">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
+          {/* 第三個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
+          {/* 第四個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
-        </div>
-        {/* 三 */}
-        <div className="shadowbox5">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
+          {/* 第五個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
+          {/* 第六個遊戲 */}
+          <div className="shadowbox4">
+            <img className="pic" src="/img/product/crime.jpg" alt="" />
+            <div>
+              <p className="type">策略</p>
+            </div>
+            <div>
+              <p className="gamename">犯人在跳舞</p>
+            </div>
+            <br></br>
+            <span>$999</span>
+            <div className="iconflex">
+              <a href="#/">
+                <img
+                  className="favorite3"
+                  src="/img/product/favorite2.png"
+                  alt=""
+                />
+              </a>
+              <a href="#/">
+                <img className="buy3" src="/img/product/buy2.png" alt="" />
+              </a>
+            </div>
           </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
-        </div>
-        {/* 六 */}
-        <div className="shadowbox5">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
-          </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
-          </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
-        </div>
-        {/* 五 */}
-        <div className="shadowbox7">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
-          </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
-          </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
-        </div>
-        {/* 四 */}
-        <div className="shadowbox8">
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
-          <div>
-            <p className="type">策略</p>
-          </div>
-          <div>
-            <p className="gamename">犯人在跳舞</p>
-          </div>
-          <span>$999</span>
-          <a href="#/">
-            <img
-              className="favorite3"
-              src="/img/product/favorite2.png"
-              alt=""
-            />
-          </a>
-          <a href="#/">
-            <img className="buy3" src="/img/product/buy2.png" alt="" />
-          </a>
         </div>
       </>
     </>
