@@ -14,13 +14,11 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import MemberCenter from "./pages/memberCenter";
 import MemSelf from "./pages/memberCenter/memSelf";
+import RePassword from "./pages/memberCenter/rePassword";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
-
-
-
 
 function App() {
   return (
@@ -33,6 +31,11 @@ function App() {
               exact={true}
               path="/memberCenter/memSelf"
               component={MemSelf}
+            />
+            <Route
+              exact={true}
+              path="/memberCenter/rePassword"
+              component={RePassword}
             />
             <Route exact={true} path="/" component={index} />
             <Route exact={true} path="/login" component={Login} />
