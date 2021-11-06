@@ -23,7 +23,7 @@ function MemSelf(props) {
                 會員帳號
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue="DaWang2021" />
+                <p className="mb-0 LHeignt">DaWang2021</p>
               </Col>
             </Form.Group>
 
