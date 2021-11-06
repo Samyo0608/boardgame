@@ -105,7 +105,9 @@ function TopNavbar(props) {
                     setSelect(v.title);
                   }}
                   onMouseLeave={(e) => {
-                    setSelect("");
+                    if (displayDiv !== "block") {
+                      setSelect("");
+                    }
                   }}
                 >
                   <div className="d-flex justify-content-between align-items-center">
