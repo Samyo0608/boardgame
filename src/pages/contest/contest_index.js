@@ -49,7 +49,7 @@ function index(props) {
         
     <div>
        {/* 活動資訊卡片 */}
-     <Container>
+     <Container >
         <Row>
             <Col md={6}>
                 
