@@ -16,6 +16,7 @@ import Register from "./pages/register";
 import MemberCenter from "./pages/memberCenter";
 import MemSelf from "./pages/memberCenter/memSelf";
 import RePassword from "./pages/memberCenter/rePassword";
+import MemberProduct from "./pages/memberCenter/memberProduct";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
@@ -37,6 +38,11 @@ function App() {
               exact={true}
               path="/memberCenter/rePassword"
               component={RePassword}
+            />
+            <Route
+              exact={true}
+              path="/memberCenter/memberProduct"
+              component={MemberProduct}
             />
             <Route exact={true} path="/faq" component={CustomerServicePage} />
             <Route exact={true} path="/instant_QA" component={instantQAPage} />

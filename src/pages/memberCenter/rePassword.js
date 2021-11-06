@@ -28,7 +28,7 @@ function RePassword(props) {
                   <Form.Control type="password" placeholder="請輸入密碼" />
                 </Col>
               </Form.Group>
-              <Form.Group as={Row} className="mb-3" controlId="oldPassword">
+              <Form.Group as={Row} className="mb-3" controlId="reOld">
                 <Form.Label column sm="4">
                   原密碼確認
                 </Form.Label>
@@ -36,7 +36,7 @@ function RePassword(props) {
                   <Form.Control type="password" placeholder="密碼確認" />
                 </Col>
               </Form.Group>{" "}
-              <Form.Group as={Row} className="mb-3" controlId="oldPassword">
+              <Form.Group as={Row} className="mb-3" controlId="newPassword">
                 <Form.Label column sm="4">
                   新密碼
                 </Form.Label>
@@ -44,7 +44,7 @@ function RePassword(props) {
                   <Form.Control type="password" placeholder="請輸入新密碼" />
                 </Col>
               </Form.Group>{" "}
-              <Form.Group as={Row} className="mb-3" controlId="oldPassword">
+              <Form.Group as={Row} className="mb-3" controlId="reNew">
                 <Form.Label column sm="4">
                   新密碼確認
                 </Form.Label>

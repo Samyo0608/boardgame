@@ -6,7 +6,6 @@ import {
   Container,
   Navbar,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
   Image,
@@ -14,7 +13,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
-  faSortDown,
   faQuestionCircle,
   faShoppingCart,
   faUserCircle,
@@ -32,6 +30,7 @@ function TopNavbar(props) {
       secondItem2: "門市資訊",
       url1: "#action1",
       url2: "#action2",
+      isShow: true,
     },
     {
       title: "活動",
@@ -39,15 +38,19 @@ function TopNavbar(props) {
       secondItem2: "投票活動",
       url1: "#action1",
       url2: "#action2",
+      isShow: true,
     },
     {
       title: "租賃服務",
+      isShow: false,
     },
     {
       title: "產品頁面",
+      isShow: false,
     },
     {
       title: "討論區",
+      isShow: false,
     },
     {
       title: "客服中心",
@@ -57,6 +60,8 @@ function TopNavbar(props) {
       url1: "#action1",
       url2: "#action2",
       url3: "#action3",
+      isShow: true,
+      isNull: true,
     },
   ];
 
@@ -108,27 +113,31 @@ function TopNavbar(props) {
                   </div>
                 </a>
 
-                <div
-                  className={`${displayDiv} secondLink`}
-                  onMouseEnter={(e) => {
-                    setSelect(v.title);
-                    setDisplay("block");
-                  }}
-                  onMouseLeave={(e) => {
-                    setSelect("");
-                    setDisplay("d-none");
-                  }}
-                >
-                  <a href={`${v.url1}`}>{v.secondItem1}</a>
-                  <a href={`${v.url2}`}>{v.secondItem2}</a>
-                  <a href={`${v.url3}`}>{v.secondItem3}</a>
-                </div>
+                {v.isShow === true && (
+                  <div
+                    className={`${displayDiv} secondLink`}
+                    onMouseEnter={(e) => {
+                      setSelect(v.title);
+                      setDisplay("block");
+                    }}
+                    onMouseLeave={(e) => {
+                      setSelect("");
+                      setDisplay("d-none");
+                    }}
+                  >
+                    <a href={`${v.url1}`}>{v.secondItem1}</a>
+                    <a href={`${v.url2}`}>{v.secondItem2}</a>
+                    {v.isNull === true && (
+                      <a href={`${v.url3}`}>{v.secondItem3}</a>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
         </Nav>
         <div className="me-2">
-          <div className="mb-3 ms-3 TopRightLink">
+          <div className="mb-3 TopRightLink">
             <a className="ms-2 me-3" href="#/">
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
