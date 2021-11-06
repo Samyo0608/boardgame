@@ -1,7 +1,8 @@
 import "./App.css";
 import "normalize.css";
 import React from "react";
-import ReactDOM from "react-dom";
+import CustomerServicePage from "./pages/customer_service/faq";
+import instantQAPage from "./pages/customer_service/instantQAPage";
 import Footer from "./components/Footer.js";
 import index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
@@ -21,7 +22,6 @@ import Product from "./pages/product";
 
 
 
-
 function App() {
   return (
     <>
@@ -33,6 +33,16 @@ function App() {
               exact={true}
               path="/memberCenter/memSelf"
               component={MemSelf}
+            />
+            <Route
+              exact={true}
+              path="/faq"
+              component={CustomerServicePage}
+            />
+            <Route
+              exact={true}
+              path="/instant_QA"
+              component={instantQAPage}
             />
             <Route exact={true} path="/" component={index} />
             <Route exact={true} path="/login" component={Login} />
@@ -48,8 +58,8 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
           </Switch>
         </HashRouter>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
