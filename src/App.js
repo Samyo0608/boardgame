@@ -66,8 +66,8 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
           </Switch>
         </HashRouter>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
