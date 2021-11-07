@@ -1,0 +1,28 @@
+/* 沿用memberCenter.css 、 memberProduct.css */
+
+.imgRent {
+  max-width: 250px;
+  height: 300px;
+  border-radius: 2rem;
+}
+
+.BtnRentChange {
+  max-width: 120px;
+  background: none;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.BtnRentCancel {
+  max-width: 120px;
+  width: 100%;
+  background: #2196d4;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.BtnRentCancel:disabled {
+  opacity: 0.6;
+}
