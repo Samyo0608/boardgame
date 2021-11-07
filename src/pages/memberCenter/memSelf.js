@@ -10,8 +10,8 @@ function MemSelf(props) {
         <div className="ms-4 me-4 sidebarRange">
           <Sidebar />
         </div>
-        <div className=" rightDetail d-flex flex-column justify-content-center align-items-center">
-          <p className="h2 bold titleMargin">基本資料</p>
+        <div className=" rightDetail d-flex flex-column justify-content-start align-items-center">
+          <p className="h2 bold titleMargin mt-5">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
             <img alt="" src="img/memberCenter/memberhead.png" />

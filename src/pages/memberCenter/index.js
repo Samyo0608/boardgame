@@ -45,16 +45,18 @@ function MemberCenter(props) {
               />
             </div>
             <div className="row ms-5">
-              <div className="col-7 h5 bold mb-5">商品名稱　　：夢想人生</div>
-              <div className="col-5 h5 bold mb-5">
+              <div className="col-6 h5 bold mb-5">商品名稱　　：夢想人生</div>
+              <div className="col-6 h5 bold mb-5">
                 訂單狀態　　：<span className="text-danger">等待取貨</span>
               </div>
-              <div className="col-7 h5 bold mb-5">單價　　　　：$350</div>
-              <div className="col-5 h5 bold mb-5">數量　　　　：2</div>
-              <div className="col-7 h5 bold">訂單成立日期：2021/10/01</div>
-              <div className="col-5 h5 bold">共計　　　　：$700</div>
+              <div className="col-6 h5 bold mb-5">單價　　　　：$350</div>
+              <div className="col-6 h5 bold mb-5">數量　　　　：2</div>
+              <div className="col-6 h5 bold">訂單成立日期：2021/10/01</div>
+              <div className="col-6 h5 bold">共計　　　　：$700</div>
             </div>
-            <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+            <button className="arrow">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
           </div>
         </div>
       </div>

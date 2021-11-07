@@ -1,0 +1,49 @@
+/* 沿用memberCenter.css */
+
+/* product上層 start */
+.object-pro {
+  background: #fff;
+  width: 95%;
+  border-radius: 2rem;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px 0 20px 0;
+}
+
+.pro-arrow {
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  background: none;
+  border: none;
+}
+
+.proInput {
+  max-width: 400px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.proButton {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 5%;
+  top: 20%;
+  color: rgba(0, 15, 145, 0.8);
+}
+
+/* product上層 end */
+
+/* product下層 start */
+.pro-down {
+  width: 100%;
+}
+
+.pro-hr {
+  width: 95%;
+}
+
+.pro-loading {
+  background: rgb(255, 253, 231);
+  width: 85%;
+}
