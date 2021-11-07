@@ -17,11 +17,12 @@ import MemberCenter from "./pages/memberCenter";
 import MemSelf from "./pages/memberCenter/memSelf";
 import RePassword from "./pages/memberCenter/rePassword";
 import MemberProduct from "./pages/memberCenter/memberProduct";
+import MemberRent from "./pages/memberCenter/memberRent";
+import MemberPoint from "./pages/memberCenter/memberPoint";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
-import MemberRent from "./pages/memberCenter/memberRent";
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
         <TopNavbar className="" />
         <HashRouter>
           <Switch>
+            <Route
+              exact={true}
+              path="/memberCenter/memberPoint"
+              component={MemberPoint}
+            />
             <Route
               exact={true}
               path="/memberCenter/memberRent"

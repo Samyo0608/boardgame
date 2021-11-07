@@ -99,7 +99,7 @@ function MemberCenter(props) {
               href="#/"
               className="d-flex align-items-center justify-content-center"
             >
-              <div class="me-1 bold point point-mem">P</div>
+              <div className="me-1 bold point point-mem">P</div>
               <div>點數明細</div>
             </a>
           </div>
