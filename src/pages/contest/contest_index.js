@@ -47,9 +47,9 @@ function index(props) {
         </div>
     </div>
         
-    <div>
+    <div className="conBg">
        {/* 活動資訊卡片 */}
-     <Container>
+     <Container >
         <Row>
             <Col md={6}>
                 
@@ -218,22 +218,22 @@ function index(props) {
                     <div className="contestPic">
                     <img alt="遊戲圖片" className="images" src={process.env.PUBLIC_URL + '/img/contest/con06.jpg'} background-size="cover" fluid />
                     </div>
-                    <p className="fs-5 m-2">2021-12-25(六)</p>
-                    <h5 className="">《寶可夢王者挑戰賽》</h5>
-                    <p className="p-2 m-2">大家期待已久的寶可夢卡牌對戰賽終於來啦!<br/>
-                                        趕快手刀衝刺來報名吧!</p>
+                    <p className="fs-5 m-2">2021-10-25(一)</p>
+                    <h5 className="">《大富翁全家同樂會》</h5>
+                    <p className="p-2 m-2">闔家同樂的大富翁~<br/>
+                        適合攜家帶眷一同報名參加!</p>
                     <div className="d-flex">
-                         <div className="personNo">剩餘名額:0位</div>
+                        <div className="personNo">剩餘名額:0位</div>
                         <div className="disButton">已額滿</div>
-                </div>
+                    </div>
                     
                 </div>
             </Col>
             
         </Row>
 </Container>
-
-    </div>
+</div>
+    
     
         </>
     )
