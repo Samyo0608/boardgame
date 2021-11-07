@@ -14,12 +14,17 @@ function contest_info(props) {
   return (
     <>
       {/* 活動報名 */}
+
       <h2 className="text-center">活動報名</h2>
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
-      <div className="conInfoBg">
-        <h2 className="text-center p-3">寶可夢卡牌報名對戰開始!</h2>
+      
+      <img src="../img/contest/conBg02.jpg" alt="" className="bagd" />
+     
+      <div>
+      <div className="firstTitle bold">寶可夢卡牌報名對戰開始!</div>
+
         <img
           alt="活動示意圖"
           src="img/contest/conInner01.jpg "
@@ -84,7 +89,10 @@ function contest_info(props) {
             </tr>
             <tr>
               <td>
-                <FontAwesomeIcon icon={faDice} />姓 名:{" "}
+
+                <FontAwesomeIcon icon={faDice} />姓　　名:{" "}
+
+
               </td>
               <td>
                 <input type="text" className="conInputStyle"></input>

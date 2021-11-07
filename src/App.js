@@ -74,6 +74,7 @@ function App() {
         </HashRouter>
         <Footer />
       </div>
+
     </>
   );
 }

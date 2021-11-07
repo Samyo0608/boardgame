@@ -4,12 +4,11 @@
   --doButton: #2196d4;
   --disButton: #ccc;
 }
-/* 背景圖 */
-.conBg {
-  background-image: url("../img/contest/conBg01.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+/* 活動標題置中 */
+.bagd {
+  max-width: 1200px;
+  width: 100%;
+  position: fixed;
 }
 /* 搜尋區塊開始 */
 .searchBar {

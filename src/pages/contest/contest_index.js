@@ -47,7 +47,8 @@ function index(props) {
         </div>
     </div>
         
-    <div className="conBg">
+    <div>
+    <img src="../img/contest/conBg01.png" alt="" className="bagd" />
        {/* 活動資訊卡片 */}
      <Container >
         <Row>
