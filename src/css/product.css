@@ -11,16 +11,16 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
-.button0{
-  float:right;
+.button0 {
+  float: right;
   margin-top: 50px;
-  margin-right:50px;
+  margin-right: 50px;
   display: inline-block;
   border-radius: 5px;
 }
-.button0 button{
+.button0 button {
   display: inline-block;
-  margin-left:2px;
+  margin-left: 2px;
   margin-bottom: 20px;
 }
 /* 遊戲標題 */
@@ -48,13 +48,13 @@
   margin: 0 10px -2px 10px;
   padding-left: 200px;
   margin-top: -190px;
-  margin-bottom:2px;
+  margin-bottom: 2px;
   text-indent: 35px;
   font-weight: bold;
   /* text-align: center; */
 }
 /* 第一名遊戲 */
-  .shadowbox {
+.shadowbox {
   float: left;
   width: 400px;
   height: 550px;
@@ -82,7 +82,7 @@
   float: right;
   width: 400px;
   height: 265px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186)4;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186) 4;
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
   margin-right: 150px;
@@ -96,7 +96,7 @@
   float: right;
   width: 400px;
   height: 265px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186)4;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186) 4;
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
   margin-right: 150px;
@@ -115,14 +115,14 @@
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   margin-left: 120px;
-  margin-top: 150px; 
+  margin-top: 150px;
 }
 .shadowbox4 span {
   font-size: 25px;
   margin-right: 20px;
   margin-top: 30px;
   font-weight: bold;
-  float:right;
+  float: right;
 }
 /* 下徘遊戲三、六 */
 .shadowbox5 {
@@ -132,14 +132,14 @@
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   margin-left: 100px;
-  margin-top: 40px; 
+  margin-top: 40px;
 }
 .shadowbox5 span {
   font-size: 25px;
   margin-right: 20px;
   margin-top: 30px;
   font-weight: bold;
-  float:right;
+  float: right;
 }
 
 /* 遊戲四 */
@@ -150,14 +150,14 @@
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   margin-left: 120px;
-  margin-top: -400px; 
+  margin-top: -400px;
 }
 .shadowbox7 span {
   font-size: 25px;
   margin-right: 20px;
   margin-top: 30px;
   font-weight: bold;
-  float:right;
+  float: right;
 }
 /* 遊戲五 */
 .shadowbox8 {
@@ -167,40 +167,39 @@
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   margin-left: 490px;
-  margin-top: -400px; 
+  margin-top: -400px;
 }
 .shadowbox8 span {
   font-size: 25px;
   margin-right: 20px;
   margin-top: 30px;
   font-weight: bold;
-  float:right;
+  float: right;
 }
 /* 類型小標籤 */
 .type {
   font-size: 20px;
   background-color: rgb(59, 137, 255);
-  color:#fff;
-  float:left;
-margin: 20px 20px 10px 30px ;
-padding:0 5px 0 5px;
-border-radius: 5px;
+  color: #fff;
+  float: left;
+  margin: 20px 20px 10px 30px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
 }
-.gamename{
+.gamename {
   font-weight: bold;
   font-size: 20px;
-  float:left;
+  float: left;
   margin: 22px 0 0 0;
 }
 .hr1 {
   background-color: rgb(59, 137, 255);
- 
 }
 .hr2 {
   background-color: rgb(59, 137, 255);
   position: relative;
   top: 600px;
-size: 13;
+  size: 13;
 }
 
 .abcd {
@@ -222,7 +221,7 @@ size: 13;
 /* 大最愛 */
 .favorite {
   margin-left: 130px;
-  margin-right:10px;
+  margin-right: 10px;
   margin-top: 10px;
 }
 /* 大購物車 */
@@ -233,7 +232,7 @@ size: 13;
 .favorite2 {
   margin-left: 220px;
   margin-top: 3px;
-  margin-right:10px;
+  margin-right: 10px;
   height: 30px;
   width: 80px;
 }
@@ -253,14 +252,14 @@ size: 13;
   border-radius: 30px;
 }
 .favorite3 {
-  margin-bottom:-50px;
-  margin-right:20px;
-  margin-left:20px;
+  margin-bottom: -50px;
+  margin-right: 20px;
+  margin-left: 20px;
   height: 50px;
   width: 50px;
 }
 .buy3 {
-  margin-bottom:-50px;
+  margin-bottom: -50px;
   height: 50px;
   width: 50px;
 }

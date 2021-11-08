@@ -22,7 +22,7 @@ const rentType = [
   { id: 2, name: "六人房" },
 ];
 
-const index = () => {
+const Index = () => {
   return (
     <div className="container overflow-hidden">
       {/* banner */}
@@ -636,4 +636,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
