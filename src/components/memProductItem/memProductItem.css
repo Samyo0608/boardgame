@@ -1,5 +1,3 @@
-/* 沿用memberCenter.css */
-
 /* product上層 start */
 .object-pro {
   background: #fff;
@@ -47,3 +45,32 @@
   background: rgb(255, 253, 231);
   width: 85%;
 }
+/* product下層 end */
+
+/* 下拉展開動畫 start */
+.displayOpen {
+  opacity: 1;
+  max-height: 800px;
+  transition: all 0.8s;
+}
+
+.displayClose {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+/* 下拉展開動畫 end*/
+
+/* 箭頭轉向動畫 start*/
+.arrowRotateOpen {
+  transform: rotate(90deg);
+  transition: all 0.3s;
+}
+
+.arrowRotateClose {
+  transform: rotate(0);
+  transition: all 0.3s;
+}
+
+/* 箭頭轉向動畫 end*/
