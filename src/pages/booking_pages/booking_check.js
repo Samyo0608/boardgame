@@ -21,10 +21,12 @@ function BookingCheck() {
         <h4>信箱： </h4>
         <h4>時間： </h4>
         <br />
-        <a className="btn siteWrong" href="#/booking">
+        {/* 資料錯誤回租賃畫面 */}
+        <a className="btn siteWrong" href="booking">
           資料錯誤
         </a>
-        <a className="btn siteDoubleCheck" href="#/">
+        {/* 資料正確回首頁 */}
+        <a className="btn siteDoubleCheck" href="/">
           資料正確
         </a>
       </div>
