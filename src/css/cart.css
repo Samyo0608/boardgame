@@ -1,0 +1,115 @@
+/* 我的遊戲和最愛 */
+.button1 {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 80px 0 20px 900px;
+}
+/* 全部刪除 */
+.button2 {
+  display: flex;
+  margin: 20px 0px 20px 1010px;
+  padding: 10px;
+}
+/* 全部選取 */
+.button3 {
+  display: flex;
+  width: 90px;
+  margin: -60px 0 0 100px;
+}
+.buttoncheck {
+  font-size: 20px;
+  width: 180px;
+  height: 50px;
+  margin: -10px 0 0 30px;
+}
+
+/* 大BOX */
+.box12 {
+  width: 1000px;
+  height: 1600px;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  background-color: rgb(176, 177, 198);
+  margin: 20px 0 40px 100px;
+  padding-top: 40px;
+}
+/* 小BOX */
+.box123 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  height: 200px;
+  background-color: #fff;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  margin: 15px auto 20px auto;
+}
+.box123 input {
+  display: flex;
+  margin: 100px 0 0 20px;
+}
+.cartpic {
+  width: 160px;
+  height: 160px;
+  margin-top: 20px;
+}
+/* 商品編號 */
+.pnumber {
+  margin-top: 50px;
+}
+/* 遊戲名稱 */
+.pname {
+  margin: 100px 0 0 -125px;
+  font-weight: bold;
+  font-size: 20px;
+  width: 350px;
+}
+/* 增加減 */
+.amount10 {
+  display: flex;
+  margin: -10px 0 0 -150px;
+  object-fit: cover;
+}
+.amount10 input {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.amount11 {
+  margin: 105px 0 0 10px;
+  padding: 0px 10px 0 10px;
+}
+/* 垂直線 */
+.str1 {
+  margin-left: 780px;
+  margin-top: -180px;
+}
+/* 購物車圖片 */
+.cartprice {
+  font-size: 30px;
+  font-weight: bold;
+  margin: -100px 0 0 590px;
+}
+/* 追蹤，移除 */
+.trackit {
+  font-size: 18px;
+  margin: -120px 0 0 800px;
+}
+/* 結帳 */
+.total {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 25px;
+  margin: 40px 0 0 550px;
+}
+.totalprice {
+  display: flex;
+  font-size: 40px;
+  color: red;
+  font-weight: bolder;
+  margin-top: -15px;
+}
+.comebuy {
+  margin-left: 270px;
+  font-size: 20px;
+}

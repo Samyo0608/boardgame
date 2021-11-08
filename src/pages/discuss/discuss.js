@@ -10,9 +10,9 @@ const gameType = [
   { id: 4, name: "卡牌" },
 ];
 
-const discuss = () => {
+const Discuss = () => {
   return (
-    <div className="container overflow-hidden">
+    <div className="overflow-hidden">
       {/* banner */}
       <div className="discussBannerBox">
         <img className="discussBannerImg" src="img/discuss/banner.png" alt="" />
@@ -29,10 +29,226 @@ const discuss = () => {
         </a>
       </div>
       {/* 討論區內容 */}
+      <div class="r_discussBox">
+        <div className="r_discussPicBox">
+          <img alt="" className="rentPic" src="/img/discuss/r_discuss.png" />
+        </div>
+        <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
+          {gameType.map((v, i) => {
+            return (
+              <li key={v.id} className="">
+                <a
+                  href="#/"
+                  className="d-inline-block recommendType text-decoration-none text-center"
+                >
+                  {v.name}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
 
+        <div className="r_discussOutBox">
+          <div className="r_discussInBox pt-2">
+            {/* 最新討論 */}
+            <div className="discussNew position-relative">
+              <table class="table table-hover text-center fw-bold">
+                <thead>
+                  <tr className="text-secondary">
+                    <th scope="col">標題</th>
+                    <th scope="col">發文者</th>
+                    <th scope="col">讚數</th>
+                    <th scope="col">回覆數</th>
+                    <th scope="col">最後回覆時間</th>
+                  </tr>
+                </thead>
+                <tbody className="r_discussBody">
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <a class="r_discussButton text-center" href="#/">
+              開新話題
+            </a>
+          </div>
+          <div></div>
+        </div>
+      </div>
+
+      {/* 熱門推薦標題 */}
+
+      <div className="position-relative r_discussTitle">
+        <h2 className="text-center">熱門推薦</h2>
+        <div className="titleLineBox">
+          <img alt="" className="titleLine" src="img/index/line.png" />
+        </div>
+      </div>
+
+      <div className="discussRecommendBoxOut">
+        <div className="discussRecommendBoxIn row">
+          <div className="col d-flex drBox">
+            <div className="drImgBox">
+              <img
+                className="drImg"
+                alt=""
+                src="img/discuss/discussRecommend1.png"
+              />
+            </div>
+            <div className="drTextBox">
+              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
+              <a href="#/">繼續閱讀...</a>
+              <p className="mt-3 text-secondary">15個人說讚</p>
+            </div>
+          </div>
+          <div className="col d-flex drBox">
+            <div className="drImgBox">
+              <img
+                className="drImg"
+                alt=""
+                src="img/discuss/discussRecommend1.png"
+              />
+            </div>
+            <div className="drTextBox">
+              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
+              <a href="#/">繼續閱讀...</a>
+              <p className="mt-3 text-secondary">15個人說讚</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 討論區規定標題 */}
+
+      <div className="position-relative r_discussTitle">
+        <h2 className="text-center">討論區規定</h2>
+        <div className="titleLineBox">
+          <img alt="" className="titleLine" src="img/index/line.png" />
+        </div>
+      </div>
+
+      <div className="ruleBoxOut">
+        <div className="ruleBoxIn fw-bold">
+          <div className="ms-5 pt-5">
+            <p>1.不作人身攻擊、謾罵</p>
+            <p>2.用字遣詞要注意，友善交流</p>
+            <p>3.請勿洗版</p>
+            <p>4.有問題請與管理員聯繫</p>
+          </div>
+          <div className="ruleImgBox">
+            <img className="ruleImg" alt="" src="img/discuss/rule.png" />
+          </div>
+        </div>
+      </div>
       {/* 尾巴 */}
     </div>
   );
 };
 
-export default discuss;
+export default Discuss;

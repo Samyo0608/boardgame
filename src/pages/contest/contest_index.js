@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from '@fortawesome/free-solid-svg-icons' // <-- import faSearch
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
 //import Background from '../../../public/img/contest/conBg.jpg'
-function index(props) {
+function Index(props) {
     return (
       <>
         {/* 活動資訊 */}
@@ -241,5 +241,5 @@ function index(props) {
 }
 
 
-export default index
+export default Index
 

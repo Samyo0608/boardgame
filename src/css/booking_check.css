@@ -1,20 +1,36 @@
-/* 場地訂購確認 */
+/* 場地訂購再次確認 */
 
-/* 日曆及照片輪播位置 */
-.siteCheck {
-  width: 1000px;
-  height: 500px;
-  border-radius: 10px;
-  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
-  position: relative;
+/* 訂購再次確認 */
+.doubleCheck {
+  text-align: center;
   margin: 20px auto;
+  padding: 50px;
+  width: 800px;
+  height: 400px;
+  border-radius: 10px;
   background: rgb(255, 253, 231);
-}
-/* 場地租借日曆 */
-.calendarCheck {
-  /* background: brown; */
-  position: relative;
-  left: 50px;
-  top: 50px;
+  box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
 }
 
+/* 資料正確按鈕 */
+.siteDoubleCheck {
+  position: relative;
+  background: #6dd0cd;
+  font-size: 20px;
+  margin: 5px;
+}
+.siteDoubleCheck:hover {
+  background: #0abbb5;
+}
+
+/* 資料錯誤按鈕 */
+.siteWrong {
+  position: relative;
+  background: #f52222;
+  color: #fff;
+  font-size: 20px;
+  margin: 5px;
+}
+.siteWrong:hover {
+  background: #f19797;
+}
