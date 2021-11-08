@@ -1,10 +1,48 @@
 import React, { useState } from "react";
-import "../../css/memberProduct.css";
+/* 沿用memberCenter.css */
 import Sidebar from "../../components/memberSidebar/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faSearch } from "@fortawesome//free-solid-svg-icons";
+import { faSearch } from "@fortawesome//free-solid-svg-icons";
+import MemProductItem from "../../components/memProductItem/memProductItem";
+
+// 假資料
+const Detail = [
+  {
+    image: "/img/memberCenter/boardgame01.png",
+    proName: "夢想人生",
+    status: "等待取貨",
+    price: "350",
+    count: "2",
+    date: "2021/10/01",
+    total: "700",
+    endDate: "2021/10/03 01:20:03",
+    tracDate: "2021/10/01 21:03:56",
+    startDate: "2021/10/01 09:54:11",
+    userName: "王大明",
+    userPhone: "0912345678",
+    address: "桃園市中壢區中央路300號",
+  },
+  {
+    image: "/img/memberCenter/boardgame02.png",
+    proName: "四季物語",
+    status: "訂單完成",
+    price: "300",
+    count: "1",
+    date: "2021/08/05",
+    total: "300",
+    getDate: "2021/08/08 12:20:03",
+    endDate: "2021/08/07 23:22:39",
+    tracDate: "2021/08/06 03:21:57",
+    startDate: "2021/08/05 16:40:24",
+    userName: "王大明",
+    userPhone: "0912345678",
+    address: "桃園市中壢區中央路300號",
+  },
+];
 
 function MemberProduct(props) {
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="mt-5">
       <div className="d-flex">
@@ -13,116 +51,57 @@ function MemberProduct(props) {
         </div>
         <div className="rightDetail d-flex flex-column justify-content-start align-items-center">
           <p className="h2 mt-5 bold">桌遊購買</p>
+
+          {/* 搜尋欄 */}
           <form action="" className="d-flex position-relative mt-3">
             <input
               type="text"
-              placeholder="請輸入關鍵字(商品名稱、價格、日期)"
+              placeholder="商品名稱、價格、日期( XXXX/XX/XX )"
               className="form-control proInput"
+              onChange={(e) => {
+                setInputValue(e.target.value);
+              }}
             />
             <button type="button" className="proButton">
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </form>
-          {/* product01 */}
-          <div className="object-pro d-flex flex-column align-items-center mt-3 mb-3">
-            <div className="d-flex position-relative mt-2">
-              <div className="ms-4">
-                <img
-                  alt=""
-                  src="/img/memberCenter/boardgame01.png"
-                  className="objectImg"
+
+          {/* map資料 */}
+          {Detail.map((v, i) => {
+            const Item = () => {
+              return (
+                <MemProductItem
+                  key={i}
+                  productImg={v.image}
+                  productName={v.proName}
+                  productStatus={v.status}
+                  productPrice={v.price}
+                  productCount={v.count}
+                  orderDate={v.date}
+                  productTotal={v.total}
+                  getDate={v.getDate}
+                  trafTimeEnd={v.endDate}
+                  trafTimeIng={v.tracDate}
+                  trafTimeStart={v.startDate}
+                  userName={v.userName}
+                  userPhone={v.userPhone}
+                  userAddress={v.address}
                 />
-              </div>
-              <div className="row ms-5">
-                <div className="col-6 h5 bold mb-5">商品名稱　　：夢想人生</div>
-                <div className="col-6 h5 bold mb-5">
-                  訂單狀態　　：<span className="text-danger">等待取貨</span>
-                </div>
-                <div className="col-6 h5 bold mb-5">單價　　　　：$350</div>
-                <div className="col-6 h5 bold mb-5">數量　　　　：2</div>
-                <div className="col-6 h5 bold">訂單成立日期：2021/10/01</div>
-                <div className="col-6 h5 bold">共計　　　　：$700</div>
-              </div>
-              <button className="pro-arrow">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-            <div className="pro-down d-flex flex-column mt-2">
-              <div className="ms-5 mt-3">
-                <hr className="pro-hr" />
-                <p className="h4 bold">運送狀態</p>
-              </div>
-              <div className="d-flex flex-column align-items-center">
-                <div className="row pro-loading pt-3 text-center h5 bold mb-4">
-                  <p className="col-6">2021/10/03 01:20:03</p>
-                  <p className="col-6">抵達指定門市</p>
-                  <p className="col-6">2021/10/01 21:03:56</p>
-                  <p className="col-6">商品運送中</p>
-                  <p className="col-6">2021/10/01 09:54:11</p>
-                  <p className="col-6">訂單已接受</p>
-                </div>
-                <div className="row ms-5">
-                  <div className="col-6 h5 bold mb-5">收件人　　　：王大明</div>
-                  <div className="col-6 h5 bold mb-5">
-                    連絡電話　　：0912345678
-                  </div>
-                  <div className="col-12 h5 bold mb-5">
-                    收件地址　　：桃園市中壢區中央路300號
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* product2 */}
-          <div className="object-pro d-flex flex-column align-items-center mt-3 mb-3">
-            <div className="d-flex position-relative mt-2">
-              <div className="ms-4">
-                <img
-                  alt=""
-                  src="/img/memberCenter/boardgame01.png"
-                  className="objectImg"
-                />
-              </div>
-              <div className="row ms-5">
-                <div className="col-6 h5 bold mb-5">商品名稱　　：夢想人生</div>
-                <div className="col-6 h5 bold mb-5">
-                  訂單狀態　　：<span className="text-danger">等待取貨</span>
-                </div>
-                <div className="col-6 h5 bold mb-5">單價　　　　：$350</div>
-                <div className="col-6 h5 bold mb-5">數量　　　　：2</div>
-                <div className="col-6 h5 bold">訂單成立日期：2021/10/01</div>
-                <div className="col-6 h5 bold">共計　　　　：$700</div>
-              </div>
-              <button className="pro-arrow">
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            </div>
-            <div className="pro-down d-flex flex-column mt-2">
-              <div className="ms-5 mt-3">
-                <hr className="pro-hr" />
-                <p className="h4 bold">運送狀態</p>
-              </div>
-              <div className="d-flex flex-column align-items-center">
-                <div className="row pro-loading pt-3 text-center h5 bold mb-4">
-                  <p className="col-6">2021/10/03 01:20:03</p>
-                  <p className="col-6">抵達指定門市</p>
-                  <p className="col-6">2021/10/01 21:03:56</p>
-                  <p className="col-6">商品運送中</p>
-                  <p className="col-6">2021/10/01 09:54:11</p>
-                  <p className="col-6">訂單已接受</p>
-                </div>
-                <div className="row ms-5">
-                  <div className="col-6 h5 bold mb-5">收件人　　　：王大明</div>
-                  <div className="col-6 h5 bold mb-5">
-                    連絡電話　　：0912345678
-                  </div>
-                  <div className="col-12 h5 bold mb-5">
-                    收件地址　　：桃園市中壢區中央路300號
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              );
+            };
+
+            if (inputValue === "") {
+              return Item();
+            } else if (
+              v.proName.includes(inputValue) ||
+              v.price.includes(inputValue) ||
+              v.total.includes(inputValue) ||
+              v.date.includes(inputValue)
+            ) {
+              return Item();
+            }
+          })}
         </div>
       </div>
     </div>
@@ -130,3 +109,4 @@ function MemberProduct(props) {
 }
 
 export default MemberProduct;
+

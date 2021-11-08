@@ -27,11 +27,8 @@ function TopNavbar(props) {
     {
       title: "首頁",
       href: "/",
-      secondItem1: "最新消息",
-      secondItem2: "門市資訊",
-      url1: "#action1",
-      url2: "#action2",
-      isShow: true,
+      isShow: false,
+
     },
     {
       title: "活動",
