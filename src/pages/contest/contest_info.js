@@ -10,7 +10,7 @@ import {
   faAngleDoubleLeft,
 } from "@fortawesome/free-solid-svg-icons"; // <-- import faSearch
 import { Container, Row, Col } from "react-bootstrap";
-function contest_info(props) {
+function Contest_info(props) {
   return (
     <>
       {/* 活動報名 */}
@@ -136,4 +136,4 @@ function contest_info(props) {
   );
 }
 
-export default contest_info;
+export default Contest_info;
