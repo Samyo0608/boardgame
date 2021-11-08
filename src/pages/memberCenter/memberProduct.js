@@ -29,7 +29,7 @@ function MemberProduct(props) {
               <div className="ms-4">
                 <img
                   alt=""
-                  src="img/memberCenter/boardgame01.png"
+                  src="/img/memberCenter/boardgame01.png"
                   className="objectImg"
                 />
               </div>
@@ -79,7 +79,7 @@ function MemberProduct(props) {
               <div className="ms-4">
                 <img
                   alt=""
-                  src="img/memberCenter/boardgame01.png"
+                  src="/img/memberCenter/boardgame01.png"
                   className="objectImg"
                 />
               </div>

@@ -65,13 +65,13 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">個人資料</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a href="#/">
+            <a href="memberCenter/memSelf">
               <FontAwesomeIcon icon={faUser} className="me-1" />
               基本資料
             </a>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <a href="#/">
+            <a href="memberCenter/rePassword">
               <FontAwesomeIcon icon={faKey} className="me-1" />
               密碼修改
             </a>
@@ -80,13 +80,13 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">消費紀錄</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a href="#/">
+            <a href="memberCenter/memberProduct">
               <FontAwesomeIcon icon={faChessBoard} className="me-1" />
               桌遊購買
             </a>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <a href="#/">
+            <a href="memberCenter/memberRent">
               <FontAwesomeIcon icon={faEthernet} className="me-1" />
               場地租賃
             </a>
@@ -96,7 +96,7 @@ function MemberCenter(props) {
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
             <a
-              href="#/"
+              href="memberCenter/memberPoint"
               className="d-flex align-items-center justify-content-center"
             >
               <div className="me-1 bold point point-mem">P</div>

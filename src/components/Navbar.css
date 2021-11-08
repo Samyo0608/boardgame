@@ -40,11 +40,12 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  border: 1px solid #000000;
+  border: 1px solid #838383;
   top: 68%;
-  max-width: 100px;
+  max-width: 150px;
   text-align: center;
-  opacity: 90%;
+  padding: 5px;
+  z-index: 220;
 }
 
 .secondLink a {

@@ -14,7 +14,7 @@ function MemSelf(props) {
           <p className="h2 bold titleMargin mt-5">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
-            <img alt="" src="img/memberCenter/memberhead.png" />
+            <img alt="123" src="/img/memberCenter/memberhead.png" />
             <Button>更換頭像</Button>
           </div>
           <Form className="formSize bold">

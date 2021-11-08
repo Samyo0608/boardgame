@@ -8,7 +8,13 @@ import index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import discuss from "./pages/discuss/discuss.js";
 import bookingCheck from "./pages/booking_pages/booking_check.js";
-import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+} from "react-router-dom";
 import contest from "./pages/contest/contest_index.js";
 import TopNavbar from "./components/Navbar";
 import Login from "./pages/login";
@@ -29,7 +35,7 @@ function App() {
     <>
       <div className="bodyWidth">
         <TopNavbar className="" />
-        <HashRouter>
+        <BrowserRouter>
           <Switch>
             <Route
               exact={true}
@@ -71,7 +77,7 @@ function App() {
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
         <Footer />
       </div>
 

@@ -30,8 +30,8 @@ function MemberRent(props) {
                 {/* Rent上面左邊圖片 start*/}
                 <div className="ms-4">
                   <img
-                    alt=""
-                    src="img/booking/fourRoom-1.png"
+                    alt="123"
+                    src="/img/booking/fourRoom-1.png"
                     className="imgRent"
                   />
                 </div>
@@ -73,8 +73,8 @@ function MemberRent(props) {
                 {/* Rent上面左邊圖片 start*/}
                 <div className="ms-4">
                   <img
-                    alt=""
-                    src="img/booking/sixRoom.jpg"
+                    alt="13"
+                    src="/img/booking/sixRoom.jpg"
                     className="imgRent"
                   />
                 </div>
