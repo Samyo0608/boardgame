@@ -12,7 +12,7 @@ const gameType = [
 
 const Discuss = () => {
   return (
-    <div className="container overflow-hidden">
+    <div className="overflow-hidden">
       {/* banner */}
       <div className="discussBannerBox">
         <img className="discussBannerImg" src="img/discuss/banner.png" alt="" />
