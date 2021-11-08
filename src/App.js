@@ -64,7 +64,7 @@ function App() {
             />
             <Route exact={true} path="/faq" component={CustomerServicePage} />
             <Route exact={true} path="/instant_QA" component={instantQAPage} />
-            <Route exact={true} path="/" component={index} />
+            <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
             <Route exact={true} path="/memberCenter" component={MemberCenter} />
