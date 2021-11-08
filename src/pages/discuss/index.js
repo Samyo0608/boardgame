@@ -335,8 +335,8 @@ const Index = () => {
       </div>
       {/* 投票排行內容 */}
       <div class="recommendBox">
-        <div className="votePicBox">
-          <img alt="" className="votePic" src="/img/index/bird1.png" />
+        <div className="voteBirdBox">
+          <img alt="" className="voteBirdPic" src="/img/index/bird1.png" />
         </div>
         <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
           {gameType.map((v, i) => {
