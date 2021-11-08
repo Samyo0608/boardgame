@@ -4,14 +4,20 @@
   --doButton: #2196d4;
   --disButton: #ccc;
 }
-
-/* 背景圖 */
-.conInfoBg {
-  background-image: url("../img/contest/conBg02.jpg");
-  background-size: cover;
-  /* background-repeat: repeat; */
-  background-attachment: fixed;
+/* 活動標題置中 */
+.firstTitle {
+  color: black;
+  position: relative;
+  font-size: 40px;
+  text-align: center;
 }
+
+.bagd {
+  max-width: 1200px;
+  width: 100%;
+  position: fixed;
+}
+
 .conInner {
   box-shadow: 3px 3px 3px 3px var(--shadow);
   position: relative;
@@ -64,7 +70,7 @@
   top: 40px;
   left: 190px;
 }
-/* 底部按鈕區塊 */
+/* 底部按鈕區塊  */
 .buttonZone {
   width: 100%;
   height: 300px;
