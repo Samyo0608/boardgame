@@ -7,32 +7,32 @@ function Footer(props) {
         {/* foot navbar */}
         <ul className="d-flex  justify-content-evenly list-unstyled py-3 my-0">
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="/">
               首頁
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="/contest">
               活動
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="/booking">
               租賃服務
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="/Product">
               產品頁面
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/discuss">
+            <a className="footerList" href="/discuss">
               討論區
             </a>
           </li>
           <li>
-            <a className="footerList" href="#/">
+            <a className="footerList" href="/faq">
               客服中心
             </a>
           </li>

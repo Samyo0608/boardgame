@@ -273,7 +273,7 @@
 }
 
 /* 投票標題插圖 */
-.votePicBox {
+.voteBirdBox {
   position: absolute;
   z-index: 0;
   right: 10px;
@@ -281,7 +281,7 @@
   max-width: 120px;
 }
 
-.votePic {
+.voteBirdPic {
   object-fit: contain;
   width: 100%;
 }

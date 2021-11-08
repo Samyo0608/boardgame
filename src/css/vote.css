@@ -9,7 +9,7 @@
 /* 投票結果區域 */
 .container1 {
   max-width: 1129px;
-  height: 2100px;
+  height: 2000px;
   border: solid;
   border-radius: 10px;
   border-color: var(--primary);
@@ -44,7 +44,7 @@
   background-color: white;
   color: var(--fontColor);
   max-width: 1050px;
-  height: 1020px;
+  height: 900px;
   margin-top: 40px;
   /* box-shadow: 1px 1px 1px 1px var(--shadow); */
 }
