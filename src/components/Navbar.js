@@ -1,12 +1,12 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
   Container,
   Navbar,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
   Image,
@@ -14,7 +14,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
-  faSortDown,
   faQuestionCircle,
   faShoppingCart,
   faUserCircle,
@@ -23,47 +22,59 @@ import "./Navbar.css";
 
 function TopNavbar(props) {
   const [select, setSelect] = useState();
-  const [display, setDisplay] = useState("d-none");
 
   const navbarItem = [
     {
       title: "首頁",
+      href: "/",
       secondItem1: "最新消息",
       secondItem2: "門市資訊",
       url1: "#action1",
       url2: "#action2",
+      isShow: true,
     },
     {
       title: "活動",
+      href: "/contest",
       secondItem1: "活動資訊",
       secondItem2: "投票活動",
-      url1: "#action1",
-      url2: "#action2",
+      url1: "/contestInfo",
+      url2: "/vote",
+      isShow: true,
     },
     {
       title: "租賃服務",
+      href: "/booking",
+      isShow: false,
     },
     {
       title: "產品頁面",
+      href: "/Product",
+      isShow: false,
     },
     {
       title: "討論區",
+      href: "/discuss",
+      isShow: false,
     },
     {
       title: "客服中心",
+      href: "/faq",
       secondItem1: "常見問題",
       secondItem2: "即時問答",
       secondItem3: "客服留言",
-      url1: "#action1",
-      url2: "#action2",
+      url1: "/faq",
+      url2: "/instant_QA",
       url3: "#action3",
+      isShow: true,
+      isNull: true,
     },
   ];
 
   return (
     <Container fluid>
       <Navbar expand="lg" variant="light" bg="">
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="/">
           <Image src="../../img/LOGO.png" style={{ maxWidth: "180px" }} />
         </Navbar.Brand>
         <Form className="d-flex searchInput">
@@ -91,16 +102,17 @@ function TopNavbar(props) {
               <div className="d-flex flex-column align-items-center">
                 <a
                   key={i}
-                  href="#/"
+                  href={v.href}
                   className={`${clsname} navSelect me-1`}
                   title={v.title}
                   id="navbarScrollingDropdown"
-                  display={v.display}
                   onMouseEnter={(e) => {
                     setSelect(v.title);
                   }}
                   onMouseLeave={(e) => {
-                    setSelect("");
+                    if (displayDiv !== "block") {
+                      setSelect("");
+                    }
                   }}
                 >
                   <div className="d-flex justify-content-between align-items-center">
@@ -108,39 +120,40 @@ function TopNavbar(props) {
                   </div>
                 </a>
 
-                <div
-                  className={`${displayDiv} secondLink`}
-                  onMouseEnter={(e) => {
-                    setSelect(v.title);
-                    setDisplay("block");
-                  }}
-                  onMouseLeave={(e) => {
-                    setSelect("");
-                    setDisplay("d-none");
-                  }}
-                >
-                  <a href={`${v.url1}`}>{v.secondItem1}</a>
-                  <a href={`${v.url2}`}>{v.secondItem2}</a>
-                  <a href={`${v.url3}`}>{v.secondItem3}</a>
-                </div>
+                {v.isShow === true && (
+                  <div
+                    className={`${displayDiv} secondLink`}
+                    onMouseEnter={(e) => {
+                      setSelect(v.title);
+                    }}
+                    onMouseLeave={(e) => {
+                      setSelect("");
+                    }}
+                  >
+                    <a href={`${v.url1}`}>{v.secondItem1}</a>
+                    <a href={`${v.url2}`}>{v.secondItem2}</a>
+                    {v.isNull === true && (
+                      <a href={`${v.url3}`}>{v.secondItem3}</a>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
         </Nav>
         <div className="me-2">
-          <div className="mb-3 ms-3 TopRightLink">
+          <div className="mb-3 TopRightLink">
             <a className="ms-2 me-3" href="#/">
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
             </a>
-            <a href="#/">
-              {" "}
+            <a href="/memberCenter">
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
             </a>
           </div>
           <a
-            href="#/"
+            href="/login"
             className="d-flex justify-content-between align-items-center memberBorder"
           >
             <p className="name me-2">王大明</p>

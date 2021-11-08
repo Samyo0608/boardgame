@@ -1,20 +1,20 @@
 import React from "react";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import "../../css/memSelf.css";
 import Sidebar from "../../components/memberSidebar/index";
 
 function MemSelf(props) {
   return (
-    <Container className="mt-5">
+    <div className="mt-5">
       <div className="d-flex">
-        <div className="me-4 sidebarRange">
+        <div className="ms-4 me-4 sidebarRange">
           <Sidebar />
         </div>
-        <div className=" rightDetail d-flex flex-column justify-content-center align-items-center">
-          <p className="h2 bold titleMargin">基本資料</p>
+        <div className=" rightDetail d-flex flex-column justify-content-start align-items-center">
+          <p className="h2 bold titleMargin mt-5">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
-            <img alt="" src="img/memberCenter/memberhead.png" />
+            <img alt="123" src="/img/memberCenter/memberhead.png" />
             <Button>更換頭像</Button>
           </div>
           <Form className="formSize bold">
@@ -23,7 +23,7 @@ function MemSelf(props) {
                 會員帳號
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue="DaWang2021" />
+                <p className="mb-0 LHeignt">DaWang2021</p>
               </Col>
             </Form.Group>
 
@@ -187,7 +187,7 @@ function MemSelf(props) {
           </Form>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
 

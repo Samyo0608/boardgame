@@ -3,26 +3,17 @@
   text-decoration: none;
   font-size: 30px;
 }
-
-.typeImg {
-  object-fit: contain;
-  max-width: 40px;
-  max-height: 40px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
 .button0 {
-  float: right;
-  margin-top: 50px;
-  margin-right: 50px;
-  display: inline-block;
-  border-radius: 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 300px;
+  margin-top: 60px;
+  margin-left: 850px;
+  font-size: 20px;
+  border: 5px;
+  font-weight: bold;
 }
-.button0 button {
-  display: inline-block;
-  margin-left: 2px;
-  margin-bottom: 20px;
-}
+
 /* 遊戲標題 */
 .p1 {
   background-color: rgb(59, 137, 255);
@@ -39,8 +30,6 @@
   margin: 25px 20px 0 20px;
   font-weight: bold;
   font-size: 15px;
-  /* text-indent: 10px; */
-  /* text-align: center; */
 }
 /* 第二名遊戲介紹 */
 .p3 {
@@ -51,137 +40,71 @@
   margin-bottom: 2px;
   text-indent: 35px;
   font-weight: bold;
-  /* text-align: center; */
 }
+
+.p5 {
+  display: inline;
+  color: #fff;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* 二，三遊戲 */
+.posi {
+  width: 450px;
+  height: 265px;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  margin-left: 500px;
+  margin-top: -540px;
+}
+.posi2 {
+  width: 450px;
+  height: 265px;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  margin-left: 500px;
+  margin-top: 20px;
+}
+.posi2 span {
+  margin-left: 50px;
+}
+
 /* 第一名遊戲 */
 .shadowbox {
-  float: left;
-  width: 400px;
+  width: 450px;
   height: 550px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin-left: 150px;
+  margin-left: 120px;
 }
 .shadowbox span {
   font-size: 30px;
-  margin-left: 300px;
+  margin-left: 350px;
   margin-top: 100px;
   font-weight: bold;
 }
 
 /* 大圖一 */
 .abc {
-  width: 400px;
+  width: 450px;
   height: 300px;
   padding: 10px;
   border-radius: 50px;
 }
-/* 第二名遊戲 */
-.shadowbox2 {
-  float: right;
-  width: 400px;
-  height: 265px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186) 4;
-  border-radius: 5px;
-  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin-right: 150px;
-}
-.shadowbox2 span {
-  font-size: 22px;
-  margin-left: 330px;
-  font-weight: bold;
-}
-.shadowbox3 {
-  float: right;
-  width: 400px;
-  height: 265px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186) 4;
-  border-radius: 5px;
-  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin-right: 150px;
-  margin-top: 20px;
-}
-.shadowbox3 span {
-  font-size: 22px;
-  margin-left: 330px;
-  font-weight: bold;
-}
-/* 下牌遊戲一、二 */
-.shadowbox4 {
-  float: left;
-  width: 250px;
-  height: 400px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
-  margin-left: 120px;
-  margin-top: 150px;
-}
-.shadowbox4 span {
-  font-size: 25px;
-  margin-right: 20px;
-  margin-top: 30px;
-  font-weight: bold;
-  float: right;
-}
-/* 下徘遊戲三、六 */
-.shadowbox5 {
-  float: left;
-  width: 250px;
-  height: 400px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
-  margin-left: 100px;
-  margin-top: 40px;
-}
-.shadowbox5 span {
-  font-size: 25px;
-  margin-right: 20px;
-  margin-top: 30px;
-  font-weight: bold;
-  float: right;
-}
 
-/* 遊戲四 */
-.shadowbox7 {
-  float: left;
-  width: 250px;
-  height: 400px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
-  margin-left: 120px;
-  margin-top: -400px;
-}
-.shadowbox7 span {
-  font-size: 25px;
-  margin-right: 20px;
-  margin-top: 30px;
-  font-weight: bold;
-  float: right;
-}
-/* 遊戲五 */
-.shadowbox8 {
-  float: left;
-  width: 250px;
-  height: 400px;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
-  margin-left: 490px;
-  margin-top: -400px;
-}
-.shadowbox8 span {
-  font-size: 25px;
-  margin-right: 20px;
-  margin-top: 30px;
-  font-weight: bold;
-  float: right;
-}
 /* 類型小標籤 */
 .type {
   font-size: 20px;
+  width: 50px;
   background-color: rgb(59, 137, 255);
   color: #fff;
-  float: left;
+  /* float: left; */
   margin: 20px 20px 10px 30px;
   padding: 0 5px 0 5px;
   border-radius: 5px;
@@ -189,25 +112,23 @@
 .gamename {
   font-weight: bold;
   font-size: 20px;
-  float: left;
-  margin: 22px 0 0 0;
+  margin: -40px 0 0 100px;
 }
-.hr1 {
+.hr {
+  display: flex;
+  margin: auto;
   background-color: rgb(59, 137, 255);
+  border: none;
+  height: 2px;
+  width: 900px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
-.hr2 {
-  background-color: rgb(59, 137, 255);
-  position: relative;
-  top: 600px;
-  size: 13;
-}
-
 .abcd {
   width: 200px;
   height: 200px;
   padding: 10px;
   margin-right: 100px;
-  padding: 10px;
   border-radius: 30px;
 }
 .abcde {
@@ -215,12 +136,11 @@
   height: 200px;
   padding: 10px;
   margin-right: 100px;
-  padding: 10px;
   border-radius: 30px;
 }
 /* 大最愛 */
 .favorite {
-  margin-left: 130px;
+  margin-left: 100px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -230,15 +150,15 @@
 }
 /* 中最愛 */
 .favorite2 {
-  margin-left: 220px;
-  margin-top: 3px;
+  margin-left: 180px;
+  margin-top: 15px;
   margin-right: 10px;
   height: 30px;
   width: 80px;
 }
-/* 小購物車 */
+/* 中購物車 */
 .buy2 {
-  margin-top: 3px;
+  margin-top: 15px;
   height: 30px;
   width: 80px;
 }
@@ -246,20 +166,48 @@
   width: 250px;
   height: 200px;
   padding: 10px;
-  /* margin-left: 100px; */
-  margin-top: 50px;
-  padding: 10px;
+  margin-top: 20px;
   border-radius: 30px;
 }
+
 .favorite3 {
-  margin-bottom: -50px;
+  margin-bottom: 30px;
   margin-right: 20px;
   margin-left: 20px;
   height: 50px;
   width: 50px;
 }
 .buy3 {
-  margin-bottom: -50px;
+  margin-bottom: 30px;
   height: 50px;
   width: 50px;
+}
+
+.boxflex {
+  display: flex;
+  width: 1000px;
+  height: 850px;
+  flex-wrap: wrap;
+  margin-left: 150px;
+}
+/* 下排遊戲 */
+.shadowbox4 {
+  width: 250px;
+  height: 350px;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  margin-top: 50px;
+  margin-right: 50px;
+}
+.shadowbox4 span {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 170px;
+}
+.iconflex {
+  display: flex;
+  margin-top: -40px;
+}
+.iconflex2 {
+  display: flex;
 }
