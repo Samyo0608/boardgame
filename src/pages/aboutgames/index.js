@@ -60,10 +60,12 @@ function Aboutgame(props) {
             </div>
           </div>
         </div>
-        <div className="button3 ">
-          <Button>回上頁</Button>
+        <div>
+          <Button className="button7" variant="info">
+            回上頁
+          </Button>
         </div>
-        <div className="button4 ">
+        <div className="button6 ">
           <Button>遊戲介紹</Button>
           <Button>遊戲規格</Button>
           <Button>退換貨須知</Button>

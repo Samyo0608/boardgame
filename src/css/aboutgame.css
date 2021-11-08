@@ -20,13 +20,6 @@
   margin-left: 100px;
   border-radius: 10px;
 }
-.hr {
-  display: flex;
-  margin: auto;
-  height: 5px;
-  width: 1000px;
-  margin-bottom: 20px;
-}
 /* 遊戲敘述 */
 .text1 {
   margin-top: -350px;
@@ -66,24 +59,19 @@
   margin-top: 30px;
 }
 /* 按鈕 */
-.button4 {
+.button6 {
   display: flex;
   width: 400px;
-  /* margin-top: 20px; */
   margin-left: 100px;
   font-size: 20px;
   border: 5px;
   font-weight: bold;
 }
-/* 回上頁 */
-.button3 {
+.button7 {
   display: flex;
-  width: 80px;
-  margin-top: 20px;
-  margin-left: 1050px;
+  margin-top: 15px;
+  margin-left: 1070px;
   font-size: 20px;
-  border: 5px;
-  font-weight: bold;
 }
 /* 討論區 */
 .forum {
