@@ -14,15 +14,13 @@
 .button3 {
   display: flex;
   width: 90px;
-  margin-left: 100px;
-  margin-top: -60px;
+  margin: -60px 0 0 100px;
 }
 .buttoncheck {
   font-size: 20px;
   width: 180px;
   height: 50px;
-  margin-left: 30px;
-  margin-top: -10px;
+  margin: -10px 0 0 30px;
 }
 
 /* 大BOX */
@@ -48,8 +46,7 @@
 }
 .box123 input {
   display: flex;
-  margin-top: 100px;
-  margin-left: 20px;
+  margin: 100px 0 0 20px;
 }
 .cartpic {
   width: 160px;
@@ -62,8 +59,7 @@
 }
 /* 遊戲名稱 */
 .pname {
-  margin-top: 100px;
-  margin-left: -125px;
+  margin: 100px 0 0 -125px;
   font-weight: bold;
   font-size: 20px;
   width: 350px;
@@ -71,8 +67,7 @@
 /* 增加減 */
 .amount10 {
   display: flex;
-  margin-top: -10px;
-  margin-left: -150px;
+  margin: -10px 0 0 -150px;
   object-fit: cover;
 }
 .amount10 input {
@@ -81,8 +76,7 @@
   object-fit: contain;
 }
 .amount11 {
-  margin-top: 105px;
-  margin-left: 10px;
+  margin: 105px 0 0 10px;
   padding: 0px 10px 0 10px;
 }
 /* 垂直線 */
@@ -94,22 +88,19 @@
 .cartprice {
   font-size: 30px;
   font-weight: bold;
-  margin-left: 590px;
-  margin-top: -100px;
+  margin: -100px 0 0 590px;
 }
 /* 追蹤，移除 */
 .trackit {
   font-size: 18px;
-  margin-left: 800px;
-  margin-top: -120px;
+  margin: -120px 0 0 800px;
 }
 /* 結帳 */
 .total {
   display: flex;
   flex-wrap: wrap;
   font-size: 25px;
-  margin-left: 550px;
-  margin-top: 40px;
+  margin: 40px 0 0 550px;
 }
 .totalprice {
   display: flex;
