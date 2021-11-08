@@ -1,10 +1,11 @@
 import React from 'react'
+import reactDom from 'react-dom';
 import PropTypes from 'prop-types'
 import "../../css/vote.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Container, Row,Col,} from 'react-bootstrap'
-
+import {Container, Row,Col,} from 'react-bootstrap';
+import BarChart from '../../components/contest/BarChart';
 function Vote(props) {
     return (
         <>
@@ -25,16 +26,14 @@ function Vote(props) {
         <Col><button className="viewButton col-3">策略系列</button>
         </Col>
         </Row>
-        <div className="voteResult">
-        <h2 className="text-center">投票活動</h2>
+        <div className="voteResult pt-3">
+        <h2 className="text-center">目前投票結果</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
         <Container >
-        <Row className="justify-content-around ps-5 ms-4">
-            <Col md={12}>
-                <img alt="長條圖" src="img/contest/exChartBar.png" height="600px" className="mb-5"></img>
-            </Col>
+        <BarChart/>
+        <Row className="justify-content-around ps-5 ms-4 pt-5">
             <Col md={4}>
                 <div className="votePic">
                 <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
