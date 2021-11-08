@@ -5,7 +5,7 @@ import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,} from 'react-bootstrap'
 
-function vote(props) {
+function Vote(props) {
     return (
         <>
              {/* 投票活動 */}
@@ -98,6 +98,6 @@ function vote(props) {
 
 
 
-export default vote
+export default Vote
 
 
