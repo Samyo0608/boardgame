@@ -39,7 +39,7 @@ function MemberPoint(props) {
               <div className="col-3 ms-4">
                 <img
                   alt=""
-                  src="img/booking/sixRoom.jpg"
+                  src="/img/booking/sixRoom.jpg"
                   className="imgPoint"
                 />
               </div>
@@ -67,7 +67,7 @@ function MemberPoint(props) {
             <div className="row mt-2">
               {/* Point 左邊圖 start*/}
               <div className="col-3 ms-4">
-                <img alt="" src="img/index/game5.jpg" className="imgPoint" />
+                <img alt="" src="/img/index/game5.jpg" className="imgPoint" />
               </div>
               {/* Point 左邊圖 end*/}
 
@@ -95,7 +95,7 @@ function MemberPoint(props) {
               <div className="col-3 ms-4">
                 <img
                   alt=""
-                  src="img/memberCenter/boardgame02.png"
+                  src="/img/memberCenter/boardgame02.png"
                   className="imgPoint"
                 />
               </div>

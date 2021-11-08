@@ -11,6 +11,18 @@
   cursor: pointer;
 }
 
+/* 會員中心 hover+樣式 start*/
+.centerLink {
+  text-decoration: none;
+  color: #000000;
+}
+
+.centerLink:hover {
+  color: #2196d4;
+}
+/* 會員中心 hover+樣式 end*/
+
+/* sidebar link圖示取消 */
 .sidebar ul li {
   list-style: none;
 }
@@ -22,14 +34,25 @@
   line-height: 50px;
 }
 
+/* 滑鼠的hover start */
 .sidebar ul li a:hover {
-  background: #2196d4;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0.3);
+  background: #e2e2e2;
 }
 
 .sidebar ul li a:hover div {
+  color: #000;
+}
+/* 滑鼠的hover end */
+
+/* Link匹配路徑後的active */
+.linkSelected {
+  background: #2196d4;
+}
+
+.linkSelected div {
   color: #fff;
 }
+/* Link匹配路徑後的active end*/
 
 .point-sidebar {
   width: 20px;
@@ -46,6 +69,12 @@
   margin-left: 80px;
 }
 
+/* 箭頭轉向 */
 .transform {
   transform: rotate(90deg);
+}
+.arrowSize {
+  height: 34px;
+  line-height: 34px;
+  font-size: 16px;
 }
