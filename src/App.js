@@ -64,31 +64,21 @@ function App() {
             />
             <Route
               exact={true}
-              path="/instant_QA"
-              component={InstantQAPage}
-            />
-            <Route
-              exact={true}
               path="/customer_service_message"
               component={CustomerServicePage}
-            />
-            <Route
-              exact={true}
-              path="/question_record"
-              component={QuestionRecord}
-            />
-            <Route
-              exact={true}
-              path="/edit_reply"
-              component={EditReply}
-
             />
             <Route
               exact={true}
               path="/memberCenter/memberProduct"
               component={MemberProduct}
             />
-
+            <Route
+              exact={true}
+              path="/question_record"
+              component={QuestionRecord}
+            />
+            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
+            <Route exact={true} path="/edit_reply" component={EditReply} />
             <Route exact={true} path="/faq" component={FAQPage} />
             <Route exact={true} path="/instant_QA" component={InstantQAPage} />
             <Route exact={true} path="/" component={Index} />

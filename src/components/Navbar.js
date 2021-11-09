@@ -61,7 +61,7 @@ function TopNavbar(props) {
       secondItem3: "客服留言",
       url1: "/faq",
       url2: "/instant_QA",
-      url3: "#action3",
+      url3: "/question_record",
       isShow: true,
       isNull: true,
     },
