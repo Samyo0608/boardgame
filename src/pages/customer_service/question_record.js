@@ -1,9 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "../../css/question_record.css";
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-const InstantQAPage = () => {
+const QuestionRecord = () => {
   const [selectedMainCategories, changeSelectedMainCategories] = useState([]);
   const [selectedSubCategories, changeSelectedSubCategories] = useState([]);
   const [subCategories, changeSubCategories] = useState([]);
@@ -84,4 +82,4 @@ function selectedMainCategoriesOnchange(mainCategories, changeSubCategories){
   console.log(mainCategories);
 }
 
-export default InstantQAPage;
+export default QuestionRecord;

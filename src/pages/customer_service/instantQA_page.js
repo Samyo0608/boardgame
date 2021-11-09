@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/instant_QA.css";
 import React from "react";
-const instantQAPage = () => {
+const InstantQAPage = () => {
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
@@ -158,4 +158,4 @@ const instantQAPage = () => {
     </div>
   );
 };
-export default instantQAPage;
+export default InstantQAPage;

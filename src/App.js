@@ -1,11 +1,11 @@
 import "./App.css";
 import "normalize.css";
 import React from "react";
-import CustomerServicePage from "./pages/customer_service/faq";
-import instantQA_page from "./pages/customer_service/instantQA_page";
-import messagePage from "./pages/customer_service/customer_service_message";
-import question_record from "./pages/customer_service/question_record";
-import edit_reply from "./pages/customer_service/edit_reply";
+import FAQPage from "./pages/customer_service/faq";
+import InstantQAPage from "./pages/customer_service/instantQA_page";
+import CustomerServicePage from "./pages/customer_service/customer_service_message";
+import QuestionRecord from "./pages/customer_service/question_record";
+import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
@@ -65,22 +65,22 @@ function App() {
             <Route
               exact={true}
               path="/instant_QA"
-              component={instantQA_page}
+              component={InstantQAPage}
             />
             <Route
               exact={true}
               path="/customer_service_message"
-              component={messagePage}
+              component={CustomerServicePage}
             />
             <Route
               exact={true}
               path="/question_record"
-              component={question_record}
+              component={QuestionRecord}
             />
             <Route
               exact={true}
               path="/edit_reply"
-              component={edit_reply}
+              component={EditReply}
 
             />
             <Route
@@ -89,8 +89,8 @@ function App() {
               component={MemberProduct}
             />
 
-            <Route exact={true} path="/faq" component={CustomerServicePage} />
-            <Route exact={true} path="/instant_QA" component={instantQAPage} />
+            <Route exact={true} path="/faq" component={FAQPage} />
+            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />

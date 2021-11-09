@@ -3,7 +3,7 @@ import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "../../css/customer_service_message.css";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-const InstantQAPage = () => {
+const CustomerServicePage = () => {
   const [singleSelections, setSingleSelections] = useState([]);
   const options = ["商店相關", "訂單進度", "退換維修相關問題", "會員相關", "折價卷", "發票與退款"];
   return (
@@ -73,4 +73,4 @@ const InstantQAPage = () => {
     </div>
   );
 };
-export default InstantQAPage;
+export default CustomerServicePage;
