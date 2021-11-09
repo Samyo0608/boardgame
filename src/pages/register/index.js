@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/register.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
 
 function Register(props) {
   const [yellow, setYellow] = useState("");
@@ -17,7 +15,7 @@ function Register(props) {
       <div className="d-flex flex-column CenterDiv justify-content-center align-items-center">
         <p className="h2 mt-5 bold">新會員註冊</p>
         <div className="titleLineBox">
-          <img alt="" className="titleLine" src="img/index/line.png" />
+          <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
         <Form className="mb-5">
           <Form.Group as={Row} className="mb-3" controlId="formBasicEmail">
