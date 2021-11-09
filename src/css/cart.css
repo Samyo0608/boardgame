@@ -1,7 +1,5 @@
 /* 我的遊戲和最愛 */
 .button1 {
-  display: flex;
-  flex-wrap: nowrap;
   margin: 80px 0 20px 900px;
 }
 /* 全部刪除 */
@@ -46,16 +44,18 @@
 }
 .box123 input {
   display: flex;
-  margin: 100px 0 0 20px;
+  margin: 100px 10px 0 10px;
 }
+/* 購物車圖 */
 .cartpic {
-  width: 160px;
-  height: 160px;
-  margin-top: 20px;
+  width: 150px;
+  height: 150px;
+  margin-top: 30px;
 }
 /* 商品編號 */
 .pnumber {
   margin-top: 50px;
+  margin-left: 15px;
 }
 /* 遊戲名稱 */
 .pname {
@@ -112,4 +112,9 @@
 .comebuy {
   margin-left: 270px;
   font-size: 20px;
+}
+/* 庫存 */
+.stock {
+  margin: 130px 0 0 -130px;
+  color: gray;
 }

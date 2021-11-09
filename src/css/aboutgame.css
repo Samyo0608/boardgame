@@ -47,10 +47,10 @@
   border-radius: 50px;
 }
 .favorite4 {
-  margin: 30px 10px 0 700px;
+  margin: 20px 10px 0 700px;
 }
 .buy4 {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 /* 按鈕 */
 .button6 {
@@ -69,4 +69,9 @@
 /* 討論區 */
 .forum {
   margin: 270px 0 0 740px;
+}
+.pprice {
+  font-size: 40px;
+  margin-left: 250px;
+  margin-top: -60px;
 }
