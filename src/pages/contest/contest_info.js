@@ -1,8 +1,9 @@
-import React from "react";
+import {React} from "react";
 import PropTypes from "prop-types";
 import "../../css/contestInfo.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDice,
@@ -38,35 +39,19 @@ function Contest_info(props) {
 
           {/* 活動說明區塊 */}
 
-          <table className="fontActivity">
-            <tr cellspacing="100">
-              <td width="40%">
-                <FontAwesomeIcon icon={faDice} /> 比賽日期:
-              </td>
-              <td width="60%">2021年12月25日</td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDice} /> 報名截止日期:
-              </td>
-              <td>2021年11月30日</td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDice} /> 比賽模式:
-              </td>
-              <td>以單人報名的個人賽方式進行。</td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDice} /> 比賽方法:
-              </td>
-              <td>詳情請見文件說明檔</td>
-            </tr>
-          </table>
-          <a href="http://localhost:3000/#/contestInfo/">
-            附檔:寶可夢卡牌對戰方式與規則
-          </a>
+          <Row className="fontActivity d-flex">
+            <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽日期:</Col>
+            <Col  md={8} className="mt-4">2021年12月25日</Col>
+            <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />報名截止日期:</Col>
+            <Col  md={8} className="mt-4">2021年11月30日</Col>
+            <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽模式:</Col>
+            <Col  md={8} className="mt-4">以單人報名的個人賽方式進行。</Col>
+            <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽方法:</Col>
+            <Col  md={8} className="mt-4">詳情請見文件說明檔</Col>
+
+            <Col md={12} className="mt-4 justify-content-end"><div  className="d-flex justify-content-end me-5"><Link to="/contestInfo" >
+            附檔:寶可夢卡牌對戰方式與規則</Link></div></Col>
+          </Row>
         </div>
 
         {/* 活動報名區塊 */}
@@ -77,48 +62,26 @@ function Contest_info(props) {
             <img alt="" className="titleLine" src="img/index/line.png" />
           </div>
 
-          <table className="fontActivity">
-            <tr>
-              <td width="40%">
-                <FontAwesomeIcon icon={faDice} />
-                活動名稱:{" "}
-              </td>
-              <td width="60%" for="conName">
-                <input type="text" className="conInputStyle"></input>
-              </td>
-            </tr>
-            <tr>
-              <td>
+        <form>
+        <Row className="fontActivity">
+          <Col md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />
+                活動名稱:</Col>
+          <Col md={8} className="mt-4">
+          <div className="d-flex justify-content-start ps-3">寶可夢卡牌對戰</div>
+            
+          </Col>
+          <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />姓　　名:</Col>
+          <Col md={8}><input type="text" className="conInputStyle mt-4"></input></Col>
+          <Col md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />
+                連絡電話:</Col>
+          <Col md={8} className="mt-4"><input type="text" className="conInputStyle"/></Col>
+          <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />
+                聯絡信箱:</Col>
+          <Col md={8} className="mt-4"><input type="text" className="conInputStyle"/></Col>
+          <Col md={12} className="mt-1"><input type="submit" value="送  出" className="conSubmit m-3" /></Col>
+        </Row>
+        </form>
 
-                <FontAwesomeIcon icon={faDice} />姓　　名:{" "}
-
-
-              </td>
-              <td>
-                <input type="text" className="conInputStyle"></input>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDice} />
-                連絡電話:{" "}
-              </td>
-              <td>
-                <input type="text" className="conInputStyle"></input>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faDice} />
-                聯絡信箱:{" "}
-              </td>
-              <td>
-                <input type="text" className="conInputStyle"></input>
-              </td>
-            </tr>
-          </table>
-
-          <input type="submit" value="送  出" className="conSubmit m-3" />
         </div>
 
         {/* 底部按鈕 */}
@@ -126,7 +89,7 @@ function Contest_info(props) {
           <a href="#/contestInfo/" className="arrowStyle">
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </a>
-          <button className="buttonStyleCon">回首頁</button>
+          <button className="buttonStyleCon" value="/">回首頁</button>
           <a href="#/contestInfo/" className="arrowStyle">
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </a>

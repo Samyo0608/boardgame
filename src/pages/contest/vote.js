@@ -33,25 +33,28 @@ function Vote(props) {
         </div>
         <Container >
         <BarChart/>
-        <Row className="justify-content-around ps-5 ms-4 pt-5">
-            <Col md={4}>
-                <div className="votePic">
+        <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
+            <Col md={4} >
+                <div className="votePic mt-5">
                 <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
                 </div>
-                <div className="voteRank mt-3">第三名</div>      
+                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
                 <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family08_avalon.jpg' fluid />
                 </div>
-                <div className="voteRank mt-2">第一名</div>      
+                     
             </Col>
             <Col md={4}>
-                <div className="votePic">
+                <div className="votePic mt-5">
                 <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family05_geisters.jpg' fluid />
                 </div>
-                <div className="voteRank mt-3">第二名</div>      
+                    
             </Col>
+            <Col md={4} ><div className="voteRank mt-5 ms-3">第三名</div> </Col>
+            <Col md={4}><div className="voteRank ms-3">第一名</div> </Col>
+            <Col md={4}><div className="voteRank mt-5 ms-3">第二名</div></Col>
         </Row>
         </Container>
         
@@ -60,32 +63,27 @@ function Vote(props) {
     
         <div>
             <div>
-            <h2 className="text-center">我也要投票!</h2>
+            <h2 className="text-center pt-3">我也要投票!</h2>
             <div className="titleLineBox">
                 <img alt="" className="titleLine mb-3" src="img/index/line.png" />
             </div>
             </div>
             <div>
                 <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>傳情畫意</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>估估劃劃</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>諾亞方舟</label>
-
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>籤籤入扣</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>閃靈快手</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>印加寶藏</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>BANG!</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>阿瓦隆</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>狼人殺</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked="true" className="conInput"/>傳情畫意</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" className="conInput"/>估估劃劃</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" className="conInput"/>諾亞方舟</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote"  className="conInput"/>籤籤入扣</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote"  className="conInput"/>閃靈快手</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" className="conInput"/>印加寶藏</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote"  className="conInput"/>BANG!</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote"  className="conInput"/>阿瓦隆</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote"  className="conInput"/>狼人殺</label>
                 
                 <input type="submit" value="送  出" className="submitVote m-3" />
                 </form>
             </div>
         </div>
-
-     
-        
-
         </div>
         
         </div>
