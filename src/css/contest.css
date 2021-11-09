@@ -102,6 +102,7 @@ input[type="checkbox"] {
   right: 25px;
   bottom: 15px;
   cursor: pointer;
+  text-decoration:none;
 }
 .disButton {
   color: white;

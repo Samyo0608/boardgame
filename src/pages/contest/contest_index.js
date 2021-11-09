@@ -109,7 +109,7 @@ function Index(props) {
                       舉辦比賽了，來挑戰看看吧!</p>
                     <div className="d-flex">
                         <div className="personNo">剩餘名額:6位</div>
-                        <div className="doButton">我要報名</div>
+                        <a className="doButton" href="contestInfo">我要報名</a>
                 </div>
                     
                 </div>

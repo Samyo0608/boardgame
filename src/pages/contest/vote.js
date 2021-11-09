@@ -67,16 +67,16 @@ function Vote(props) {
             </div>
             <div>
                 <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>傳情畫意</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>估估劃劃</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>諾亞方舟</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>傳情畫意</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>估估劃劃</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>諾亞方舟</label>
 
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>籤籤入扣</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>閃靈快手</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>印加寶藏</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>BANG!</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>阿瓦隆</label>
-                <label className="inputFont mb-3"><input type="radio" name="vote" checked/>狼人殺</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>籤籤入扣</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>閃靈快手</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>印加寶藏</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>BANG!</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>阿瓦隆</label>
+                <label className="inputFont mb-3"><input type="radio" name="vote" checked className="conInput"/>狼人殺</label>
                 
                 <input type="submit" value="送  出" className="submitVote m-3" />
                 </form>
