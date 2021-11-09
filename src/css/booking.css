@@ -90,8 +90,8 @@
 
 /* 日曆及照片輪播位置 */
 .site {
-  width: 1000px;
-  height: 500px;
+  width: 1100px;
+  height: 900px;
   border-radius: 10px;
   box-shadow: 6px 6px 8px rgb(121, 121, 121, 0.6);
   margin: 20px auto;
@@ -99,21 +99,22 @@
 }
 /* 場地租借日曆 */
 .calendar {
-  position: relative;
-  left: 50px;
-  top: 50px;
+  width: 1000px;
+  height: 800px;
+  /* background: rgb(252, 247, 196); */
+  margin: 20px auto;
+  padding: 20px 0px;
 }
 .siteImg {
-  position: absolute;
-  top: 1270px;
-  left: 550px;
-  width: 500px;
-  height: 400px;
+  width: 700px;
+  height: 500px;
   border: 1px solid transparent;
+  margin: 10px auto;
 }
 .siteImg img {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 
 /* 訂購確認 */
@@ -145,7 +146,7 @@
   position: absolute;
   z-index: 2;
   left: -60px;
-  top: 400px;
+  top: 890px;
 }
 
 /* 包廂說明 */
