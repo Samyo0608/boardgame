@@ -7,6 +7,10 @@ function Aboutgame(props) {
   return (
     <>
       <Container>
+        <h2 className="text-center">產品頁面</h2>
+        <div className="titleLineBox">
+          <img alt="" className="titleLine" src="img/index/line.png" />
+        </div>
         <ul className="d-flex  justify-content-evenly list-unstyled py-0 my-2">
           <li>
             <a className="gametype" href="#/">
@@ -59,18 +63,26 @@ function Aboutgame(props) {
             </a>
           </div>
         </div>
-        <div>
-          <Button className="button7" variant="info">
-            回上頁
-          </Button>
-        </div>
-        <div className="button6 ">
-          <Button>遊戲介紹</Button>
-          <Button>遊戲規格</Button>
-          <Button>退換貨須知</Button>
+        <div className="btwidg"></div>
+        <div className="btwidg1 ">
+          <Button className="btwidg2">遊戲介紹</Button>
+          <Button className="btwidg3">遊戲規格</Button>
+          <Button className="btwidg4">退換貨須知</Button>
         </div>
         <div>
-          <div className="box2"></div>
+          <div className="box2">
+            <div
+              className="aboutbagd"
+              style={{
+                backgroundImage: `url(${
+                  process.env.PUBLIC_URL + "/img/product/BK.png"
+                })`,
+                width: "1000px",
+                height: "600px",
+              }}
+            ></div>
+          </div>
+
           <h1 className="p7">遊戲名稱：諸神之戰 Cyclades</h1>
           <a href="#/">
             <img className="forum" src="/img/product/forum.png" alt="" />

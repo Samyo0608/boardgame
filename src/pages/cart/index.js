@@ -6,6 +6,10 @@ function Cart(props) {
   return (
     <>
       <Container>
+        <h2 className="text-center">購物車</h2>
+        <div className="titleLineBox">
+          <img alt="" className="titleLine" src="img/index/line.png" />
+        </div>
         <div className="button1">
           <Button variant="outline-primary">我的最愛( ) </Button>{" "}
           <Button variant="outline-primary">我的遊戲( ) </Button>
@@ -22,10 +26,10 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/crime.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:123456</p>
+              <p>遊戲名稱: </p>
             </div>
             <div className="pname">
-              <p>遊戲名稱:犯人在跳舞</p>
+              <p>犯人在跳舞</p>
             </div>
             <div className="amount10">
               <input type="button" value="-" id="del" onclick="del()" />
@@ -47,7 +51,7 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/tolove.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:121456</p>
+              <p>遊戲名稱:</p>
             </div>
             <div className="pname">
               <p>遊戲名稱:傳情</p>
@@ -72,10 +76,10 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/gem.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:123456</p>
+              <p>遊戲名稱:</p>
             </div>
             <div className="pname">
-              <p>遊戲名稱:璀璨寶石</p>
+              <p>璀璨寶石</p>
             </div>
             <div className="amount10">
               <input type="button" value="-" id="del" onclick="del()" />
@@ -97,10 +101,10 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/wolf.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:123456</p>
+              <p>遊戲名稱:</p>
             </div>
             <div className="pname">
-              <p>遊戲名稱:狼人</p>
+              <p>狼人</p>
             </div>
             <div className="amount10">
               <input type="button" value="-" id="del" onclick="del()" />
@@ -122,10 +126,10 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/crime.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:123456</p>
+              <p>遊戲名稱:</p>
             </div>
             <div className="pname">
-              <p>遊戲名稱:犯人在跳舞</p>
+              <p>犯人在跳舞</p>
             </div>
             <div className="amount10">
               <input type="button" value="-" id="del" onclick="del()" />
@@ -147,10 +151,10 @@ function Cart(props) {
             <input type="checkbox" />
             <img className="cartpic" src="/img/product/crime.jpg" alt="" />
             <div className="pnumber">
-              <p>商品編號:123456</p>
+              <p>遊戲名稱:</p>
             </div>
             <div className="pname">
-              <p>遊戲名稱:犯人在跳舞</p>
+              <p>犯人在跳舞</p>
             </div>
             <div className="amount10">
               <input type="button" value="-" id="del" onclick="del()" />
