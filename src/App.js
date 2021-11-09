@@ -36,8 +36,8 @@ function App() {
   return (
     <>
       <div className="bodyWidth">
-        <TopNavbar className="" />
         <BrowserRouter>
+          <TopNavbar className="" />
           <Switch>
             <Route
               exact={true}
