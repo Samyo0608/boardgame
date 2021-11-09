@@ -11,14 +11,24 @@
   width: 100px;
   border-bottom: 5px solid rgb(219, 81, 16);
 }
-.button0 {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 300px;
-  margin: 60px 0 0 850px;
-  font-size: 20px;
-  border: 5px;
-  font-weight: bold;
+.buttooon0 {
+  position: absolute;
+  width: 100px;
+}
+.button123 {
+  position: absolute;
+  top: 50px;
+  left: 800px;
+}
+.button1234 {
+  position: absolute;
+  top: 50px;
+  left: 1003px;
+}
+.button12345 {
+  position: absolute;
+  top: 50px;
+  left: 902px;
 }
 
 /* 超連結顏色 */
@@ -53,38 +63,49 @@
   text-indent: 35px;
   font-weight: bold;
 }
-
+/* 投票數 */
 .p5 {
   display: inline;
-  color: #fff;
-  font-size: 20px;
-  margin: 20px 0 0 20px;
+  color: rgb(59, 137, 255);
+  font-size: 15px;
+  margin: 40px 0 0 20px;
   font-weight: bold;
 }
 
 /* 二，三遊戲 */
 .posi {
+  position: absolute;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin: -540px 0 0 500px;
+  margin: -550px 0 0 600px;
+}
+.posi span {
+  margin-left: 380px;
+  font-weight: bold;
+  font-size: 20px;
 }
 .posi2 {
+  position: absolute;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin: 20px 0 0 500px;
+  top: 525px;
+  left: 620px;
 }
 .posi2 span {
-  margin-left: 50px;
+  margin-left: 380px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /* 第一名遊戲 */
 .shadowbox {
+  position: relative;
   width: 450px;
   height: 550px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
@@ -116,6 +137,39 @@
   padding: 0 5px 0 5px;
   border-radius: 5px;
 }
+.type1 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(59, 137, 255);
+  color: #fff;
+  left: 40px;
+  top: 300px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+.type2 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(59, 137, 255);
+  color: #fff;
+  left: 20px;
+  top: 200px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+.type3 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(59, 137, 255);
+  color: #fff;
+  left: 20px;
+  top: 200px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
 .gamename {
   font-weight: bold;
   font-size: 20px;
@@ -131,6 +185,7 @@
 }
 
 .abcd {
+  display: flex;
   width: 200px;
   height: 200px;
   padding: 10px;
@@ -154,14 +209,14 @@
 }
 /* 中最愛 */
 .favorite2 {
-  margin: 15px 10px 0 180px;
+  margin: 20px 10px 0 200px;
   height: 30px;
   width: 80px;
 }
 /* 中購物車 */
 .buy2 {
-  margin-top: 15px;
-  height: 30px;
+  margin-top: 19px;
+  height: 33px;
   width: 80px;
 }
 .pic {
@@ -189,6 +244,8 @@
   height: 850px;
   flex-wrap: wrap;
   margin-left: 150px;
+  margin-top: 70px;
+  margin-bottom: 10px;
 }
 /* 下排遊戲 */
 .shadowbox4 {
