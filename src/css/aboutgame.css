@@ -1,0 +1,105 @@
+/* 上面 */
+.box {
+  width: 1000px;
+  height: 500px;
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  border-radius: 5px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  text-align: left;
+  margin-left: 100px;
+}
+
+/* 下面 */
+.box2 {
+  width: 1000px;
+  height: 550px;
+  /* background-image: url("../img/BK.png"); */
+  box-shadow: 8px 8px 5px rgb(189, 186, 186);
+  text-align: left;
+  margin-left: 100px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.aboutbagd {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* 3按鈕位置 */
+
+.btwidg1 {
+  position: absolute;
+  width: 110px;
+}
+/* 遊戲介紹 */
+.btwidg2 {
+  position: relative;
+  left: 100px;
+  top: 15px;
+}
+/* 遊戲規格 */
+.btwidg3 {
+  position: relative;
+  left: 212px;
+  top: -23px;
+}
+/* 退換貨須知 */
+.btwidg4 {
+  position: relative;
+  left: 323px;
+  top: -61px;
+}
+/* 遊戲敘述 */
+.text1 {
+  font-size: 16px;
+  margin: -350px 0 0 600px;
+}
+/* 標題 */
+.p6 {
+  background-color: rgb(59, 137, 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+/* 下BOX標題 */
+.p7 {
+  margin: -500px 0 0 400px;
+}
+/* 遊戲大圖 */
+.abb {
+  width: 550px;
+  height: 400px;
+  padding: 20px;
+  border-radius: 50px;
+}
+.favorite4 {
+  margin: 20px 10px 0 700px;
+}
+.buy4 {
+  margin-top: 20px;
+}
+/* 按鈕 */
+.button6 {
+  position: relative;
+  width: 400px;
+  font-size: 20px;
+  border: 5px;
+  font-weight: bold;
+  left: 50px;
+}
+.button7 {
+  display: flex;
+  margin: 15px 0 0 1070px;
+  font-size: 20px;
+}
+/* 討論區 */
+.forum {
+  margin: 270px 0 0 740px;
+}
+.pprice {
+  font-size: 40px;
+  margin-left: 250px;
+  margin-top: -60px;
+}

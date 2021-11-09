@@ -9,7 +9,7 @@
 /* 投票結果區域 */
 .container1 {
   max-width: 1129px;
-  height: 1336px;
+  height: 2000px;
   border: solid;
   border-radius: 10px;
   border-color: var(--primary);
@@ -39,11 +39,83 @@
   background-color: var(--doButton);
   color: white;
 }
+/* 長條圖及投票結果前三名 */
 .voteResult {
   background-color: white;
   color: var(--fontColor);
-  max-width: 1070px;
-  height: 707px;
+  max-width: 1050px;
+  height: 900px;
   margin-top: 40px;
-  box-shadow: 1px 1px 1px 1px var(--shadow);
+  /* box-shadow: 1px 1px 1px 1px var(--shadow); */
+}
+
+/* 投票結果前三名圖片樣式 */
+.votePic {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border-color: none;
+  background: black;
+  overflow: hidden;
+  /* background-size: cover; */
+}
+.voteImg {
+  width: 100%;
+  height: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+.voteRank {
+  width: 170px;
+  height: 50px;
+  background: whitesmoke;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 2px var(--shadow);
+  font-size: 34px;
+  text-align: center;
+}
+
+/* 投票樣式 */
+
+.inputFont {
+  border: solid var(--fontColor);
+  border-width: 1px;
+  min-height: 55px;
+  border-radius: 10px;
+  width: 60%;
+  font-size: 32px;
+  left: 210px;
+  position: relative;
+}
+.conInput {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  /* position: relative; */
+}
+.voteChoose {
+  background-color: white;
+  color: var(--fontColor);
+  max-width: 1050px;
+  height: 850px;
+  margin-top: 40px;
+  /* box-shadow: 1px 1px 1px 1px var(--shadow); */
+}
+/* 按鈕 */
+.submitVote {
+  background-color: var(--doButton);
+  color: white;
+  font-size: 32px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  position: relative;
+  top: 90px;
+  right: 190px;
 }

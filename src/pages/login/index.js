@@ -11,9 +11,9 @@ function Login(props) {
     <div className="login">
       <Image
         src="../../img/booking/booking_index.jpg"
-        className="backgroundImage mt-5"
+        className="backgroundImageLogin"
       />
-      <div className="d-flex flex-column CenterDiv justify-content-around align-items-center">
+      <div className="d-flex flex-column CenterDivLogin justify-content-around align-items-center">
         <p className="h2 mt-5 bold">會員登入</p>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
@@ -61,7 +61,7 @@ function Login(props) {
             登入
           </Button>
         </Form>
-        <hr className="hr" />
+        <hr className="hrLogin" />
         <Button variant="primary" className="mb-5 button">
           免費註冊新會員
         </Button>

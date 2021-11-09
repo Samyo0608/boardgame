@@ -165,7 +165,7 @@ function Booking() {
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
         </div>
         {/* 訂購確認按鈕 */}
-        <a className="btn siteBookCheck" href="#/bookingCheck">
+        <a className="btn siteBookCheck" href="bookingCheck">
           前往訂購
         </a>
       </div>

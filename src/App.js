@@ -7,28 +7,51 @@ import messagePage from "./pages/customer_service/customer_service_message";
 import question_record from "./pages/customer_service/question_record";
 import edit_reply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
-import index from "./pages/discuss/index.js";
+import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
-import discuss from "./pages/discuss/discuss.js";
+import Discuss from "./pages/discuss/discuss.js";
+import Reply from "./pages/discuss/reply.js";
 import bookingCheck from "./pages/booking_pages/booking_check.js";
-import { HashRouter, Route, Switch, Link } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+} from "react-router-dom";
 import contest from "./pages/contest/contest_index.js";
 import TopNavbar from "./components/Navbar";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import MemberCenter from "./pages/memberCenter";
 import MemSelf from "./pages/memberCenter/memSelf";
+import RePassword from "./pages/memberCenter/rePassword";
+import MemberProduct from "./pages/memberCenter/memberProduct";
+import MemberRent from "./pages/memberCenter/memberRent";
+import MemberPoint from "./pages/memberCenter/memberPoint";
 import vote from "./pages/contest/vote.js";
 import contestInfo from "./pages/contest/contest_info";
-
+import Aboutgame from "./pages/aboutgames";
+import Product from "./pages/product";
+import Cart from "./pages/cart";
 
 function App() {
   return (
     <>
       <div className="bodyWidth">
         <TopNavbar className="" />
-        <HashRouter>
+        <BrowserRouter>
           <Switch>
+            <Route
+              exact={true}
+              path="/memberCenter/memberPoint"
+              component={MemberPoint}
+            />
+            <Route
+              exact={true}
+              path="/memberCenter/memberRent"
+              component={MemberRent}
+            />
             <Route
               exact={true}
               path="/memberCenter/memSelf"
@@ -36,8 +59,8 @@ function App() {
             />
             <Route
               exact={true}
-              path="/faq"
-              component={CustomerServicePage}
+              path="/memberCenter/rePassword"
+              component={RePassword}
             />
             <Route
               exact={true}
@@ -58,19 +81,32 @@ function App() {
               exact={true}
               path="/edit_reply"
               component={edit_reply}
+
             />
-            <Route exact={true} path="/" component={index} />
+            <Route
+              exact={true}
+              path="/memberCenter/memberProduct"
+              component={MemberProduct}
+            />
+
+            <Route exact={true} path="/faq" component={CustomerServicePage} />
+            <Route exact={true} path="/instant_QA" component={instantQAPage} />
+            <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
             <Route exact={true} path="/memberCenter" component={MemberCenter} />
             <Route exact={true} path="/booking" component={booking} />
-            <Route exact={true} path="/discuss" component={discuss} />
+            <Route exact={true} path="/discuss/reply" component={Reply} />
+            <Route exact={true} path="/discuss" component={Discuss} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
             <Route exact={true} path="/contestInfo" component={contestInfo} />
             <Route exact={true} path="/vote" component={vote} />
+            <Route exact={true} path="/Product" component={Product} />
+            <Route exact={true} path="/Aboutgame" component={Aboutgame} />
+            <Route exact={true} path="/Cart" component={Cart} />
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
         <Footer />
       </div>
     </>
