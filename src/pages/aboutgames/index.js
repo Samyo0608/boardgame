@@ -45,19 +45,18 @@ function Aboutgame(props) {
               <p>遊戲人數：2~5人</p>
               <p>遊戲年齡：13+</p>
               <p>遊戲時間：60分鐘</p>
+              <div className="pprice">$999</div>
             </div>
-            <div>
-              <a href="#/">
-                <img
-                  className="favorite4"
-                  src="/img/product/favorite.png"
-                  alt=""
-                />
-              </a>
-              <a href="#/">
-                <img className="buy4" src="/img/product/buy.png" alt="" />
-              </a>
-            </div>
+            <a href="#/">
+              <img
+                className="favorite4"
+                src="/img/product/favorite.png"
+                alt=""
+              />
+            </a>
+            <a href="#/">
+              <img className="buy4" src="/img/product/buy.png" alt="" />
+            </a>
           </div>
         </div>
         <div>
@@ -72,7 +71,6 @@ function Aboutgame(props) {
         </div>
         <div>
           <div className="box2"></div>
-
           <h1 className="p7">遊戲名稱：諸神之戰 Cyclades</h1>
           <a href="#/">
             <img className="forum" src="/img/product/forum.png" alt="" />
