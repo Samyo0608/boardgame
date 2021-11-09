@@ -8,17 +8,45 @@
   text-align: left;
   margin-left: 100px;
 }
+
 /* 下面 */
 .box2 {
   width: 1000px;
   height: 550px;
-  background-image: url("../img/BK.png");
+  /* background-image: url("../img/BK.png"); */
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  background-size: contain;
-  background-repeat: no-repeat;
   text-align: left;
   margin-left: 100px;
+  margin-top: 30px;
   border-radius: 10px;
+}
+.aboutbagd {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* 3按鈕位置 */
+
+.btwidg1 {
+  position: absolute;
+  width: 110px;
+}
+/* 遊戲介紹 */
+.btwidg2 {
+  position: relative;
+  left: 100px;
+  top: 15px;
+}
+/* 遊戲規格 */
+.btwidg3 {
+  position: relative;
+  left: 212px;
+  top: -23px;
+}
+/* 退換貨須知 */
+.btwidg4 {
+  position: relative;
+  left: 323px;
+  top: -61px;
 }
 /* 遊戲敘述 */
 .text1 {
@@ -54,12 +82,12 @@
 }
 /* 按鈕 */
 .button6 {
-  display: flex;
+  position: relative;
   width: 400px;
-  margin-left: 100px;
   font-size: 20px;
   border: 5px;
   font-weight: bold;
+  left: 50px;
 }
 .button7 {
   display: flex;
