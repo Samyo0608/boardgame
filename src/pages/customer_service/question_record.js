@@ -14,7 +14,7 @@ const QuestionRecord = () => {
       <h3>客服留言</h3>
       <img
         src="/img/customer_service/small_dice.png"
-        class="wcsDice"
+        class="csDice"
         alt=""
       />
     </div>

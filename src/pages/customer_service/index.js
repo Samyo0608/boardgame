@@ -38,8 +38,6 @@ import Cart from "./pages/cart";
 function App() {
   return (
     <>
-      <div className="bodyWidth">
-        <TopNavbar className="" />
         <BrowserRouter>
           <Switch>
             <Route
@@ -63,18 +61,22 @@ function App() {
               component={RePassword}
             />
             <Route
+              exact={true}
               path="/instant_QA"
               component={InstantQAPage}
             />
             <Route
+              exact={true}
               path="/customer_service_message"
               component={CustomerServicePage}
             />
             <Route
+              exact={true}
               path="/question_record"
               component={QuestionRecord}
             />
             <Route
+              exact={true}
               path="/edit_reply"
               component={EditReply}
 
@@ -85,7 +87,7 @@ function App() {
               component={MemberProduct}
             />
 
-            <Route path="/faq" component={FAQPage} />
+            <Route exact={true} path="/faq" component={FAQPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
@@ -102,8 +104,6 @@ function App() {
             <Route exact={true} path="/Cart" component={Cart} />
           </Switch>
         </BrowserRouter>
-        <Footer />
-      </div>
     </>
   );
 }

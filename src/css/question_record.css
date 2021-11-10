@@ -1,20 +1,5 @@
 /* header */
 /* title */
-
-.adjustTitle {
-  margin: 0 0 0 50px;
-  position: relative;
-}
-.adjustTitle h3{
-  font-size: 28px;
-  font-weight: bold;
-}
-.wcsDice{
-  width: 300px;
-  position: absolute;
-  top: 42px;
-  left: 400px;
-}
 /* 外框背景 */
 .messageOuter {
   border: 1px solid rgba(255, 255, 255, 0.1);

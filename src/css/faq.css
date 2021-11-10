@@ -32,12 +32,11 @@
 input[type="search"].input_content {
   border: 0px;
   padding: 0px;
-  margin-left:20px;
+  margin-left: 20px;
   border-radius: 0px;
   border: none;
-  font-size:18px;
+  font-size: 18px;
   width: 300px;
-
 }
 .input_content:focus {
   outline: none;
@@ -165,4 +164,28 @@ input[type="search"].input_content {
 
 .flex-column {
   flex-direction: column;
+}
+/* 超連結 */
+.Back_to_homepage {
+  text-decoration: none;
+}
+.question_title_a {
+  text-decoration: none;
+}
+.question_title_a:link {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(0, 0, 0);
+}
+a:hover {
+  color: #1b7fd6;
+}
+a:active {
+  color: #0c4499;
+}
+img a:hover {
+  linear-gradient: red;
 }
