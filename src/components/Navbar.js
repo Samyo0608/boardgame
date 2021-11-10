@@ -17,6 +17,7 @@ import {
   faQuestionCircle,
   faShoppingCart,
   faUserCircle,
+  faSignOutAlt,
 } from "@fortawesome//free-solid-svg-icons";
 import "./Navbar.css";
 
@@ -143,16 +144,20 @@ function TopNavbar(props) {
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
             </Link>
-            <Link to="/memberCenter">
+            <Link className="ms-2 me-3" to="/memberCenter">
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
+            </Link>
+            <Link to="/logout">
+              <FontAwesomeIcon icon={faSignOutAlt} />
+              登出
             </Link>
           </div>
           <Link
             to="/login"
-            className="d-flex justify-content-between align-items-center memberBorder"
+            className="d-flex justify-content-around align-items-center memberBorder"
           >
-            <p className="name me-2">王大明</p>
+            <p className="name">王大明</p>
             <div className="d-flex align-items-center">
               點數<div className="point">P</div> :100
             </div>

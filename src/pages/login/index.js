@@ -19,7 +19,7 @@ function Login(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
-        <Form>
+        <Form method="post">
           <Form.Group as={Row} className="mb-4" controlId="formBasicEmail">
             <Form.Label column sm="4" className="bold">
               電子信箱
@@ -63,7 +63,7 @@ function Login(props) {
           </Button>
         </Form>
         <hr className="hrLogin" />
-        <Button variant="primary" className="mb-5 button">
+        <Button variant="primary" className="mb-5 button" type="submit">
           免費註冊新會員
         </Button>
       </div>
