@@ -17,7 +17,7 @@ function Register(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
-        <Form className="mb-5">
+        <Form className="mb-5" method="post">
           <Form.Group as={Row} className="mb-3" controlId="formBasicEmail">
             <Form.Label column sm="4" className="bold">
               電子信箱
