@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MemProductItem from "../../components/memProductItem/memProductItem";
-import MemberRentItem from "../../components/memberRent/memberRentItem";
 import {
+  faChevronRight,
   faUser,
   faKey,
   faChessBoard,
@@ -12,58 +11,7 @@ import {
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/memberCenter.css";
 
-// 假資料
-const Detail = [
-  {
-    image: "/img/memberCenter/boardgame01.png",
-    proName: "夢想人生",
-    status: "等待取貨",
-    price: "350",
-    count: "2",
-    date: "2021/10/01",
-    total: "700",
-    endDate: "2021/10/03 01:20:03",
-    tracDate: "2021/10/01 21:03:56",
-    startDate: "2021/10/01 09:54:11",
-    userName: "王大明",
-    userPhone: "0912345678",
-    address: "桃園市中壢區中央路300號",
-  },
-];
-
-const DetailRent = [
-  {
-    roomImg: "/img/booking/fourRoom-1.png",
-    type: "四人房",
-    userStatus: "尚未報到",
-    price: "150",
-    costStatus: "已付款",
-    predate: "2021/10/10下午(13:00-17:00)",
-    rentDate: "2021/10/01",
-  },
-];
-
-// 上方狀態欄
-const List = [
-  {
-    id: 1,
-    status: "預約中",
-    count: 1,
-  },
-  {
-    id: 2,
-    status: "訂購中",
-    count: 1,
-  },
-  {
-    id: 3,
-    status: "點數",
-    count: 78,
-  },
-];
-
 function MemberCenter(props) {
-  const [status, setStatus] = useState(2);
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
       <p className="h2 mt-5 bold">會員中心</p>
@@ -73,71 +21,42 @@ function MemberCenter(props) {
 
       {/* 上半部部分 */}
       <div className="orderStatus mt-4">
-        <div className="d-flex">
-          {List.map((v, i) => {
-            return (
-              <div
-                key={v.id}
-                className={`col-4 status ${
-                  status === v.id ? "active-mem" : ""
-                }`}
-                onMouseEnter={(e) => {
-                  setStatus(v.id);
-                }}
-              >
-                <p className="bold h3 text-black lineHight">{v.status}</p>
-                <p className="text-danger h2 mt-3 bold">{v.count}</p>
-              </div>
-            );
-          })}
+        <div className="row">
+          <div className="col-sm status">
+            <p className="bold h3 text-black lineHight">預約中</p>
+            <p className="text-danger h2 mt-3 bold">1</p>
+          </div>
+          <div className="col-sm status active-mem">
+            <p className="bold h3 text-black lineHight">訂購中</p>
+            <p className="text-danger h2 mt-3 bold">1</p>
+          </div>
+          <div className="col-sm status">
+            <p className="bold h3 text-black lineHight">點數</p>
+            <p className="text-main h2 mt-3 bold">78</p>
+          </div>
         </div>
-        <div
-          className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
-            status === 2 ? "d-block" : "d-none"
-          }`}
-        >
-          <MemProductItem
-            productImg={Detail[0].image}
-            productName={Detail[0].proName}
-            productStatus={Detail[0].status}
-            productPrice={Detail[0].price}
-            productCount={Detail[0].count}
-            orderDate={Detail[0].date}
-            productTotal={Detail[0].total}
-            getDate={Detail[0].getDate}
-            trafTimeEnd={Detail[0].endDate}
-            trafTimeIng={Detail[0].tracDate}
-            trafTimeStart={Detail[0].startDate}
-            userName={Detail[0].userName}
-            userPhone={Detail[0].userPhone}
-            userAddress={Detail[0].address}
-          />
-        </div>
-        <div
-          className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
-            status === 1 ? "d-block" : "d-none"
-          }`}
-        >
-          <MemberRentItem
-            roomImg={DetailRent[0].roomImg}
-            type={DetailRent[0].type}
-            userStatus={DetailRent[0].userStatus}
-            price={DetailRent[0].price}
-            costStatus={DetailRent[0].costStatus}
-            predate={DetailRent[0].predate}
-            rentDate={DetailRent[0].rentDate}
-          />
-        </div>
-        <div
-          className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
-            status === 3 ? "d-block" : "d-none"
-          }`}
-        >
-          <div className="d-flex justify-content-center pointDiv">
-            <div className="d-flex justify-content-center align-items-center ms-3">
-              <div className="me-1 bold point point-mem h4">P</div>
-              <span className="h1 text-main me-5 bold">78</span>
+        <div className="objectDiv">
+          <div className="object d-flex justify-content-around align-items-center">
+            <div className="ms-4">
+              <img
+                alt=""
+                src="img/memberCenter/boardgame01.png"
+                className="objectImg"
+              />
             </div>
+            <div className="row ms-5">
+              <div className="col-6 h5 bold mb-5">商品名稱　　：夢想人生</div>
+              <div className="col-6 h5 bold mb-5">
+                訂單狀態　　：<span className="text-danger">等待取貨</span>
+              </div>
+              <div className="col-6 h5 bold mb-5">單價　　　　：$350</div>
+              <div className="col-6 h5 bold mb-5">數量　　　　：2</div>
+              <div className="col-6 h5 bold">訂單成立日期：2021/10/01</div>
+              <div className="col-6 h5 bold">共計　　　　：$700</div>
+            </div>
+            <button className="arrow">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
           </div>
         </div>
       </div>
