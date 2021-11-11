@@ -73,14 +73,15 @@ function Booking() {
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
       {/* 場地租借按鈕 */}
-      <div className="siteButton">
+      {/* <div className="siteButton">
         <a className="btn siteButton6" href="/#">
           六人房
         </a>
         <button className="btn siteButton4" href="/#">
           四人房
         </button>
-      </div>
+      </div> */}
+
       <div className="site">
         {/* 場地租借日曆 */}
         <div className="calendar">
