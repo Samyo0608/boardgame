@@ -2,6 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/discuss.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -11,6 +15,11 @@ const gameType = [
 ];
 
 const Discuss = () => {
+  const [discuss, setDiscuss] = useState([]);
+  useEffect(async () => {
+    let res = await axios.get("http://localhost:3001/api/discuss/");
+    setDiscuss(res.data);
+  }, []);
   return (
     <div className="overflow-hidden">
       {/* banner */}
