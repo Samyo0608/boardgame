@@ -65,6 +65,8 @@ input[type="search"].input_content {
   font-size: 26px;
   font-weight: bold;
   letter-spacing: 2px;
+  position: relative;
+  z-index:2;
 }
 .front_page_icon {
   width: 30px;
@@ -72,8 +74,9 @@ input[type="search"].input_content {
 }
 .dice_icon {
   position: absolute;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 125px;
+  z-index:-1;
 }
 /* 分類&問題並排框 */
 .abreast {
@@ -82,7 +85,7 @@ input[type="search"].input_content {
 /* 內文左側分類 */
 .content_category {
   border: 1px #d3cece solid;
-  width: 350px;
+  width: 200px;
 }
 .content_category div {
   margin: 50px 0px;
@@ -100,6 +103,7 @@ input[type="search"].input_content {
 .content_question {
   border-left: 3px #d3cece solid;
   font-size: 16px;
+  width:960px;
 }
 /* 內文問題 */
 .content_question h3 {
@@ -137,6 +141,66 @@ input[type="search"].input_content {
 }
 .answer {
   padding-right: 80px;
+}
+.answer p{
+  margin:0;
+}
+/* 答覆表格設定 */
+.answer td,th {
+  border:1px solid rgb(156, 154, 154);
+}
+/* 配送取貨*/
+.table_title_delivery1{
+  width:12%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:1px;
+}
+.table_title_delivery2{
+  width:88%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:2px;
+}
+.table_title_shipment1{
+  width:30%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:1px;
+}
+.table_title_shipment2{
+  width:70%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:2px;
+}
+/* 退換貨退款 */
+.table_title_refund1{
+  width:15%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:1px;
+}
+.table_title_refund2{
+  width:30%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:2px;
+}
+.table_title_refund3{
+  width:50%;
+  background-color: #e8f5e9;
+  text-align: center;
+  letter-spacing:1px;
+}
+/* 發票 */
+
+.table_item{
+  background-color: #e0f2f1 ;
+  text-align:center;
+}
+.table_content{
+  background-color: #eefcfc;
 }
 /* 客服留言連結 */
 .expand_down {

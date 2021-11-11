@@ -3,6 +3,9 @@ import "../../css/faq.css";
 import React from "react";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import FAQShoppingPage from "./faq_shopping";
+import FAQDeliveryPage from "./faq_delivery";
+import FAQRefundPage from "./faq_refund";
+import FAQBillPage from "./faq_bill";
 
 const CustomerServicePage = () => {
   let { path, url } = useRouteMatch();
@@ -55,7 +58,7 @@ const CustomerServicePage = () => {
             <a href="/" class="Back_to_homepage">
               首頁
             </a>
-            <span>&nbsp;>&nbsp;客服中心&nbsp;>&nbsp;會員常見問題</span>
+            <span>&nbsp;>&nbsp;<a href="http://localhost:3000/faq" class="Back_to_homepage">客服中心</a>&nbsp;>&nbsp;會員常見問題</span>
             <img
               src="/img/customer_service/dice.png"
               alt=""
@@ -87,7 +90,7 @@ const CustomerServicePage = () => {
                   <h4>購物常見問題</h4>
                 </div>
               </Link>
-              <a href="/">
+              <Link to={`${url}/delivery`}>
                 <div>
                   <img
                     src="/img/customer_service/money_package_icon.png"
@@ -96,8 +99,8 @@ const CustomerServicePage = () => {
                   />
                   <h4>配送取貨問題</h4>
                 </div>
-              </a>
-              <a href="/">
+                </Link>
+                <Link to={`${url}/refund`}>
                 <div>
                   <img
                     src="/img/customer_service/money_icon.png"
@@ -106,8 +109,8 @@ const CustomerServicePage = () => {
                   />
                   <h4>退換貨及退款</h4>
                 </div>
-              </a>
-              <a href="/">
+                </Link>
+                <Link to={`${url}/bill`}>
                 <div>
                   <img
                     src="/img/customer_service/check_finance_icon.png"
@@ -116,13 +119,14 @@ const CustomerServicePage = () => {
                   />
                   <h4>發票常見問題</h4>
                 </div>
-              </a>
+                </Link>
             </div>
-            <Switch>
-              <Route exact path={path}>
-                <div class="content_question">
+              <Switch>
+                <Route exact path={path}>
                   {/* 內文問題框架 */}
-                  <h3>&nbsp;&nbsp;&nbsp;&nbsp;會員常見問題:</h3>
+            <div class="content_question">
+
+                  <h3>&nbsp;&nbsp;&nbsp;&nbsp;會員常見問題 :</h3>
                   {/* 問題標題 */}
                   <ul class="question_list">
                     {/* 問題項目 */}
@@ -210,10 +214,13 @@ const CustomerServicePage = () => {
                     </div>
                   </div>
                   {/* div結尾(客服留言連結) */}
-                </div>
-              </Route>
-              <Route path={`${path}/shopping`} component={FAQShoppingPage} />
-            </Switch>
+            </div>
+                </Route>
+                <Route path={`${path}/shopping`} component={FAQShoppingPage} />
+                <Route path={`${path}/delivery`} component={FAQDeliveryPage} />
+                <Route path={`${path}/refund`} component={FAQRefundPage} />
+                <Route path={`${path}/bill`} component={FAQBillPage} />
+              </Switch>
             {/* div結尾(內文問題框架) */}
           </div>
           {/* div結尾(分類 &問題並排框) */}
