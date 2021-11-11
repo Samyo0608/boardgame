@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+/* eslint-disable no-unreachable */
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "../../css/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
+import Loading from "../../components/loading/loading";
 
 function Login(props) {
   const [yellow, setYellow] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      return <Loading />;
+    }, 2000);
+  });
+
   return (
     <div className="login">
       <img
@@ -19,7 +28,7 @@ function Login(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
-        <Form method="post">
+        <Form method="post" action="/login">
           <Form.Group as={Row} className="mb-4" controlId="formBasicEmail">
             <Form.Label column sm="4" className="bold">
               電子信箱
@@ -32,7 +41,6 @@ function Login(props) {
               />
             </Col>
           </Form.Group>
-
           <Form.Group as={Row} className="mb-5" controlId="formBasicPassword">
             <Form.Label column sm="4" className="bold">
               密碼

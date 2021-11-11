@@ -18,19 +18,24 @@ function Register(props) {
   // }
 
   async function handleSubmit(e) {
+    //e.preventDefault() -> 取消DOM的預設功能
     e.preventDefault();
-    try {
-      alert("成功");
-      // let res = await axios.post(`${API_URL}/auth/register`, member, {
-      //   // 因為會讓 res cors 寫 cookie
-      //   withCredentials: true,
-      // });
-      await axios.post(`${API_URL}/auth/register`, member, {
-        // 因為會讓 res cors 寫 cookie
-        withCredentials: true,
-      });
-    } catch (e) {
-      console.log("handleSubmit", e);
+    if (member.password === member.rePassword && member.email !== "") {
+      try {
+        await axios.post(`${API_URL}/auth/register`, member, {
+          // res cors -> cookie
+          withCredentials: true,
+        });
+        alert("註冊成功");
+        props.history.push("/");
+      } catch (e) {
+        console.log("handleSubmit", e);
+        alert("註冊失敗");
+      }
+    } else if (member.password !== member.rePassword) {
+      alert("密碼驗證失敗");
+    } else {
+      alert("信箱未填寫");
     }
   }
   const handleChange = (e) => {
@@ -50,7 +55,12 @@ function Register(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
-        <Form className="mb-5" method="post" onSubmit={handleSubmit}>
+        <Form
+          action="/register"
+          className="mb-5"
+          method="post"
+          onSubmit={handleSubmit}
+        >
           <Form.Group as={Row} className="mb-3" controlId="email">
             <Form.Label column sm="4" className="bold">
               電子信箱
