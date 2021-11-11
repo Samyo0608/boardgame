@@ -92,6 +92,7 @@ function Register(props) {
                 required
                 minlength="8"
                 maxlength="20"
+
               />
             </Col>
           </Form.Group>
@@ -109,6 +110,7 @@ function Register(props) {
                 required
                 minlength="8"
                 maxlength="20"
+
               />
             </Col>
           </Form.Group>

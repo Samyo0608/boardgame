@@ -11,12 +11,12 @@ import {
 import { NavLink } from "react-router-dom";
 
 function Sidebar(props) {
-  const [open1, setOpen1] = useState("sidebarOpen");
-  const [open2, setOpen2] = useState("sidebarOpen");
-  const [open3, setOpen3] = useState("sidebarOpen");
-  const [transform, setTransform] = useState("sidebarArrowRotateOpen");
-  const [transform2, setTransform2] = useState("sidebarArrowRotateOpen");
-  const [transform3, setTransform3] = useState("sidebarArrowRotateOpen");
+  const [open1, setOpen1] = useState("d-block");
+  const [open2, setOpen2] = useState("d-block");
+  const [open3, setOpen3] = useState("d-block");
+  const [transform, setTransform] = useState("");
+  const [transform2, setTransform2] = useState("");
+  const [transform3, setTransform3] = useState("");
   return (
     <div className="sidebar mt-5">
       <NavLink
@@ -31,12 +31,8 @@ function Sidebar(props) {
         href="#/memberCenter/memSelf"
         className="h3 d-flex justify-content-between"
         onClick={(e) => {
-          setOpen1(open1 === "sidebarClose" ? "sidebarOpen" : "sidebarClose");
-          setTransform(
-            transform === "sidebarArrowRotateOpen"
-              ? "sidebarArrowRotateClose"
-              : "sidebarArrowRotateOpen"
-          );
+          setOpen1(open1 === "d-none" ? "d-block" : "d-none");
+          setTransform(transform === "" ? "transform" : "");
         }}
       >
         <span>個人資料</span>
@@ -68,12 +64,8 @@ function Sidebar(props) {
         href="#/"
         className="h3 d-flex justify-content-between"
         onClick={(e) => {
-          setOpen2(open2 === "sidebarClose" ? "sidebarOpen" : "sidebarClose");
-          setTransform2(
-            transform2 === "sidebarArrowRotateOpen"
-              ? "sidebarArrowRotateClose"
-              : "sidebarArrowRotateOpen"
-          );
+          setOpen2(open2 === "d-none" ? "d-block" : "d-none");
+          setTransform2(transform2 === "" ? "transform" : "");
         }}
       >
         <span>消費紀錄</span>
@@ -108,12 +100,8 @@ function Sidebar(props) {
         href="#/"
         className="h3 d-flex justify-content-between"
         onClick={(e) => {
-          setOpen3(open3 === "sidebarClose" ? "sidebarOpen" : "sidebarClose");
-          setTransform3(
-            transform3 === "sidebarArrowRotateOpen"
-              ? "sidebarArrowRotateClose"
-              : "sidebarArrowRotateOpen"
-          );
+          setOpen3(open3 === "d-none" ? "d-block" : "d-none");
+          setTransform3(transform3 === "" ? "transform" : "");
         }}
       >
         <span>點數明細</span>
