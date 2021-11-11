@@ -38,7 +38,7 @@ const Discuss = (props) => {
         </a>
       </div>
       {/* 討論區內容 */}
-      <div class="r_discussBox">
+      <div className="r_discussBox">
         <div className="r_discussPicBox">
           <img alt="" className="rentPic" src="/img/discuss/r_discuss.png" />
         </div>
@@ -61,7 +61,7 @@ const Discuss = (props) => {
           <div className="r_discussInBox pt-2">
             {/* 最新討論 */}
             <div className="discussNew position-relative">
-              <table class="table table-hover text-center fw-bold">
+              <table className="table table-hover text-center fw-bold">
                 <thead>
                   <tr className="text-secondary">
                     <th scope="col">標題</th>
@@ -74,9 +74,9 @@ const Discuss = (props) => {
                 <tbody className="r_discussBody">
                   {discuss.map((v, i) => {
                     return (
-                      <tr>
-                        <th scope="row" class="text-start" key={v.discuss_id}>
-                          <Link to={`discuss/reply/${v.discuss_id}`}>
+                      <tr key={v.discuss_id}>
+                        <th scope="row" className="text-start">
+                          <Link to={`discuss/reply/${v.discuss_title}`}>
                             {v.discuss_title}
                           </Link>
                         </th>
@@ -94,7 +94,7 @@ const Discuss = (props) => {
                 </tbody>
               </table>
             </div>
-            <a class="r_discussButton text-center" href="#/">
+            <a className="r_discussButton text-center" href="#/">
               開新話題
             </a>
           </div>
