@@ -4,9 +4,10 @@ import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/register.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
+import { API_URL } from "../../configs/config";
+import axios from "axios";
 
 function Register(props) {
-
   const [member, setMember] = useState({
     email: "",
     password: "",
@@ -44,7 +45,6 @@ function Register(props) {
     setMember(newMember);
   };
 
-
   return (
     <div className="login">
       <Image
@@ -64,7 +64,6 @@ function Register(props) {
           onSubmit={handleSubmit}
         >
           <Form.Group as={Row} className="mb-3" controlId="email">
-
             <Form.Label column sm="4" className="bold">
               電子信箱
             </Form.Label>
@@ -98,14 +97,8 @@ function Register(props) {
               <Form.Control
                 type="password"
                 placeholder="請輸入密碼"
-                className={`${yellow} input`}
-                onChange={(e) => {
-                  if (e.target.value.length > 0) {
-                    setYellow("yellow");
-                  } else {
-                    setYellow("");
-                  }
-                }}
+                className="input"
+                onChange={handleChange}
               />
             </Col>
           </Form.Group>
@@ -117,14 +110,8 @@ function Register(props) {
               <Form.Control
                 type="password"
                 placeholder="再次確認密碼"
-                className={`${yellow2} input`}
-                onChange={(e) => {
-                  if (e.target.value.length > 0) {
-                    setYellow2("yellow");
-                  } else {
-                    setYellow2("");
-                  }
-                }}
+                className="input"
+                onChange={handleChange}
               />
             </Col>
           </Form.Group>
