@@ -5,8 +5,6 @@ function MemberRentItem(props) {
   const { roomImg, type, userStatus, price, costStatus, predate, rentDate } =
     props;
 
-  const [changeTime, setChangeTime] = useState(true);
-
   return (
     <div className="object-rent d-flex flex-column mt-3 mb-3">
       <div>
