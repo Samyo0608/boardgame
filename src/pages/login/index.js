@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
@@ -9,15 +9,14 @@ function Login(props) {
   const [yellow, setYellow] = useState("");
   return (
     <div className="login">
-      <img
-        alt=""
+      <Image
         src="../../img/booking/booking_index.jpg"
         className="backgroundImageLogin"
       />
       <div className="d-flex flex-column CenterDivLogin justify-content-around align-items-center">
         <p className="h2 mt-5 bold">會員登入</p>
         <div className="titleLineBox">
-          <img alt="" className="titleLine" src="/img/index/line.png" />
+          <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
         <Form>
           <Form.Group as={Row} className="mb-4" controlId="formBasicEmail">
