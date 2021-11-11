@@ -1,12 +1,12 @@
-/* eslint-disable no-unused-expressions */
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/register.css";
-import axios from "axios";
-import { API_URL } from "../../configs/config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
 
 function Register(props) {
+
   const [member, setMember] = useState({
     email: "",
     password: "",
@@ -18,19 +18,24 @@ function Register(props) {
   // }
 
   async function handleSubmit(e) {
+    //e.preventDefault() -> 取消DOM的預設功能
     e.preventDefault();
-    try {
-      alert("成功");
-      // let res = await axios.post(`${API_URL}/auth/register`, member, {
-      //   // 因為會讓 res cors 寫 cookie
-      //   withCredentials: true,
-      // });
-      await axios.post(`${API_URL}/auth/register`, member, {
-        // 因為會讓 res cors 寫 cookie
-        withCredentials: true,
-      });
-    } catch (e) {
-      console.log("handleSubmit", e);
+    if (member.password === member.rePassword && member.email !== "") {
+      try {
+        await axios.post(`${API_URL}/auth/register`, member, {
+          // res cors -> cookie
+          withCredentials: true,
+        });
+        alert("註冊成功");
+        props.history.push("/");
+      } catch (e) {
+        console.log("handleSubmit", e);
+        alert("註冊失敗");
+      }
+    } else if (member.password !== member.rePassword) {
+      alert("密碼驗證失敗");
+    } else {
+      alert("信箱未填寫");
     }
   }
 
@@ -39,6 +44,7 @@ function Register(props) {
     newMember[e.target.name] = e.target.value;
     setMember(newMember);
   };
+
 
   return (
     <div className="login">
@@ -49,60 +55,76 @@ function Register(props) {
       <div className="d-flex flex-column CenterDiv justify-content-center align-items-center">
         <p className="h2 mt-5 bold">新會員註冊</p>
         <div className="titleLineBox">
-          <img alt="" className="titleLine" src="/img/index/line.png" />
+          <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
 
-        <Form className="mb-5" method="post" onSubmit={handleSubmit}>
+        <Form
+          action="/register"
+          className="mb-5"
+          method="post"
+          onSubmit={handleSubmit}
+        >
           <Form.Group as={Row} className="mb-3" controlId="email">
             <Form.Label column sm="4" className="bold">
               電子信箱
             </Form.Label>
             <Col sm="8">
               <Form.Control
-                name="email"
                 type="email"
                 placeholder="請輸入email"
                 className="input"
-                required
-                value={member.email}
-                onChange={handleChange}
               />
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="password">
+          <Form.Group as={Row} className="mb-3" controlId="">
+            <Form.Label column sm="4" className="bold">
+              使用者帳號
+            </Form.Label>
+            <Col sm="8">
+              <Form.Control
+                type="text"
+                placeholder="請輸入帳號"
+                className="input"
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="mb-3" controlId="formBasicPassword">
             <Form.Label column sm="4" className="bold">
               密碼
             </Form.Label>
             <Col sm="8">
               <Form.Control
-                name="password"
                 type="password"
                 placeholder="請輸入密碼"
-                minlength="8"
-                maxlength="20"
-                required
-                value={member.password}
-                className="input"
-                onChange={handleChange}
+                className={`${yellow} input`}
+                onChange={(e) => {
+                  if (e.target.value.length > 0) {
+                    setYellow("yellow");
+                  } else {
+                    setYellow("");
+                  }
+                }}
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="rePassword">
+          <Form.Group as={Row} className="mb-3" controlId="formBasicRePassword">
             <Form.Label column sm="4" className="bold">
               再次確認密碼
             </Form.Label>
             <Col sm="8">
               <Form.Control
-                name="rePassword"
                 type="password"
                 placeholder="再次確認密碼"
-                minlength="8"
-                maxlength="20"
-                required
-                value={member.rePassword}
-                className="input"
-                onChange={handleChange}
+                className={`${yellow2} input`}
+                onChange={(e) => {
+                  if (e.target.value.length > 0) {
+                    setYellow2("yellow");
+                  } else {
+                    setYellow2("");
+                  }
+                }}
               />
             </Col>
           </Form.Group>
@@ -112,13 +134,11 @@ function Register(props) {
           >
             <Form.Check
               type="CheckBox"
-              name="ness"
               label="我了解網站資訊並同意相關服務條款"
-              required
             />
           </Form.Group>
           <Button variant="primary" type="submit" className="mt-5 button">
-            註冊
+            登入
           </Button>
         </Form>
       </div>
