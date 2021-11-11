@@ -2,9 +2,13 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container } from "react-bootstrap";
 import "../../css/cart.css";
-import Cart1 from "../../components/cart/Cart1";
-import Cart2 from "../../components/cart/Cart2";
-function Cart(props) {
+import Cart3 from "../../components/cart/Cart3";
+import Payway from "../../components/cart/Payway";
+import Payway0 from "../../components/cart/Payway0";
+import Payway2 from "../../components/cart/Payway2";
+import Payway1 from "../../components/cart/Payway1";
+
+function Cartcheck(props) {
   return (
     <>
       <Container>
@@ -23,12 +27,18 @@ function Cart(props) {
           全部選取
         </Button>
         <p className="payman11">訂購商品</p>
-        <Cart1 />
-        {/* 結帳 */}
-        <Cart2 />
+        {/* 訂購單 */}
+        <Payway0 />
+        {/* 訂購方法 */}
+        <Payway />
+        <Payway2 />
+        <Payway1 />
+        {/* 確認結帳 */}
+
+        <Cart3 />
       </Container>
     </>
   );
 }
 
-export default Cart;
+export default Cartcheck;
