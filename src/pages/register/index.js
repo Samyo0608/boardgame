@@ -39,6 +39,7 @@ function Register(props) {
       alert("信箱未填寫");
     }
   }
+
   const handleChange = (e) => {
     let newMember = { ...member };
     newMember[e.target.name] = e.target.value;
