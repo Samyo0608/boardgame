@@ -50,8 +50,10 @@ function Register(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="/img/index/line.png" />
         </div>
+
         <Form className="mb-5" method="post" onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="email">
+
             <Form.Label column sm="4" className="bold">
               電子信箱
             </Form.Label>
