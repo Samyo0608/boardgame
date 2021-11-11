@@ -29,6 +29,11 @@ const parsing = [
     start: "2021-11-09",
     end: "",
   },
+  {
+    title: "六人房",
+    start: "2021-11-11",
+    end: "",
+  },
 ];
 function Booking() {
   // 日曆套件
