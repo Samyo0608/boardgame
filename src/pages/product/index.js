@@ -1,11 +1,7 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container } from "react-bootstrap";
 import "../../css/product.css";
-import Game from "../../components/product/Game";
-// import { useState } from "react";
-// import Productlis from "../Productlist.json";
 
 function Product(props) {
   return (
@@ -48,7 +44,7 @@ function Product(props) {
                 <p>策略</p>
               </div>
             </div>
-            <a className="a1" href="http://localhost:3000/aboutgame/">
+            <a className="a1" href="http://localhost:3000/#/aboutgame/">
               <p className="p2">
                 在群島爭霸中，我們可妥善運用神明賜予的力量，還有
                 神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
@@ -140,7 +136,165 @@ function Product(props) {
             <Button className="button1234">最高</Button>
             <Button className="button12345">最低</Button>
           </div>
-          <Game />
+          {/* 一 */}
+          <div className="boxflex">
+            {/* 第一個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+            {/* 第二個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+            {/* 第三個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>{" "}
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+            {/* 第四個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>{" "}
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+            {/* 第五個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>{" "}
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+            {/* 第六個遊戲 */}
+            <div className="shadowbox4">
+              <img className="pic" src="/img/product/crime.jpg" alt="" />
+              <div>
+                <p className="type">策略</p>
+              </div>
+              <div>
+                <a className="a1" href="#/">
+                  <p className="gamename">犯人在跳舞</p>
+                </a>{" "}
+              </div>
+              <br></br>
+              <span>$999</span>
+              <div className="iconflex">
+                <a href="#/">
+                  <img
+                    className="favorite3"
+                    src="/img/product/favorite2.png"
+                    alt=""
+                  />
+                </a>
+                <a href="#/">
+                  <img className="buy3" src="/img/product/buy2.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
         </Container>
       </>
     </>

@@ -1,0 +1,92 @@
+/* header */
+/* title */
+
+.adjustTitle {
+  margin: 0 0 0 50px;
+  position: relative;
+}
+.adjustTitle h3{
+  font-size: 28px;
+  font-weight: bold;
+}
+.wcsDice{
+  width: 300px;
+  position: absolute;
+  top: 42px;
+  left: 400px;
+}
+/* 外框背景 */
+.messageOuter {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: url(../img/customer_service/leaf_fruit_border.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 1200px;
+  height: 880px;
+  left:-15px
+}
+/*分頁*/
+.pagination div{
+  border-top:1px solid rgb(126, 124, 124);
+  border-left:1px solid rgb(126, 124, 124) ;
+  border-right:1px solid rgb(126, 124, 124) ;
+  list-style: none;
+  width: 200px;
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  line-height:80px;
+  font-weight: bold;
+}
+.pagination{
+  margin:60px 0 0 90px;
+}
+.pagination a{
+  text-decoration:none
+}
+/* 內文內框 */
+.messageInner {
+  border: 1px solid rgb(126, 124, 124);
+  margin: 0px 0px 10px 90px;
+  width: 1020px;
+  height: 700px;
+  background-color: rgb(255, 255, 255);
+}
+.messageInner a{
+  text-decoration: none;
+}
+/* 問題列表 */
+.OuterOptionBox{
+  border:1px solid rgb(255, 255, 255);
+  display: flex;
+  padding:10px;
+  margin:10px 0 0 0px ;
+}
+.red_point{
+  width:25px;
+  height:25px;
+  background-image: url(../img/customer_service/red_point.png);
+  background-repeat: no-repeat;
+  margin-top: 50px;
+  margin-right: 10px;
+}
+.optionBox{
+ 
+  border:1px solid rgb(158, 157, 157);
+  width: 600px;
+  height: 120px;
+  padding:10px;
+
+}
+
+
+
+/* 右側圖 */
+.communicationPicture{
+  width: 400px;
+  height: 320px;
+  position: absolute;
+  right:60px;
+  bottom: 30px;
+}
