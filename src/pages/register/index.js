@@ -38,6 +38,7 @@ function Register(props) {
       alert("信箱未填寫");
     }
   }
+
   const handleChange = (e) => {
     let newMember = { ...member };
     newMember[e.target.name] = e.target.value;
@@ -64,7 +65,6 @@ function Register(props) {
           onSubmit={handleSubmit}
         >
           <Form.Group as={Row} className="mb-3" controlId="email">
-
             <Form.Label column sm="4" className="bold">
               電子信箱
             </Form.Label>

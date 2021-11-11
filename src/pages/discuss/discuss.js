@@ -29,7 +29,7 @@ const Discuss = () => {
         </a>
       </div>
       {/* 討論區內容 */}
-      <div class="r_discussBox">
+      <div className="r_discussBox">
         <div className="r_discussPicBox">
           <img alt="" className="rentPic" src="/img/discuss/r_discuss.png" />
         </div>
@@ -52,7 +52,7 @@ const Discuss = () => {
           <div className="r_discussInBox pt-2">
             {/* 最新討論 */}
             <div className="discussNew position-relative">
-              <table class="table table-hover text-center fw-bold">
+              <table className="table table-hover text-center fw-bold">
                 <thead>
                   <tr className="text-secondary">
                     <th scope="col">標題</th>
@@ -63,118 +63,29 @@ const Discuss = () => {
                   </tr>
                 </thead>
                 <tbody className="r_discussBody">
-                  <tr className="">
-                    <th scope="row" class="text-start">
-                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【策略】 崩潰 跟朋友玩一直輸
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr className="">
-                    <th scope="row" class="text-start">
-                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【策略】 崩潰 跟朋友玩一直輸
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr className="">
-                    <th scope="row" class="text-start">
-                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【策略】 崩潰 跟朋友玩一直輸
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr className="">
-                    <th scope="row" class="text-start">
-                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-start">
-                      【策略】 崩潰 跟朋友玩一直輸
-                    </th>
-                    <td>阿星</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2021-09-30 15:23</td>
-                  </tr>
+                  {discuss.map((v, i) => {
+                    return (
+                      <tr key={v.discuss_id}>
+                        <th scope="row" className="text-start">
+                          <Link to={`discuss/reply/${v.discuss_title}`}>
+                            {v.discuss_title}
+                          </Link>
+                        </th>
+                        <td>{v.user_id}</td>
+                        <td>2</td>
+                        <td>{v.discuss_num}</td>
+                        <td>
+                          {moment(v.discuss_time.toString()).format(
+                            "YYYY-MM-DD HH:mm:ss"
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <a class="r_discussButton text-center" href="#/">
+            <a className="r_discussButton text-center" href="#/">
               開新話題
             </a>
           </div>
