@@ -9,6 +9,32 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { render } from "@testing-library/react";
 
+
+// 測試資料
+const parsing = [
+  { room: "", date: "", time: "" },
+  {
+    title: "四人房",
+    start: "2021-11-10T09:00:00",
+    end: "2021-11-10T12:00:00",
+  },
+  {
+    title: "六人房",
+    start: "2021-11-12T13:00:00",
+    end: "2021-11-12T17:00:00",
+  },
+  {
+    title: "四人房",
+    start: "2021-11-09",
+    end: "",
+  },
+  {
+    title: "六人房",
+    start: "2021-11-11",
+    end: "",
+  },
+];
+
 function Booking() {
   // 時間套件
   const [value, setValue] = useState(new Date());
