@@ -6,8 +6,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
 
 function Register(props) {
-  const [yellow, setYellow] = useState("");
-  const [yellow2, setYellow2] = useState("");
+
+  const [member, setMember] = useState({
+    email: "",
+    password: "",
+    rePassword: "",
+  });
+
+  // function handleSubmit(e) {
+  //   alert("成功");
+  // }
+
+  async function handleSubmit(e) {
+    //e.preventDefault() -> 取消DOM的預設功能
+    e.preventDefault();
+    if (member.password === member.rePassword && member.email !== "") {
+      try {
+        await axios.post(`${API_URL}/auth/register`, member, {
+          // res cors -> cookie
+          withCredentials: true,
+        });
+        alert("註冊成功");
+        props.history.push("/");
+      } catch (e) {
+        console.log("handleSubmit", e);
+        alert("註冊失敗");
+      }
+    } else if (member.password !== member.rePassword) {
+      alert("密碼驗證失敗");
+    } else {
+      alert("信箱未填寫");
+    }
+  }
+  const handleChange = (e) => {
+    let newMember = { ...member };
+    newMember[e.target.name] = e.target.value;
+    setMember(newMember);
+  };
+
+
   return (
     <div className="login">
       <Image
@@ -19,8 +56,15 @@ function Register(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
-        <Form className="mb-5">
-          <Form.Group as={Row} className="mb-3" controlId="formBasicEmail">
+
+        <Form
+          action="/register"
+          className="mb-5"
+          method="post"
+          onSubmit={handleSubmit}
+        >
+          <Form.Group as={Row} className="mb-3" controlId="email">
+
             <Form.Label column sm="4" className="bold">
               電子信箱
             </Form.Label>

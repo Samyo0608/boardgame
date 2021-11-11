@@ -155,7 +155,7 @@ function TopNavbar(props) {
           >
             <p className="name me-2">王大明</p>
             <div className="d-flex align-items-center">
-              點數<div className="point">P</div> :100
+              點數<div className="point me-1">P</div>: 100
             </div>
             <div className="ms-1">
               <FontAwesomeIcon
