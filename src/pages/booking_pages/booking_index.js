@@ -1,14 +1,43 @@
 // 場地租賃
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/booking.css";
-import React from "react";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import { render } from "@testing-library/react";
+
+
+// 測試資料
+const parsing = [
+  { room: "", date: "", time: "" },
+  {
+    title: "四人房",
+    start: "2021-11-10T09:00:00",
+    end: "2021-11-10T12:00:00",
+  },
+  {
+    title: "六人房",
+    start: "2021-11-12T13:00:00",
+    end: "2021-11-12T17:00:00",
+  },
+  {
+    title: "四人房",
+    start: "2021-11-09",
+    end: "",
+  },
+  {
+    title: "六人房",
+    start: "2021-11-11",
+    end: "",
+  },
+];
 
 function Booking() {
+  // 時間套件
+  const [value, setValue] = useState(new Date());
   // 輪播套件
   var settings = {
     dots: true,
@@ -70,27 +99,20 @@ function Booking() {
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
       {/* 場地租借按鈕 */}
-      <div className="siteButton">
+      {/* <div className="siteButton">
         <a className="btn siteButton6" href="/#">
           六人房
         </a>
         <button className="btn siteButton4" href="/#">
           四人房
         </button>
-      </div>
+      </div> */}
+
       <div className="site">
         {/* 場地租借日曆 */}
         <div className="calendar">
-          <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+          <Calendar onChange={setValue} value={value} />
         </div>
-      </div>
-
-      {/* 訂購確認表單 */}
-      <h2 className="text-center">訂購確認</h2>
-      <div className="titleLineBox">
-        <img alt="" className="titleLine" src="img/index/line.png" />
-      </div>
-      <div className="subCheck">
         {/* 場地租借照片 */}
         <div className="siteImg">
           <Slider {...settings}>
@@ -102,6 +124,14 @@ function Booking() {
             </div>
           </Slider>
         </div>
+      </div>
+
+      {/* 訂購確認表單 */}
+      <h2 className="text-center">訂購確認</h2>
+      <div className="titleLineBox">
+        <img alt="" className="titleLine" src="img/index/line.png" />
+      </div>
+      <div className="subCheck">
         {/* 房型下拉選單 */}
         <div className="mb-3">
           <label className="form-label">房型： </label>

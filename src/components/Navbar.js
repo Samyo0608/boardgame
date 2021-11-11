@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
@@ -17,7 +17,6 @@ import {
   faQuestionCircle,
   faShoppingCart,
   faUserCircle,
-  faSignOutAlt,
 } from "@fortawesome//free-solid-svg-icons";
 import "./Navbar.css";
 
@@ -29,6 +28,7 @@ function TopNavbar(props) {
       title: "首頁",
       href: "/",
       isShow: false,
+
     },
     {
       title: "活動",
@@ -62,7 +62,7 @@ function TopNavbar(props) {
       secondItem3: "客服留言",
       url1: "/faq",
       url2: "/instant_QA",
-      url3: "/question_record",
+      url3: "#action3",
       isShow: true,
       isNull: true,
     },
@@ -97,9 +97,9 @@ function TopNavbar(props) {
             const displayDiv = v.title === select ? "d-block" : "d-none";
             return (
               <div className="d-flex flex-column align-items-center">
-                <Link
+                <a
                   key={i}
-                  to={v.href}
+                  href={v.href}
                   className={`${clsname} navSelect me-1`}
                   title={v.title}
                   id="navbarScrollingDropdown"
@@ -115,7 +115,7 @@ function TopNavbar(props) {
                   <div className="d-flex justify-content-between align-items-center">
                     {v.title}
                   </div>
-                </Link>
+                </a>
 
                 {v.isShow === true && (
                   <div
@@ -127,10 +127,10 @@ function TopNavbar(props) {
                       setSelect("");
                     }}
                   >
-                    <Link to={`${v.url1}`}>{v.secondItem1}</Link>
-                    <Link to={`${v.url2}`}>{v.secondItem2}</Link>
+                    <a href={`${v.url1}`}>{v.secondItem1}</a>
+                    <a href={`${v.url2}`}>{v.secondItem2}</a>
                     {v.isNull === true && (
-                      <Link to={`${v.url3}`}>{v.secondItem3}</Link>
+                      <a href={`${v.url3}`}>{v.secondItem3}</a>
                     )}
                   </div>
                 )}
@@ -140,24 +140,20 @@ function TopNavbar(props) {
         </Nav>
         <div className="me-2">
           <div className="mb-3 TopRightLink">
-            <Link className="ms-2 me-3" to="/Cart">
+            <a className="ms-2 me-3" href="#/">
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
-            </Link>
-            <Link className="ms-2 me-3" to="/memberCenter">
+            </a>
+            <a href="/memberCenter">
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
-            </Link>
-            <Link to="/logout">
-              <FontAwesomeIcon icon={faSignOutAlt} />
-              登出
-            </Link>
+            </a>
           </div>
-          <Link
-            to="/login"
-            className="d-flex justify-content-around align-items-center memberBorder"
+          <a
+            href="/login"
+            className="d-flex justify-content-between align-items-center memberBorder"
           >
-            <p className="name">王大明</p>
+            <p className="name me-2">王大明</p>
             <div className="d-flex align-items-center">
               點數<div className="point me-1">P</div>: 100
             </div>
@@ -167,7 +163,7 @@ function TopNavbar(props) {
                 className="faQuestionCircle"
               />
             </div>
-          </Link>
+          </a>
         </div>
       </Navbar>
     </Container>

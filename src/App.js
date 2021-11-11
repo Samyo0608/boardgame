@@ -1,11 +1,8 @@
 import "./App.css";
 import "normalize.css";
 import React from "react";
-import FAQPage from "./pages/customer_service/faq";
-import InstantQAPage from "./pages/customer_service/instantQA_page";
-import CustomerServicePage from "./pages/customer_service/customer_service_message";
-import QuestionRecord from "./pages/customer_service/question_record";
-import EditReply from "./pages/customer_service/edit_reply";
+import CustomerServicePage from "./pages/customer_service/faq";
+import instantQAPage from "./pages/customer_service/instantQAPage";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
@@ -34,13 +31,14 @@ import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 import Cart from "./pages/cart";
+import Cartcheck from "./pages/cart/cartcheck";
 
 function App() {
   return (
     <>
       <div className="bodyWidth">
+        <TopNavbar className="" />
         <BrowserRouter>
-          <TopNavbar className="" />
           <Switch>
             <Route
               exact={true}
@@ -64,23 +62,12 @@ function App() {
             />
             <Route
               exact={true}
-              path="/customer_service_message"
-              component={CustomerServicePage}
-            />
-            <Route
-              exact={true}
               path="/memberCenter/memberProduct"
               component={MemberProduct}
             />
-            <Route
-              exact={true}
-              path="/question_record"
-              component={QuestionRecord}
-            />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
-            <Route exact={true} path="/edit_reply" component={EditReply} />
-            <Route exact={true} path="/faq" component={FAQPage} />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
+
+            <Route exact={true} path="/faq" component={CustomerServicePage} />
+            <Route exact={true} path="/instant_QA" component={instantQAPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
@@ -95,6 +82,7 @@ function App() {
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
+            <Route exact={true} path="/Cartcheck" component={Cartcheck} />
           </Switch>
         </BrowserRouter>
         <Footer />
