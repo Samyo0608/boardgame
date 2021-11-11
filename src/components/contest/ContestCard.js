@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
+//import ContestCard from "components/contest/ContestButton"
 // props範例
 // {
 //     id: 1,
@@ -15,8 +16,6 @@ import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
 
 function ContestCard(props) {
     const {date,title,innertext,limit,category,img,imgTag} =props
-    //const{data,tite,innertext,limit,category,img} = props
-
     
     return (
         <>
@@ -44,7 +43,7 @@ function ContestCard(props) {
                     <p className="p-2 m-2">{innertext}</p>
                     <div className="d-flex">
                          <div className="personNo">剩餘名額:{limit}</div>
-                        <div className="disButton ">已額滿</div>
+                        <div className={`${limit === 0 ?  "disButton" :"doButton" }`} >{`${limit === 0 ?  "已額滿" :"我要報名" }`}</div>
                 </div>
                     
                 </div>

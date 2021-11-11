@@ -25,7 +25,7 @@ const contestItems = [
   date:'2021-12-10(五)',
   title:'《辣個蟑螂又來啦!》',
   innertext:'非常耐玩的德國蟑螂要在遊戲職人舉辦比賽了，來挑戰看看吧!',
-  limit: 10,
+  limit: 0,
   category:'卡牌',
   img:'img/contest/con02.jpg',
   imgTag:"img/index/card-tag.png",
