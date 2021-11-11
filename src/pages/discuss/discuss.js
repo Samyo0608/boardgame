@@ -14,10 +14,10 @@ const gameType = [
   { id: 4, name: "卡牌" },
 ];
 
-const Discuss = (props) => {
+const Discuss = () => {
   const [discuss, setDiscuss] = useState([]);
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/`);
+    let res = await axios.get("http://localhost:3001/api/discuss/");
     setDiscuss(res.data);
   }, []);
   return (
@@ -104,7 +104,7 @@ const Discuss = (props) => {
 
       {/* 熱門推薦標題 */}
 
-      <div className="position-relative r_discussTitle mb-4">
+      <div className="position-relative r_discussTitle">
         <h2 className="text-center">熱門推薦</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
