@@ -2,10 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/discuss.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import moment from "moment";
-import { Link } from "react-router-dom";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -14,12 +10,7 @@ const gameType = [
   { id: 4, name: "卡牌" },
 ];
 
-const Discuss = (props) => {
-  const [discuss, setDiscuss] = useState([]);
-  useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/`);
-    setDiscuss(res.data);
-  }, []);
+const Discuss = () => {
   return (
     <div className="overflow-hidden">
       {/* banner */}
@@ -72,25 +63,114 @@ const Discuss = (props) => {
                   </tr>
                 </thead>
                 <tbody className="r_discussBody">
-                  {discuss.map((v, i) => {
-                    return (
-                      <tr>
-                        <th scope="row" class="text-start" key={v.discuss_id}>
-                          <Link to={`discuss/reply/${v.discuss_id}`}>
-                            {v.discuss_title}
-                          </Link>
-                        </th>
-                        <td>{v.user_id}</td>
-                        <td>2</td>
-                        <td>{v.discuss_num}</td>
-                        <td>
-                          {moment(v.discuss_time.toString()).format(
-                            "YYYY-MM-DD HH:mm:ss"
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr className="">
+                    <th scope="row" class="text-start">
+                      【卡牌】 第一屆寶可夢卡牌大賽預選名單出來了
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【家庭】 玩夢想人生遇到的問題 有人遇到過嗎?
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">
+                      【策略】 崩潰 跟朋友玩一直輸
+                    </th>
+                    <td>阿星</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>2021-09-30 15:23</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -104,7 +184,7 @@ const Discuss = (props) => {
 
       {/* 熱門推薦標題 */}
 
-      <div className="position-relative r_discussTitle mb-4">
+      <div className="position-relative r_discussTitle">
         <h2 className="text-center">熱門推薦</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />

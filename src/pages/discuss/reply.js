@@ -8,11 +8,7 @@ const Reply = () => {
     <div className="overflow-hidden">
       {/* banner */}
       <div className="replyBannerBox">
-        <img
-          className="replyBannerImg"
-          src="../../img/reply/banner.png"
-          alt=""
-        />
+        <img className="replyBannerImg" src="../img/reply/banner.png" alt="" />
         <div className="bannerContent text-end">
           <p className="fs-2">遊戲職人</p>
           <p className="fs-5">討論區</p>
@@ -34,7 +30,7 @@ const Reply = () => {
             <div className="replyerImgBox">
               <img
                 alt=""
-                src="../../img/reply/replyer1.png"
+                src="../img/reply/replyer1.png"
                 className="replyerImg"
               />
             </div>
@@ -47,11 +43,7 @@ const Reply = () => {
         <div className="col-10">
           <div class="replyBox">
             <div className="replyPicBox">
-              <img
-                alt=""
-                className="replyPic"
-                src="../../img/reply/reply1.png"
-              />
+              <img alt="" className="replyPic" src="../img/reply/reply1.png" />
             </div>
 
             <div className="replyOutBox">
@@ -61,7 +53,7 @@ const Reply = () => {
               <div className="replyInBox">
                 {/* 文章內容 */}
                 <p>如題，下周要比賽了，想上來健檢一下</p>
-                <img alt="" className="" src="../../img/reply/replyImg.png" />
+                <img alt="" className="" src="../img/reply/replyImg.png" />
                 <p className="postTime text-secondary">
                   發表於 : 2021-09-15 20:13
                 </p>
@@ -73,7 +65,7 @@ const Reply = () => {
                     <p className="awesomeText">17人</p>
                     <div className="awesomeBox">
                       <img
-                        src="../../img/reply/awesome.png"
+                        src="../img/reply/awesome.png"
                         alt=""
                         className="awesomeImg"
                       />
@@ -86,7 +78,7 @@ const Reply = () => {
                     <p className="likeText">收藏</p>
                     <div className="likeBox">
                       <img
-                        src="../../img/reply/like.png"
+                        src="../img/reply/like.png"
                         alt=""
                         className="likeImg"
                       />
@@ -108,7 +100,7 @@ const Reply = () => {
             <div className="replyerImgBox">
               <img
                 alt=""
-                src="../../img/reply/replyer2.png"
+                src="../img/reply/replyer2.png"
                 className="replyerImg"
               />
             </div>
@@ -139,7 +131,7 @@ const Reply = () => {
                     <p className="awesomeText">17人</p>
                     <div className="awesomeBox">
                       <img
-                        src="../../img/reply/awesome.png"
+                        src="../img/reply/awesome.png"
                         alt=""
                         className="awesomeImg"
                       />
@@ -152,7 +144,7 @@ const Reply = () => {
                     <p className="likeText">收藏</p>
                     <div className="likeBox">
                       <img
-                        src="../../img/reply/like.png"
+                        src="../img/reply/like.png"
                         alt=""
                         className="likeImg"
                       />
@@ -169,7 +161,7 @@ const Reply = () => {
 
       <div className="newReplyBox d-flex">
         <div className="redBirdBox mx-4">
-          <img className="redBirdImg" src="../../img/reply/bird3.png" alt="" />
+          <img className="redBirdImg" src="../img/reply/bird3.png" alt="" />
         </div>
         <div className="ms-5">
           <p className="fw-bold">參加討論</p>
@@ -178,7 +170,7 @@ const Reply = () => {
               <img
                 className="greenBirdImg"
                 alt=""
-                src="../../img/reply/bird2.png"
+                src="../img/reply/bird2.png"
               />
             </div>
             <div className="replyInputFloor text-center">3樓</div>
@@ -201,10 +193,10 @@ const Reply = () => {
 
       {/* 相關討論標題 */}
 
-      <div className="position-relative r_discussTitle mb-4">
+      <div className="position-relative r_discussTitle">
         <h2 className="text-center">相關討論</h2>
         <div className="titleLineBox">
-          <img alt="" className="titleLine" src="../../img/index/line.png" />
+          <img alt="" className="titleLine" src="../img/index/line.png" />
         </div>
       </div>
 
@@ -215,7 +207,7 @@ const Reply = () => {
               <img
                 className="drImg"
                 alt=""
-                src="../../img/discuss/discussRecommend1.png"
+                src="../img/discuss/discussRecommend1.png"
               />
             </div>
             <div className="drTextBox">
@@ -229,7 +221,7 @@ const Reply = () => {
               <img
                 className="drImg"
                 alt=""
-                src="../../img/discuss/discussRecommend1.png"
+                src="../img/discuss/discussRecommend1.png"
               />
             </div>
             <div className="drTextBox">
