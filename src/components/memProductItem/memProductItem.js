@@ -44,7 +44,7 @@ function MemProductItem(props) {
           className="pro-arrow"
           onClick={(e) => {
             setDisplay(!display);
-            setRotate(!rotate); 
+            setRotate(!rotate);
           }}
         >
           <FontAwesomeIcon

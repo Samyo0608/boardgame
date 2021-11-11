@@ -24,7 +24,7 @@
 /* 大BOX */
 .box12 {
   width: 1000px;
-  height: 300px;
+  height: 1600px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-color: rgb(255, 253, 231);
@@ -100,7 +100,7 @@
   display: flex;
   flex-wrap: wrap;
   font-size: 25px;
-  margin: 40px 0 0 710px;
+  margin: 40px 0 0 550px;
 }
 .totalprice {
   display: flex;
@@ -118,61 +118,21 @@
   margin: 130px 0 0 -130px;
   color: gray;
 }
-/* 訂購人資料 */
-.payman {
-  position: relative;
-  top: -40px;
-  background-color: rgb(59, 137, 255);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #fff;
-  text-align: left;
-  font-size: 20px;
-  padding-left: 10px;
-  font-weight: bold;
+/* 麵包屑  */
+/* .cartBread {
+  position: absolute;
+  /* margin-top: 200px;
+  top: 150px;
+  left: 0px;
+  background-color: #2196d4;
+  padding-left: 50px;
+  height: 30px;
+  box-shadow: #c1efeb 15px 10px;
 }
-.payman11 {
-  position: relative;
-  top: 50px;
-  width: 1002px;
-  background-color: rgb(59, 137, 255);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #fff;
-  font-size: 20px;
-  padding-left: 10px;
 
-  left: 110px;
-  font-weight: bold;
-}
-.payman2 {
-  position: relative;
-  top: -30px;
-  left: 20px;
-}
-.payman3 {
-  position: relative;
-  font-size: 20px;
-  top: -30px;
-  left: 20px;
-}
-.payman4 {
-  position: relative;
-  top: -275px;
-  left: 500px;
-}
-.payman5 {
-  font-size: 20px;
-}
-.payman6 {
-  position: relative;
-  font-size: 20px;
-  top: 20px;
-  left: 20px;
-}
-.payman10 {
-  position: relative;
-  font-size: 20px;
-  top: -35px;
-  left: 40px;
-}
+.cartBreadContent {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  line-height: 30px;
+} */
