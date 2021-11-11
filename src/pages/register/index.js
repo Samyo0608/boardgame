@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/register.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
 import { API_URL } from "../../configs/config";
 import axios from "axios";
 
@@ -70,49 +68,49 @@ function Register(props) {
             </Form.Label>
             <Col sm="8">
               <Form.Control
+                name="email"
                 type="email"
                 placeholder="請輸入email"
                 className="input"
+                onChange={handleChange}
+                required
               />
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="">
-            <Form.Label column sm="4" className="bold">
-              使用者帳號
-            </Form.Label>
-            <Col sm="8">
-              <Form.Control
-                type="text"
-                placeholder="請輸入帳號"
-                className="input"
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3" controlId="formBasicPassword">
+          <Form.Group as={Row} className="mb-3" controlId="password">
             <Form.Label column sm="4" className="bold">
               密碼
             </Form.Label>
             <Col sm="8">
               <Form.Control
+                name="password"
                 type="password"
                 placeholder="請輸入密碼"
                 className="input"
                 onChange={handleChange}
+                required
+                minlength="8"
+                maxlength="20"
+
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formBasicRePassword">
+          <Form.Group as={Row} className="mb-3" controlId="rePassword">
             <Form.Label column sm="4" className="bold">
               再次確認密碼
             </Form.Label>
             <Col sm="8">
               <Form.Control
+                name="rePassword"
                 type="password"
                 placeholder="再次確認密碼"
                 className="input"
                 onChange={handleChange}
+                required
+                minlength="8"
+                maxlength="20"
+
               />
             </Col>
           </Form.Group>
@@ -123,6 +121,7 @@ function Register(props) {
             <Form.Check
               type="CheckBox"
               label="我了解網站資訊並同意相關服務條款"
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit" className="mt-5 button">
