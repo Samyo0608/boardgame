@@ -148,10 +148,12 @@ function TopNavbar(props) {
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
             </Link>
+
             <Link to="/logout">
               <FontAwesomeIcon icon={faSignOutAlt} />
               登出
             </Link>
+            
           </div>
           <Link
             to="/login"
