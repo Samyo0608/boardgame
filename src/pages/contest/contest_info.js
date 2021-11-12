@@ -24,7 +24,7 @@ function Contest_info(props) {
       <img src="../img/contest/conBg02.jpg" alt="" className="bagd" />
      
       <div>
-      <div className="firstTitle bold">寶可夢卡牌報名對戰開始!</div>
+      <div className="firstTitle bold">寶可夢卡牌對戰報名開始!</div>
 
         <img
           alt="活動示意圖"
