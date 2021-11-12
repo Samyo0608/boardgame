@@ -1,26 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/reply.css";
 import React from "react";
-import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import moment from "moment";
-import { Link, useParams } from "react-router-dom";
 
 const Reply = () => {
-  // 定義的名稱要與路由器上定義的/:discuss_title一樣
-  const { discuss_title } = useParams();
-  const [discussContent, setDiscussContent] = useState([]);
-  useEffect(async () => {
-    let res = await axios.get(
-      `http://localhost:3001/api/discuss/reply/${discuss_title}`
-    );
-    console.log(res);
-    setDiscussContent(res.data);
-  }, []);
   return (
     <div className="overflow-hidden">
-      {/* <h1>{discuss_id}</h1> */}
       {/* banner */}
       <div className="replyBannerBox">
         <img className="replyBannerImg" src="../img/reply/banner.png" alt="" />
@@ -36,85 +21,141 @@ const Reply = () => {
           首頁{`>>`}討論區{`>>`}有人能幫忙看一下牌組嗎?
         </a>
       </div>
-      <div className="replyPicBox">
-        <img alt="" className="replyPic" src="../../img/reply/reply1.png" />
-      </div>
-      <a class="replyButton text-center" href="#/">
-        回覆
-      </a>
       {/* 討論區內容 */}
-      {discussContent.map((v, i) => {
-        return (
-          <div key={v.discuss_id} className="firstF row mx-2">
-            {/* 發表者 */}
-            <div className="col-2">
-              <div className="replyerBox text-center fw-bold">
-                <p className="floorName">{i === 0 ? `樓主` : i + 1 + `樓`}</p>
-                <div className="replyerImgBox">
-                  <img
-                    alt=""
-                    src="../../img/reply/replyer1.png"
-                    className="replyerImg"
-                  />
-                </div>
-                <p>{v.user_id}</p>
-                <p>5篇文章</p>
-                <p>10則回覆</p>
-              </div>
+      <div className="firstF row mx-2">
+        {/* 發表者 */}
+        <div className="col-2">
+          <div className="replyerBox text-center fw-bold">
+            <p className="floorName">樓主</p>
+            <div className="replyerImgBox">
+              <img
+                alt=""
+                src="../img/reply/replyer1.png"
+                className="replyerImg"
+              />
             </div>
-            {/* 留言內容 */}
-            <div className="col-10">
-              <div class="replyBox">
-                <div className="replyOutBox">
-                  <div className="replyInBox">
-                    {/* 文章內容 */}
-                    <p>{v.discuss_content}</p>
-                    {/* <img
-                      alt=""
-                      className=""
-                      src="../../img/reply/replyImg.png"
-                    /> */}
-                    <p className="postTime text-secondary">
-                      發表於 :{" "}
-                      {moment(v.discuss_time.toString()).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                      )}
-                    </p>
-                    <div className="twoButton d-flex">
-                      <a
-                        href="#/"
-                        className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
-                      >
-                        <p className="awesomeText">17人</p>
-                        <div className="awesomeBox">
-                          <img
-                            src="../../img/reply/awesome.png"
-                            alt=""
-                            className="awesomeImg"
-                          />
-                        </div>
-                      </a>
-                      <a
-                        href="#/"
-                        className="likeButton col-2 d-flex justify-content-evenly align-items-center"
-                      >
-                        <p className="likeText">收藏</p>
-                        <div className="likeBox">
-                          <img
-                            src="../../img/reply/like.png"
-                            alt=""
-                            className="likeImg"
-                          />
-                        </div>
-                      </a>
+            <p>Tom</p>
+            <p>5篇文章</p>
+            <p>10則回覆</p>
+          </div>
+        </div>
+        {/* 留言內容 */}
+        <div className="col-10">
+          <div class="replyBox">
+            <div className="replyPicBox">
+              <img alt="" className="replyPic" src="../img/reply/reply1.png" />
+            </div>
+
+            <div className="replyOutBox">
+              <a class="replyButton text-center" href="#/">
+                開新話題
+              </a>
+              <div className="replyInBox">
+                {/* 文章內容 */}
+                <p>如題，下周要比賽了，想上來健檢一下</p>
+                <img alt="" className="" src="../img/reply/replyImg.png" />
+                <p className="postTime text-secondary">
+                  發表於 : 2021-09-15 20:13
+                </p>
+                <div className="twoButton d-flex">
+                  <a
+                    href="#/"
+                    className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
+                  >
+                    <p className="awesomeText">17人</p>
+                    <div className="awesomeBox">
+                      <img
+                        src="../img/reply/awesome.png"
+                        alt=""
+                        className="awesomeImg"
+                      />
                     </div>
-                  </div>
+                  </a>
+                  <a
+                    href="#/"
+                    className="likeButton col-2 d-flex justify-content-evenly align-items-center"
+                  >
+                    <p className="likeText">收藏</p>
+                    <div className="likeBox">
+                      <img
+                        src="../img/reply/like.png"
+                        alt=""
+                        className="likeImg"
+                      />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      </div>
+
+      {/* 討論區二樓 */}
+      <div className="otherF row mx-2">
+        {/* 發表者 */}
+        <div className="col-2">
+          <div className="replyerBox text-center fw-bold">
+            <p className="floorName">二樓</p>
+            <div className="replyerImgBox">
+              <img
+                alt=""
+                src="../img/reply/replyer2.png"
+                className="replyerImg"
+              />
+            </div>
+            <p>Jimmy</p>
+            <p>5篇文章</p>
+            <p>10則回覆</p>
+          </div>
+        </div>
+        {/* 留言內容 */}
+        <div className="col-10">
+          <div class="replyBox">
+            <div className="replyOutBox">
+              <div className="replyInBox">
+                {/* 文章內容 */}
+                <p>
+                  現在人馬加倍 建議你去抽一隻回來放 還有花束不用放那麼多張
+                  沒必要
+                </p>
+
+                <p className="postTime text-secondary">
+                  發表於 : 2021-09-15 20:13
+                </p>
+                <div className="twoButton d-flex">
+                  <a
+                    href="#/"
+                    className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
+                  >
+                    <p className="awesomeText">17人</p>
+                    <div className="awesomeBox">
+                      <img
+                        src="../img/reply/awesome.png"
+                        alt=""
+                        className="awesomeImg"
+                      />
+                    </div>
+                  </a>
+                  <a
+                    href="#/"
+                    className="likeButton col-2 d-flex justify-content-evenly align-items-center"
+                  >
+                    <p className="likeText">收藏</p>
+                    <div className="likeBox">
+                      <img
+                        src="../img/reply/like.png"
+                        alt=""
+                        className="likeImg"
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* 參加討論 */}
 

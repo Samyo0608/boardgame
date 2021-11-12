@@ -2,7 +2,6 @@
 .replyBannerBox {
   position: relative;
   margin: auto;
-  margin-bottom: 200px;
   width: 1000px;
   box-shadow: #e6e6e4 20px 20px;
   border-radius: 20px;
@@ -45,35 +44,17 @@
 /* 討論區內容 */
 .replyPicBox {
   position: absolute;
-  /* z-index: 0; */
-  right: 170px;
-  top: 380px;
+  z-index: 0;
+  right: 150px;
+  top: -100px;
   width: 130px;
 }
 .replyPic {
   object-fit: contain;
   width: 100%;
 }
-
-.replyButton {
-  font-weight: bold;
-  color: black;
-  display: inline-block;
-  border-radius: 5px;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  padding-top: 2px;
-  text-decoration: none;
-  background-color: #a2e2ea;
-  box-shadow: 1px 1px 2px rgb(148, 148, 148);
-  position: absolute;
-  right: 25px;
-  top: 430px;
-}
-
 .firstF {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .replyBox {
@@ -109,6 +90,23 @@
   min-height: 230px;
   /* height: 100%; */
   background-color: white;
+}
+
+.replyButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 5px;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #a2e2ea;
+  box-shadow: 1px 1px 2px rgb(148, 148, 148);
+  position: absolute;
+  right: 5px;
+  top: -45px;
 }
 
 /* 其他樓 */
