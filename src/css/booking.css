@@ -99,9 +99,10 @@
 }
 /* 場地租借日曆 */
 .calendar {
-  position: relative;
-  left: 50px;
-  top: 50px;
+  width: 1000px;
+  height: 800px;
+  margin: 20px auto;
+  padding: 20px 0px;
 }
 .siteImg {
   position: absolute;
