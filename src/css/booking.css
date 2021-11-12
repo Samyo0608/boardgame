@@ -67,13 +67,13 @@
   margin: 20px auto;
 }
 
-/* 場地租借按鈕-六人房 */
+/* 場地租借按鈕-六人房
 .siteButton6 {
   margin-right: 10px;
   background: #6dd0cd;
   font-size: 20px;
 }
-/* 場地租借按鈕-四人房 */
+場地租借按鈕-四人房
 .siteButton4 {
   margin-right: 10px;
   background: #6dd0cd;
@@ -86,7 +86,7 @@
 .siteButton4:hover {
   margin-right: 10px;
   background: #0abbb5;
-}
+} */
 
 /* 日曆及照片輪播位置 */
 .site {
