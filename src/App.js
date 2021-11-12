@@ -86,7 +86,11 @@ function App() {
             <Route exact={true} path="/register" component={Register} />
             <Route exact={true} path="/memberCenter" component={MemberCenter} />
             <Route exact={true} path="/booking" component={booking} />
-            <Route exact={true} path="/discuss/reply" component={Reply} />
+            <Route
+              exact={true}
+              path="/discuss/reply/:discuss_id?"
+              component={Reply}
+            />
             <Route exact={true} path="/discuss" component={Discuss} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />

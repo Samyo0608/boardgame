@@ -116,6 +116,18 @@
   height: 100%;
 }
 
+/* 表單樣式 */
+.formStyle {
+  margin: 5px;
+}
+
+/* 錯誤訊息 */
+.error {
+  font-size: 20px;
+  color: red;
+  padding: 1px;
+}
+
 /* 訂購確認 */
 .subCheck {
   position: relative;
@@ -145,7 +157,11 @@
   position: absolute;
   z-index: 2;
   left: -60px;
+<<<<<<< HEAD
   top: 400px;
+=======
+  bottom: 5px;
+>>>>>>> main
 }
 
 /* 包廂說明 */
