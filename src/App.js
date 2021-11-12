@@ -34,7 +34,7 @@ import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 import Cart from "./pages/cart";
-
+import Cartcheck from "./pages/cart/cartcheck";
 function App() {
   return (
     <>
@@ -95,6 +95,7 @@ function App() {
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
+            <Route exact={true} path="/Cartcheck" component={Cartcheck} />
           </Switch>
         </BrowserRouter>
         <Footer />
