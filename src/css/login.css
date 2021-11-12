@@ -70,3 +70,8 @@
   max-width: 400px;
   width: 400px;
 }
+
+.decNone {
+  text-decoration: none;
+  color: #fff;
+}
