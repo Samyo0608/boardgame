@@ -12,8 +12,9 @@
   border-bottom: 5px solid rgb(219, 81, 16);
 }
 .buttooon0 {
-  position: absolute;
+  position: relative;
   width: 100px;
+  top: -500px;
 }
 .button123 {
   position: absolute;
@@ -38,13 +39,15 @@
 }
 /* 遊戲標題 */
 .p1 {
+  position: relative;
   background-color: rgb(59, 137, 255);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   color: #fff;
-  text-align: left;
   font-size: 20px;
+  width: 450px;
   padding-left: 10px;
+  left: -11px;
   font-weight: bold;
 }
 /* 第一名遊戲介紹 */
@@ -65,42 +68,49 @@
 }
 /* 投票數 */
 .p5 {
-  display: inline;
+  position: relative;
   color: rgb(59, 137, 255);
   font-size: 15px;
-  margin: 40px 0 0 20px;
+  top: 35px;
+  left: 20px;
   font-weight: bold;
 }
 
 /* 二，三遊戲 */
 .posi {
-  position: absolute;
+  position: relative;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin: -550px 0 0 600px;
+  /* margin: -550px 0 0 600px; */
+  left: 250px;
+  top: -550px;
 }
 .posi span {
-  margin-left: 380px;
+  position: relative;
+  left: 350px;
+  top: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 }
 .posi2 {
-  position: absolute;
+  position: relative;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  top: 525px;
-  left: 620px;
+  left: 250px;
+  top: -530px;
 }
 .posi2 span {
-  margin-left: 380px;
+  position: relative;
+  left: 350px;
+  top: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 /* 第一名遊戲 */
@@ -121,7 +131,8 @@
 
 /* 大圖一 */
 .abc {
-  width: 450px;
+  position: relative;
+  width: 430px;
   height: 300px;
   padding: 10px;
   border-radius: 50px;
@@ -154,7 +165,7 @@
   height: 30px;
   background-color: rgb(59, 137, 255);
   color: #fff;
-  left: 20px;
+  left: 30px;
   top: 200px;
   padding: 0 5px 0 5px;
   border-radius: 5px;
@@ -165,7 +176,7 @@
   height: 30px;
   background-color: rgb(59, 137, 255);
   color: #fff;
-  left: 20px;
+  left: 30px;
   top: 200px;
   padding: 0 5px 0 5px;
   border-radius: 5px;
@@ -201,11 +212,15 @@
 }
 /* 大最愛 */
 .favorite {
-  margin: 10px 10px 0 100px;
+  position: relative;
+  left: 150px;
+  top: -30px;
 }
 /* 大購物車 */
 .buy {
-  margin-top: 10px;
+  position: relative;
+  top: -30px;
+  left: 160px;
 }
 /* 中最愛 */
 .favorite2 {
@@ -219,8 +234,10 @@
   height: 33px;
   width: 80px;
 }
+/* 下牌遊戲圖片 */
 .pic {
-  width: 250px;
+  position: relative;
+  width: 220px;
   height: 200px;
   padding: 10px;
   margin-top: 20px;
@@ -239,21 +256,24 @@
 }
 
 .boxflex {
+  position: relative;
   display: flex;
-  width: 1000px;
-  height: 850px;
+  width: 250px;
+  height: 350px;
   flex-wrap: wrap;
-  margin-left: 150px;
-  margin-top: 70px;
-  margin-bottom: 10px;
+  top: -400px;
+  left: 100px;
 }
 /* 下排遊戲 */
 .shadowbox4 {
+  position: relative;
   width: 250px;
   height: 350px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
-  margin: 50px 50px 0 0;
+  top: -400px;
+  left: 100px;
+  /* margin: 50px 50px 0 0; */
 }
 .shadowbox4 span {
   font-size: 25px;

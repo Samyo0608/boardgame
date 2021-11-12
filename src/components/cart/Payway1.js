@@ -12,8 +12,8 @@ const Payway1 = () => {
           <div className="payman6">
             <input type="checkbox" />
             <p className="payman10">貨到付款</p>
-            <input type="checkbox" />
-            <p className="payman10">信用卡付款</p>
+            {/* <input type="checkbox" />
+            <p className="payman10">信用卡付款</p> */}
           </div>
         </div>
       </Container>
