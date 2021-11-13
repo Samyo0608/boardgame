@@ -739,6 +739,27 @@ const CustomerServicePage = () => {
                   answerBlock={item.answerBlock}
                 ></FAQBlock>
               ))}
+              <div>
+                {/* 客服留言連結 */}
+                <div class="expand_down">
+                  <span>查看更多常見問題</span>
+                  <img
+                    src="/img/customer_service/drop_down.png"
+                    alt=""
+                    class="drop_down"
+                  />
+                </div>
+                <div class="link_message">
+                  <img
+                    src="/img/customer_service/document_icon.png"
+                    class="document_icon"
+                    alt=""
+                  />
+                  <h4>客服留言</h4>
+                  <p>我們會定時查看，</p>
+                  <p>盡快回覆您!</p>
+                </div>
+              </div>
             </div>
             {/* div結尾(內文問題框架) */}
           </div>
