@@ -1,18 +1,19 @@
 /* 我的遊戲和最愛 */
 .button1 {
-  margin: 0px 0 20px 900px;
+  position: relative;
+  left: 900px;
 }
 /* 全部刪除 */
 .button2 {
-  display: flex;
-  margin: 20px 0px 20px 1010px;
-  padding: 10px;
+  position: relative;
+  top: 10px;
+  left: 1010px;
 }
 /* 全部選取 */
 .button3 {
-  display: flex;
+  position: relative;
   width: 90px;
-  margin: -60px 0 0 100px;
+  left: 20px;
 }
 .buttoncheck {
   font-size: 20px;
@@ -23,43 +24,45 @@
 
 /* 大BOX */
 .box12 {
+  position: relative;
   width: 1000px;
-  height: 1600px;
+  height: 300px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-color: rgb(255, 253, 231);
   margin: 20px 0 40px 100px;
   padding-top: 40px;
+  top: 0px;
 }
 /* 小BOX */
 .box123 {
   display: flex;
   flex-wrap: wrap;
   width: 900px;
-  height: 200px;
+  height: 250px;
   background-color: #fff;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
-  margin: 15px auto 20px auto;
+  margin: -10px auto -20px auto;
 }
 .box123 input {
   display: flex;
-  margin: 100px 10px 0 10px;
+  margin: 110px 10px 0 10px;
 }
 /* 購物車圖 */
 .cartpic {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   margin-top: 30px;
 }
 /* 遊戲名稱 */
 .pnumber {
-  margin-top: 70px;
-  margin-left: 15px;
+  margin-top: 100px;
+  margin-left: 20px;
 }
 /* 遊戲名稱 */
 .pname {
-  margin: 110px 0 0 -65px;
+  margin: 140px 0 0 -65px;
   font-weight: bold;
   font-size: 20px;
   width: 350px;
@@ -67,7 +70,7 @@
 /* 增加減 */
 .amount10 {
   display: flex;
-  margin: -10px 0 0 -160px;
+  margin: 0 0 0 -180px;
   object-fit: cover;
 }
 .amount10 input {
@@ -77,30 +80,29 @@
 }
 .amount11 {
   margin: 105px 0 0 10px;
-  padding: 0px 10px 0 10px;
+  padding: 10px 10px 0 10px;
 }
 /* 垂直線 */
 .str1 {
   margin-left: 780px;
-  margin-top: -180px;
+  margin-top: -220px;
 }
-/* 購物車圖片 */
 .cartprice {
   font-size: 20px;
   font-weight: bold;
-  margin: -100px 0 0 600px;
+  margin: -130px 0 0 630px;
 }
 /* 追蹤，移除 */
 .trackit {
   font-size: 18px;
-  margin: -120px 0 0 800px;
+  margin: -140px 0 0 800px;
 }
 /* 結帳 */
 .total {
   display: flex;
   flex-wrap: wrap;
   font-size: 25px;
-  margin: 40px 0 0 550px;
+  margin: 40px 0 0 710px;
 }
 .totalprice {
   display: flex;
@@ -115,24 +117,63 @@
 }
 /* 庫存 */
 .stock {
-  margin: 130px 0 0 -130px;
+  margin: 150px 0 0 -130px;
   color: gray;
 }
-/* 麵包屑  */
-/* .cartBread {
-  position: absolute;
-  /* margin-top: 200px;
-  top: 150px;
-  left: 0px;
-  background-color: #2196d4;
-  padding-left: 50px;
-  height: 30px;
-  box-shadow: #c1efeb 15px 10px;
+/* 訂購人資料 */
+.payman {
+  position: relative;
+  top: -40px;
+  background-color: rgb(59, 137, 255);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  text-align: left;
+  font-size: 20px;
+  padding-left: 10px;
+  font-weight: bold;
 }
-
-.cartBreadContent {
-  color: white;
-  margin-right: 20px;
-  text-decoration: none;
-  line-height: 30px;
-} */
+.payman11 {
+  position: relative;
+  width: 1000px;
+  background-color: rgb(59, 137, 255);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  padding-left: 10px;
+  top: 20px;
+  left: 112px;
+  font-weight: bold;
+}
+.payman2 {
+  position: relative;
+  top: -10px;
+  left: 70px;
+}
+.payman3 {
+  position: relative;
+  font-size: 20px;
+  top: -30px;
+  left: 150px;
+}
+.payman4 {
+  position: relative;
+  top: -275px;
+  left: 500px;
+}
+.payman5 {
+  font-size: 20px;
+}
+.payman6 {
+  position: relative;
+  font-size: 20px;
+  top: 20px;
+  left: 20px;
+}
+.payman10 {
+  position: relative;
+  font-size: 20px;
+  top: -35px;
+  left: 40px;
+}

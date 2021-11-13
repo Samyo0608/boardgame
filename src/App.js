@@ -34,13 +34,13 @@ import contestInfo from "./pages/contest/contest_info";
 import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 import Cart from "./pages/cart";
-
+import Cartcheck from "./pages/cart/cartcheck";
 function App() {
   return (
     <>
       <div className="bodyWidth">
-        <TopNavbar className="" />
         <BrowserRouter>
+          <TopNavbar className="" />
           <Switch>
             <Route
               exact={true}
@@ -81,8 +81,8 @@ function App() {
             />
             <Route
               exact={true}
-              path="/memberCenter/memberProduct"
-              component={MemberProduct}
+              path="/question_record"
+              component={QuestionRecord}
             />
 
             <Route path="/faq" component={FAQPage} />
@@ -91,7 +91,11 @@ function App() {
             <Route exact={true} path="/register" component={Register} />
             <Route exact={true} path="/memberCenter" component={MemberCenter} />
             <Route exact={true} path="/booking" component={booking} />
-            <Route exact={true} path="/discuss/reply" component={Reply} />
+            <Route
+              exact={true}
+              path="/discuss/reply/:discuss_title?"
+              component={Reply}
+            />
             <Route exact={true} path="/discuss" component={Discuss} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
@@ -100,6 +104,7 @@ function App() {
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
+            <Route exact={true} path="/Cartcheck" component={Cartcheck} />
           </Switch>
         </BrowserRouter>
         <Footer />

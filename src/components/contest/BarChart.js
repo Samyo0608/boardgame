@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Bar} from 'react-chartjs-2';
 
 const BarChart = () => {
+
     return <div>
         <Bar 
             data={{
@@ -10,13 +11,13 @@ const BarChart = () => {
                 datasets:[
                     {label:'# of votes',
                      data: [5, 4, 3, 5, 14, 13,8,15,4],
+
                      backgroundColor: [
                         'rgba(246, 134, 119, 0.8)',
                         'rgba(255, 228, 240, 0.8)',
                         'rgba(250, 181, 135, 0.8)',
                         'rgba(255, 243, 179, 0.8)',
                         'rgba(197, 236, 241, 0.8)',
-                        
                      ],
                     }
                     

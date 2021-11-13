@@ -22,6 +22,25 @@
   font-weight: bold;
 }
 
+/* 麵包屑 */
+.discussBread {
+  position: absolute;
+  margin-top: 200px;
+  top: 150px;
+  left: 0px;
+  background-color: #2196d4;
+  padding-left: 50px;
+  height: 30px;
+  box-shadow: #c1efeb 15px 10px;
+}
+
+.discussBreadContent {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  line-height: 30px;
+}
+
 /* 討論區內容 */
 .r_discussPicBox {
   position: absolute;
@@ -160,4 +179,8 @@
 .ruleImg {
   object-fit: contain;
   width: 100%;
+}
+
+.tesssssttttttt {
+  width: 102px;
 }

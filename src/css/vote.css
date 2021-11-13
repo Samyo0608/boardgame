@@ -35,7 +35,7 @@
 .viewButton:hover {
   background-color: silver;
 }
-.viewButton:active {
+.viewButtonActive {
   background-color: var(--doButton);
   color: white;
 }
