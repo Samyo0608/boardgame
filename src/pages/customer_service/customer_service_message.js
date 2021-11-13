@@ -21,10 +21,10 @@ const CustomerServicePage = () => {
         {/* 頁籤 */}
         <div class="pagination">
           <Link to={`${url}/create`}>
-            <div class="opions_frame">客服留言</div>
+            <div>客服留言</div>
           </Link>
           <Link to={`${url}/record`}>
-            <div class="opions_frame">問答紀錄</div>
+            <div>問答紀錄</div>
           </Link>
         </div>
 

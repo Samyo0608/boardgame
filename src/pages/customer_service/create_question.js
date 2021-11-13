@@ -2,10 +2,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "../../css/customer_service_message.css";
 import React, { useState } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 const CreateQuestion = () => {
-  const [singleSelections, setSingleSelections] = useState([]);
-  const options = [
+  const { path, url } = useRouteMatch();
+  const [mainCategory, setMainCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+  const categoryOptions = [
     "商店相關",
     "訂單進度",
     "退換維修相關問題",
@@ -22,20 +25,20 @@ const CreateQuestion = () => {
           <Typeahead
             id="basic-typeahead-single"
             labelKey="name"
-            onChange={setSingleSelections}
-            options={options}
+            onChange={setMainCategory}
+            options={categoryOptions}
             placeholder="Choose a state..."
-            selected={singleSelections}
+            selected={mainCategory}
           />
         </Form.Group>
         <Form.Group class="questionTopicOuter">
           <Typeahead
             id="basic-typeahead-single"
             labelKey="name"
-            onChange={setSingleSelections}
-            options={options}
+            onChange={setMainCategory}
+            options={categoryOptions}
             placeholder="Choose a state..."
-            selected={singleSelections}
+            selected={mainCategory}
           />
         </Form.Group>
       </div>
@@ -48,9 +51,11 @@ const CreateQuestion = () => {
           maxlength="200"
         ></textarea>
       </div>
-      <button class="submitButton">
-        <span>送出</span>
-      </button>
+      <Link to={url.replace("create", "record")}>
+        <button class="submitButton">
+          <span>送出</span>
+        </button>
+      </Link>
       <p>
         <span class="remind">您的訊息，商店將會盡快為您進行回覆。</span>
       </p>
