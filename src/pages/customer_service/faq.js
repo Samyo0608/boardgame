@@ -619,7 +619,27 @@ const CustomerServicePage = () => {
   const [currentFAQs, setcurrentFAQs] = useState(
     faqQuestionCategories.customer
   );
-  const [currentCategory, setcurrentCategory] = useState("customer");
+  const [currentCategory, setCurrentCategory] = useState("customer");
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      const tempFAQs = [];
+      for (let [category, faqs] of Object.entries(faqQuestionCategories)) {
+        for (let faq of faqs) {
+          console.log(faq.answerBlock.props);
+          if (faq.question.includes(searchText) ) {
+            tempFAQs.push(faq);
+          }
+        }
+      }
+      setcurrentFAQs(tempFAQs)
+    }
+  };
+  const selectCategory = (category) => {
+    setcurrentFAQs(faqQuestionCategories[category]);
+    setCurrentCategory(category);
+  };
 
   return (
     <div className="container d-flex justify-content-center flex-column">
@@ -645,6 +665,9 @@ const CustomerServicePage = () => {
               spellcheck="false"
               aria-live="polite"
               placeholder="輸入關鍵字查詢"
+              value={searchText}
+              onInput={e => setSearchText(e.target.value)}
+              onKeyDown={handleSearch}
             />
           </div>
         </div>
@@ -690,18 +713,14 @@ const CustomerServicePage = () => {
               {/* 內文左側分類*/}
               <div
                 class="opions_frame"
-                onClick={() =>
-                  selectCategory(setcurrentFAQs, setcurrentCategory, "customer")
-                }
+                onClick={() => selectCategory("customer")}
               >
                 <div class="content_icon shadow_red"></div>
                 <h4>常會員見問題</h4>
               </div>
               <div
                 class="opions_frame"
-                onClick={() =>
-                  selectCategory(setcurrentFAQs, setcurrentCategory, "shopping")
-                }
+                onClick={() => selectCategory("shopping")}
               >
                 <img
                   src="/img/customer_service/shopping_icon.png"
@@ -712,9 +731,7 @@ const CustomerServicePage = () => {
               </div>
               <div
                 class="opions_frame"
-                onClick={() =>
-                  selectCategory(setcurrentFAQs, setcurrentCategory, "delivery")
-                }
+                onClick={() => selectCategory("delivery")}
               >
                 <img
                   src="/img/customer_service/money_package_icon.png"
@@ -725,9 +742,7 @@ const CustomerServicePage = () => {
               </div>
               <div
                 class="opions_frame"
-                onClick={() =>
-                  selectCategory(setcurrentFAQs, setcurrentCategory, "refund")
-                }
+                onClick={() => selectCategory("refund")}
               >
                 <img
                   src="/img/customer_service/money_icon.png"
@@ -736,12 +751,7 @@ const CustomerServicePage = () => {
                 />
                 <h4>退換貨及退款</h4>
               </div>
-              <div
-                class="opions_frame"
-                onClick={() =>
-                  selectCategory(setcurrentFAQs, setcurrentCategory, "bill")
-                }
-              >
+              <div class="opions_frame" onClick={() => selectCategory("bill")}>
                 <img
                   src="/img/customer_service/check_finance_icon.png"
                   alt=""
@@ -791,9 +801,5 @@ const CustomerServicePage = () => {
     </div>
   );
 };
-function selectCategory(setcurrentFAQs, setcurrentCategory, category) {
-  setcurrentFAQs(faqQuestionCategories[category]);
-  setcurrentCategory(category);
-}
 
 export default CustomerServicePage;
