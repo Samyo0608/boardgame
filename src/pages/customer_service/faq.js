@@ -8,7 +8,7 @@ import FAQRefundPage from "./faq_refund";
 import FAQBillPage from "./faq_bill";
 
 const CustomerServicePage = () => {
-  let { path, url } = useRouteMatch();
+  const { path, url } = useRouteMatch();
   return (
     <div className="container d-flex justify-content-center flex-column">
       {/* 搜尋列 */}
