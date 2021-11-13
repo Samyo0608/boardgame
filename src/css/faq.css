@@ -66,7 +66,7 @@ input[type="search"].input_content {
   font-weight: bold;
   letter-spacing: 2px;
   position: relative;
-  z-index:2;
+  z-index: 2;
 }
 .front_page_icon {
   width: 30px;
@@ -76,7 +76,7 @@ input[type="search"].input_content {
   position: absolute;
   margin-top: 20px;
   margin-left: 125px;
-  z-index:-1;
+  z-index: -1;
 }
 /* 分類&問題並排框 */
 .abreast {
@@ -87,9 +87,9 @@ input[type="search"].input_content {
   border: 1px #d3cece solid;
   width: 200px;
 }
-.opions_frame{
-height:80px;
-padding:30px 5px;
+.opions_frame {
+  height: 80px;
+  padding: 30px 5px;
 }
 .content_category h4 {
   font-size: 22px;
@@ -99,15 +99,15 @@ padding:30px 5px;
   float: left;
   margin: 0px 6px;
 }
-.shadow_red:hover{
-filter: drop-shadow(2px 2px red);
+.shadow_red:hover {
+  filter: drop-shadow(2px 2px red);
 }
 
 /* 內文問題框架 */
 .content_question {
   border-left: 3px #d3cece solid;
   font-size: 16px;
-  width:960px;
+  width: 960px;
 }
 /* 內文問題 */
 .content_question h3 {
@@ -142,68 +142,72 @@ filter: drop-shadow(2px 2px red);
   background-image: url(../img/customer_service/open_button.png);
   background-size: contain;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
-.answer {
+.answer_block {
   padding-right: 80px;
+  transition: 1s;
+  left: 0;
 }
-.answer p{
-  margin:0;
+.answer_block p {
+  margin: 0;
 }
 /* 答覆表格設定 */
-.answer td,th {
-  border:1px solid rgb(156, 154, 154);
+.answer_block td,
+th {
+  border: 1px solid rgb(156, 154, 154);
 }
 /* 配送取貨*/
-.table_title_delivery1{
-  width:12%;
+.table_title_delivery1 {
+  width: 12%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:1px;
+  letter-spacing: 1px;
 }
-.table_title_delivery2{
-  width:88%;
+.table_title_delivery2 {
+  width: 88%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:2px;
+  letter-spacing: 2px;
 }
-.table_title_shipment1{
-  width:30%;
+.table_title_shipment1 {
+  width: 30%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:1px;
+  letter-spacing: 1px;
 }
-.table_title_shipment2{
-  width:70%;
+.table_title_shipment2 {
+  width: 70%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:2px;
+  letter-spacing: 2px;
 }
 /* 退換貨退款 */
-.table_title_refund1{
-  width:15%;
+.table_title_refund1 {
+  width: 15%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:1px;
+  letter-spacing: 1px;
 }
-.table_title_refund2{
-  width:30%;
+.table_title_refund2 {
+  width: 30%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:2px;
+  letter-spacing: 2px;
 }
-.table_title_refund3{
-  width:50%;
+.table_title_refund3 {
+  width: 50%;
   background-color: #e8f5e9;
   text-align: center;
-  letter-spacing:1px;
+  letter-spacing: 1px;
 }
 /* 發票 */
 
-.table_item{
-  background-color: #e0f2f1 ;
-  text-align:center;
+.table_item {
+  background-color: #e0f2f1;
+  text-align: center;
 }
-.table_content{
+.table_content {
   background-color: #eefcfc;
 }
 /* 客服留言連結 */
@@ -245,7 +249,7 @@ filter: drop-shadow(2px 2px red);
   text-decoration: none;
 }
 
-.hover_style{
+.hover_style {
   text-decoration: none;
 }
 .faq:visited {
@@ -267,6 +271,6 @@ filter: drop-shadow(2px 2px red);
   color: #0c4499;
 }
 
-.opions_frame:hover{
+.opions_frame:hover {
   background-color: #dfb4b4;
 }
