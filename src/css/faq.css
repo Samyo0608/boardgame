@@ -87,8 +87,9 @@ input[type="search"].input_content {
   border: 1px #d3cece solid;
   width: 200px;
 }
-.content_category div {
-  margin: 50px 0px;
+.opions_frame{
+height:80px;
+padding:30px 5px;
 }
 .content_category h4 {
   font-size: 22px;
@@ -97,6 +98,9 @@ input[type="search"].input_content {
 .content_icon {
   float: left;
   margin: 0px 6px;
+}
+.shadow_red:hover{
+filter: drop-shadow(2px 2px red);
 }
 
 /* 內文問題框架 */
@@ -241,15 +245,28 @@ input[type="search"].input_content {
   text-decoration: none;
 }
 
-a:visited {
+.hover_style{
+  text-decoration: none;
+}
+.faq:visited {
   color: rgb(0, 0, 0);
 }
-a:hover {
+.faq:hover {
   color: #1b7fd6;
 }
-a:active {
+.faq:active {
   color: #0c4499;
 }
-img a:hover {
-  linear-gradient: red;
+.faq_options:visited {
+  color: rgb(0, 0, 0);
+}
+.faq_options:hover {
+  color: #f10000;
+}
+.faq_options:active {
+  color: #0c4499;
+}
+
+.opions_frame:hover{
+  background-color: #dfb4b4;
 }

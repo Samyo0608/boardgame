@@ -55,10 +55,16 @@ const CustomerServicePage = () => {
                 class="front_page_icon"
               />
             </a>
-            <a href="/" class="Back_to_homepage">
+            <a href="/" class="faq hover_style">
               首頁
             </a>
-            <span>&nbsp;>&nbsp;<a href="http://localhost:3000/faq" class="Back_to_homepage">客服中心</a>&nbsp;>&nbsp;會員常見問題</span>
+            <span>
+              &nbsp;>&nbsp;
+              <a href="http://localhost:3000/faq" class="faq hover_style">
+                客服中心
+              </a>
+              &nbsp;>&nbsp;會員常見問題
+            </span>
             <img
               src="/img/customer_service/dice.png"
               alt=""
@@ -70,18 +76,21 @@ const CustomerServicePage = () => {
             {/*分類&問題並排框*/}
             <div class="content_category">
               {/* 內文左側分類*/}
-              <Link to={`${url}`}>
-                <div>
-                  <img
-                    src="/img/customer_service/person_icon.png"
-                    alt=""
-                    class="content_icon"
-                  />
+              <Link
+                class="faq_options hover_style"
+                to={`${url}`}
+              >
+                <div class="opions_frame">
+                <div class="content_icon shadow_red">
+                  </div>
                   <h4>常會員見問題</h4>
                 </div>
               </Link>
-              <Link to={`${url}/shopping`}>
-                <div>
+              <Link
+                class="faq_options hover_style"
+                to={`${url}/shopping`}
+              >
+                <div class="opions_frame">
                   <img
                     src="/img/customer_service/shopping_icon.png"
                     alt=""
@@ -90,8 +99,11 @@ const CustomerServicePage = () => {
                   <h4>購物常見問題</h4>
                 </div>
               </Link>
-              <Link to={`${url}/delivery`}>
-                <div>
+              <Link
+                class="faq_options hover_style"
+                to={`${url}/delivery`}
+              >
+                <div class="opions_frame">
                   <img
                     src="/img/customer_service/money_package_icon.png"
                     alt=""
@@ -99,9 +111,12 @@ const CustomerServicePage = () => {
                   />
                   <h4>配送取貨問題</h4>
                 </div>
-                </Link>
-                <Link to={`${url}/refund`}>
-                <div>
+              </Link>
+              <Link
+                class="faq_options hover_style"
+                to={`${url}/refund`}
+              >
+                <div class="opions_frame">
                   <img
                     src="/img/customer_service/money_icon.png"
                     alt=""
@@ -109,9 +124,12 @@ const CustomerServicePage = () => {
                   />
                   <h4>退換貨及退款</h4>
                 </div>
-                </Link>
-                <Link to={`${url}/bill`}>
-                <div>
+              </Link>
+              <Link
+                class="faq_options hover_style"
+                to={`${url}/bill`}
+              >
+                <div class="opions_frame">
                   <img
                     src="/img/customer_service/check_finance_icon.png"
                     alt=""
@@ -119,13 +137,12 @@ const CustomerServicePage = () => {
                   />
                   <h4>發票常見問題</h4>
                 </div>
-                </Link>
+              </Link>
             </div>
-              <Switch>
-                <Route exact path={path}>
-                  {/* 內文問題框架 */}
-            <div class="content_question">
-
+            <Switch>
+              <Route exact path={path}>
+                {/* 內文問題框架 */}
+                <div class="content_question">
                   <h3>&nbsp;&nbsp;&nbsp;&nbsp;會員常見問題 :</h3>
                   {/* 問題標題 */}
                   <ul class="question_list">
@@ -214,13 +231,13 @@ const CustomerServicePage = () => {
                     </div>
                   </div>
                   {/* div結尾(客服留言連結) */}
-            </div>
-                </Route>
-                <Route path={`${path}/shopping`} component={FAQShoppingPage} />
-                <Route path={`${path}/delivery`} component={FAQDeliveryPage} />
-                <Route path={`${path}/refund`} component={FAQRefundPage} />
-                <Route path={`${path}/bill`} component={FAQBillPage} />
-              </Switch>
+                </div>
+              </Route>
+              <Route path={`${path}/shopping`} component={FAQShoppingPage} />
+              <Route path={`${path}/delivery`} component={FAQDeliveryPage} />
+              <Route path={`${path}/refund`} component={FAQRefundPage} />
+              <Route path={`${path}/bill`} component={FAQBillPage} />
+            </Switch>
             {/* div結尾(內文問題框架) */}
           </div>
           {/* div結尾(分類 &問題並排框) */}
