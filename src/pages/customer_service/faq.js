@@ -607,10 +607,19 @@ const faqQuestionCategories = {
   ],
 };
 
+const categoryEnChMapping = {
+  customer: "常見會員問題",
+  shopping: "購物常見問題",
+  delivery: "配送取貨問題",
+  refund: "退換貨及退款",
+  bill: "發票常見問題",
+};
+
 const CustomerServicePage = () => {
   const [currentFAQs, setcurrentFAQs] = useState(
     faqQuestionCategories.customer
   );
+  const [currentCategory, setcurrentCategory] = useState("customer");
 
   return (
     <div className="container d-flex justify-content-center flex-column">
@@ -666,7 +675,7 @@ const CustomerServicePage = () => {
               <a href="http://localhost:3000/faq" class="faq hover_style">
                 客服中心
               </a>
-              &nbsp;>&nbsp;會員常見問題
+              &nbsp;>&nbsp;{categoryEnChMapping[currentCategory]}
             </span>
             <img
               src="/img/customer_service/dice.png"
@@ -681,14 +690,18 @@ const CustomerServicePage = () => {
               {/* 內文左側分類*/}
               <div
                 class="opions_frame"
-                onClick={() => setcurrentFAQs(faqQuestionCategories.customer)}
+                onClick={() =>
+                  selectCategory(setcurrentFAQs, setcurrentCategory, "customer")
+                }
               >
                 <div class="content_icon shadow_red"></div>
                 <h4>常會員見問題</h4>
               </div>
               <div
                 class="opions_frame"
-                onClick={() => setcurrentFAQs(faqQuestionCategories.shopping)}
+                onClick={() =>
+                  selectCategory(setcurrentFAQs, setcurrentCategory, "shopping")
+                }
               >
                 <img
                   src="/img/customer_service/shopping_icon.png"
@@ -699,7 +712,9 @@ const CustomerServicePage = () => {
               </div>
               <div
                 class="opions_frame"
-                onClick={() => setcurrentFAQs(faqQuestionCategories.delivery)}
+                onClick={() =>
+                  selectCategory(setcurrentFAQs, setcurrentCategory, "delivery")
+                }
               >
                 <img
                   src="/img/customer_service/money_package_icon.png"
@@ -710,7 +725,9 @@ const CustomerServicePage = () => {
               </div>
               <div
                 class="opions_frame"
-                onClick={() => setcurrentFAQs(faqQuestionCategories.refund)}
+                onClick={() =>
+                  selectCategory(setcurrentFAQs, setcurrentCategory, "refund")
+                }
               >
                 <img
                   src="/img/customer_service/money_icon.png"
@@ -721,7 +738,9 @@ const CustomerServicePage = () => {
               </div>
               <div
                 class="opions_frame"
-                onClick={() => setcurrentFAQs(faqQuestionCategories.bill)}
+                onClick={() =>
+                  selectCategory(setcurrentFAQs, setcurrentCategory, "bill")
+                }
               >
                 <img
                   src="/img/customer_service/check_finance_icon.png"
@@ -772,4 +791,9 @@ const CustomerServicePage = () => {
     </div>
   );
 };
+function selectCategory(setcurrentFAQs, setcurrentCategory, category) {
+  setcurrentFAQs(faqQuestionCategories[category]);
+  setcurrentCategory(category);
+}
+
 export default CustomerServicePage;
