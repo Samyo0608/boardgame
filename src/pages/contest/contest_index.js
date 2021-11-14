@@ -85,6 +85,7 @@ function Index(props) {
   const [contest, setContest] = useState(
     contestRun(contestItems)
   )
+  const [searchitem,setSearchitem]=useState("")
     return (
       <>
         {/* 活動資訊 */}
@@ -98,9 +99,12 @@ function Index(props) {
         <Form className="p-1">
         <FormControl
             type="search"
-            placeholder="找遊戲"
+            placeholder="找活動"
             className="me-2 formControl"
             aria-label="Search"
+            onChange={(e) => {
+              setSearchitem(e.target.value)
+            }}
           />
         <Button variant="link" className="searchIcon">
             <div>
@@ -131,9 +135,11 @@ function Index(props) {
        {/* 活動資訊卡片 */}
      <Container >
         <Row>
-        {contest.map((v,i) => {
-          return(
+        {contest.map((v,i) => {         
+          const searchResults =() =>{
+            return(
             <ContestCard
+            key={i}
             date={v.date}
             title={v.title}
             innertext={v.innertext}
@@ -142,7 +148,20 @@ function Index(props) {
             img={v.img}
             imgTag={v.imgTag}
           />
-          )
+          );
+        };
+
+
+         if(searchitem === "") {
+           return searchResults();
+         }else if(
+           v.title.includes(searchitem) ||
+           v.innertext.includes(searchitem) ||
+           v.category.includes(searchitem)
+         ){
+           return searchResults();
+         }
+
         })}
           
           

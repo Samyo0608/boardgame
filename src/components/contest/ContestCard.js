@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
+import {labelImgs} from "../../configs/config"
 //import ContestCard from "components/contest/ContestButton"
 // props範例
 // {
@@ -29,7 +30,7 @@ function ContestCard(props) {
                 >
                   <img
                     alt=""
-                    src={imgTag}
+                    src={` ${labelImgs[imgTag]}`}
                     className="tagImg"
                   />
                   <p className="tagText">{category}</p>
