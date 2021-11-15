@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import "../../css/contest.css";
 import "normalize.css";
@@ -19,16 +19,26 @@ const contestItems = [
   category:'卡牌',
   img:'img/contest/con01.jpg',
   imgTag:'img/index/card-tag.png',
+  contestDataStart:"2021年12月25日",
+  contestDataEnd:"2021年11月30日",
+  contestModal:"以單人報名的個人賽方式進行。",
+  contestMethod:"詳情請見文件說明檔",
+  contestPic:"img/index/line.png",
   },
   {
   id: 2,
   date:'2021-12-10(五)',
   title:'《辣個蟑螂又來啦!》',
   innertext:'非常耐玩的德國蟑螂要在遊戲職人舉辦比賽了，來挑戰看看吧!',
-  limit: 0,
+  limit: 2,
   category:'卡牌',
   img:'img/contest/con02.jpg',
   imgTag:"img/index/card-tag.png",
+  contestDataStart:"2021年12月25日",
+  contestDataEnd:"2021年11月30日",
+  contestModal:"以單人報名的個人賽方式進行。",
+  contestMethod:"詳情請見文件說明檔",
+  contestPic:"img/index/line.png",
   },
   {
   id: 3,
@@ -39,6 +49,11 @@ const contestItems = [
   category:'卡牌',
   img:'img/contest/con03.jpg',
   imgTag:'img/index/card-tag.png',
+  contestDataStart:"2021年12月25日",
+  contestDataEnd:"2021年11月30日",
+  contestModal:"以單人報名的個人賽方式進行。",
+  contestMethod:"詳情請見文件說明檔",
+  contestPic:"img/index/line.png",
   },
   {
     id: 4,
@@ -85,7 +100,12 @@ function Index(props) {
   const [contest, setContest] = useState(
     contestRun(contestItems)
   )
+
   const [searchitem,setSearchitem]=useState("")
+
+  useEffect(() => {
+    setContest(contestItems)
+  }, [])
     return (
       <>
         {/* 活動資訊 */}
@@ -116,8 +136,10 @@ function Index(props) {
             <p className="fs-3 fontColor">分類:</p>
             <form action="" className="d-inline">
                 <input type="checkbox" className="" value="" id="card" />
+
+
                 <label For="card" className="fs-3 fontColor">卡牌</label>
-                <input type="checkbox" className="" value="" id="family"/>
+                <input type="checkbox" className="" value="" id="family" />
                 <label for="family" className="fs-3 fontColor">家庭</label>
                 <input type="checkbox" className="" value="" id="stategy"/>
                 <label for="stategy" className="fs-3 fontColor"> 策略</label>
@@ -140,6 +162,7 @@ function Index(props) {
             return(
             <ContestCard
             key={i}
+            id={v.id}
             date={v.date}
             title={v.title}
             innertext={v.innertext}
@@ -161,7 +184,6 @@ function Index(props) {
          ){
            return searchResults();
          }
-
         })}
           
           
