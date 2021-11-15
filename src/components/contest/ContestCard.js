@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
 import {labelImgs} from "../../configs/config"
+import {Link} from 'react-router-dom';
 //import ContestCard from "components/contest/ContestButton"
 // props範例
 // {
@@ -16,7 +17,7 @@ import {labelImgs} from "../../configs/config"
 //     },
 
 function ContestCard(props) {
-    const {date,title,innertext,limit,category,img,imgTag} =props
+    const {id,date,title,innertext,limit,category,img,imgTag} =props
     
     return (
         <>
@@ -30,7 +31,7 @@ function ContestCard(props) {
                 >
                   <img
                     alt=""
-                    src={` ${labelImgs[imgTag]}`}
+                    src={imgTag}
                     className="tagImg"
                   />
                   <p className="tagText">{category}</p>
@@ -42,10 +43,10 @@ function ContestCard(props) {
                     <p className="fs-5 m-2">{date}</p>
                     <h5>{title}</h5>
                     <p className="p-2 m-2">{innertext}</p>
-                    <div className="d-flex">
+                    <Link to={`/contestInfo/${id}`} className="d-flex">
                          <div className="personNo">剩餘名額:{limit}</div>
                         <div className={`${limit === 0 ?  "disButton" :"doButton" }`} >{`${limit === 0 ?  "已額滿" :"我要報名" }`}</div>
-                </div>
+                </Link>
                     
                 </div>
             </Col> 

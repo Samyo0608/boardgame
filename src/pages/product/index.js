@@ -1,7 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
+import { Row, Button, Container } from "react-bootstrap";
 import "../../css/product.css";
 import Game from "../../components/product/Game";
 import HotGame from "../../components/product/HotGame";
@@ -51,7 +51,16 @@ function Product(props) {
             <Button className="button1234">最高</Button>
             <Button className="button12345">最低</Button>
           </div>
-          <Game />
+          <Row>
+            <Game />
+            <Game />
+            <Game />
+          </Row>
+          <Row>
+            <Game />
+            <Game />
+            <Game />
+          </Row>
         </Container>
       </>
     </>

@@ -1,34 +1,38 @@
 /* 上面 */
 .box {
+  position: relative;
   width: 1000px;
   height: 500px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  text-align: left;
-  margin-left: 100px;
+  left: 100px;
 }
 
 /* 下面 */
 .box2 {
+  position: relative;
   width: 1000px;
   height: 550px;
-  /* background-image: url("../img/BK.png"); */
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
   text-align: left;
-  margin-left: 100px;
-  margin-top: 30px;
+  left: 100px;
+  top: 800px;
   border-radius: 10px;
 }
 .aboutbagd {
+  position: relative;
+  top: 68px;
+  left: 100px;
   background-size: contain;
   background-repeat: no-repeat;
+  border-radius: 15px;
 }
 /* 3按鈕位置 */
 
 .btwidg1 {
   position: absolute;
   width: 110px;
+  top: 750px;
 }
 /* 遊戲介紹 */
 .btwidg2 {
@@ -49,9 +53,27 @@
   top: -61px;
 }
 /* 遊戲敘述 */
-.text1 {
-  font-size: 16px;
-  margin: -350px 0 0 600px;
+.box456 {
+  position: absolute;
+  width: 400px;
+  /* height: 600px; */
+  word-wrap: break-word;
+  word-break: normal;
+  top: 150px;
+  left: 550px;
+  font-size: 18px;
+  text-indent: 36px;
+  font-weight: bold;
+}
+.ellipsis3 {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 /* 標題 */
 .p6 {
@@ -63,10 +85,6 @@
   font-size: 30px;
   font-weight: bold;
 }
-/* 下BOX標題 */
-.p7 {
-  margin: -500px 0 0 400px;
-}
 /* 遊戲大圖 */
 .abb {
   width: 550px;
@@ -75,10 +93,14 @@
   border-radius: 50px;
 }
 .favorite4 {
-  margin: 20px 10px 0 700px;
+  position: absolute;
+  top: 440px;
+  left: 730px;
 }
 .buy4 {
-  margin-top: 20px;
+  position: absolute;
+  top: 440px;
+  left: 860px;
 }
 /* 按鈕 */
 .button6 {
@@ -90,16 +112,22 @@
   left: 50px;
 }
 .button7 {
-  display: flex;
-  margin: 15px 0 0 1070px;
+  position: absolute;
+  top: 15px;
+  left: 100px;
   font-size: 20px;
 }
 /* 討論區 */
 .forum {
-  margin: 270px 0 0 740px;
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  top: 1200px;
+  left: 880px;
 }
 .pprice {
+  position: absolute;
   font-size: 40px;
-  margin-left: 250px;
-  margin-top: -60px;
+  left: 880px;
+  top: 380px;
 }
