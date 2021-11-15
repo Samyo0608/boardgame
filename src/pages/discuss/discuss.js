@@ -20,6 +20,12 @@ const Discuss = (props) => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
   }, []);
+
+  const TYPE_COLOR = {
+    家庭: "discussTagFamily",
+    策略: "discussTagTrag",
+    卡牌: "discussTagCard",
+  };
   return (
     <div className="overflow-hidden">
       {/* banner */}
@@ -64,29 +70,34 @@ const Discuss = (props) => {
               <table className="table table-hover text-center fw-bold">
                 <thead>
                   <tr className="text-secondary">
+                    <th scope="col">分類</th>
                     <th scope="col">標題</th>
                     <th scope="col">發文者</th>
                     <th scope="col">讚數</th>
                     <th scope="col">回覆數</th>
-                    <th scope="col">最後回覆時間</th>
+                    <th scope="col">最後回覆</th>
                   </tr>
                 </thead>
                 <tbody className="r_discussBody">
                   {discuss.map((v, i) => {
                     return (
-                      <tr key={v.discuss_id}>
-                        <th scope="row" className="text-start">
-                          <Link to={`discuss/reply/${v.discuss_title}`}>
-                            {v.discuss_title}
-                          </Link>
+                      <tr key={v.id}>
+                        <th scope="row" className="">
+                          <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                         </th>
-                        <td>{v.user_id}</td>
-                        <td>2</td>
-                        <td>{v.discuss_num}</td>
                         <td>
-                          {moment(v.discuss_time.toString()).format(
+                          <Link to={`discuss/reply/${v.id}`}>{v.title}</Link>
+                        </td>
+                        <td>{v.i_user_id}</td>
+                        <td>2</td>
+                        <td>{v.cot}</td>
+                        <td className="">
+                          {moment(v.created_at.toString()).format(
                             "YYYY-MM-DD HH:mm:ss"
                           )}
+                          <span className="text-secondary ms-3">
+                            by {v.user_id}
+                          </span>
                         </td>
                       </tr>
                     );
