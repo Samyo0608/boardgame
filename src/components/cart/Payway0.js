@@ -11,7 +11,7 @@ const Payway0 = () => {
         <div className="box12">
           <div className="box123">
             <input type="checkbox" />
-            <img className="cartpic" src="/img/product/crime.jpg" alt="" />
+            <img className="cartpic" src="/img/product/game1.jpg" alt="" />
             <div className="pnumber">
               <p>遊戲名稱: </p>
             </div>
