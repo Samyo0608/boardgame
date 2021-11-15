@@ -46,7 +46,7 @@ input[type="search"].faq_input_content {
   margin-top: -50px;
   border: rgb(15, 15, 15) 1px solid;
   background-image: url("../img/customer_service/leaf_border.png");
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 /* 內文框架 */
@@ -116,13 +116,12 @@ input[type="search"].faq_input_content {
   width: 960px;
 }
 /* 中間內文(問題回覆部分) */
-.content_question_qa{
+
+.content_question_qa_folded {
 height:500px;
 overflow: hidden;
 }
-.content_question_qa_folded {
-max-height:500px;
-overflow: hidden;
+.content_question_qa_unfolded {
 }
 
 /* 內文問題 */

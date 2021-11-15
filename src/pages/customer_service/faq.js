@@ -773,8 +773,7 @@ const CustomerServicePage = () => {
             <div class="content_question">
               {/* 中間內文(問題回覆部分) */}
               <div
-                class="content_question_qa"
-                className={isShowMoreBlock ? "" : "content_question_qa_folded"}
+                className={isShowMoreBlock ? "content_question_qa_unfolded" : "content_question_qa_folded"}
               >
                 {currentFAQs.map((item, i) => (
                   <FAQBlock
