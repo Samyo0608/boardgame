@@ -25,11 +25,15 @@ function Login(props) {
     e.preventDefault();
     if (member.email !== "" && member.password !== "") {
       try {
-        await axios.post(`${API_URL}/auth/login`, member, {
+        let req = await axios.post(`${API_URL}/auth/login`, member, {
           withCredentials: true,
         });
-        alert("登入成功");
-        window.location.replace("/");
+        if (req.data.code === "104") {
+          alert("帳號或密碼錯誤");
+        } else {
+          alert("登入成功");
+          window.location.replace("/");
+        }
       } catch (e) {
         console.error("登入錯誤", e);
         alert("登入失敗");

@@ -85,7 +85,11 @@ function App() {
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
-            <Route exact={true} path="/memberCenter" component={MemberCenter} />
+            <Route
+              exact={true}
+              path="/memberCenter/:account"
+              component={MemberCenter}
+            />
             <Route exact={true} path="/booking" component={booking} />
             <Route
               exact={true}
