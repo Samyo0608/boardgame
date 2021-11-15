@@ -35,6 +35,7 @@ import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 import Cart from "./pages/cart";
 import Cartcheck from "./pages/cart/cartcheck";
+import Loading from "./pages/loading/loading";
 function App() {
   return (
     <>
@@ -100,6 +101,7 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
             <Route exact={true} path="/Cartcheck" component={Cartcheck} />
+            <Route exact={true} path="/loading" component={Loading} />
           </Switch>
         </BrowserRouter>
         <Footer />
