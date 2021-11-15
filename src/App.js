@@ -4,7 +4,6 @@ import React from "react";
 import FAQPage from "./pages/customer_service/faq";
 import InstantQAPage from "./pages/customer_service/instantQA_page";
 import CustomerServicePage from "./pages/customer_service/customer_service_message";
-import QuestionRecord from "./pages/customer_service/question_record";
 import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
@@ -62,29 +61,13 @@ function App() {
               path="/memberCenter/rePassword"
               component={RePassword}
             />
-            <Route
-              path="/instant_QA"
-              component={InstantQAPage}
-            />
+            <Route path="/instant_QA" component={InstantQAPage} />
             <Route
               path="/customer_service_message"
               component={CustomerServicePage}
             />
-            <Route
-              path="/question_record"
-              component={QuestionRecord}
-            />
-            <Route
-              path="/edit_reply"
-              component={EditReply}
 
-            />
-            <Route
-              exact={true}
-              path="/question_record"
-              component={QuestionRecord}
-            />
-
+            <Route path="/edit_reply" component={EditReply} />
             <Route path="/faq" component={FAQPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
