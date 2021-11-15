@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
+
 function Aboutgame(props) {
   return (
     <>
@@ -34,56 +35,52 @@ function Aboutgame(props) {
           </li>
         </ul>
         <div className="hr"></div>
-        <div>
-          <div className="box">
-            <p className="p6">島嶼爭霸</p>
-            <img className="abb" src="/img/product/game1.jpg" alt="" />
-
-            <div className="text1">
-              <span>類型: 策略</span>
-              <p></p>
-              <span>簡介: </span>
-              <p></p>
-              <p>◎ 扮演五個重要的希臘城市，要在諸神的凝視 下來爭奪霸業。</p>
-              <p>◎ 善用金錢取得眾神的信任，執行對應的動作</p>
-              <p>遊戲人數：2~5人</p>
-              <p>遊戲年齡：13+</p>
-              <p>遊戲時間：60分鐘</p>
-              <div className="pprice">$999</div>
-            </div>
-            <a href="#/">
-              <img
-                className="favorite4"
-                src="/img/product/favorite.png"
-                alt=""
-              />
-            </a>
-            <a href="#/">
-              <img className="buy4" src="/img/product/buy.png" alt="" />
-            </a>
+        <div className="box">
+          <p className="p6">島嶼爭霸</p>
+          <img
+            className="abb"
+            src="/product_img/200x200/Cash'n_Gun.jpg"
+            alt=""
+          />
+          <div className="box456">
+            <p className="ellipsis3">
+              震撼2020年度，史上最佳策略遊戲，經 典IP元素高度還原，影視級畫面
+              完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。震撼2020年度，史上最佳策略遊戲，經典IP元素高度還原，影視級畫面完美重現維斯特洛歷史風貌。級畫面完美重現維斯特洛歷史風貌。
+              豐富的劇情副本，新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫新奇的時代戰爭策略頁遊。抵禦異鬼。探索玩
+              法，再現《權力的遊戲》經典畫面，延續史詩鉅作。 爭奪君臨。HBO
+              官方正版授權。次
+            </p>
           </div>
+          <p className="pprice">$999</p>
+          <a href="#/">
+            <img className="favorite4" src="/img/product/favorite.png" alt="" />
+          </a>
+          <a href="#/">
+            <img className="buy4" src="/img/product/buy.png" alt="" />
+          </a>
         </div>
-        <div className="btwidg"></div>
+
+        <div
+          className="aboutbagd"
+          style={{
+            backgroundImage: `url(${
+              process.env.PUBLIC_URL + "/img/product/BK.png"
+            })`,
+            width: "1000px",
+            height: "650px",
+          }}
+        ></div>
         <div className="btwidg1 ">
           <Button className="btwidg2">遊戲介紹</Button>
           <Button className="btwidg3">遊戲規格</Button>
           <Button className="btwidg4">退換貨須知</Button>
         </div>
         <div>
-          <div className="box2">
-            <div
-              className="aboutbagd"
-              style={{
-                backgroundImage: `url(${
-                  process.env.PUBLIC_URL + "/img/product/BK.png"
-                })`,
-                width: "1000px",
-                height: "600px",
-              }}
-            ></div>
-          </div>
-
-          <h1 className="p7">遊戲名稱：諸神之戰 Cyclades</h1>
           <a href="#/">
             <img className="forum" src="/img/product/forum.png" alt="" />
           </a>
