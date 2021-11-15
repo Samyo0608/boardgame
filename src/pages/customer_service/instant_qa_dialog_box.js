@@ -18,9 +18,7 @@ const InstantQADialogBox = ({ message }) => {
             <div class="shopping_problem">
               <ul>
                 {item.options.map((option) => (
-                  <li>
-                    <a href="">{option}</a>
-                  </li>
+                  <li>{option}</li>
                 ))}
               </ul>
             </div>

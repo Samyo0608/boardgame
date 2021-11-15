@@ -90,25 +90,18 @@ input[type="search"].faq_input_content {
 .opions_frame {
   height: 80px;
   padding: 30px 5px;
-  display: inline-flex;
-  justify-content: space-between;
+  position: relative;
 }
 .content_category h4 {
+  padding-left: 30px;
   font-size: 22px;
   font-weight: bold;
 }
 .content_icon {
-  float: left;
-  margin: 0px 6px;
+  position: absolute;
+  padding: 30px 150px 20px 0px;
+  top: -5px;
 }
-.content_icon1{
-  background-image:url("../img/customer_service/person_icon.svg") ;
-  background-repeat: no-repeat;
-}
-.shadow_red:hover {
-  filter: drop-shadow(2px 2px red);
-}
-
 /* 內文問題框架 */
 .content_question {
   border-left: 3px #d3cece solid;
@@ -118,10 +111,11 @@ input[type="search"].faq_input_content {
 /* 中間內文(問題回覆部分) */
 
 .content_question_qa_folded {
-height:500px;
-overflow: hidden;
+  height: 500px;
+  overflow: hidden;
 }
 .content_question_qa_unfolded {
+  min-height: 500px;
 }
 
 /* 內文問題 */
@@ -152,13 +146,25 @@ overflow: hidden;
 }
 .stretch_button {
   /* border: solid rgb(0, 0, 0) ; */
-  margin-top: 10px;
-  width: 30px;
-  background-image: url(../img/customer_service/open_button.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+  margin-top: 20px;
   cursor: pointer;
+  position: relative;
 }
+
+.minus {
+  background-color: black;
+  width: 30px;
+  height: 4px;
+  border-radius: 5px;
+}
+.minus.animation {
+  position: absolute;
+  top: 0px;
+}
+.minus.rotated {
+  transform: rotate(90deg);
+}
+
 .answer_block {
   padding-right: 80px;
   transition: 1s;
@@ -230,7 +236,7 @@ th {
   text-align: center;
   opacity: 0.7;
 }
-.expand_down span{
+.expand_down span {
   cursor: pointer;
 }
 .drop_down {
@@ -279,24 +285,20 @@ th {
 .faq:active {
   color: #0c4499;
 }
-.faq_options:visited {
-  color: rgb(0, 0, 0);
-}
-.faq_options:hover {
-  color: #f10000;
-}
-.faq_options:active {
-  color: #0c4499;
-}
 
 .opions_frame:hover {
-  background-color: #ffcaca;
+  background-color: #e0f2f1;
+  cursor: pointer;
+  color: #1b7fd6;
 }
-.stretch_button:hover {
-  transform:rotate(360deg);
+.opions_frame img:hover {
+  filter: opacity(0.7) invert(70%) drop-shadow(0px 0px 0px #0099ff);
+}
+/* .stretch_button:hover {
+  transform: rotate(360deg);
   transition: 500ms;
 }
 .stretch_button:active {
-  transform:rotate(180deg);
+  transform: rotate(180deg);
   transition: 400ms;
-}
+} */

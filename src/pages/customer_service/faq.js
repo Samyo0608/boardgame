@@ -722,9 +722,11 @@ const CustomerServicePage = () => {
                 class="opions_frame"
                 onClick={() => selectCategory("customer")}
               >
-                <div class="content_icon1 shadow_red:hover">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
+                <img
+                  src="/img/customer_service/person_icon.png"
+                  alt=""
+                  class="content_icon"
+                />
                 <h4>會員常見問題</h4>
               </div>
               <div
@@ -773,7 +775,11 @@ const CustomerServicePage = () => {
             <div class="content_question">
               {/* 中間內文(問題回覆部分) */}
               <div
-                className={isShowMoreBlock ? "content_question_qa_unfolded" : "content_question_qa_folded"}
+                className={
+                  isShowMoreBlock
+                    ? "content_question_qa_unfolded"
+                    : "content_question_qa_folded"
+                }
               >
                 {currentFAQs.map((item, i) => (
                   <FAQBlock

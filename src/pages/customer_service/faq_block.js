@@ -14,7 +14,10 @@ const FAQBlock = ({ question, questionIndex, answerBlock }) => {
             Q{questionIndex}. {question}
           </h4>
         </div>
-        <div class="stretch_button" onClick={() => switchAnswerBlock()}></div>
+        <div class="stretch_button" onClick={() => switchAnswerBlock()}>
+          <div class="minus"></div>
+          <div className={`minus animation ${showAnswerBlock ? "":"rotated"}`}></div>
+        </div>
       </div>
       <div class="answer_block">{showAnswerBlock ? answerBlock : null}</div>
     </div>
