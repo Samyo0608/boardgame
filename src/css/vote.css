@@ -35,7 +35,7 @@
 .viewButton:hover {
   background-color: silver;
 }
-.viewButton:active {
+.viewButtonActive {
   background-color: var(--doButton);
   color: white;
 }
@@ -44,7 +44,7 @@
   background-color: white;
   color: var(--fontColor);
   max-width: 1050px;
-  height: 900px;
+  min-height: 900px;
   margin-top: 40px;
   /* box-shadow: 1px 1px 1px 1px var(--shadow); */
 }
@@ -76,6 +76,7 @@
   box-shadow: 2px 2px 2px 2px var(--shadow);
   font-size: 34px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* 投票樣式 */
