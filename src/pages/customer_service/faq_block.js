@@ -1,9 +1,8 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../css/faq.css";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const FAQBlock = ({ question, questionIndex, answerBlock }) => {
-  const [showAnswerBlock, setShowAnswerBlock] = useState(true);
+  const [showAnswerBlock, setShowAnswerBlock] = useState(false);
+
   const switchAnswerBlock = () => {
     setShowAnswerBlock(!showAnswerBlock);
   };

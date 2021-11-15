@@ -144,7 +144,11 @@ input[type="search"].input_content {
   border-radius: 0px;
   border: none;
   font-size: 18px;
+  margin-left: 20px;
   width: 730px;
+}
+.input_content:focus {
+  outline: none;
 }
 .sent_img {
   float: right;

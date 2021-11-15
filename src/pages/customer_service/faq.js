@@ -628,17 +628,24 @@ const CustomerServicePage = () => {
       for (let [category, faqs] of Object.entries(faqQuestionCategories)) {
         for (let faq of faqs) {
           console.log(faq.answerBlock.props);
-          if (faq.question.includes(searchText) ) {
+          if (faq.question.includes(searchText)) {
             tempFAQs.push(faq);
           }
         }
       }
-      setcurrentFAQs(tempFAQs)
+      setcurrentFAQs(tempFAQs);
     }
   };
   const selectCategory = (category) => {
     setcurrentFAQs(faqQuestionCategories[category]);
     setCurrentCategory(category);
+    setIsShowMoreBlock(false);
+  };
+
+  // 顯示更多區塊
+  const [isShowMoreBlock, setIsShowMoreBlock] = useState(false);
+  const switchShowMoreBlock = () => {
+    setIsShowMoreBlock(!isShowMoreBlock);
   };
 
   return (
@@ -659,14 +666,14 @@ const CustomerServicePage = () => {
             />
             <input
               id="input"
-              class="input_content"
+              class="faq_input_content"
               type="search"
               autocomplete="off"
               spellcheck="false"
               aria-live="polite"
               placeholder="輸入關鍵字查詢"
               value={searchText}
-              onInput={e => setSearchText(e.target.value)}
+              onInput={(e) => setSearchText(e.target.value)}
               onKeyDown={handleSearch}
             />
           </div>
@@ -715,8 +722,10 @@ const CustomerServicePage = () => {
                 class="opions_frame"
                 onClick={() => selectCategory("customer")}
               >
-                <div class="content_icon shadow_red"></div>
-                <h4>常會員見問題</h4>
+                <div class="content_icon1 shadow_red:hover">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <h4>會員常見問題</h4>
               </div>
               <div
                 class="opions_frame"
@@ -760,18 +769,24 @@ const CustomerServicePage = () => {
                 <h4>發票常見問題</h4>
               </div>
             </div>
+            {/* 內文問題框架 */}
             <div class="content_question">
-              {currentFAQs.map((item, i) => (
-                <FAQBlock
-                  questionIndex={i + 1}
-                  question={item.question}
-                  answerBlock={item.answerBlock}
-                ></FAQBlock>
-              ))}
+              {/* 中間內文(問題回覆部分) */}
+              <div className={isShowMoreBlock ? "" : "content_question_qa"}>
+                {currentFAQs.map((item, i) => (
+                  <FAQBlock
+                    questionIndex={i + 1}
+                    question={item.question}
+                    answerBlock={item.answerBlock}
+                  ></FAQBlock>
+                ))}
+              </div>
               <div>
                 {/* 客服留言連結 */}
                 <div class="expand_down">
-                  <span>查看更多常見問題</span>
+                  <span onClick={() => switchShowMoreBlock()}>
+                    查看更多常見問題
+                  </span>
                   <img
                     src="/img/customer_service/drop_down.png"
                     alt=""
