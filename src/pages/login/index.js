@@ -9,6 +9,7 @@ import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function Login(props) {
+  let history = useHistory();
   const [member, setMember] = useState({
     email: "",
     password: "",

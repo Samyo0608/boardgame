@@ -76,7 +76,7 @@ function TopNavbar(props) {
       href: "/contest",
       secondItem1: "活動資訊",
       secondItem2: "投票活動",
-      url1: "/contestInfo",
+      url1: "/contestInfo/1",
       url2: "/vote",
       isShow: true,
     },
