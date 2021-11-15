@@ -1,7 +1,48 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
 import "../../css/instant_QA.css";
-import React from "react";
+import InstantQADialogBox from "./instant_qa_dialog_box";
+
+const CS_NAME = "遊戲職人客服"
+
+const DEFAULT_HISTORY = [
+  {
+    sender: CS_NAME,
+    isCustomer: false,
+    dateTime: new Date(),
+    items: [
+      {
+        type: "text",
+        payload: "哈摟~有甚麼地方能為您服務呢?",
+      },
+    ],
+  },
+  {
+    sender: CS_NAME,
+    isCustomer: false,
+    dateTime: Date.now(),
+    items: [
+      {
+        type: "list",
+        title: "常見問題",
+        options: ["購物","會員","配送","取貨","退換貨","發票"],
+      },
+    ],
+  },
+  {
+    sender: CS_NAME,
+    isCustomer: false,
+    dateTime: Date.now(),
+    items: [
+      {
+        type: "text",
+        payload: "請輸入您的問題~?",
+      },
+    ],
+  },
+];
+
 const InstantQAPage = () => {
+  const [dialogHistory, setDialogHistory] = useState(DEFAULT_HISTORY);
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
@@ -13,8 +54,11 @@ const InstantQAPage = () => {
         {/* 內文內框 */}
         <div class="inner">
           {/* 放大字型 */}
-          <img src="/img/customer_service/enlarge.png" class="enlarge" alt="" />
           {/* 對話框 */}
+
+          {dialogHistory.map((item) => (
+            <InstantQADialogBox message={item}></InstantQADialogBox>
+          ))}
           <div class="dialog_box">
             {/* 對話時間 (1)*/}
             <span class="conversation_time_1">遊戲職人客服 11:40</span>
@@ -27,7 +71,7 @@ const InstantQAPage = () => {
                 alt=""
               />
               {/* 專員答覆 (1)*/}
-              <span class="commissioner_answer_1">
+              <span class="commissioner_answer_text">
                 哈摟~有甚麼地方能為您服務呢?
               </span>
             </div>

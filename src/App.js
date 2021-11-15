@@ -2,7 +2,7 @@ import "./App.css";
 import "normalize.css";
 import React from "react";
 import FAQPage from "./pages/customer_service/faq";
-import InstantQAPage from "./pages/customer_service/instantQAPage";
+import InstantQAPage from "./pages/customer_service/instant_qa_page";
 import CustomerServicePage from "./pages/customer_service/customer_service_message";
 import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
