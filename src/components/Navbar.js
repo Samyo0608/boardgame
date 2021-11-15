@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -20,9 +20,50 @@ import {
   faSignOutAlt,
 } from "@fortawesome//free-solid-svg-icons";
 import "./Navbar.css";
+import axios from "axios";
+import { API_URL } from "../configs/config";
 
 function TopNavbar(props) {
   const [select, setSelect] = useState();
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
+  });
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.get(`${API_URL}/auth/logout`, {
+        withCredentials: true,
+      });
+      alert("登出成功");
+      window.location.replace("/");
+    } catch (e) {
+      console.error(e);
+      alert("登出失敗");
+    }
+  };
+
+  const centerClick = () => {
+    if (!sessionMember.id) {
+      alert("請先登入");
+    }
+  };
 
   const navbarItem = [
     {
@@ -144,32 +185,49 @@ function TopNavbar(props) {
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
             </Link>
-            <Link className="ms-2 me-3" to="/memberCenter">
+            <Link
+              className="ms-2 me-3"
+              to={sessionMember.id ? "/memberCenter" : "/login"}
+              onClick={centerClick}
+            >
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
             </Link>
-
-            <Link to="/logout">
-              <FontAwesomeIcon icon={faSignOutAlt} />
-              登出
-            </Link>
-            
+            {sessionMember.id && (
+              <a href="/" onClick={handleClick}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                登出
+              </a>
+            )}
           </div>
-          <Link
-            to="/login"
-            className="d-flex justify-content-around align-items-center memberBorder"
-          >
-            <p className="name">王大明</p>
-            <div className="d-flex align-items-center">
-              點數<div className="point">P</div> :100
-            </div>
-            <div className="ms-1">
-              <FontAwesomeIcon
-                icon={faQuestionCircle}
-                className="faQuestionCircle"
-              />
-            </div>
-          </Link>
+          {sessionMember.id ? (
+            <Link
+              to="/memberCenter/memberPoint"
+              className="d-flex justify-content-around align-items-center memberBorder"
+            >
+              <p className="name">
+                {sessionMember.account
+                  ? sessionMember.account
+                  : `會員${sessionMember.id}`}
+              </p>
+              <div className="d-flex align-items-center">
+                點數<div className="point">P</div> : {sessionMember.point}
+              </div>
+              <div className="ms-1">
+                <FontAwesomeIcon
+                  icon={faQuestionCircle}
+                  className="faQuestionCircle"
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="d-flex justify-content-center align-items-center memberBorder"
+            >
+              登入
+            </Link>
+          )}
         </div>
       </Navbar>
     </Container>

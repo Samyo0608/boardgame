@@ -23,6 +23,9 @@ function Register(props) {
       try {
         await axios.post(`${API_URL}/auth/register`, member, {
           // res cors -> cookie
+          // .withCredentials = true時，發現你與呼叫的API的網站 不同源時，瀏覽器一樣會幫你發 Request，但是會把 Response 給擋下來，不讓你的 JavaScript 拿到並且傳回錯誤。
+          // .withCredentials = true使用時，後端必須搭配 Access-Control-Allow-Origin 且不能為*，要給指定路徑，如express中的
+          // cors ({origin:"localhost:XXXX"})
           withCredentials: true,
         });
         alert("註冊成功");
