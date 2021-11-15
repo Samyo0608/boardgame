@@ -57,40 +57,53 @@
 }
 /* 遊戲名稱 */
 .pnumber {
-  margin-top: 100px;
-  margin-left: 20px;
+  position: absolute;
+  top: 100px;
+  left: 320px;
 }
 /* 遊戲名稱 */
 .pname {
-  margin: 140px 0 0 -65px;
+  position: absolute;
+  top: 150px;
+  left: 320px;
   font-weight: bold;
   font-size: 20px;
   width: 350px;
 }
 /* 增加減 */
 .amount10 {
-  display: flex;
-  margin: 0 0 0 -180px;
+  position: absolute;
+  top: 150px;
+  left: 500px;
   object-fit: cover;
 }
-.amount10 input {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
+.amount12 {
+  position: absolute;
+  top: -110px;
+  left: -30px;
 }
-.amount11 {
-  margin: 105px 0 0 10px;
-  padding: 10px 10px 0 10px;
+.amount13 {
+  position: absolute;
+  top: -110px;
+  left: 30px;
+}
+.amount14 {
+  position: absolute;
+  top: 5px;
+  left: 20px;
 }
 /* 垂直線 */
 .str1 {
-  margin-left: 780px;
-  margin-top: -220px;
+  position: absolute;
+  left: 830px;
+  top: 80px;
 }
 .cartprice {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin: -130px 0 0 630px;
+  top: 150px;
+  left: 650px;
 }
 /* 追蹤，移除 */
 .trackit {

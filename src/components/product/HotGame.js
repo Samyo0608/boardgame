@@ -3,28 +3,34 @@ import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
 
-const HotGame = () => {
+function HotGame(props) {
+  const {
+    product_name,
+    product_type,
+    product_img,
+    product_price,
+    product_content,
+  } = props;
+
   return (
     <>
       {/* 第一名遊戲 */}
       <Container className="shadowbox">
-        <p className="p1">島嶼爭霸</p>
+        <p className="p1">{product_name}</p>
         <div>
-          <img className="abc" src="/img/product/game1.jpg" alt="" />
+          <img className="abc" src={product_img} alt="" />
           <div className="type1">
-            <p>策略</p>
+            <p>{product_type}</p>
           </div>
         </div>
-        <a className="a1" href="http://localhost:3000/aboutgame/">
-          <p className="p2">
-            在群島爭霸中，我們可妥善運用神明賜予的力量，還有
-            神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使
-            群島爭霸非常有在玩希臘神話遊戲
-          </p>
-        </a>
-        <span>$999</span>
-        <div>
-          <p className="p5">投票數:</p>
+        <div className="p2">
+          <a className="a1" href="http://localhost:3000/aboutgame/">
+            <p className="ellipsis">{product_content}</p>
+          </a>
+        </div>
+        <span>${product_price}</span>
+        <p className="p8">投票數:</p>
+        <div className="favorbox">
           <a href="#/">
             <img className="favorite" src="/img/product/favorite.png" alt="" />
           </a>
@@ -35,6 +41,6 @@ const HotGame = () => {
       </Container>
     </>
   );
-};
+}
 
 export default HotGame;
