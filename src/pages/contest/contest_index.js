@@ -171,11 +171,11 @@ function Index(props) {
             id={v.contest_id}
             date={v.contestDateStart}
             title={v.contest_title}
-            innertext={v.contest_innertext}
+            innertext={v.contest_inner_text}
             limit={v.contest_limit}
             category={v.category}
             img={v.contestPic}
-            imgTag={v.imgTag}
+            // imgTag={v.imgTag}
           />
           );
         };
@@ -184,8 +184,8 @@ function Index(props) {
          if(searchitem === "") {
            return searchResults();
          }else if(
-           v.title.includes(searchitem) ||
-           v.innertext.includes(searchitem) ||
+           v.contest_title.includes(searchitem) ||
+           v.contest_innertext.includes(searchitem) ||
            v.category.includes(searchitem)
          ){
            return searchResults();
