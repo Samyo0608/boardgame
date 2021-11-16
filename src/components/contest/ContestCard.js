@@ -41,7 +41,7 @@ function ContestCard(props) {
                     <img alt="遊戲圖片" className="images" src={img} fluid />
                     </div>
                     <p className="fs-5 m-2">{date}</p>
-                    <h5>{title}</h5>
+                    <h5>《{title}》</h5>
                     <p className="p-2 m-2">{innertext}</p>
                     <Link to={`/contestInfo/${id}`} className="d-flex">
                          <div className="personNo">剩餘名額:{limit}</div>
