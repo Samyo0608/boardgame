@@ -7,85 +7,86 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from '@fortawesome/free-solid-svg-icons' // <-- import faSearch
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
 import ContestCard from '../../components/contest/ContestCard';
-
+import axios from "axios";
+import { API_URL } from '../../configs/config';
 // 假資料製作
-const contestItems = [
-  {
-  id: 1,
-  date:'2021-12-25(六)',
-  title:'《寶可夢王者挑戰賽》',
-  innertext:'大家期待已久的寶可夢卡牌對戰賽終於來啦!趕快手刀衝刺來報名吧!',
-  limit: 2,
-  category:'卡牌',
-  img:'img/contest/con01.jpg',
-  imgTag:'img/index/card-tag.png',
-  contestDataStart:"2021年12月25日",
-  contestDataEnd:"2021年11月30日",
-  contestModal:"以單人報名的個人賽方式進行。",
-  contestMethod:"詳情請見文件說明檔",
-  contestPic:"img/index/line.png",
-  },
-  {
-  id: 2,
-  date:'2021-12-10(五)',
-  title:'《辣個蟑螂又來啦!》',
-  innertext:'非常耐玩的德國蟑螂要在遊戲職人舉辦比賽了，來挑戰看看吧!',
-  limit: 2,
-  category:'卡牌',
-  img:'img/contest/con02.jpg',
-  imgTag:"img/index/card-tag.png",
-  contestDataStart:"2021年12月25日",
-  contestDataEnd:"2021年11月30日",
-  contestModal:"以單人報名的個人賽方式進行。",
-  contestMethod:"詳情請見文件說明檔",
-  contestPic:"img/index/line.png",
-  },
-  {
-  id: 3,
-  date:'2021-11-28(日)',
-  title:'《要...一起跳舞嗎?》',
-  innertext:'犯人在跳舞，你抓得到嗎?一款鬥心機的卡牌遊戲，來參加看看嗎?',
-  limit: 5,
-  category:'卡牌',
-  img:'img/contest/con03.jpg',
-  imgTag:'img/index/card-tag.png',
-  contestDataStart:"2021年12月25日",
-  contestDataEnd:"2021年11月30日",
-  contestModal:"以單人報名的個人賽方式進行。",
-  contestMethod:"詳情請見文件說明檔",
-  contestPic:"img/index/line.png",
-  },
-  {
-    id: 4,
-    date:'2021-11-15(一)',
-    title:'《波多黎各，渡假溜~》',
-    innertext:'有玩過波多璃各嗎?高手們快來報名參加吧!',
-    limit: 5,
-    category:'策略',
-    img:'img/contest/con04.jpg',
-    imgTag:'img/index/trag-tag.png',
-    },
-    {
-      id:5,
-      date:'2021-10-31(日)',
-      title:'《愜意午後的農家樂!》',
-      innertext:'嚮往農村生活嗎?快揪三五好友一同來比賽，渡過一個愉快的下午吧~',
-      limit: 5,
-      category:'策略',
-      img:'img/contest/con05.jpg',
-      imgTag:'img/index/trag-tag.png',
-      },
-    {
-      id: 6,
-      date:'2021-10-25(一)',
-      title:'《大富翁全家同樂會》',
-      innertext:'歡迎來參加活動',
-      limit: 5,
-      category:'家庭',
-      img:'img/contest/con06.jpg',
-      imgTag:'img/index/family-tag.png',
-    },
-]
+// const contestItems = [
+//   {
+//   id: 1,
+//   date:'2021-12-25(六)',
+//   title:'《寶可夢王者挑戰賽》',
+//   innertext:'大家期待已久的寶可夢卡牌對戰賽終於來啦!趕快手刀衝刺來報名吧!',
+//   limit: 2,
+//   category:'卡牌',
+//   img:'img/contest/con01.jpg',
+//   imgTag:'img/index/card-tag.png',
+//   contestDataStart:"2021年12月25日",
+//   contestDataEnd:"2021年11月30日",
+//   contestModal:"以單人報名的個人賽方式進行。",
+//   contestMethod:"詳情請見文件說明檔",
+//   contestPic:"img/index/line.png",
+//   },
+//   {
+//   id: 2,
+//   date:'2021-12-10(五)',
+//   title:'《辣個蟑螂又來啦!》',
+//   innertext:'非常耐玩的德國蟑螂要在遊戲職人舉辦比賽了，來挑戰看看吧!',
+//   limit: 2,
+//   category:'卡牌',
+//   img:'img/contest/con02.jpg',
+//   imgTag:"img/index/card-tag.png",
+//   contestDataStart:"2021年12月25日",
+//   contestDataEnd:"2021年11月30日",
+//   contestModal:"以單人報名的個人賽方式進行。",
+//   contestMethod:"詳情請見文件說明檔",
+//   contestPic:"img/index/line.png",
+//   },
+//   {
+//   id: 3,
+//   date:'2021-11-28(日)',
+//   title:'《要...一起跳舞嗎?》',
+//   innertext:'犯人在跳舞，你抓得到嗎?一款鬥心機的卡牌遊戲，來參加看看嗎?',
+//   limit: 5,
+//   category:'卡牌',
+//   img:'img/contest/con03.jpg',
+//   imgTag:'img/index/card-tag.png',
+//   contestDataStart:"2021年12月25日",
+//   contestDataEnd:"2021年11月30日",
+//   contestModal:"以單人報名的個人賽方式進行。",
+//   contestMethod:"詳情請見文件說明檔",
+//   contestPic:"img/index/line.png",
+//   },
+//   {
+//     id: 4,
+//     date:'2021-11-15(一)',
+//     title:'《波多黎各，渡假溜~》',
+//     innertext:'有玩過波多璃各嗎?高手們快來報名參加吧!',
+//     limit: 5,
+//     category:'策略',
+//     img:'img/contest/con04.jpg',
+//     imgTag:'img/index/trag-tag.png',
+//     },
+//     {
+//       id:5,
+//       date:'2021-10-31(日)',
+//       title:'《愜意午後的農家樂!》',
+//       innertext:'嚮往農村生活嗎?快揪三五好友一同來比賽，渡過一個愉快的下午吧~',
+//       limit: 5,
+//       category:'策略',
+//       img:'img/contest/con05.jpg',
+//       imgTag:'img/index/trag-tag.png',
+//       },
+//     {
+//       id: 6,
+//       date:'2021-10-25(一)',
+//       title:'《大富翁全家同樂會》',
+//       innertext:'歡迎來參加活動',
+//       limit: 5,
+//       category:'家庭',
+//       img:'img/contest/con06.jpg',
+//       imgTag:'img/index/family-tag.png',
+//     },
+// ]
  
 // 使用迴圈將json檔寫入contestRun的常數中做為一個陣列
 const contestRun = (c)=>{
@@ -98,14 +99,19 @@ const contestRun = (c)=>{
 
 function Index(props) {
   const [contest, setContest] = useState(
-    contestRun(contestItems)
+    contestRun(contestRun)
   )
 
   const [searchitem,setSearchitem]=useState("")
 
-  useEffect(() => {
-    setContest(contestItems)
-  }, [])
+  // useEffect(() => {
+  //   setContest(contestItems)
+  // }, [])
+
+  useEffect(async () =>{
+    let res = await axios.get(`${API_URL}/contest/card`);
+    setContest(res.data);
+  },[])
     return (
       <>
         {/* 活動資訊 */}
@@ -162,13 +168,13 @@ function Index(props) {
             return(
             <ContestCard
             key={i}
-            id={v.id}
-            date={v.date}
-            title={v.title}
-            innertext={v.innertext}
-            limit={v.limit}
+            id={v.contest_id}
+            date={v.contestDateStart}
+            title={v.contest_title}
+            innertext={v.contest_innertext}
+            limit={v.contest_limit}
             category={v.category}
-            img={v.img}
+            img={v.contestPic}
             imgTag={v.imgTag}
           />
           );
