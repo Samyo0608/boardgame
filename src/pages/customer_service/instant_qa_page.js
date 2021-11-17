@@ -150,7 +150,8 @@ const InstantQAPage = () => {
               spellcheck="false"
               aria-live="polite"
               placeholder="輸入關鍵字查詢"
-              onInput={(e) => setUtteranceText(e.target.value)}
+              value={utteranceText}
+              onChange={(e)=>setUtteranceText(e.target.value)}
               onKeyDown={sendUtterance}
             />
             <img src="/img/customer_service/sent.png" class="sent_img" alt="" />
