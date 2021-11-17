@@ -52,6 +52,35 @@ function Contest_info(props) {
     category: '',
 
   })
+
+  // 填寫報名資訊用
+  const [keyin,setKeyin] =useState({
+    contest_title:"",
+    contest_name: "",
+    contest_phone:"",
+    contest_email:"",
+  })
+  
+  function handleChange(e) {
+    let newKeyin ={...keyin};
+    newKeyin[e.target.contest_title] = e.target.value;
+    setKeyin(newKeyin);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try{
+      let formData = new FormData();
+      formData.append("contest_title",keyin.contest_title);
+      formData.append("contest_name",keyin.contest_name);
+      formData.append("contest_phone",keyin.contest_phone);
+      formData.append("contest_email",keyin.contest_email);
+      let res = await axios.post(`${API_URL}/keyin/signup`,formData)
+    } catch(e) {
+      console.log("handleSubmit")
+    }
+  }
+
   //頁數判斷
   const pageNow = info.contest_id
   const pageNoFront = String(pageNow -1)
@@ -76,7 +105,7 @@ function Contest_info(props) {
 
         <img
           alt="活動示意圖"
-          src="../img/contest/conInner01.jpg "
+          src={info.contestPic}
           className="conInner"
         />
         <div className="conDirectionR">
@@ -110,23 +139,25 @@ function Contest_info(props) {
             <img alt="" className="titleLine" src="img/index/line.png" />
           </div>
 
-        <form>
+        <form method="post" onSubmit={handleSubmit}>
         <Row className="fontActivity">
           <Col md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />
                 活動名稱:</Col>
           <Col md={8} className="mt-4">
-          <div className="d-flex justify-content-start ps-3">{info.contest_title}</div>
+          <div name="contest_title" onSubmit={handleSubmit} className="d-flex justify-content-start ps-3">{info.contest_title}</div>
             
           </Col>
           <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />姓　　名:</Col>
-          <Col md={8}><input type="text" className="conInputStyle mt-4"></input></Col>
+          <Col md={8}><input name="contest_name" onSubmit={handleSubmit} type="text" className="conInputStyle mt-4"></input></Col>
           <Col md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />
                 連絡電話:</Col>
-          <Col md={8} className="mt-4"><input type="text" className="conInputStyle"/></Col>
+          <Col md={8} className="mt-4">
+          <input name="contest_phone" onSubmit={handleSubmit} type="text" className="conInputStyle"/></Col>
           <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />
                 聯絡信箱:</Col>
-          <Col md={8} className="mt-4"><input type="text" className="conInputStyle"/></Col>
-          <Col md={12} className="mt-1"><input type="submit" value="送  出" className="conSubmit m-3" /></Col>
+          <Col md={8} className="mt-4"><input name="contest_email" type="text" className="conInputStyle"/></Col>
+          <Col md={12} className="mt-1">
+          <input type="submit" onSubmit={handleSubmit} value={info.contest_limit -info.contest_title_no === 0 ? "已額滿" : "送　出"} className={info.contest_limit -info.contest_title_no === 0 ? "disConSubmit" : "conSubmit"} /></Col>
         </Row>
         </form>
 
