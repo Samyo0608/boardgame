@@ -33,7 +33,7 @@ function Contest_info(props) {
     let res = await axios.get(`${API_URL}/contest/card`);
     setInfo(res.data);
     const newInfo = res.data.find((v,i)=>{
-      return v.contest_id ===Number(props.match.params.id)
+      return v.contest_id === Number(props.match.params.id)
     })
     setInfo(newInfo)
   },[props.match.params.id])
@@ -52,6 +52,13 @@ function Contest_info(props) {
     category: '',
 
   })
+  //頁數判斷
+  const pageNow = info.contest_id
+  const pageNoFront = String(pageNow -1)
+  const pageNoBack = String(pageNow +1)
+
+  
+  
 
   const show = (
     <>
@@ -127,13 +134,13 @@ function Contest_info(props) {
 
         {/* 底部按鈕 */}
         <div className="buttonZone">
-          <a href="#/contestInfo/" className="arrowStyle">
+          <Link to={`${pageNoFront === "0" ? "6" : pageNoFront}`} className="arrowStyle">
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
-          </a>
-          <button className="buttonStyleCon" value="/">回首頁</button>
-          <a href="#/contestInfo/" className="arrowStyle">
+          </Link>
+          <Link to="/" className="buttonStyleCon" value="/">回首頁</Link>
+          <Link to={`${pageNoBack === "7" ? "1" : pageNoBack}`} className="arrowStyle">
             <FontAwesomeIcon icon={faAngleDoubleRight} />
-          </a>
+          </Link>
         </div>
       </div>
 
