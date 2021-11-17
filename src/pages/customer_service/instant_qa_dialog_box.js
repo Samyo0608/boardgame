@@ -1,9 +1,7 @@
 import React from "react";
 const InstantQADialogBox = ({ message }) => {
-  console.log("message", message);
 
   const renderItems = (itemsToBeRender) => {
-    console.log("itemsToBeRender", itemsToBeRender);
     const result = [];
     for (let item of itemsToBeRender) {
       if (item.type === "text") {

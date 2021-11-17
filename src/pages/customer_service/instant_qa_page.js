@@ -3,6 +3,7 @@ import "../../css/instant_QA.css";
 import InstantQADialogBox from "./instant_qa_dialog_box";
 
 const CS_NAME = "遊戲職人客服";
+const USER_NAME = "使用者";
 
 const DEFAULT_HISTORY = [
   {
@@ -24,7 +25,14 @@ const DEFAULT_HISTORY = [
       {
         type: "list",
         title: "常見問題",
-        options: ["1.款項未入帳", "2.收到的商品有問題怎麼辦", "3.未收到商品", "4.如何退換貨", "退換貨", "發票"],
+        options: [
+          "1.款項未入帳",
+          "2.收到的商品有問題怎麼辦",
+          "3.未收到商品",
+          "4.如何退換貨",
+          "退換貨",
+          "發票",
+        ],
       },
     ],
   },
@@ -39,21 +47,67 @@ const DEFAULT_HISTORY = [
       },
     ],
   },
-  {
-    sender: "test",
-    isCustomer: true,
-    dateTime: Date.now(),
-    items: [
+];
+
+const INTENT_MAP = {
+  greeting: {
+    regexes: [/(你好)|(嗨)|(哈囉)/],
+    replies: [
       {
         type: "text",
-        payload: "商品到貨時間?",
+        payload: "哈囉",
       },
     ],
+  },
+};
+const DEFAULT_NO_REPLIES = [
+  {
+    type: "text",
+    payload: "我不清楚您的問題",
   },
 ];
 
 const InstantQAPage = () => {
   const [dialogHistory, setDialogHistory] = useState(DEFAULT_HISTORY);
+  const [utteranceText, setUtteranceText] = useState("");
+  const sendUtterance = (event) => {
+    if (event.key === "Enter") {
+      let replies = [];
+      for (const [intentName, intentContent] of Object.entries(INTENT_MAP)) {
+        for (let regex of intentContent.regexes) {
+          if (regex.test(utteranceText)) {
+            replies = intentContent.replies;
+            break;
+          }
+        }
+        if (replies.length > 0) {
+          break;
+        }
+      }
+      if (replies.length == 0) {
+        replies = DEFAULT_NO_REPLIES;
+      }
+      dialogHistory.push({
+        sender: USER_NAME,
+        isCustomer: true,
+        dateTime: Date.now(),
+        items: [
+          {
+            type: "text",
+            payload: utteranceText,
+          },
+        ],
+      });
+      dialogHistory.push({
+        sender: CS_NAME,
+        isCustomer: false,
+        dateTime: Date.now(),
+        items: replies,
+      });
+      setDialogHistory(dialogHistory);
+      setUtteranceText("");
+    }
+  };
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
@@ -96,6 +150,8 @@ const InstantQAPage = () => {
               spellcheck="false"
               aria-live="polite"
               placeholder="輸入關鍵字查詢"
+              onInput={(e) => setUtteranceText(e.target.value)}
+              onKeyDown={sendUtterance}
             />
             <img src="/img/customer_service/sent.png" class="sent_img" alt="" />
           </div>
@@ -122,9 +178,7 @@ const InstantQAPage = () => {
           alt=""
         />
       </div>
-      
     </div>
-    
   );
 };
 export default InstantQAPage;
