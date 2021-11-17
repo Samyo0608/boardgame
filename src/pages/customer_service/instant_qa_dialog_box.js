@@ -1,6 +1,5 @@
 import React from "react";
-const InstantQADialogBox = ({ message }) => {
-
+const InstantQADialogBox = ({ message, handleSelectItem }) => {
   const renderItems = (itemsToBeRender) => {
     const result = [];
     for (let item of itemsToBeRender) {
@@ -11,15 +10,19 @@ const InstantQADialogBox = ({ message }) => {
       } else if (item.type === "list") {
         result.push(
           <div class="question_frame">
-            {/* 問題清單 */}
-            <p>{item.title}</p>
-            <div class="shopping_problem">
-              <ul>
-                {item.options.map((option) => (
-                  <li>{option}</li>
-                ))}
-              </ul>
-            </div>
+            {/* 問題清單分隔 */}
+              {/* 問題清單 */}
+              <div class="shopping_problem">
+                <p>{item.title}</p>
+                <ul>
+                  {item.options.map((option, index) => (
+                    <li onClick={handleSelectItem}>
+                    {option}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            {/* 問題清單外框結尾 */}
           </div>
         );
       }
@@ -58,8 +61,7 @@ const InstantQADialogBox = ({ message }) => {
           <span class="conversation_time">
             {message.sender} {formatDateString(message.dateTime)}
           </span>
-          <br></br>
-          <span class="commissioner_answer">{renderItems(message.items)}</span>
+           <div class="commissioner_answer">{renderItems(message.items)}</div>
         </div>
       </div>
     </div>
