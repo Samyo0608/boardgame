@@ -54,6 +54,7 @@ const InstantQAPage = () => {
         {/* 內文內框 */}
         <div class="inner">
           {/* 放大字型 */}
+          <img src="/img/customer_service/enlarge.png" class="enlarge" alt="" />
           {/* 對話框 */}
 
           {dialogHistory.map((item) => (
