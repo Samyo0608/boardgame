@@ -10,8 +10,9 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 
+const Swal = require("sweetalert2");
 // 測試資料
 const parsing = [
   { room: "", date: "", time: "" },
@@ -34,36 +35,18 @@ const parsing = [
 
 function Booking() {
   // 按鈕套件
-  // swal 的第一個參數為 Title的文字，第二個參數為 Text 的文字，第三個參數是 icon 的類別。
   function alertCheck() {
-    swal({
-      title: "訂購確認?",
-      icon: "warning",
-      text: "是否確認訂購資訊正確呢",
-      buttons: {
-        cancel: "取消",
-        sure: {
-          text: "確認",
-          value: "sure",
-        },
-      },
-      buttonValidator: function (result) {
-        return new Promise(function (resolve, reject) {
-          if (result) {
-            resolve();
-          } else {
-            reject("test");
-          }
-        });
-      },
-    }).then((value) => {
-      switch (value) {
-        case "sure":
-          swal("已收到您的訂購", { icon: "success" });
-          break;
-
-        default:
-          swal("期待您的下次訂購", { icon: "info" });
+    Swal.fire({
+      title: "請問是否確認下訂呢?",
+      showDenyButton: true,
+      confirmButtonText: "確認",
+      denyButtonText: `取消`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("感謝您的訂購!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("期待您的下次訂購", "", "info");
       }
     });
   }
