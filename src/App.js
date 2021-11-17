@@ -41,26 +41,26 @@ function App() {
     <>
       <div className="bodyWidth">
         <BrowserRouter>
-          <TopNavbar className="" pathname=""/>
+          <TopNavbar className="" pathname="" />
           <Switch>
             <Route
               exact={true}
-              path="/memberCenter/:account/memberPoint"
+              path="/memberCenter:account/memberPoint"
               component={MemberPoint}
             />
             <Route
               exact={true}
-              path="/memberCenter/:account/memberRent"
+              path="/memberCenter:account/memberRent"
               component={MemberRent}
             />
             <Route
               exact={true}
-              path="/memberCenter/:account/memSelf"
+              path="/memberCenter:account/memSelf"
               component={MemSelf}
             />
             <Route
               exact={true}
-              path="/memberCenter/:account/rePassword"
+              path="/memberCenter:account/rePassword"
               component={RePassword}
             />
             <Route
@@ -70,7 +70,7 @@ function App() {
             />
             <Route
               exact={true}
-              path="/memberCenter/:account/memberProduct"
+              path="/memberCenter:account/memberProduct"
               component={MemberProduct}
             />
             <Route
@@ -87,7 +87,7 @@ function App() {
             <Route exact={true} path="/register" component={Register} />
             <Route
               exact={true}
-              path="/memberCenter/:account"
+              path="/memberCenter:account"
               component={MemberCenter}
             />
             <Route exact={true} path="/booking" component={booking} />

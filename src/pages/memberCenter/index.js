@@ -11,6 +11,9 @@ import {
   faEthernet,
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/memberCenter.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { API_URL } from "../../configs/config";
 
 // 假資料
 const Detail = [
@@ -64,13 +67,32 @@ const List = [
 
 function MemberCenter(props) {
   const [status, setStatus] = useState(2);
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
+  });
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
+
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
       <p className="h2 mt-5 bold">會員中心</p>
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
-
       {/* 上半部部分 */}
       <div className="orderStatus mt-4">
         <div className="d-flex">
@@ -146,7 +168,9 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">個人資料</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a href="memberCenter/memSelf">
+            <a
+              href={`/memberCenter${sessionMember.account}/memSelf`}
+            >
               <FontAwesomeIcon icon={faUser} className="me-1" />
               基本資料
             </a>

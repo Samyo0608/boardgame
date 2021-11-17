@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import "../../css/memSelf.css";
 import Sidebar from "../../components/memberSidebar/index";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { API_URL } from "../../configs/config";
 
 // 縣市鄉鎮api
 const area_data = {
@@ -416,9 +419,55 @@ const townships = countries.map((v, i, array) =>
   Object.getOwnPropertyNames(area_data[array[i]])
 );
 
-// 年、月、日
-
 function MemSelf(props) {
+  const userAccount = useParams();
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+
+  const birth = year.concat("/", month, "/", day);
+  console.log(birth);
+
+  const [user, setUser] = useState({
+    account: "",
+    address: "",
+    birth: "",
+    email: "",
+    gender: "",
+    id: 0,
+    name: "",
+    password: "",
+    phone: "",
+    photo: "",
+    point: 0,
+  });
+
+  console.log(user);
+
+  useEffect((e) => {
+    async function userData() {
+      try {
+        let userData = await axios.get(
+          `${API_URL}/member/${userAccount.account}`,
+          {
+            withCredentials: true,
+          }
+        );
+        setUser(userData.data[0]);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    userData();
+  }, []);
+
+  const handleChange = (e) => {
+    let newUser = { ...user };
+    newUser[e.target.name] = e.target.value;
+    newUser.birth = birth;
+    setUser(newUser);
+  };
+
   const [country, setCountry] = useState(-1);
   const [township, setTownship] = useState(-1);
   return (
@@ -440,7 +489,7 @@ function MemSelf(props) {
                 會員帳號
               </Form.Label>
               <Col sm="10">
-                <p className="mb-0 LHeignt">DaWang2021</p>
+                <p className="mb-0 LHeignt">{user.account}</p>
               </Col>
             </Form.Group>
 
@@ -451,8 +500,10 @@ function MemSelf(props) {
               <Col sm="10">
                 <Form.Control
                   type="text"
+                  name="name"
                   placeholder="請填寫姓名"
-                  defaultValue="王大明"
+                  defaultValue={user.name}
+                  onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -467,8 +518,10 @@ function MemSelf(props) {
               <Col sm="10">
                 <Form.Control
                   type="email"
+                  name="email"
                   placeholder="請填寫email"
-                  defaultValue="DaWang2021@gmail.com"
+                  defaultValue={user.email}
+                  onChange={handleChange}
                 />
               </Col>
             </Form.Group>
@@ -480,13 +533,20 @@ function MemSelf(props) {
               <Col sm="10">
                 <Form.Control
                   type="text"
+                  name="phone"
                   placeholder="請填寫手機號碼"
-                  defaultValue="0912345678"
+                  defaultValue={user.phone}
+                  onChange={handleChange}
                 />
               </Col>
             </Form.Group>
             <div className="mb-3">
-              <Form.Group className="mb-3" controlId="gender">
+              <Form.Group
+                name="gender"
+                className="mb-3"
+                controlId="gender"
+                defaultValue={user.gender}
+              >
                 <Form.Label column sm="2">
                   性別
                 </Form.Label>
@@ -495,20 +555,21 @@ function MemSelf(props) {
                   label="男"
                   name="gender"
                   type="radio"
-                  id=""
-                  checked
-                  value="男"
+                  value="male"
+                  onChange={handleChange}
+                  checked={user.gender === "male" ? true : false}
                 />
                 <Form.Check
                   inline
                   label="女"
                   name="gender"
                   type="radio"
-                  id=""
-                  value="女"
+                  value="female"
+                  onChange={handleChange}
+                  checked={user.gender === "female" ? true : false}
                 />
               </Form.Group>
-              <Form.Group>
+              <Form.Group name="birth">
                 <Row className="mb-3">
                   <Form.Label column sm="2">
                     生日
@@ -522,7 +583,11 @@ function MemSelf(props) {
                       name="year"
                       placeholder="西元年"
                       defaultValue="1996"
+                      maxlength="4"
                       className="me-2"
+                      onChange={(e) => {
+                        setYear(e.target.value);
+                      }}
                     />
                     <Form.Label>年</Form.Label>
                   </Form.Group>
@@ -535,8 +600,15 @@ function MemSelf(props) {
                       type="text"
                       name="month"
                       placeholder="月"
+                      maxlength="2"
                       defaultValue="1"
                       className="me-2"
+                      onChange={
+                        (handleChange,
+                        (e) => {
+                          setMonth(e.target.value);
+                        })
+                      }
                     />
                     <Form.Label>月</Form.Label>
                   </Form.Group>
@@ -549,8 +621,12 @@ function MemSelf(props) {
                       type="text"
                       name="day"
                       placeholder="日"
+                      maxlength="2"
                       defaultValue="1"
                       className="me-2"
+                      onChange={(e) => {
+                        setDay(e.target.value);
+                      }}
                     />
 
                     <Form.Label>日</Form.Label>
@@ -568,6 +644,7 @@ function MemSelf(props) {
                   >
                     <Form.Select
                       value={country}
+                      name="country"
                       onChange={(e) => {
                         // 將字串轉成數字
                         setCountry(+e.target.value);
@@ -590,6 +667,7 @@ function MemSelf(props) {
                   >
                     <Form.Select
                       value={township}
+                      name="town"
                       onChange={(e) => {
                         // 將字串轉成數字
                         setTownship(+e.target.value);
@@ -606,7 +684,7 @@ function MemSelf(props) {
                   </Form.Group>
 
                   <Form.Group
-                    controlId="address"
+                    controlId="addressOther"
                     className="col-6 d-flex align-items-center"
                   >
                     <Form.Control type="text" placeholder="剩餘完整地址" />
