@@ -10,6 +10,8 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import swal from "sweetalert";
+import { faMagic } from "@fortawesome/free-solid-svg-icons";
 
 // 測試資料
 const parsing = [
@@ -30,7 +32,33 @@ const parsing = [
     end: "",
   },
 ];
+
 function Booking() {
+  // 按鈕套件
+  // swal 的第一個參數為 Title的文字，第二個參數為 Text 的文字，第三個參數是 icon 的類別。
+
+  swal({
+    title: "訂購確認?",
+    icon: "warning",
+    text: "是否確認訂購資訊正確呢",
+    buttons: {
+      cancel: "取消",
+      sure: {
+        text: "確認",
+        value: "sure",
+      },
+    },
+  }).then((value) => {
+    switch (value) {
+      case "sure":
+        swal("已收到您的訂購", { icon: "success" });
+        break;
+
+      default:
+        swal("期待您的下次訂購", { icon: "info" });
+    }
+  });
+
   // 日曆套件
 
   // 使用物件值作為狀態值,儲存所有欄位
@@ -335,7 +363,11 @@ function Booking() {
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
 
           {/* 訂購確認按鈕 */}
-          <button type="submit" className="btn siteBookCheck">
+          <button
+            type="submit"
+            className="btn siteBookCheck"
+            onClick="alertCheck"
+          >
             訂購確認
           </button>
         </form>
