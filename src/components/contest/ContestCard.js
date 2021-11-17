@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 
 
 function ContestCard(props) {
-    const {id,date,title,innertext,limit,category,img} =props;
+    const {id,date,title,innertext,limit,category,img,no} =props;
 
     return (
         <>
@@ -34,8 +34,8 @@ function ContestCard(props) {
                     <h5>《{title}》</h5>
                     <p className="p-2 m-2">{innertext}</p>
                     <Link to={`/contestInfo/${id}`} className="d-flex">
-                         <div className="personNo">剩餘名額:{limit}</div>
-                        <div className={`${limit === 0 ?  "disButton" :"doButton" }`} >{`${limit === 0 ?  "已額滿" :"我要報名" }`}</div>
+                         <div className="personNo">剩餘名額:{limit - no}</div>
+                        <div className={`${limit - no === 0 ?  "disButton" :"doButton" }`} >{`${limit - no === 0 ?  "已額滿" :"我要報名" }`}</div>
                 </Link>
                     
                 </div>

@@ -69,7 +69,23 @@
   position: relative;
   top: 40px;
   left: 190px;
+  margin: 30px;
 }
+
+.disConSubmit {
+  background-color: var(--disButton);
+  color: white;
+  font-size: 32px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  position: relative;
+  top: 40px;
+  left: 190px;
+  margin: 30px;
+  pointer-events: none;
+}
+
 /* 底部按鈕區塊  */
 .buttonZone {
   width: 100%;
