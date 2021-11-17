@@ -39,21 +39,31 @@ const InstantQADialogBox = ({ message }) => {
   };
   return (
     <div class="dialog_box">
-      <img
-        src="/img/customer_service/Commissioner_avatar.png"
-        class="Commissioner_avatar"
-        alt=""
-      />
       {/* 專員對話框 */}
-      <span class="commissioner_dialog">
-        {/* 對話時間 */}
+
+      {/* 對話時間 */}
+      <div
+        className={
+          message.isCustomer ? "customer_dialog_box" : "commissioner_dialog"
+        }
+      >
+        <img
+          src={
+            message.isCustomer
+              ? "/img/customer_service/customer_avatar.png"
+              : "/img/customer_service/Commissioner_avatar.png"
+          }
+          class="commissioner_avatar "
+          alt=""
+        />
         <div>
-          <div class="conversation_time">
-            遊戲職人客服 {formatDateString(message.dateTime)}
-          </div>
-          {renderItems(message.items)}
+          <span class="conversation_time">
+            {message.sender} {formatDateString(message.dateTime)}
+          </span>
+          <br></br>
+          <span class="commissioner_answer">{renderItems(message.items)}</span>
         </div>
-      </span>
+      </div>
     </div>
   );
 };

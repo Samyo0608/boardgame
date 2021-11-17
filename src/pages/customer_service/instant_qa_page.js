@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../css/instant_QA.css";
 import InstantQADialogBox from "./instant_qa_dialog_box";
 
-const CS_NAME = "遊戲職人客服"
+const CS_NAME = "遊戲職人客服";
 
 const DEFAULT_HISTORY = [
   {
@@ -24,7 +24,7 @@ const DEFAULT_HISTORY = [
       {
         type: "list",
         title: "常見問題",
-        options: ["購物","會員","配送","取貨","退換貨","發票"],
+        options: ["1.款項未入帳", "2.收到的商品有問題怎麼辦", "3.未收到商品", "4.如何退換貨", "退換貨", "發票"],
       },
     ],
   },
@@ -39,6 +39,17 @@ const DEFAULT_HISTORY = [
       },
     ],
   },
+  {
+    sender: "test",
+    isCustomer: true,
+    dateTime: Date.now(),
+    items: [
+      {
+        type: "text",
+        payload: "商品到貨時間?",
+      },
+    ],
+  },
 ];
 
 const InstantQAPage = () => {
@@ -47,37 +58,31 @@ const InstantQAPage = () => {
     <div className="container justify-content-center flex-column">
       {/* header */}
       {/* title */}
-      <h3 class="title">即時問答</h3>
-      <img src="/img/customer_service/small_dice.png" class="dice" alt="" />
+      <div class="title_frame">
+        <h3 class="title">即時問答</h3>
+        <img
+          src="/img/customer_service/dice.png"
+          class="instant_QA_dice"
+          alt=""
+        />
+      </div>
       {/* 外框背景 */}
       <div class="outer">
         {/* 內文內框 */}
         <div class="inner">
           {/* 放大字型 */}
-          <img src="/img/customer_service/enlarge.png" class="enlarge" alt="" />
+          <span id="enlarge_font_size">
+            <img
+              src="/img/customer_service/enlarge-smallsize.png"
+              class="enlarge"
+              alt=""
+            />
+          </span>
           {/* 對話框 */}
 
           {dialogHistory.map((item) => (
             <InstantQADialogBox message={item}></InstantQADialogBox>
           ))}
-
-
-          {/* 顧客對話 */}
-          {/* 對話框 */}
-          <div class="customer_dialog_box">
-            {/* 顧客對話時間 */}
-            <span class="customer_conversation_time">11:52</span>
-
-            {/* 顧客對話框 */}
-            <div class="customer_dialog ">
-              <span class="customer_answer">商品到貨時間?</span>
-              <img
-                src="/img/customer_service/customer_avatar.png"
-                class="customer_avatar"
-                alt=""
-              />
-            </div>
-          </div>
         </div>
         {/* 輸入問題外框*/}
         <div class="input_question_outer">
@@ -117,7 +122,9 @@ const InstantQAPage = () => {
           alt=""
         />
       </div>
+      
     </div>
+    
   );
 };
 export default InstantQAPage;

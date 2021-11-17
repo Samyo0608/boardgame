@@ -1,16 +1,20 @@
 /* header */
 /* title */
+.title_frame{
+  position: relative;
+  margin-left:500px;
+  margin-bottom:-25px;
+}
 .title {
-  margin: 50px 0 0 50px;
+  margin-left:50px;
   font-size: 28px;
   font-weight: bold;
 }
-.dice {
-  float: left;
-  width: 300px;
-  position: relative;
-  top: -85px;
-  left: -70px;
+.instant_QA_dice {
+  width: 250px;
+  position: absolute;
+  top:15px;
+  left:-10px;
 }
 /* 外框背景 */
 .outer {
@@ -24,7 +28,7 @@
 }
 /* 內文內框 */
 .inner {
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
   margin: 60px 0px 10px 130px;
   width: 1020px;
   height: 800px;
@@ -33,43 +37,46 @@
   float: right;
   position: relative;
   margin: 30px;
+  width:50px;
+  cursor: pointer;
+  z-index:5;
 }
-.inner :first {
-  margin: 0;
-}
+#enlarge_font_size:active {
+  position: relative;
+  top: 1px
+  }
+#enlarge_font_size img:hover {
+  width:65px;
+    }
 /* 對話框 */
 .dialog_box {
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgb(255, 0, 0);
   margin: 20px;
+  position: relative;
 }
-/* 對話時間 (1)*/
-.conversation_time_1 {
-  margin-left: -50px;
-}
+/* 對話時間*/
+
 /* 專員對話框 */
 .commissioner_dialog {
-  border: 1px solid rgb(255, 255, 255);
+  display: inline-block;
+  border: 1px solid rgb(14, 236, 69);
   padding: 20px;
   position: relative;
 }
-
-/* 專員答覆 (1)*/
-.commissioner_answer_text {
-  margin-left: -50px;
-}
 /* 專員頭像 */
-.Commissioner_avatar {
-}
-.hack_start {
+.commissioner_avatar {
   position: absolute;
-  left: 0px;
-  bottom: 0px;
+  top:10px
 }
+/* 專員答覆 */
 .conversation_time {
-  margin-left: 100px;
+display: flex;
+justify-content: end;
+font-size:14px;
 }
 .commissioner_answer {
-  margin-left: 80px;
+  border: 1px solid rgb(101, 100, 105);
+  margin-left: 60px;
 }
 /* 問題框架 */
 .question_frame {
@@ -118,7 +125,7 @@
   border-radius: 10px;
 }
 .customer_avatar {
-  width: 60px;
+  width: 50px;
 }
 /* 輸入問題*/
 .input_question_outer {

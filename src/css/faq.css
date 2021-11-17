@@ -74,8 +74,8 @@ input[type="search"].faq_input_content {
 }
 .dice_icon {
   position: absolute;
-  margin-top: 20px;
-  margin-left: 125px;
+  margin-top: 30px;
+  margin-left: 270px;
   z-index: -1;
 }
 /* 分類&問題並排框 */
