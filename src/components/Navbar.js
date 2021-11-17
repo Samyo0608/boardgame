@@ -189,7 +189,7 @@ function TopNavbar(props) {
               className="ms-2 me-3"
               to={
                 sessionMember.id
-                  ? `/memberCenter/${sessionMember.account}`
+                  ? `/memberCenter${sessionMember.account}`
                   : "/login"
               }
               onClick={centerClick}
@@ -206,7 +206,7 @@ function TopNavbar(props) {
           </div>
           {sessionMember.id ? (
             <Link
-              to="/memberCenter/memberPoint"
+              to={`/memberCenter${sessionMember.account}`}
               className="d-flex justify-content-around align-items-center memberBorder"
             >
               <p className="name">

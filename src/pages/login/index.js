@@ -4,12 +4,11 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import "../../css/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function Login(props) {
-  let history = useHistory();
   const [member, setMember] = useState({
     email: "",
     password: "",

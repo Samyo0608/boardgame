@@ -11,11 +11,7 @@ function Register(props) {
     password: "",
     rePassword: "",
   });
-
-  // function handleSubmit(e) {
-  //   alert("成功");
-  // }
-
+  
   async function handleSubmit(e) {
     //e.preventDefault() -> 取消DOM的預設功能
     e.preventDefault();
