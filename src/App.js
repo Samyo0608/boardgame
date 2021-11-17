@@ -41,26 +41,26 @@ function App() {
     <>
       <div className="bodyWidth">
         <BrowserRouter>
-          <TopNavbar className="" />
+          <TopNavbar className="" pathname=""/>
           <Switch>
             <Route
               exact={true}
-              path="/memberCenter/memberPoint"
+              path="/memberCenter/:account/memberPoint"
               component={MemberPoint}
             />
             <Route
               exact={true}
-              path="/memberCenter/memberRent"
+              path="/memberCenter/:account/memberRent"
               component={MemberRent}
             />
             <Route
               exact={true}
-              path="/memberCenter/memSelf"
+              path="/memberCenter/:account/memSelf"
               component={MemSelf}
             />
             <Route
               exact={true}
-              path="/memberCenter/rePassword"
+              path="/memberCenter/:account/rePassword"
               component={RePassword}
             />
             <Route
@@ -70,7 +70,7 @@ function App() {
             />
             <Route
               exact={true}
-              path="/memberCenter/memberProduct"
+              path="/memberCenter/:account/memberProduct"
               component={MemberProduct}
             />
             <Route
@@ -100,7 +100,11 @@ function App() {
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
             {/* <Route exact={true} path="/contestInfo" component={contestInfo} /> */}
-            <Route exact={true} path="/contestInfo/:id" component={contestInfo} />
+            <Route
+              exact={true}
+              path="/contestInfo/:id"
+              component={contestInfo}
+            />
             <Route exact={true} path="/vote" component={vote} />
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
