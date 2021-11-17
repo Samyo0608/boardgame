@@ -11,7 +11,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import swal from "sweetalert";
-import { faMagic } from "@fortawesome/free-solid-svg-icons";
 
 // 測試資料
 const parsing = [
@@ -36,28 +35,38 @@ const parsing = [
 function Booking() {
   // 按鈕套件
   // swal 的第一個參數為 Title的文字，第二個參數為 Text 的文字，第三個參數是 icon 的類別。
-
-  swal({
-    title: "訂購確認?",
-    icon: "warning",
-    text: "是否確認訂購資訊正確呢",
-    buttons: {
-      cancel: "取消",
-      sure: {
-        text: "確認",
-        value: "sure",
+  function alertCheck() {
+    swal({
+      title: "訂購確認?",
+      icon: "warning",
+      text: "是否確認訂購資訊正確呢",
+      buttons: {
+        cancel: "取消",
+        sure: {
+          text: "確認",
+          value: "sure",
+        },
       },
-    },
-  }).then((value) => {
-    switch (value) {
-      case "sure":
-        swal("已收到您的訂購", { icon: "success" });
-        break;
+      buttonValidator: function (result) {
+        return new Promise(function (resolve, reject) {
+          if (result) {
+            resolve();
+          } else {
+            reject("test");
+          }
+        });
+      },
+    }).then((value) => {
+      switch (value) {
+        case "sure":
+          swal("已收到您的訂購", { icon: "success" });
+          break;
 
-      default:
-        swal("期待您的下次訂購", { icon: "info" });
-    }
-  });
+        default:
+          swal("期待您的下次訂購", { icon: "info" });
+      }
+    });
+  }
 
   // 日曆套件
 
@@ -129,7 +138,6 @@ function Booking() {
   const handleSubmit = (e) => {
     // 要先阻擋form的預設送出行為
     e.preventDefault();
-
     // 使用onSubmit時,可用FormData獲取各欄位的值(另一種得到表單值的方式)
     // 注意:FormData是要用各欄位的name屬性
     const formData = new FormData(e.target);
@@ -140,7 +148,8 @@ function Booking() {
     console.log(formData.get("date"));
     console.log(formData.get("time"));
     // 做客製化驗證
-
+    // 先驗證沒問題後才會呼叫alertCheck跳出視窗確認
+    alertCheck();
     // 驗證成功,用fetch或ajax送到伺服器
   };
 
@@ -248,6 +257,7 @@ function Booking() {
           onSubmit={handleSubmit}
           onInvalid={handleFormInvalid}
           onChange={handleFormChange}
+          id="frmCheck"
         >
           {/* 房型下拉選單 */}
           <div className="formStyle">
@@ -363,13 +373,7 @@ function Booking() {
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
 
           {/* 訂購確認按鈕 */}
-          <button
-            type="submit"
-            className="btn siteBookCheck"
-            onClick="alertCheck"
-          >
-            訂購確認
-          </button>
+          <button className="btn siteBookCheck">訂購確認</button>
         </form>
       </div>
 
