@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import reactDom from 'react-dom';
 import PropTypes from 'prop-types'
 import "../../css/vote.css";
@@ -7,7 +7,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,} from 'react-bootstrap';
 import BarChart from '../../components/contest/BarChart';
 import VoteLabel from '../../components/contest/VoteLabel.js'
-
+import {withRouter} from "react-router-dom"
+import axios from "axios";
+import { API_URL } from '../../configs/config';
 // 分類按鈕的狀態圖
 const categoryButton=[
     {
@@ -72,6 +74,14 @@ function Vote(props) {
     const[status,setStatus] = useState(2);
     // 寫一個跑資料的迴圈去承接到barchart
     const[barno,setBarno] = useState(barchartRun(allVote))
+
+    useEffect(async () =>{
+        let res = await axios.get(`${API_URL}/vote/list`);
+        setBarno(res.data);
+        console.log(barno)
+      },[])
+
+
     return (
         <>
          {/* 投票活動 */}
