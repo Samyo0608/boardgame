@@ -39,7 +39,7 @@ function TopNavbar(props) {
         });
         setSessionMember(memberSession.data);
       } catch (e) {
-        alert("獲取資料失敗");
+        // alert("獲取資料失敗");
       }
     }
     session();
