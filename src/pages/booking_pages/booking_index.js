@@ -45,8 +45,11 @@ function Booking() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("感謝您的訂購!", "", "success");
+        fetch("", { method: "POST" });
+        console.log("test");
       } else if (result.isDenied) {
         Swal.fire("期待您的下次訂購", "", "info");
+        console.log("test2");
       }
     });
   }
