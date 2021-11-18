@@ -142,6 +142,7 @@ const DEFAULT_NO_REPLIES = [
 const InstantQAPage = () => {
   const [dialogHistory, setDialogHistory] = useState(DEFAULT_HISTORY);
   const [utteranceText, setUtteranceText] = useState("");
+  const [utteranceOptions, setUtteranceOptions] = useState([]);
   const sendUtterance = (event) => {
     if (event.key === "Enter") {
       replyWithBot();
@@ -183,6 +184,10 @@ const InstantQAPage = () => {
     setDialogHistory(dialogHistory);
     setUtteranceText("");
   };
+
+  const handleSelectUtteranceOption = (e)=>{
+    console.log(e);
+  }
 
   return (
     <div className="container justify-content-center flex-column">
@@ -235,21 +240,17 @@ const InstantQAPage = () => {
               onChange={(e) => setUtteranceText(e.target.value)}
               onKeyDown={sendUtterance}
             />
-            <img src="/img/customer_service/sent.png" class="sent_img" alt="" />
-          </div>
-
-          {/* 自動搜尋問題外框*/}
-          <div class="automatic_search_outer">
-            {/* 自動搜尋問題列表 */}
-            <div class="automatic_search">
-              <ul class="adjustment_ul">
-                <li>1.賣家防騙指南</li>
-                <li>2.如何取消交易</li>
-                <li>3.商品有效期</li>
-                <li>4.未收到商品</li>
-                <li>5.打包商品</li>
-                <li>6.系統提示商品已下架</li>
-              </ul>
+            <img onClick={replyWithBot} src="/img/customer_service/sent.png" class="sent_img" alt="" />
+            {/* 自動搜尋問題外框*/}
+            <div class="automatic_search_outer">
+              {/* 自動搜尋問題列表 */}
+              <div class="automatic_search">
+                <ol class="adjustment_ul">
+                  {utteranceOptions.map((option, index) => (
+                    <li onClick={handleSelectUtteranceOption}>{option}</li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </div>
         </div>
