@@ -174,7 +174,7 @@ input[type="search"].faq_input_content {
   margin: 0;
 }
 /* 答覆表格設定 */
-.answer_block td,
+.answer_block td,.answer_block
 th {
   border: 1px solid rgb(156, 154, 154);
 }
