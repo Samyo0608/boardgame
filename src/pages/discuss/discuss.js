@@ -8,14 +8,16 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const gameType = [
-  { id: 1, name: "全部" },
-  { id: 2, name: "家庭" },
-  { id: 3, name: "策略" },
-  { id: 4, name: "卡牌" },
+  { id: 1, name: "全部", type: "all" },
+  { id: 2, name: "家庭", type: "family" },
+  { id: 3, name: "策略", type: "trag" },
+  { id: 4, name: "卡牌", type: "card" },
 ];
 
 const Discuss = (props) => {
   const [discuss, setDiscuss] = useState([]);
+  const [discussType, setDiscussType] = useState("all");
+
   useEffect(async () => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
@@ -49,18 +51,28 @@ const Discuss = (props) => {
           <img alt="" className="rentPic" src="/img/discuss/r_discuss.png" />
         </div>
         <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
-          {gameType.map((v, i) => {
-            return (
-              <li key={v.id} className="">
-                <a
-                  href="#/"
-                  className="d-inline-block recommendType text-decoration-none text-center"
+          <li className="">
+            {gameType.map((v, i) => {
+              return (
+                <Link
+                  key={v.id}
+                  to="#/"
+                  className={`d-inline-block mx-5 recommendType text-decoration-none text-center ${
+                    discussType === v.type ? "recommendTypeActive" : ""
+                  }`}
+                  onClick={async () => {
+                    let res = await axios.get(
+                      `http://localhost:3001/api/discuss/${v.type}`
+                    );
+                    setDiscuss(res.data);
+                    setDiscussType(v.type);
+                  }}
                 >
                   {v.name}
-                </a>
-              </li>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </li>
         </ul>
 
         <div className="r_discussOutBox">
@@ -105,9 +117,9 @@ const Discuss = (props) => {
                 </tbody>
               </table>
             </div>
-            <a className="r_discussButton text-center" href="#/">
+            <Link className="r_discussButton text-center" to="/newdiscuss">
               開新話題
-            </a>
+            </Link>
           </div>
           <div></div>
         </div>
@@ -177,6 +189,9 @@ const Discuss = (props) => {
           </div>
         </div>
       </div>
+      <a href="https://www.freepik.com/photos/mockup">
+        Mockup photo created by master1305 - www.freepik.com
+      </a>
       {/* 尾巴 */}
     </div>
   );
