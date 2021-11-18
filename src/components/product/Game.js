@@ -3,7 +3,7 @@ import { Col, Row, NavLink } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
 import { typecolor3 } from "../../configs/config";
-
+console.log("test");
 function Game(props) {
   const { product_name, product_type, product_img, product_price } = props;
   console.log("test");
