@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/index.css";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -23,15 +24,33 @@ const rentType = [
 ];
 
 const Index = () => {
-
   return (
     <div className="container overflow-hidden">
       {/* banner */}
-      <div className="bannerBox">
-        <img className="banner" src="img/index/banner.jpg" alt="" />
+      <div className="bannerBox position-relative">
+        <img className="banner" src="img/index/Ibanner3.png" alt="" />
+        <div className="bannerPlantBox">
+          <img className="bannerPlant" src="img/index/bannerText.png" alt="" />
+        </div>
+        <div className="bannerText me-5 mt-5 text-center">
+          <p className="fs-1 fw-bold">Welcome to Game Master</p>
+          <p className="fs-1 fw-bold">遊戲職人</p>
+        </div>
+        <div className="bubble1Box">
+          <img className="bubble1" src="img/index/bubble1.png" alt="" />
+        </div>
+        <Link to="Product/" className="bubble1Text fs-3 fw-bold">
+          選購桌遊
+        </Link>
+        <div className="bubble2Box">
+          <img className="bubble2" src="img/index/bubble2.png" alt="" />
+        </div>
+        <Link to="booking" className="bubble2Text fs-3 fw-bold">
+          場地租借
+        </Link>
       </div>
       {/* 公告 */}
-      <div className="news d-inline-block mt-5">
+      {/* <div className="news d-inline-block mt-5">
         <div className="d-flex align-items-center px-5">
           <img alt="" className="loud" src="img/index/loud.png" />
           <div className="loudContent">
@@ -40,7 +59,7 @@ const Index = () => {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* 推薦桌遊標題+插圖 */}
       <div className="position-relative">

@@ -2,14 +2,14 @@ import "./App.css";
 import "normalize.css";
 import React from "react";
 import FAQPage from "./pages/customer_service/faq";
-import InstantQAPage from "./pages/customer_service/instantQA_page";
+import InstantQAPage from "./pages/customer_service/instant_qa_page";
 import CustomerServicePage from "./pages/customer_service/customer_service_message";
-import QuestionRecord from "./pages/customer_service/question_record";
 import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import Discuss from "./pages/discuss/discuss.js";
+import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
 import bookingCheck from "./pages/booking_pages/booking_check.js";
 import {
@@ -63,25 +63,19 @@ function App() {
               path="/memberCenter:account/rePassword"
               component={RePassword}
             />
+            <Route path="/instant_QA" component={InstantQAPage} />
             <Route
-              exact={true}
               path="/customer_service_message"
               component={CustomerServicePage}
             />
+
+            <Route path="/edit_reply" component={EditReply} />
+            <Route path="/faq" component={FAQPage} />
             <Route
               exact={true}
               path="/memberCenter:account/memberProduct"
               component={MemberProduct}
             />
-            <Route
-              exact={true}
-              path="/question_record"
-              component={QuestionRecord}
-            />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
-            <Route exact={true} path="/edit_reply" component={EditReply} />
-            <Route exact={true} path="/faq" component={FAQPage} />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
@@ -96,6 +90,7 @@ function App() {
               path="/discuss/reply/:discuss_id?"
               component={Reply}
             />
+            <Route exact={true} path="/newdiscuss" component={NewDiscuss} />
             <Route exact={true} path="/discuss" component={Discuss} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
@@ -113,8 +108,8 @@ function App() {
             <Route exact={true} path="/loading" component={Loading} />
           </Switch>
         </BrowserRouter>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
