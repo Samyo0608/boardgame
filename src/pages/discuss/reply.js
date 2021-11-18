@@ -65,6 +65,7 @@ const Reply = () => {
 
   // 初始渲染
   useEffect(async () => {
+    window.scrollTo(0, 0);
     let res = await axios.get(
       `http://localhost:3001/api/discuss/reply/${discuss_id}`
     );
@@ -113,7 +114,7 @@ const Reply = () => {
       <div className="replyPicBox">
         <img alt="" className="replyPic" src="../../img/reply/reply1.png" />
       </div>
-      <a class="replyButton text-center" href="#/">
+      <a className="replyButton text-center" href="#/">
         回覆
       </a>
       {/* 討論區內容 */}
