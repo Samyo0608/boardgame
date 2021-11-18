@@ -36,7 +36,7 @@ function ContestCard(props) {
                     <Link to={`/contestInfo/${id}`} className="d-flex">
                          <div className="personNo">剩餘名額:{limit - no}</div>
                         <div className={`${limit - no === 0 ?  "disButton" :"doButton" }`} >{`${limit - no === 0 ?  "已額滿" :"我要報名" }`}</div>
-                </Link>
+                    </Link>
                     
                 </div>
             </Col> 
