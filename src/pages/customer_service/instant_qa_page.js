@@ -2,10 +2,8 @@ import { useState } from "react";
 import "../../css/instant_QA.css";
 import InstantQADialogBox from "./instant_qa_dialog_box";
 
-
-const CS_NAME = "遊戲職人客服";
+const CS_NAME = "遊戲職人";
 const USER_NAME = "使用者";
-
 
 const DEFAULT_HISTORY = [
   {
@@ -28,11 +26,76 @@ const DEFAULT_HISTORY = [
         type: "list",
         title: "常見問題 :",
         options: [
-          <div  class="list_fram"><img src="/img/customer_service/member.png" height="130px" width="140px"/><span class="click_range">會員相關</span> </div> ,
-          <div  class="list_fram"><img src="/img/customer_service/shopping.png" height="130px" width="140px"/><span class="click_range">購物相關</span> </div>,
-          <div  class="list_fram"><img src="/img/customer_service/commodity.png" height="130px" width="140px"/><span class="click_range">商品相關</span></div>,
-          <div  class="list_fram"><img src="/img/customer_service/delivery.png" height="130px" width="140px"/><span class="click_range">配送取貨</span></div>,
-          <div  class="list_fram"><img src="/img/customer_service/returned.png" height="130px" width="140px"/><span class="click_range">退換貨</span></div>,
+          <div class="list_fram">
+            <img
+              src="/img/customer_service/member.png"
+              height="130px"
+              width="140px"
+            />{" "}
+            <span class="click_range_title">會員</span>
+            <ul class="list_background">
+              <li class="click_range_list">忘記密碼</li>
+              <li class="click_range_list">點數回饋</li>
+              <li class="click_range_list">修改資料</li>
+              <li class="click_range_list">聯繫我們</li>
+            </ul>
+          </div>,
+          <div class="list_fram">
+            <img
+              src="/img/customer_service/shopping.png"
+              height="130px"
+              width="140px"
+            />
+            <span class="click_range_title">購物</span>
+            <ul class="list_background">
+              <li class="click_range_list">查詢訂單</li>
+              <li class="click_range_list">取消訂單</li>
+              <li class="click_range_list">更改數量</li>
+              <li class="click_range_list">付款方式</li>
+            </ul>
+          </div>,
+          <div class="list_fram">
+            <img
+              src="/img/customer_service/commodity.png"
+              height="130px"
+              width="140px"
+            />
+            <span class="click_range_title">商品</span>
+            <ul class="list_background">
+              <li class="click_range_list">商品瑕疵</li>
+              <li class="click_range_list">更換商品</li>
+              <li class="click_range_list">開立統編</li>
+              <li class="click_range_list">庫存進貨</li>
+            </ul>
+          </div>,
+          <div class="list_fram">
+            <img
+              src="/img/customer_service/delivery.png"
+              height="130px"
+              width="140px"
+            />{" "}
+            <span class="">配送取貨</span>
+            <ul class="list_background">
+              <li class="click_range_list">商品自取</li>
+              <li class="click_range_list">配送方式</li>
+              <li class="click_range_list">到貨時間</li>
+              <li class="click_range_list">未收到貨</li>
+            </ul>
+          </div>,
+          <div class="list_fram">
+            <img
+              src="/img/customer_service/returned.png"
+              height="130px"
+              width="140px"
+            />{" "}
+            <span class="click_range_title">退換貨</span>
+            <ul class="list_background">
+              <li class="click_range_list">退貨規定</li>
+              <li class="click_range_list">退貨方式</li>
+              <li class="click_range_list">退款時間</li>
+              <li class="click_range_list">聯繫我們</li>
+            </ul>
+          </div>,
         ],
       },
     ],
@@ -59,6 +122,15 @@ const INTENT_MAP = {
       },
     ],
   },
+  forgotPassword: {
+    regexes: [/忘記密碼/, /密碼忘了/],
+    replies: [
+      {
+        type: "text",
+        payload: "可憐啊",
+      },
+    ],
+  },
 };
 const DEFAULT_NO_REPLIES = [
   {
@@ -72,7 +144,7 @@ const InstantQAPage = () => {
   const [utteranceText, setUtteranceText] = useState("");
   const sendUtterance = (event) => {
     if (event.key === "Enter") {
-      replyWithBot()
+      replyWithBot();
     }
   };
   const replyWithBot = () => {
@@ -141,7 +213,9 @@ const InstantQAPage = () => {
           {dialogHistory.map((item) => (
             <InstantQADialogBox
               message={item}
-              handleSelectItem={(e)=>{ setUtteranceText(e.target.innerText)}}
+              handleSelectItem={(e) => {
+                setUtteranceText(e.target.innerText);
+              }}
             ></InstantQADialogBox>
           ))}
         </div>

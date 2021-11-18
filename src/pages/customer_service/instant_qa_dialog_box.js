@@ -11,17 +11,15 @@ const InstantQADialogBox = ({ message, handleSelectItem }) => {
         result.push(
           <div class="question_frame">
             {/* 問題清單分隔 */}
-              {/* 問題清單 */}
-              <div class="shopping_problem">
-                <p>{item.title}</p>
-                <ul>
-                  {item.options.map((option, index) => (
-                    <li onClick={handleSelectItem}>
-                    {option}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* 問題清單 */}
+            <div class="shopping_problem">
+              <p>{item.title}</p>
+              <ul>
+                {item.options.map((option, index) => (
+                  <li onClick={handleSelectItem}>{option}</li>
+                ))}
+              </ul>
+            </div>
             {/* 問題清單外框結尾 */}
           </div>
         );
@@ -45,7 +43,7 @@ const InstantQADialogBox = ({ message, handleSelectItem }) => {
       {/* 對話時間 */}
       <div
         className={
-          message.isCustomer ? "customer_dialog_box" : "commissioner_dialog"
+          message.isCustomer ? "customer_dialog" : "commissioner_dialog"
         }
       >
         <img
@@ -58,10 +56,23 @@ const InstantQADialogBox = ({ message, handleSelectItem }) => {
           alt=""
         />
         <div>
-          <span class="conversation_time">
+
+          <div
+            class={
+              message.isCustomer ? "customer_answer" : "commissioner_answer"
+            }
+          >
+            {renderItems(message.items)}
+          </div>
+          <span
+            class={
+              message.isCustomer
+                ? "customer_conversation_time"
+                : "conversation_time"
+            }
+          >
             {message.sender} {formatDateString(message.dateTime)}
           </span>
-           <div class="commissioner_answer">{renderItems(message.items)}</div>
         </div>
       </div>
     </div>
