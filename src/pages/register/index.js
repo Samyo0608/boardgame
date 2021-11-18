@@ -11,7 +11,7 @@ function Register(props) {
     password: "",
     rePassword: "",
   });
-  
+
   async function handleSubmit(e) {
     //e.preventDefault() -> 取消DOM的預設功能
     e.preventDefault();
@@ -26,6 +26,8 @@ function Register(props) {
         });
         if (req.data.code === "102") {
           alert("此email已有人使用");
+        } else if (req.data.code === "106") {
+          alert("此帳號已有人使用");
         } else {
           alert("註冊成功");
           props.history.push("/login");
@@ -37,7 +39,7 @@ function Register(props) {
     } else if (member.password !== member.rePassword) {
       alert("密碼驗證失敗");
     } else {
-      alert("信箱未填寫");
+      alert("信箱或帳號未填寫");
     }
   }
 
@@ -92,6 +94,8 @@ function Register(props) {
                 className="input"
                 onChange={handleChange}
                 required
+                minlength="6"
+                maxlength="20"
               />
             </Col>
           </Form.Group>
