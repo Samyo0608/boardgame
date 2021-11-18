@@ -2,9 +2,8 @@ import "./App.css";
 import "normalize.css";
 import React from "react";
 import FAQPage from "./pages/customer_service/faq";
-import InstantQAPage from "./pages/customer_service/instantQA_page";
+import InstantQAPage from "./pages/customer_service/instant_qa_page";
 import CustomerServicePage from "./pages/customer_service/customer_service_message";
-import QuestionRecord from "./pages/customer_service/question_record";
 import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
@@ -63,25 +62,19 @@ function App() {
               path="/memberCenter:account/rePassword"
               component={RePassword}
             />
+            <Route path="/instant_QA" component={InstantQAPage} />
             <Route
-              exact={true}
               path="/customer_service_message"
               component={CustomerServicePage}
             />
+
+            <Route path="/edit_reply" component={EditReply} />
+            <Route path="/faq" component={FAQPage} />
             <Route
               exact={true}
               path="/memberCenter:account/memberProduct"
               component={MemberProduct}
             />
-            <Route
-              exact={true}
-              path="/question_record"
-              component={QuestionRecord}
-            />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
-            <Route exact={true} path="/edit_reply" component={EditReply} />
-            <Route exact={true} path="/faq" component={FAQPage} />
-            <Route exact={true} path="/instant_QA" component={InstantQAPage} />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
