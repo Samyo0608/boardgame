@@ -84,7 +84,9 @@
 }
 
 .r_discussBody tr th {
-  width: 450px;
+  /* width: 450px; */
+}
+.discussNameBox {
 }
 
 .r_discussButton {
@@ -179,6 +181,28 @@
 .ruleImg {
   object-fit: contain;
   width: 100%;
+}
+
+.discussTagFamily {
+  margin: auto;
+  background-color: #f34628;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
+}
+.discussTagCard {
+  margin: auto;
+  background-color: #ffa03b;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
+}
+.discussTagTrag {
+  margin: auto;
+  background-color: #3b89ff;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
 }
 
 .tesssssttttttt {

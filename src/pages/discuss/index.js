@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/index.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +23,7 @@ const rentType = [
 ];
 
 const Index = () => {
+
   return (
     <div className="container overflow-hidden">
       {/* banner */}

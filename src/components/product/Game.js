@@ -3,23 +3,23 @@ import { Col, Row } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
 
-const Game = () => {
+const Game = (props) => {
+  const { product_name, product_type, product_img, product_price } = props;
   return (
     <>
-      {/* 一 */}
       <Row className="shadowbox4">
         <Col>
-          <img className="pic" src="/img/product/crime.jpg" alt="" />
+          <img className="pic" src={product_img} alt="" />
           <div>
-            <p className="type">策略</p>
+            <p className="type">{product_type}</p>
           </div>
           <div>
             <a className="a1" href="#/">
-              <p className="gamename">犯人在跳舞</p>
+              <p className="gamename">{product_name}</p>
             </a>
           </div>
           <br></br>
-          <span>$999</span>
+          <span>${product_price}</span>
           <div className="iconflex">
             <a href="#/">
               <img

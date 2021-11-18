@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import reactDom from 'react-dom';
 import PropTypes from 'prop-types'
 import "../../css/vote.css";
@@ -7,86 +7,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,} from 'react-bootstrap';
 import BarChart from '../../components/contest/BarChart';
 import VoteLabel from '../../components/contest/VoteLabel.js'
-
-// 投票票數假資料
-const familyVote=[
-    {
-     id:1,
-     game_name:"傳情畫意家庭",
-     vote_get:12,
-     product_type:"家庭",
-    },
-    {
-     id:2,
-     game_name:"估估劃劃家庭",
-     vote_get:6,
-     product_type:"家庭",
-    },
-    {
-     id:3,
-     game_name:"諾亞方舟家庭",
-     vote_get:20,
-     product_type:"家庭",
-
-    },
-
-]
-const tragVote=[
-    {
-     id:1,
-     game_name:"傳情畫意策略",
-     vote_get:2
-    },
-    {
-     id:2,
-     game_name:"估估劃劃策略",
-     vote_get:3,
-    },
-    {
-     id:3,
-     game_name:"諾亞方舟策略",
-     vote_get:8,
-    },
-
-]
-
-const cardVote=[
-    {
-     id:1,
-     game_name:"傳情畫意卡片",
-     vote_get:10,
-    },
-    {
-     id:2,
-     game_name:"估估劃劃卡片",
-     vote_get:12,
-    },
-    {
-     id:3,
-     game_name:"諾亞方舟卡片",
-     vote_get:2,
-    },
-
-]
-
-const allVote=[
-    {
-     id:1,
-     game_name:"傳情畫意全部",
-     vote_get:2
-    },
-    {
-     id:2,
-     game_name:"估估劃劃全部",
-     vote_get:3,
-    },
-    {
-     id:3,
-     game_name:"諾亞方舟全部",
-     vote_get:8,
-    },
-
-]
+import {withRouter} from "react-router-dom"
+import axios from "axios";
+import { API_URL } from '../../configs/config';
 // 分類按鈕的狀態圖
 const categoryButton=[
     {
@@ -107,8 +30,58 @@ const categoryButton=[
     }
 ]
 
+
+// 假資料帶入vote
+
+
+const allVote=[
+    {
+     id:1,
+     game_name:"傳情畫意家庭",
+     vote_get:2,
+     product_type:1,
+    },
+    {
+        id:1,
+        game_name:"傳情畫意家庭2",
+        vote_get:2,
+        product_type:1,
+       },
+    {
+     id:2,
+     game_name:"估估劃劃卡牌",
+     vote_get:3,
+     product_type:2,
+    },
+    {
+     id:3,
+     game_name:"諾亞方舟策略",
+     vote_get:8,
+     product_type:3,
+    },
+]
+
+// 跑一個迴圈將物件放入陣列
+const barchartRun = (b)=>{
+    const bar =[]
+    for(let i = 0; b< b.length; i++) {
+        bar.push({...b[i]})
+    }
+    return bar
+}
+
 function Vote(props) {
     const[status,setStatus] = useState(2);
+    // 寫一個跑資料的迴圈去承接到barchart
+    const[barno,setBarno] = useState(barchartRun(allVote))
+
+    useEffect(async () =>{
+        let res = await axios.get(`${API_URL}/vote/list`);
+        setBarno(res.data);
+        console.log(barno)
+      },[])
+
+
     return (
         <>
          {/* 投票活動 */}
@@ -134,7 +107,7 @@ function Vote(props) {
 
 
    {/* 投票長條圖及結果開始 */}
-   <div className={`voteResult pt-3 ${ status === 1 ? "d-block" : "d-none"}` }>
+<div className={`voteResult pt-3 ${status===1?"d-block":"d-none"}`}>
         <h2 className="text-center">目前投票結果全</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
@@ -143,8 +116,15 @@ function Vote(props) {
         <Container >
 
         {/* 長條圖在這 */}
+        {
+            <BarChart
+                className="chartContainer"
+                type={allVote.product_type===1}
+                vote={allVote.vote_get}
+                gamename={allVote.game_name}
+            />
+        }
         
-        <BarChart />
 
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
@@ -187,7 +167,8 @@ function Vote(props) {
         <div>
             <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
 
-            {allVote.map((v,i) => {
+            {
+                allVote.map((v,i) => {
                 return(
                 <VoteLabel 
                   name={v.game_name} />
@@ -215,8 +196,15 @@ function Vote(props) {
         <Container >
 
         {/* 長條圖在這 */}
+        {
+            <BarChart
+                className="chartContainer"
+                type={allVote.product_type===1}
+                vote={allVote.vote_get}
+                gamename={allVote.game_name}
+            />
+        }
         
-        <BarChart/>
 
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
@@ -257,12 +245,15 @@ function Vote(props) {
         </div>
         <div>
             <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
-
-            {familyVote.map((v,i) => {
-                return(
-                <VoteLabel 
-                  name={v.game_name} />
-                )                    
+            
+            {
+                
+                allVote.map((v,i) => {
+                    if(v.product_type === 1){
+                        return (
+                            <VoteLabel name={v.game_name} />
+                        )
+                    }                   
             })}
             
             
@@ -326,12 +317,15 @@ function Vote(props) {
         </div>
         <div>
             <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
-
-            {cardVote.map((v,i) => {
-                return(
-                <VoteLabel 
-                  name={v.game_name} />
-                )                    
+           
+            {
+                
+                allVote.map((v,i) => {
+                    if(v.product_type === 2){
+                        return (
+                            <VoteLabel name={v.game_name} />
+                        )
+                    }                   
             })}
             
             
@@ -396,12 +390,15 @@ function Vote(props) {
         </div>
         <div>
             <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
-
-            {tragVote.map((v,i) => {
-                return(
-                <VoteLabel 
-                  name={v.game_name} />
-                )                    
+            
+            {
+                
+                allVote.map((v,i) => {
+                    if(v.product_type === 3){
+                        return (
+                            <VoteLabel name={v.game_name} />
+                        )
+                    }                   
             })}
             
             

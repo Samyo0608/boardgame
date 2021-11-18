@@ -10,7 +10,9 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import swal from "sweetalert2";
 
+const Swal = require("sweetalert2");
 // 測試資料
 const parsing = [
   { room: "", date: "", time: "" },
@@ -30,7 +32,25 @@ const parsing = [
     end: "",
   },
 ];
+
 function Booking() {
+  // 按鈕套件
+  function alertCheck() {
+    Swal.fire({
+      title: "請問是否確認下訂呢?",
+      showDenyButton: true,
+      confirmButtonText: "確認",
+      denyButtonText: `取消`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("感謝您的訂購!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("期待您的下次訂購", "", "info");
+      }
+    });
+  }
+
   // 日曆套件
 
   // 使用物件值作為狀態值,儲存所有欄位
@@ -101,7 +121,6 @@ function Booking() {
   const handleSubmit = (e) => {
     // 要先阻擋form的預設送出行為
     e.preventDefault();
-
     // 使用onSubmit時,可用FormData獲取各欄位的值(另一種得到表單值的方式)
     // 注意:FormData是要用各欄位的name屬性
     const formData = new FormData(e.target);
@@ -112,7 +131,8 @@ function Booking() {
     console.log(formData.get("date"));
     console.log(formData.get("time"));
     // 做客製化驗證
-
+    // 先驗證沒問題後才會呼叫alertCheck跳出視窗確認
+    alertCheck();
     // 驗證成功,用fetch或ajax送到伺服器
   };
 
@@ -220,6 +240,7 @@ function Booking() {
           onSubmit={handleSubmit}
           onInvalid={handleFormInvalid}
           onChange={handleFormChange}
+          id="frmCheck"
         >
           {/* 房型下拉選單 */}
           <div className="formStyle">
@@ -335,9 +356,7 @@ function Booking() {
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
 
           {/* 訂購確認按鈕 */}
-          <button type="submit" className="btn siteBookCheck">
-            訂購確認
-          </button>
+          <button className="btn siteBookCheck">訂購確認</button>
         </form>
       </div>
 
