@@ -1,22 +1,26 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, NavLink } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
+import { typecolor3 } from "../../configs/config";
 
-const Game = (props) => {
+function Game(props) {
   const { product_name, product_type, product_img, product_price } = props;
+
   return (
     <>
       <Row className="shadowbox4">
         <Col>
           <img className="pic" src={product_img} alt="" />
           <div>
-            <p className="type">{product_type}</p>
+            <article className={typecolor3[product_type]}>
+              {product_type}
+            </article>
           </div>
           <div>
-            <a className="a1" href="#/">
+            <NavLink to="/aboutgame" activeClassName="a1">
               <p className="gamename">{product_name}</p>
-            </a>
+            </NavLink>
           </div>
           <br></br>
           <span>${product_price}</span>
@@ -36,6 +40,6 @@ const Game = (props) => {
       </Row>
     </>
   );
-};
+}
 
 export default Game;

@@ -69,23 +69,7 @@
   position: relative;
   top: 40px;
   left: 190px;
-  margin: 30px;
 }
-
-.disConSubmit {
-  background-color: var(--disButton);
-  color: white;
-  font-size: 32px;
-  border: none;
-  border-radius: 5px;
-  width: 200px;
-  position: relative;
-  top: 40px;
-  left: 190px;
-  margin: 30px;
-  pointer-events: none;
-}
-
 /* 底部按鈕區塊  */
 .buttonZone {
   width: 100%;
@@ -102,17 +86,13 @@
   font-size: 42px;
   border: none;
   border-radius: 20px;
-  margin-top: 50px;
-  padding: 10px;
-  text-decoration: none;
   position: relative;
-  bottom: -80px;
+  margin-top: 90px;
+  text-decoration: none;
 }
 .arrowStyle {
   font-size: 60px;
   padding-left: 20px;
   padding-right: 20px;
   color: black;
-  position: relative;
-  bottom: -80px;
 }

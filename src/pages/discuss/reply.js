@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/reply.css";
 import React from "react";
@@ -9,88 +8,20 @@ import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 
 const Reply = () => {
-  // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
-  const { discuss_id } = useParams();
-
-  // 標題設定狀態
-  const [replyTitle, setreplyTitle] = useState([]);
-
-  // 內容設定狀態
+  // 定義的名稱要與路由器上定義的/:discuss_title一樣
+  const { discuss_title } = useParams();
   const [discussContent, setDiscussContent] = useState([]);
-
-  // 統計發文數設定狀態
-  const [discussCount, setDiscussCount] = useState([{ user_id: "", cot: "" }]);
-
-  // 統計回覆數設定狀態
-  const [replyCount, setReplyCount] = useState([{ user_id: "", cot: "" }]);
-
-  // 新增回覆資料
-  const [insertDiscuss, setInsertDiscuss] = useState({
-    discuss_id: discuss_id,
-    user_id: "",
-    content: "",
-    floor: "1",
-  });
-
-  // e.target 就是事件發生的目標
-  function handleDiscussChange(e) {
-    let newInsertDiscuss = { ...insertDiscuss };
-    newInsertDiscuss[e.target.name] = e.target.value;
-    setInsertDiscuss(newInsertDiscuss);
-    // setMember({ ...member, [e.target.name]: e.target.value });
-  }
-
-  async function handleInsertDiscussSubmit(e) {
-    e.preventDefault();
-    try {
-      // json 格式無法傳檔案，改成用 form data
-      let formData = new FormData();
-      formData.append("discuss_id", insertDiscuss.discuss_id);
-      formData.append("user_id", insertDiscuss.user_id);
-      formData.append("content", insertDiscuss.content);
-      formData.append("floor", insertDiscuss.floor);
-      // 測試資料
-      for (var key of formData.entries()) {
-        console.log(key[0] + ", " + key[1]);
-      }
-      let res = await axios.post(
-        `http://localhost:3001/api/discuss/insertDiscuss`,
-        formData
-      );
-      window.location.reload();
-    } catch (e) {
-      console.log("handleInsertDiscussSubmit", e);
-    }
-  }
-
-  // 初始渲染
   useEffect(async () => {
     let res = await axios.get(
-      `http://localhost:3001/api/discuss/reply/${discuss_id}`
+      `http://localhost:3001/api/discuss/reply/${discuss_title}`
     );
-    let resTitle = await axios.get(
-      `http://localhost:3001/api/discuss/title/${discuss_id}`
-    );
+    console.log(res);
     setDiscussContent(res.data);
-    setreplyTitle(resTitle.data[0]);
   }, []);
-
-  useEffect(async () => {
-    let resDiscussCount = await axios.get(
-      `http://localhost:3001/api/discuss/discussCount`
-    );
-    setDiscussCount(resDiscussCount.data);
-  }, []);
-
-  useEffect(async () => {
-    let resReplyCount = await axios.get(
-      `http://localhost:3001/api/discuss/replyCount`
-    );
-    setReplyCount(resReplyCount.data);
-  }, []);
-
   return (
     <div className="overflow-hidden">
+      {/* <h1>{discuss_id}</h1> */}
+      {/* banner */}
       <div className="replyBannerBox">
         <img
           className="replyBannerImg"
@@ -106,8 +37,7 @@ const Reply = () => {
       {/* 麵包屑 */}
       <div className="replyBread text-end">
         <a className="replyBreadContent" href="#/">
-          首頁{`>>`}討論區{`>>`}
-          {replyTitle.title}
+          首頁{`>>`}討論區{`>>`}有人能幫忙看一下牌組嗎?
         </a>
       </div>
       <div className="replyPicBox">
@@ -119,7 +49,7 @@ const Reply = () => {
       {/* 討論區內容 */}
       {discussContent.map((v, i) => {
         return (
-          <div key={v.id} className="firstF row mx-2">
+          <div key={v.discuss_id} className="firstF row mx-2">
             {/* 發表者 */}
             <div className="col-2">
               <div className="replyerBox text-center fw-bold">
@@ -132,39 +62,25 @@ const Reply = () => {
                   />
                 </div>
                 <p>{v.user_id}</p>
-                <p>
-                  {discussCount.filter((dv) => {
-                    return dv.user_id === Number(v.user_id);
-                  })[0]?.cot === undefined
-                    ? "0"
-                    : discussCount.filter((dv) => {
-                        return dv.user_id === Number(v.user_id);
-                      })[0]?.cot}
-                  {`篇發表`}
-                </p>
-                <p>
-                  {replyCount.filter((rv) => {
-                    return rv.user_id === Number(v.user_id);
-                  })[0]?.cot === undefined
-                    ? "0"
-                    : replyCount.filter((rv) => {
-                        return rv.user_id === Number(v.user_id);
-                      })[0]?.cot}
-                  {`篇回覆`}
-                </p>
+                <p>5篇文章</p>
+                <p>10則回覆</p>
               </div>
             </div>
             {/* 留言內容 */}
             <div className="col-10">
-              <div className="replyBox">
+              <div class="replyBox">
                 <div className="replyOutBox">
                   <div className="replyInBox">
                     {/* 文章內容 */}
-                    <p>{v.content}</p>
-
+                    <p>{v.discuss_content}</p>
+                    {/* <img
+                      alt=""
+                      className=""
+                      src="../../img/reply/replyImg.png"
+                    /> */}
                     <p className="postTime text-secondary">
                       發表於 :{" "}
-                      {moment(v.created_at.toString()).format(
+                      {moment(v.discuss_time.toString()).format(
                         "YYYY-MM-DD HH:mm:ss"
                       )}
                     </p>
@@ -220,28 +136,18 @@ const Reply = () => {
                 src="../../img/reply/bird2.png"
               />
             </div>
-            {/* <div className="replyInputFloor text-center">3樓</div> */}
-            <div className="textareaBox">
-              <form onSubmit={handleInsertDiscussSubmit}>
-                <label>id :</label>
-                <input
-                  className="form-control"
-                  name="user_id"
-                  type="text"
-                  value={insertDiscuss.user_id}
-                  onChange={handleDiscussChange}
-                />
-                <label>內容 :</label>
+            <div className="replyInputFloor text-center">3樓</div>
+            <div class="textareaBox">
+              <form>
                 <textarea
                   className="form-control"
-                  name="content"
                   rows="11"
                   cols="102"
-                  value={insertDiscuss.content}
-                  onChange={handleDiscussChange}
                   placeholder="Leave a comment here"
-                />
-                <button className="replySubmitButton text-center">送出</button>
+                ></textarea>
+                <a href="#/" className="replySubmitButton text-center">
+                  送出
+                </a>
               </form>
             </div>
           </div>

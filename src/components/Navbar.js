@@ -76,7 +76,7 @@ function TopNavbar(props) {
       href: "/contest",
       secondItem1: "活動資訊",
       secondItem2: "投票活動",
-      url1: "/contestInfo/1",
+      url1: "/contestInfo",
       url2: "/vote",
       isShow: true,
     },
@@ -187,11 +187,7 @@ function TopNavbar(props) {
             </Link>
             <Link
               className="ms-2 me-3"
-              to={
-                sessionMember.id
-                  ? `/memberCenter${sessionMember.account}`
-                  : "/login"
-              }
+              to={sessionMember.id ? "/memberCenter" : "/login"}
               onClick={centerClick}
             >
               <FontAwesomeIcon icon={faUserCircle} />
@@ -206,14 +202,16 @@ function TopNavbar(props) {
           </div>
           {sessionMember.id ? (
             <Link
-              to={`/memberCenter${sessionMember.account}`}
+              to="/memberCenter/memberPoint"
               className="d-flex justify-content-around align-items-center memberBorder"
             >
               <p className="name">
-                {sessionMember.account ? sessionMember.account : "會員您好"}
+                {sessionMember.account
+                  ? sessionMember.account
+                  : `會員${sessionMember.id}`}
               </p>
               <div className="d-flex align-items-center">
-                點數<div className="point me-1">P</div> : {sessionMember.point}
+                點數<div className="point">P</div> : {sessionMember.point}
               </div>
               <div className="ms-1">
                 <FontAwesomeIcon
@@ -227,7 +225,7 @@ function TopNavbar(props) {
               to="/login"
               className="d-flex justify-content-center align-items-center memberBorder"
             >
-              登入/註冊
+              登入
             </Link>
           )}
         </div>

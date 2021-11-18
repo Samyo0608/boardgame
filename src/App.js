@@ -41,26 +41,26 @@ function App() {
     <>
       <div className="bodyWidth">
         <BrowserRouter>
-          <TopNavbar className="" pathname="" />
+          <TopNavbar className="" />
           <Switch>
             <Route
               exact={true}
-              path="/memberCenter:account/memberPoint"
+              path="/memberCenter/memberPoint"
               component={MemberPoint}
             />
             <Route
               exact={true}
-              path="/memberCenter:account/memberRent"
+              path="/memberCenter/memberRent"
               component={MemberRent}
             />
             <Route
               exact={true}
-              path="/memberCenter:account/memSelf"
+              path="/memberCenter/memSelf"
               component={MemSelf}
             />
             <Route
               exact={true}
-              path="/memberCenter:account/rePassword"
+              path="/memberCenter/rePassword"
               component={RePassword}
             />
             <Route
@@ -70,7 +70,7 @@ function App() {
             />
             <Route
               exact={true}
-              path="/memberCenter:account/memberProduct"
+              path="/memberCenter/memberProduct"
               component={MemberProduct}
             />
             <Route
@@ -85,26 +85,17 @@ function App() {
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
-            <Route
-              exact={true}
-              path="/memberCenter:account"
-              component={MemberCenter}
-            />
+            <Route exact={true} path="/memberCenter" component={MemberCenter} />
             <Route exact={true} path="/booking" component={booking} />
             <Route
               exact={true}
-              path="/discuss/reply/:discuss_id?"
+              path="/discuss/reply/:discuss_title?"
               component={Reply}
             />
             <Route exact={true} path="/discuss" component={Discuss} />
             <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
-            {/* <Route exact={true} path="/contestInfo" component={contestInfo} /> */}
-            <Route
-              exact={true}
-              path="/contestInfo/:id"
-              component={contestInfo}
-            />
+            <Route exact={true} path="/contestInfo" component={contestInfo} />
             <Route exact={true} path="/vote" component={vote} />
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />

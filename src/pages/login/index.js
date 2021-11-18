@@ -4,11 +4,12 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import "../../css/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function Login(props) {
+  let history = useHistory();
   const [member, setMember] = useState({
     email: "",
     password: "",
@@ -24,15 +25,11 @@ function Login(props) {
     e.preventDefault();
     if (member.email !== "" && member.password !== "") {
       try {
-        let req = await axios.post(`${API_URL}/auth/login`, member, {
+        await axios.post(`${API_URL}/auth/login`, member, {
           withCredentials: true,
         });
-        if (req.data.code === "104") {
-          alert("帳號或密碼錯誤");
-        } else {
-          alert("登入成功");
-          window.location.replace("/");
-        }
+        alert("登入成功");
+        window.location.replace("/");
       } catch (e) {
         console.error("登入錯誤", e);
         alert("登入失敗");
