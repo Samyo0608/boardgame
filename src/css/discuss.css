@@ -91,7 +91,7 @@
 
 .r_discussButton {
   font-weight: bold;
-  color: black;
+  color: white;
   display: inline-block;
   border-radius: 5px;
   width: 120px;
@@ -99,7 +99,7 @@
   line-height: 30px;
   padding-top: 2px;
   text-decoration: none;
-  background-color: #ffffff;
+  background-color: #2196d4;
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
   position: absolute;
   right: 40px;
@@ -129,6 +129,12 @@
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0px 0px 2px rgb(175, 175, 175);
+}
+
+.recommendTypeActive {
+  color: black;
+  background-color: white;
+  box-shadow: 1px 1px 2px rgb(175, 175, 175);
 }
 
 .drBox {

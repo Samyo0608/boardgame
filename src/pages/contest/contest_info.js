@@ -10,10 +10,11 @@ import {
   faAngleDoubleRight,
   faAngleDoubleLeft,
 } from "@fortawesome/free-solid-svg-icons"; // <-- import faSearch
-import {Row, Col } from "react-bootstrap";
+import {Row, Col, Form } from "react-bootstrap";
 import {withRouter} from "react-router-dom"
 import axios from "axios";
 import { API_URL } from '../../configs/config';
+import Button from "@restart/ui/esm/Button";
 
  
 
@@ -36,7 +37,14 @@ function Contest_info(props) {
       return v.contest_id === Number(props.match.params.id)
     })
     setInfo(newInfo)
+
   },[props.match.params.id])
+
+// useEffect(async() => {
+//   let keyinAdd = await axios.get(`${API_URL}/keyin/in`
+//   );
+//   setSignup(keyinAdd.data);
+//   }, [])
 
   const[info,setInfo]=useState({
     contest_id: 0,
@@ -54,31 +62,24 @@ function Contest_info(props) {
   })
 
   // 填寫報名資訊用
-  const [keyin,setKeyin] =useState({
+  const [signup,setSignup] =useState({
     contest_title:"",
     contest_name: "",
     contest_phone:"",
     contest_email:"",
-  })
+  });
   
-  function handleChange(e) {
-    let newKeyin ={...keyin};
-    newKeyin[e.target.contest_title] = e.target.value;
-    setKeyin(newKeyin);
-  }
+
 
   async function handleSubmit(e) {
     e.preventDefault();
     try{
-      let formData = new FormData();
-      formData.append("contest_title",keyin.contest_title);
-      formData.append("contest_name",keyin.contest_name);
-      formData.append("contest_phone",keyin.contest_phone);
-      formData.append("contest_email",keyin.contest_email);
-      let res = await axios.post(`${API_URL}/keyin/signup`,formData)
+      let res = await axios.post(`${API_URL}/keyin/in`,
+      signup
+    );
     } catch(e) {
-      console.log("handleSubmit")
-    }
+      console.log("handleSubmit",e)
+    }  
   }
 
   //頁數判斷
@@ -139,27 +140,82 @@ function Contest_info(props) {
             <img alt="" className="titleLine" src="img/index/line.png" />
           </div>
 
-        <form method="post" onSubmit={handleSubmit}>
-        <Row className="fontActivity">
-          <Col md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />
-                活動名稱:</Col>
-          <Col md={8} className="mt-4">
-          <div name="contest_title" onSubmit={handleSubmit} className="d-flex justify-content-start ps-3">{info.contest_title}</div>
-            
-          </Col>
-          <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />姓　　名:</Col>
-          <Col md={8}><input name="contest_name" onSubmit={handleSubmit} type="text" className="conInputStyle mt-4"></input></Col>
-          <Col md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />
-                連絡電話:</Col>
-          <Col md={8} className="mt-4">
-          <input name="contest_phone" onSubmit={handleSubmit} type="text" className="conInputStyle"/></Col>
-          <Col md={4} className="mt-4"><FontAwesomeIcon icon={faDice} />
-                聯絡信箱:</Col>
-          <Col md={8} className="mt-4"><input name="contest_email" type="text" className="conInputStyle"/></Col>
-          <Col md={12} className="mt-1">
-          <input type="submit" onSubmit={handleSubmit} value={info.contest_limit -info.contest_title_no === 0 ? "已額滿" : "送　出"} className={info.contest_limit -info.contest_title_no === 0 ? "disConSubmit" : "conSubmit"} /></Col>
-        </Row>
-        </form>
+        <Form method="post" onSubmit={handleSubmit}>
+          <Form.Group as={Row} className="fontActivity" >
+            <Form.Label column md={4}>
+            <FontAwesomeIcon icon={faDice} className="mt-4" />活動名稱</Form.Label>
+            <Col md={8}>
+              <Form.Control 
+                name="contest_title"
+                type="text"
+                required
+                className="conInputStyle mt-4"
+                // value={signup.contest_title}
+                onChange={(e) => {
+                  let newSignup = {...signup};
+                  newSignup.contest_title =e.target.value;
+                  setSignup(newSignup)
+                  console.log(signup)
+                }}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="fontActivity" >
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />姓　名</Form.Label>
+            <Col md={8}>
+              <Form.Control 
+                name="contest_title"
+                placeholder=""
+                className="conInputStyle mt-4"
+                // value={signup.contest_name}
+                onChange={(e) => {
+                  let newSignup = {...signup};
+                  newSignup.contest_name =e.target.value;
+                  setSignup(newSignup)
+                  console.log(signup)
+                }}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="fontActivity" >
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />連絡電話</Form.Label>
+            <Col md={8}>
+              <Form.Control 
+                name="contest_title"
+                placeholder=""
+                className="conInputStyle mt-4"
+                // value={signup.contest_title}
+                onChange={(e) => {
+                  let newSignup = {...signup};
+                  newSignup.contest_phone =e.target.value;
+                  setSignup(newSignup)
+                  console.log(signup)
+                }}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="fontActivity" >
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />聯絡信箱</Form.Label>
+            <Col md={8}>
+              <Form.Control 
+                name="contest_title"
+                placeholder=""
+                className="conInputStyle mt-4"
+                // value={signup.contest_email}
+                onChange={(e) => {
+                  let newSignup = {...signup};
+                  newSignup.contest_email =e.target.value;
+                  setSignup(newSignup)
+                  console.log(signup)
+                }}
+              />
+            </Col>
+          </Form.Group>
+          <Button type="submit" className={info.contest_limit -info.contest_title_no === 0 ? "disConSubmit" : "conSubmit"}>{info.contest_limit -info.contest_title_no === 0 ? "已額滿" : "送　出"}</Button>
+        </Form>
 
         </div>
 

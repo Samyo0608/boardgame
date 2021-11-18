@@ -1,0 +1,38 @@
+.newDiscussBoxOut {
+  background-color: #a2e2ea;
+  width: 80%;
+  margin: auto;
+  margin-top: 150px;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 2px rgb(100, 100, 100);
+}
+
+.newdiscussFormBox {
+  margin: auto;
+  padding-top: 5px;
+  width: 90%;
+}
+
+.discussSelect {
+  width: 115px;
+}
+
+.newdiscussTitle {
+  width: 500px;
+}
+
+.newdiscussSubmitButton {
+  color: rgb(65, 65, 65);
+  text-decoration: none;
+  background-color: #a2e2ea;
+  position: absolute;
+  bottom: 25px;
+  right: 30px;
+  width: 90px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50px;
+  border: none;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px rgb(148, 148, 148);
+}

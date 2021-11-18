@@ -77,7 +77,7 @@ const area_data = {
     南澳鄉: "272",
     釣魚台列嶼: "290",
   },
-  新竹市: { 全區: "300" },
+  新竹市: { 東區: "300", 北區: "300", 香山區: "" },
   新竹縣: {
     竹北市: "302",
     湖口鄉: "303",
@@ -202,7 +202,7 @@ const area_data = {
     竹山鎮: "557",
     鹿谷鄉: "558",
   },
-  嘉義市: { 全區: "600" },
+  嘉義市: { 東區: "600", 西區: "600" },
   嘉義縣: {
     番路鄉: "602",
     梅山鄉: "603",
@@ -421,12 +421,14 @@ const townships = countries.map((v, i, array) =>
 
 function MemSelf(props) {
   const userAccount = useParams();
+  const [countryName, setCountryName] = useState("");
+  const [town, setTown] = useState("");
+  const [otherAddress, setOtherAddress] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-
-  const birth = year.concat("/", month, "/", day);
-  console.log(birth);
+  const [country, setCountry] = useState(-1);
+  const [township, setTownship] = useState(-1);
 
   const [user, setUser] = useState({
     account: "",
@@ -436,13 +438,30 @@ function MemSelf(props) {
     gender: "",
     id: 0,
     name: "",
-    password: "",
     phone: "",
     photo: "",
     point: 0,
   });
+  const address = countryName.concat(",", town, ",", otherAddress);
+  const birth = year.concat("/", month, "/", day);
 
-  console.log(user);
+  useEffect(
+    (e) => {
+      let newUser = { ...user };
+      newUser.birth = birth;
+      setUser(newUser);
+    },
+    [birth]
+  );
+
+  useEffect(
+    (e) => {
+      let newUser = { ...user };
+      newUser.address = address;
+      setUser(newUser);
+    },
+    [address]
+  );
 
   useEffect((e) => {
     async function userData() {
@@ -454,22 +473,40 @@ function MemSelf(props) {
           }
         );
         setUser(userData.data[0]);
+        const countryNumber = countries.indexOf(
+          userData.data[0].address.split(",")[0]
+        );
+        setCountry(countryNumber);
+        const townNumber = townships[countryNumber].indexOf(
+          userData.data[0].address.split(",")[1]
+        );
+        setTownship(townNumber);
       } catch (e) {
-        alert("獲取資料失敗");
+        console.log("獲取資料失敗");
       }
     }
     userData();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.post(`${API_URL}/member/memSelf/${user.account}`, user, {
+        withCredentials: true,
+      });
+      alert("更新完成");
+      window.location.reload();
+    } catch (e) {
+      console.error("登入錯誤", e);
+    }
+  }
+
   const handleChange = (e) => {
     let newUser = { ...user };
     newUser[e.target.name] = e.target.value;
-    newUser.birth = birth;
     setUser(newUser);
   };
 
-  const [country, setCountry] = useState(-1);
-  const [township, setTownship] = useState(-1);
   return (
     <div className="mt-5">
       <div className="d-flex">
@@ -483,7 +520,7 @@ function MemSelf(props) {
             <img alt="123" src="/img/memberCenter/memberhead.png" />
             <Button>更換頭像</Button>
           </div>
-          <Form className="formSize bold">
+          <Form method="post" className="formSize bold" onSubmit={handleSubmit}>
             <Form.Group as={Row} className="mb-3" controlId="memId">
               <Form.Label column sm="2">
                 會員帳號
@@ -575,16 +612,17 @@ function MemSelf(props) {
                     生日
                   </Form.Label>
                   <Form.Group
-                    controlId="year"
+                    controlId="birth"
                     className="col-4 d-flex align-items-center"
                   >
                     <Form.Control
                       type="text"
                       name="year"
                       placeholder="西元年"
-                      defaultValue="1996"
                       maxlength="4"
+                      minlength="4"
                       className="me-2"
+                      value={user.birth.split("/")[0]}
                       onChange={(e) => {
                         setYear(e.target.value);
                       }}
@@ -603,12 +641,10 @@ function MemSelf(props) {
                       maxlength="2"
                       defaultValue="1"
                       className="me-2"
-                      onChange={
-                        (handleChange,
-                        (e) => {
-                          setMonth(e.target.value);
-                        })
-                      }
+                      value={user.birth.split("/")[1]}
+                      onChange={(e) => {
+                        setMonth(e.target.value);
+                      }}
                     />
                     <Form.Label>月</Form.Label>
                   </Form.Group>
@@ -624,6 +660,7 @@ function MemSelf(props) {
                       maxlength="2"
                       defaultValue="1"
                       className="me-2"
+                      value={user.birth.split("/")[2]}
                       onChange={(e) => {
                         setDay(e.target.value);
                       }}
@@ -650,6 +687,7 @@ function MemSelf(props) {
                         setCountry(+e.target.value);
                         // 重置township的值
                         setTownship(-1);
+                        setCountryName(countries[e.target.value]);
                       }}
                     >
                       <option value="-1">請選擇</option>
@@ -671,6 +709,7 @@ function MemSelf(props) {
                       onChange={(e) => {
                         // 將字串轉成數字
                         setTownship(+e.target.value);
+                        setTown(townships[country][e.target.value]);
                       }}
                     >
                       <option value="-1">選擇區域</option>
@@ -687,7 +726,14 @@ function MemSelf(props) {
                     controlId="addressOther"
                     className="col-6 d-flex align-items-center"
                   >
-                    <Form.Control type="text" placeholder="剩餘完整地址" />
+                    <Form.Control
+                      type="text"
+                      placeholder="剩餘完整地址"
+                      value={user.address.split(",")[2]}
+                      onChange={(e) => {
+                        setOtherAddress(e.target.value);
+                      }}
+                    />
                   </Form.Group>
                 </Row>
               </Form.Group>
