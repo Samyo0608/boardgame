@@ -12,24 +12,24 @@
   border-bottom: 5px solid rgb(219, 81, 16);
 }
 .buttooon0 {
-  position: relative;
+  position: absolute;
   width: 100px;
-  top: -500px;
+  top: 830px;
 }
 .button123 {
   position: absolute;
   top: 50px;
-  left: 800px;
+  left: 720px;
 }
 .button1234 {
   position: absolute;
   top: 50px;
-  left: 1003px;
+  left: 923px;
 }
 .button12345 {
   position: absolute;
   top: 50px;
-  left: 902px;
+  left: 822px;
 }
 /* 超連結顏色 */
 .a1 {
@@ -110,14 +110,14 @@
 }
 /* 二，三遊戲 */
 .posi {
-  position: relative;
+  position: absolute;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  left: 250px;
-  top: -560px;
+  left: 610px;
+  top: 300px;
 }
 .posi span {
   position: absolute;
@@ -127,14 +127,14 @@
   font-size: 25px;
 }
 .posi2 {
-  position: relative;
+  position: absolute;
   width: 450px;
   height: 265px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  left: 250px;
-  top: -560px;
+  left: 610px;
+  top: 585px;
 }
 .posi2 span {
   position: absolute;
@@ -151,7 +151,8 @@
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-  margin-left: 120px;
+  top: 10px;
+  left: -250px;
 }
 .shadowbox span {
   position: absolute;
@@ -163,15 +164,27 @@
 
 /* 大圖一 */
 .abc {
-  position: relative;
+  position: absolute;
   width: 430px;
   height: 300px;
   padding: 10px;
   border-radius: 50px;
 }
 
-/* 類型小標籤 */
-.type {
+/* 類型小標籤(下排) */
+.type30 {
+  position: absolute;
+  font-size: 20px;
+  width: 50px;
+  background-color: rgb(243, 70, 40);
+  color: #fff;
+  top: 240px;
+  left: 30px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+/* 類型小標籤(下排) */
+.type31 {
   position: absolute;
   font-size: 20px;
   width: 50px;
@@ -182,7 +195,32 @@
   padding: 0 5px 0 5px;
   border-radius: 5px;
 }
-.type1 {
+/* 類型小標籤(下排) */
+.type32 {
+  position: absolute;
+  font-size: 20px;
+  width: 50px;
+  background-color: rgb(255, 160, 59);
+  color: #fff;
+  top: 240px;
+  left: 30px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+/* 第一名遊戲家庭標籤 */
+.type10 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(243, 70, 40);
+  color: #fff;
+  left: 40px;
+  top: 300px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+/* 第一名遊戲策略標籤 */
+.type11 {
   position: absolute;
   font-size: 20px;
   height: 30px;
@@ -193,7 +231,32 @@
   padding: 0 5px 0 5px;
   border-radius: 5px;
 }
-.type2 {
+/* 第一名遊戲標籤卡牌 */
+.type12 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(255, 160, 59);
+  color: #fff;
+  left: 40px;
+  top: 300px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+/* 第二、三名遊戲家庭標籤 */
+.type20 {
+  position: absolute;
+  font-size: 20px;
+  height: 30px;
+  background-color: rgb(243, 70, 40);
+  color: #fff;
+  left: 30px;
+  top: 200px;
+  padding: 0 5px 0 5px;
+  border-radius: 5px;
+}
+/* 第二、三名策略標籤 */
+.type21 {
   position: absolute;
   font-size: 20px;
   height: 30px;
@@ -204,11 +267,12 @@
   padding: 0 5px 0 5px;
   border-radius: 5px;
 }
-.type3 {
+/* 第二、三名卡牌標籤 */
+.type22 {
   position: absolute;
   font-size: 20px;
   height: 30px;
-  background-color: rgb(59, 137, 255);
+  background-color: rgb(255, 160, 59);
   color: #fff;
   left: 30px;
   top: 200px;
@@ -306,10 +370,10 @@
   height: 350px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
-  top: -350px;
-  left: 150px;
+  top: 70px;
+
   margin-left: 50px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .shadowbox4 span {
   position: absolute;
@@ -332,4 +396,23 @@
   position: absolute;
   top: 420px;
   left: 20px;
+}
+.boxer123 {
+  position: relative;
+  width: 1000px;
+  height: 880px;
+}
+
+.container1456 {
+  max-width: 1129px;
+  height: 1600px;
+  border: solid;
+  border-radius: 10px;
+  border-color: var(--primary);
+  background-color: var(--primary);
+  box-shadow: 3px 3px 3px var(--shadow);
+  padding-top: 20px;
+  padding-left: 35px;
+  margin-bottom: 100px;
+  margin-left: 40px;
 }
