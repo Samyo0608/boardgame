@@ -56,11 +56,38 @@
   border-radius: 20px;
   padding-left: 20px;
   box-shadow: #ccc 1px 1px 1px 1px inset;
+  width: 70%;
+  height: 60%;
 }
 
 /* 提交按鈕 */
 .conSubmit {
   background-color: var(--doButton);
+  color: white;
+  font-size: 32px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  position: relative;
+  top: 40px;
+  left: 190px;
+  margin: 30px;
+}
+.conSubmit:hover {
+  background-color: #66b3ff;
+  color: white;
+  font-size: 32px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  position: relative;
+  top: 40px;
+  left: 190px;
+  margin: 30px;
+}
+
+.conSubmit:active {
+  background-color: #0066cc;
   color: white;
   font-size: 32px;
   border: none;
@@ -108,11 +135,60 @@
   position: relative;
   bottom: -80px;
 }
+
+.buttonStyleCon:hover {
+  width: 200px;
+  height: 80px;
+  background-color: #66b3ff;
+  color: white;
+  font-size: 42px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding: 10px;
+  text-decoration: none;
+  position: relative;
+  bottom: -80px;
+}
+
+.buttonStyleCon:active {
+  width: 200px;
+  height: 80px;
+  background-color: #0066cc;
+  color: white;
+  font-size: 42px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding: 10px;
+  text-decoration: none;
+  position: relative;
+  bottom: -80px;
+}
+
 .arrowStyle {
   font-size: 60px;
   padding-left: 20px;
   padding-right: 20px;
   color: black;
+  position: relative;
+  bottom: -80px;
+}
+
+.arrowStyle:hover {
+  font-size: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #3c3c3c;
+  position: relative;
+  bottom: -80px;
+}
+
+.arrowStyle:active {
+  font-size: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #6c6c6c;
   position: relative;
   bottom: -80px;
 }

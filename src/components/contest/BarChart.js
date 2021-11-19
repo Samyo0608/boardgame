@@ -5,28 +5,60 @@ import {Bar} from 'react-chartjs-2';
 const allVote=[
     {
      id:1,
-     game_name:"傳情畫意家庭",
-     vote_get:2,
+     game_name:"搶錢計畫",
+     vote_get:8,
      product_type:1,
     },
     {
-        id:1,
-        game_name:"傳情畫意家庭2",
-        vote_get:2,
-        product_type:1,
-       },
-    {
      id:2,
-     game_name:"估估劃劃卡牌",
+     game_name:"卡坦島",
      vote_get:3,
      product_type:2,
     },
     {
      id:3,
-     game_name:"諾亞方舟策略",
+     game_name:"寶石鎮",
      vote_get:8,
      product_type:3,
     },
+    {
+        id:4,
+        game_name:"卡卡頌",
+        vote_get:6,
+        product_type:3,
+    },
+    {
+        id:5,
+        game_name:"鐵道任務",
+        vote_get:4,
+        product_type:3,
+    },
+    {
+        id:6,
+        game_name:"烏邦果",
+        vote_get:7,
+        product_type:3,
+    },
+    {
+        id:7,
+        game_name:"史萊姆競速",
+        vote_get:1,
+        product_type:3,
+    },
+    {
+        id:8,
+        game_name:"消失的主角",
+        vote_get:8,
+        product_type:3,
+    },
+    {
+        id:9,
+        game_name:"拉密",
+        vote_get:8,
+        product_type:3,
+    },
+  
+    
 ]
 
 let bars=[]
