@@ -6,7 +6,7 @@ import { typecolor3 } from "../../configs/config";
 
 function Game(props) {
   const { product_name, product_type, product_img, product_price } = props;
-  console.log("test");
+
   return (
     <>
       <Row className="shadowbox4">
