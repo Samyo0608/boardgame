@@ -12,7 +12,7 @@ import { API_URL } from '../../configs/config';
  
 // 使用迴圈將json檔寫入contestRun的常數中做為一個陣列
 const contestRun = (c)=>{
-  const state= []  // 做一個空陣列
+const state= []  // 做一個空陣列
   for (let i = 0; i < c.length; i++) {
     state.push({...c[i]})
   }
@@ -102,7 +102,6 @@ function Index(props) {
           />
           );
         };
-
 
          if(searchitem === "") {
            return searchResults();
