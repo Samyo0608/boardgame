@@ -1,7 +1,7 @@
 // 場地租賃
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/booking.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,12 +10,14 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import swal from "sweetalert2";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
 
-const Swal = require("sweetalert2");
+// 按鈕套件
+// const Swal = require("sweetalert2");
+
 // 測試資料
 const parsing = [
-  { room: "", date: "", time: "" },
   {
     title: "四人房",
     start: "2021-11-10T09:00:00",
@@ -33,23 +35,42 @@ const parsing = [
   },
 ];
 
+// 讀取資料
 function Booking() {
+  const [bookingContent, setbookingContent] = useState([]);
+  // const [bookingOrderContent, setbookingOrderContent] = useState([]);
+
+  useEffect(async () => {
+    let bookingContent = await axios.post(`${API_URL}/booking`);
+    //${API_URL}/booking = http://localhost:3001/api/booking
+    setbookingContent(bookingContent.data);
+
+    // let bookingOrderContent = await axios.post(`${API_URL}/booking/order`);
+    // setbookingOrderContent(bookingOrderContent.data);
+  }, []);
+
+  // console.log(bookingContent);
+
   // 按鈕套件
-  function alertCheck() {
-    Swal.fire({
-      title: "請問是否確認下訂呢?",
-      showDenyButton: true,
-      confirmButtonText: "確認",
-      denyButtonText: `取消`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("感謝您的訂購!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("期待您的下次訂購", "", "info");
-      }
-    });
-  }
+  // function alertCheck() {
+  //   Swal.fire({
+  //     title: "請問是否確認下訂呢?",
+  //     showDenyButton: true,
+  //     confirmButtonText: "確認",
+  //     denyButtonText: `取消`,
+  //   }).then((result) => {
+  //     /* Read more about isConfirmed, isDenied below */
+  //     if (result.isConfirmed) {
+  //       Swal.fire("感謝您的訂購!", "", "success");
+
+  //       // fetch("", { url: "", method: "" });
+  //       // console.log("test");
+  //     } else if (result.isDenied) {
+  //       Swal.fire("期待您的下次訂購", "", "info");
+  //       // console.log("test2");
+  //     }
+  //   });
+  // }
 
   // 日曆套件
 
@@ -72,69 +93,79 @@ function Booking() {
     time: "",
   });
 
+  // 測試用
+  const [member, setMember] = useState({
+    room: "",
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+    order_date: "",
+  });
+
   // 專門處理每個欄位輸入用
   const handleFieldChange = (e) => {
     console.log(e.target.name, e.target.value, e.target.value);
-
     const name = e.target.name;
     const value = e.target.value;
-
-    // 預設值為輸入值
-
-    // 1.從原本的狀態物件上拷貝出一個新物件
-    // 2.在拷貝的新物件上處理
-    // "合併"原有物件值的語法
     const updatedFields = { ...fields, [name]: value };
-    // 3.設定回狀態
     setFields(updatedFields);
   };
-
   // 當表單檢查有不合法的訊息時會呼叫
   const handleFormInvalid = (e) => {
     // 阻擋form的預設送出行為(錯誤泡泡訊息)
     e.preventDefault();
-
     const updatedFieldErrors = {
       ...fieldErrors,
       [e.target.name]: e.target.validationMessage,
     };
-
-    // 3.設定回錯誤訊息狀態
     setFieldErrors(updatedFieldErrors);
   };
 
-  // 這段函式是為了跟錯誤訊息搭配用
-  // 當整個表單有更動時會觸發
-  // 認定使用者正在輸入某個欄位(更正某個有錯誤的欄位)
-  // 清空某個欄位錯誤訊息
+  // 這段函式是為了跟錯誤訊息搭配用,當整個表單有更動時會觸發
   const handleFormChange = (e) => {
-    const updatedFieldErrors = {
-      ...fieldErrors,
-      [e.target.name]: "",
-    };
-
-    // 3. 設定回錯誤訊息狀態
-    setFieldErrors(updatedFieldErrors);
+    let newMember = { ...member };
+    newMember[e.target.name] = e.target.value;
+    setMember(newMember);
+    // const updatedFieldErrors = {
+    //   ...fieldErrors,
+    //   [e.target.name]: "",
+    // };
+    // setFieldErrors(updatedFieldErrors);
   };
 
   // 表單送出觸發事件
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     // 要先阻擋form的預設送出行為
     e.preventDefault();
     // 使用onSubmit時,可用FormData獲取各欄位的值(另一種得到表單值的方式)
     // 注意:FormData是要用各欄位的name屬性
-    const formData = new FormData(e.target);
-    console.log(formData.get("room"));
-    console.log(formData.get("name"));
-    console.log(formData.get("phone"));
-    console.log(formData.get("email"));
-    console.log(formData.get("date"));
-    console.log(formData.get("time"));
-    // 做客製化驗證
+    // const formData = new FormData(e.target);
+    // console.log(formData.get("room"));
+    // console.log(formData.get("name"));
+    // console.log(formData.get("phone"));
+    // console.log(formData.get("email"));
+    // console.log(formData.get("date"));
+    // console.log(formData.get("time"));
     // 先驗證沒問題後才會呼叫alertCheck跳出視窗確認
-    alertCheck();
+    // alertCheck();
     // 驗證成功,用fetch或ajax送到伺服器
-  };
+
+    try {
+      console.log(member);
+      let res = await axios.post(
+        `http://localhost:3001/api/booking/order`,
+        member,
+        {
+          // 因為會讓 res cors 寫 cookie
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log("handleSubmit", e);
+    }
+  }
 
   // 輪播套件
   var settings = {
