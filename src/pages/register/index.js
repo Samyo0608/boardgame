@@ -145,7 +145,7 @@ function Register(props) {
             />
           </Form.Group>
           <Button variant="primary" type="submit" className="mt-5 button">
-            登入
+            註冊
           </Button>
         </Form>
       </div>

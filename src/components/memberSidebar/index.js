@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./memberSidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,6 +9,8 @@ import {
   faEthernet,
 } from "@fortawesome//free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
 
 function Sidebar(props) {
   const [open1, setOpen1] = useState("sidebarOpen");
@@ -17,10 +19,31 @@ function Sidebar(props) {
   const [transform, setTransform] = useState("sidebarArrowRotateOpen");
   const [transform2, setTransform2] = useState("sidebarArrowRotateOpen");
   const [transform3, setTransform3] = useState("sidebarArrowRotateOpen");
+
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
+  });
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
+
   return (
     <div className="sidebar mt-5">
       <NavLink
-        to="/memberCenter"
+        to={`/memberCenter${sessionMember.account}`}
         className="h3 d-flex justify-content-between align-items-center centerLink bold"
         exact
       >
@@ -28,7 +51,6 @@ function Sidebar(props) {
       </NavLink>
       <hr />
       <div
-        href="#/memberCenter/memSelf"
         className="h3 d-flex justify-content-between"
         onClick={(e) => {
           setOpen1(open1 === "sidebarClose" ? "sidebarOpen" : "sidebarClose");
@@ -47,7 +69,10 @@ function Sidebar(props) {
       </div>
       <ul className={`${open1} mt-4 ps-0 row`}>
         <li className="col-12">
-          <NavLink to="/memberCenter/memSelf" activeClassName="linkSelected">
+          <NavLink
+            to={`/memberCenter${sessionMember.account}/memSelf`}
+            activeClassName="linkSelected"
+          >
             <div className="ms-6">
               <FontAwesomeIcon icon={faUser} className="me-1" />
               基本資料
@@ -55,7 +80,7 @@ function Sidebar(props) {
           </NavLink>
         </li>
         <li className="col-12">
-          <NavLink to="/memberCenter/rePassword" activeClassName="linkSelected">
+          <NavLink to={`/memberCenter${sessionMember.account}/rePassword`} activeClassName="linkSelected">
             <div className="ms-6">
               <FontAwesomeIcon icon={faKey} className="me-1" />
               密碼修改
@@ -85,7 +110,7 @@ function Sidebar(props) {
       <ul className={`${open2} mt-4 ps-0 d-flex flex-column`}>
         <li>
           <NavLink
-            to="/memberCenter/memberProduct"
+            to={`/memberCenter${sessionMember.account}/memberProduct`}
             activeClassName="linkSelected"
           >
             <div className="ms-6">
@@ -95,7 +120,7 @@ function Sidebar(props) {
           </NavLink>
         </li>
         <li className="">
-          <NavLink to="/memberCenter/memberRent" activeClassName="linkSelected">
+          <NavLink to={`/memberCenter${sessionMember.account}/memberRent`} activeClassName="linkSelected">
             <div className="ms-6">
               <FontAwesomeIcon icon={faEthernet} className="me-1" />
               場地租賃
@@ -125,7 +150,7 @@ function Sidebar(props) {
       <ul className={`${open3} mt-4 ps-0`}>
         <li>
           <NavLink
-            to="/memberCenter/memberPoint"
+            to={`/memberCenter${sessionMember.account}/memberPoint`}
             activeClassName="linkSelected"
             className="pointDivSide"
           >

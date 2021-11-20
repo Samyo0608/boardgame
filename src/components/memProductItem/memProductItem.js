@@ -22,6 +22,7 @@ function MemProductItem(props) {
   } = props;
   const [display, setDisplay] = useState(false);
   const [rotate, setRotate] = useState(false);
+
   return (
     <div className="object-pro d-flex flex-column align-items-center mt-3 mb-3">
       <div className="d-flex position-relative mt-2">

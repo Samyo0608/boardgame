@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MemProductItem from "../../components/memProductItem/memProductItem";
 import MemberRentItem from "../../components/memberRent/memberRentItem";
@@ -12,7 +13,6 @@ import {
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/memberCenter.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { API_URL } from "../../configs/config";
 
 // 假資料
@@ -61,7 +61,7 @@ const List = [
   {
     id: 3,
     status: "點數",
-    count: 78,
+    count: 50,
   },
 ];
 
@@ -158,7 +158,9 @@ function MemberCenter(props) {
           <div className="d-flex justify-content-center pointDiv">
             <div className="d-flex justify-content-center align-items-center ms-3">
               <div className="me-1 bold point point-mem h4">P</div>
-              <span className="h1 text-main me-5 bold">78</span>
+              <span className="h1 text-main me-5 bold">
+                {sessionMember.point}
+              </span>
             </div>
           </div>
         </div>
@@ -168,45 +170,43 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">個人資料</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a
-              href={`/memberCenter${sessionMember.account}/memSelf`}
-            >
+            <Link to={`/memberCenter${sessionMember.account}/memSelf`}>
               <FontAwesomeIcon icon={faUser} className="me-1" />
               基本資料
-            </a>
+            </Link>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <a href="memberCenter/rePassword">
+            <Link to={`/memberCenter${sessionMember.account}/rePassword`}>
               <FontAwesomeIcon icon={faKey} className="me-1" />
               密碼修改
-            </a>
+            </Link>
           </div>
         </div>
         <p className="h2 text-main bold">消費紀錄</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a href="memberCenter/memberProduct">
+            <Link to={`/memberCenter${sessionMember.account}/memberProduct`}>
               <FontAwesomeIcon icon={faChessBoard} className="me-1" />
               桌遊購買
-            </a>
+            </Link>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <a href="memberCenter/memberRent">
+            <Link to={`/memberCenter${sessionMember.account}/memberRent`}>
               <FontAwesomeIcon icon={faEthernet} className="me-1" />
               場地租賃
-            </a>
+            </Link>
           </div>
         </div>
         <p className="h2 text-main bold">點數明細</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <a
-              href="memberCenter/memberPoint"
+            <Link
+              to={`/memberCenter${sessionMember.account}/memberPoint`}
               className="d-flex align-items-center justify-content-center"
             >
               <div className="me-1 bold point point-mem">P</div>
               <div>點數明細</div>
-            </a>
+            </Link>
           </div>
           <div className="col bold h3 memberLinkHeight"></div>
         </div>
