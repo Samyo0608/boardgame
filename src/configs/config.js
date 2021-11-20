@@ -2,10 +2,11 @@ export const API_URL = "http://localhost:3001/api";
 
 export const PHOTO_URL = "http://localhost:3001";
 
-    卡牌:"img/index/card-tag.png",
-    家庭:"img/index/family-tag.png",
-    策略:"img/index/trag-tag.png",
-}
+export const LABELIMGS = {
+  卡牌: "img/index/card-tag.png",
+  家庭: "img/index/family-tag.png",
+  策略: "img/index/trag-tag.png",
+};
 export const typecolor = {
   家庭: "type10",
   策略: "type11",
