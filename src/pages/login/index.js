@@ -29,10 +29,6 @@ function Login(props) {
     position: "top-end",
     showConfirmButton: false,
     timer: 2000,
-    onOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
   });
 
   // 前端先比對資料，再由後端比對資料again

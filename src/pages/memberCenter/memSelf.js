@@ -8,7 +8,7 @@ import { API_URL, PHOTO_URL } from "../../configs/config";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome//free-solid-svg-icons";
+import { faUpload, faImages } from "@fortawesome//free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 // 縣市鄉鎮api
@@ -617,10 +617,6 @@ function MemSelf(props) {
     position: "top-end",
     showConfirmButton: false,
     timer: 3000,
-    onOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
   });
 
   // 預覽圖片
@@ -695,10 +691,18 @@ function MemSelf(props) {
           <p className="h2 bold titleMargin mt-5">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
-            <img
-              alt="個人頭像"
-              src={`${PHOTO_URL}/public/uploads/${user.photo}`}
-            />
+            {user.photo ? (
+              <img
+                alt="個人頭像"
+                src={`${PHOTO_URL}/public/uploads/${user.photo}`}
+              />
+            ) : (
+              <div clssName="changeImg">
+                <span>頭像</span>
+                <FontAwesomeIcon icon={faImages} className="me-2" />
+              </div>
+            )}
+
             <button
               onClick={(e) => {
                 setShow(true);

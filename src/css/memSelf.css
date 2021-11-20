@@ -33,6 +33,15 @@
   line-height: 150px;
 }
 
+.changeImg div {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 150px;
+}
+
 .changeImg button {
   max-width: 100px;
   width: 100px;
