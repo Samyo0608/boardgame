@@ -2,11 +2,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/reply.css";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import moment from "moment";
 import { Link, useParams } from "react-router-dom";
+import { API_URL, URL } from "../../configs/config";
 
 const Reply = () => {
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
@@ -24,12 +26,27 @@ const Reply = () => {
   // 統計回覆數設定狀態
   const [replyCount, setReplyCount] = useState([{ user_id: "", cot: "" }]);
 
+  // 收藏功能設定狀態
+  const [discussKeep, setDiscussKeep] = useState([
+    { discusss_id: "", user_id: "" },
+  ]);
+  // 收藏功能設定狀態
+  const [keepStatus, setKeepStatus] = useState({});
+
   // 新增回覆資料
   const [insertDiscuss, setInsertDiscuss] = useState({
     discuss_id: discuss_id,
     user_id: "",
     content: "",
     floor: "1",
+  });
+
+  // 登入狀態
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
   });
 
   // e.target 就是事件發生的目標
@@ -40,6 +57,7 @@ const Reply = () => {
     // setMember({ ...member, [e.target.name]: e.target.value });
   }
 
+  // 提交回覆表單
   async function handleInsertDiscussSubmit(e) {
     e.preventDefault();
     try {
@@ -62,6 +80,24 @@ const Reply = () => {
       console.log("handleInsertDiscussSubmit", e);
     }
   }
+
+  // 收藏功能
+  const keepClick = async () => {
+    if (!sessionMember.id) {
+      alert("請先登入");
+      window.location.href = `/login`;
+    } else {
+      const keepData = {
+        user_id: sessionMember.id,
+        discuss_id: discuss_id,
+      };
+      let resKeep = await axios.post(
+        `http://localhost:3001/api/discuss/keep`,
+        keepData
+      );
+      setKeepStatus(true);
+    }
+  };
 
   // 初始渲染
   useEffect(async () => {
@@ -89,6 +125,42 @@ const Reply = () => {
     );
     setReplyCount(resReplyCount.data);
   }, []);
+
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        // alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
+
+  const isFirstRun = useRef(true);
+  useEffect(async () => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    const keepData = {
+      user_id: sessionMember.id,
+      discuss_id: discuss_id,
+    };
+    let resDiscussKeep = await axios.post(
+      `http://localhost:3001/api/discuss/keepStatus`,
+      keepData
+    );
+    if (resDiscussKeep.data.length === 0) {
+      setKeepStatus(false);
+    } else {
+      setKeepStatus(true);
+    }
+    console.log(resDiscussKeep.data);
+  }, [sessionMember]);
 
   return (
     <div className="overflow-hidden">
@@ -174,27 +246,22 @@ const Reply = () => {
                         href="#/"
                         className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
                       >
-                        <p className="awesomeText">17人</p>
-                        <div className="awesomeBox">
-                          <img
-                            src="../../img/reply/awesome.png"
-                            alt=""
-                            className="awesomeImg"
-                          />
-                        </div>
+                        17人
+                        <FontAwesomeIcon
+                          className="awesomeImg"
+                          icon={faThumbsUp}
+                        />
                       </a>
+
                       <a
                         href="#/"
-                        className="likeButton col-2 d-flex justify-content-evenly align-items-center"
+                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
+                          keepStatus === true ? "likeButtonActive" : ""
+                        }`}
+                        onClick={keepClick}
                       >
-                        <p className="likeText">收藏</p>
-                        <div className="likeBox">
-                          <img
-                            src="../../img/reply/like.png"
-                            alt=""
-                            className="likeImg"
-                          />
-                        </div>
+                        收藏
+                        <FontAwesomeIcon className="likeImg" icon={faHeart} />
                       </a>
                     </div>
                   </div>

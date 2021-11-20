@@ -41,7 +41,7 @@ function Footer(props) {
         <div className="footerLine"></div>
         {/* footer LOGO+文字 */}
         <div className="d-flex mt-2 mx-5 justify-content-evenly align-items-center">
-          <img className="footImg mx-5" src="img/LOGO.png" alt="" />
+          <img className="footImg mx-5" src="../../img/LOGO.png" alt="" />
           <p className="footerText text-center  mb-0">
             此網站為專題發表成果用，如有侵權請立即告知，會立即刪除相關資訊
           </p>

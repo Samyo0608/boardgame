@@ -2,13 +2,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/discuss.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome//free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
 const gameType = [
-  { id: 1, name: "全部", type: "all" },
   { id: 2, name: "家庭", type: "family" },
   { id: 3, name: "策略", type: "trag" },
   { id: 4, name: "卡牌", type: "card" },
@@ -16,11 +16,42 @@ const gameType = [
 
 const Discuss = (props) => {
   const [discuss, setDiscuss] = useState([]);
+  const [displayDiscuss, setDisplayDiscuss] = useState([]);
   const [discussType, setDiscussType] = useState("all");
+  const [searchDiscuss, setSearchDiscuss] = useState({
+    keyword: "",
+  });
 
+  // 處理輸入欄位變動
+  function handleSearchChange(e) {
+    let newSearchDiscuss = { ...searchDiscuss };
+    newSearchDiscuss[e.target.name] = e.target.value;
+    setSearchDiscuss(newSearchDiscuss);
+  }
+
+  // 提交搜尋申請
+  async function handleSearchSubmit(e) {
+    e.preventDefault();
+    try {
+      let resSearch = await axios.post(
+        `http://localhost:3001/api/discuss/searchDiscuss`,
+        searchDiscuss
+      );
+      // console.log(resNewDiscuss.data);
+      setDiscuss(resSearch.data);
+      setDisplayDiscuss(resSearch.data);
+      setDiscussType("all");
+      // window.location.reload();
+    } catch (e) {
+      console.log("handleSearchSubmit", e);
+    }
+  }
+
+  // 初始渲染
   useEffect(async () => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
+    setDisplayDiscuss(res.data);
   }, []);
 
   const TYPE_COLOR = {
@@ -45,15 +76,61 @@ const Discuss = (props) => {
           首頁{`>>`}討論區
         </a>
       </div>
+
+      {/* 搜尋列 */}
+      <form onSubmit={handleSearchSubmit}>
+        <div className="disSearchBox text-center">
+          <a
+            className="searchCancel"
+            onClick={() => {
+              window.location.reload();
+            }}
+            href="#/"
+          >
+            x
+          </a>
+          <select className="form-select disSearchSelect">
+            <option>找標題</option>
+            <option>找內容</option>
+            <option>找作者</option>
+          </select>
+          <input
+            placeholder="輸入關鍵字..."
+            className="discussSearch form-control"
+            name="keyword"
+            value={searchDiscuss.keyword}
+            onChange={handleSearchChange}
+          />
+          <button className="btn disSearchBtn">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
+      </form>
       {/* 討論區內容 */}
       <div className="r_discussBox">
         <div className="r_discussPicBox">
-          <img alt="" className="rentPic" src="/img/discuss/r_discuss.png" />
+          <img alt="" className="rentPic" src="/img/discuss/bird5.png" />
         </div>
         <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
           <li className="">
-            {gameType.map((v, i) => {
-              return (
+            <Link
+              to="#/"
+              className={`d-inline-block mx-5 recommendType text-decoration-none text-center ${
+                discussType === "all" ? "recommendTypeActive" : ""
+              }`}
+              onClick={async () => {
+                setDisplayDiscuss(discuss);
+                setDiscussType("all");
+              }}
+            >
+              全部
+            </Link>
+          </li>
+
+          {/* 討論區結果 */}
+          {gameType.map((v, i) => {
+            return (
+              <li className="">
                 <Link
                   key={v.id}
                   to="#/"
@@ -61,18 +138,18 @@ const Discuss = (props) => {
                     discussType === v.type ? "recommendTypeActive" : ""
                   }`}
                   onClick={async () => {
-                    let res = await axios.get(
-                      `http://localhost:3001/api/discuss/${v.type}`
-                    );
-                    setDiscuss(res.data);
+                    let handleDiscussFilter = discuss.filter((dv) => {
+                      return dv.type === v.name;
+                    });
+                    setDisplayDiscuss(handleDiscussFilter);
                     setDiscussType(v.type);
                   }}
                 >
                   {v.name}
                 </Link>
-              );
-            })}
-          </li>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="r_discussOutBox">
@@ -85,13 +162,12 @@ const Discuss = (props) => {
                     <th scope="col">分類</th>
                     <th scope="col">標題</th>
                     <th scope="col">發文者</th>
-                    <th scope="col">讚數</th>
                     <th scope="col">回覆數</th>
                     <th scope="col">最後回覆</th>
                   </tr>
                 </thead>
                 <tbody className="r_discussBody">
-                  {discuss.map((v, i) => {
+                  {displayDiscuss.map((v, i) => {
                     return (
                       <tr key={v.id}>
                         <th scope="row" className="">
@@ -101,9 +177,8 @@ const Discuss = (props) => {
                           <Link to={`discuss/reply/${v.id}`}>{v.title}</Link>
                         </td>
                         <td>{v.i_user_id}</td>
-                        <td>2</td>
                         <td>{v.cot}</td>
-                        <td className="">
+                        <td className="timeTd">
                           {moment(v.created_at.toString()).format(
                             "YYYY-MM-DD HH:mm:ss"
                           )}
@@ -135,6 +210,9 @@ const Discuss = (props) => {
       </div>
 
       <div className="discussRecommendBoxOut">
+        <div className="hotDiscussBox">
+          <img alt="" className="hotDiscussPic" src="img/discuss/fire2.png" />
+        </div>
         <div className="discussRecommendBoxIn row">
           <div className="col d-flex drBox">
             <div className="drImgBox">

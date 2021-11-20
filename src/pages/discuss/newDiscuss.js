@@ -56,10 +56,10 @@ const NewDiscuss = (props) => {
       setAddDiscuss(newAddDiscuss);
       setStateLastId(resNewDiscuss.data);
 
-      // let resNewDiscussContent = await axios.post(
-      //   `http://localhost:3001/api/discuss/addNewDiscussContent`,
-      //   addDiscuss
-      // );
+      //  let resNewDiscussContent = await axios.post(
+      //    `http://localhost:3001/api/discuss/addNewDiscussContent`,
+      //    addDiscuss
+      //  );
 
       // window.location.reload();
     } catch (e) {

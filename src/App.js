@@ -17,6 +17,7 @@ import {
   Route,
   Switch,
   Link,
+  useLocation,
 } from "react-router-dom";
 import contest from "./pages/contest/contest_index.js";
 import TopNavbar from "./components/Navbar";
@@ -41,6 +42,7 @@ function App() {
       <div className="bodyWidth">
         <BrowserRouter>
           <TopNavbar className="" pathname="" />
+
           <Switch>
             <Route
               exact={true}
@@ -103,11 +105,11 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
             <Route exact={true} path="/Cartcheck" component={Cartcheck} />
-            <Route exact={true} path="/loading" component={Loading} />
+            <Route path="" component={Loading} />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
-      <Footer />
     </>
   );
 }

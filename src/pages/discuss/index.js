@@ -39,7 +39,7 @@ const Index = () => {
         <div className="bubble1Box">
           <img className="bubble1" src="img/index/bubble1.png" alt="" />
         </div>
-        <Link to="Product/" className="bubble1Text fs-3 fw-bold">
+        <Link to="Product" className="bubble1Text fs-3 fw-bold">
           選購桌遊
         </Link>
         <div className="bubble2Box">
@@ -49,17 +49,6 @@ const Index = () => {
           場地租借
         </Link>
       </div>
-      {/* 公告 */}
-      {/* <div className="news d-inline-block mt-5">
-        <div className="d-flex align-items-center px-5">
-          <img alt="" className="loud" src="img/index/loud.png" />
-          <div className="loudContent">
-            <a href="#/" className="text-decoration-none">
-              2021年10月營業時間異動
-            </a>
-          </div>
-        </div>
-      </div> */}
 
       {/* 推薦桌遊標題+插圖 */}
       <div className="position-relative">
