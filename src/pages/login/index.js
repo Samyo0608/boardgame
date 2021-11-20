@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "../../css/login.css";
@@ -7,19 +7,35 @@ import { faExclamationCircle } from "@fortawesome//free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import Swal from "sweetalert2";
 
 function Login(props) {
+  // useState 帳號密碼存放
   const [member, setMember] = useState({
     email: "",
     password: "",
   });
 
+  // 輸入的資料帶入useState
   const handleChange = (e) => {
     let newMember = { ...member };
     newMember[e.target.name] = e.target.value;
     setMember(newMember);
   };
 
+  // sweetAlert2 toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    onOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  // 前端先比對資料，再由後端比對資料again
   async function handleSubmit(e) {
     e.preventDefault();
     if (member.email !== "" && member.password !== "") {
@@ -28,17 +44,31 @@ function Login(props) {
           withCredentials: true,
         });
         if (req.data.code === "104") {
-          alert("帳號或密碼錯誤");
+          Toast.fire({
+            icon: "error",
+            title: "帳號或密碼錯誤！",
+          });
         } else {
-          alert("登入成功");
-          window.location.replace("/");
+          Swal.fire({
+            icon: "success",
+            title: "登入成功",
+            text: "登入成功，回首頁",
+          }).then((res) => {
+            window.location.replace("/");
+          });
         }
       } catch (e) {
         console.error("登入錯誤", e);
-        alert("登入失敗");
+        Toast.fire({
+          icon: "error",
+          title: "登入失敗",
+        });
       }
     } else {
-      alert("請輸入email或密碼");
+      Toast.fire({
+        icon: "info",
+        title: "請輸入email或密碼",
+      });
     }
   }
 
