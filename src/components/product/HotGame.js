@@ -2,6 +2,8 @@ import React from "react";
 import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
+import { NavLink } from "react-router-dom";
+import { typecolor } from "../../configs/config";
 
 function HotGame(props) {
   const {
@@ -19,14 +21,13 @@ function HotGame(props) {
         <p className="p1">{product_name}</p>
         <div>
           <img className="abc" src={product_img} alt="" />
-          <div className="type1">
-            <p>{product_type}</p>
-          </div>
+          <article className={typecolor[product_type]}>{product_type}</article>
         </div>
+
         <div className="p2">
-          <a className="a1" href="http://localhost:3000/aboutgame/">
+          <NavLink to="/aboutgame/" className="a1">
             <p className="ellipsis">{product_content}</p>
-          </a>
+          </NavLink>
         </div>
         <span>${product_price}</span>
         <p className="p8">投票數:</p>

@@ -7,6 +7,7 @@
   border-radius: 5px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
   left: 100px;
+  top: 50px;
 }
 
 /* 下面 */
@@ -21,36 +22,12 @@
 }
 .aboutbagd {
   position: relative;
-  top: 68px;
+  top: 155px;
   left: 100px;
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 15px;
-}
-/* 3按鈕位置 */
-
-.btwidg1 {
-  position: absolute;
-  width: 110px;
-  top: 750px;
-}
-/* 遊戲介紹 */
-.btwidg2 {
-  position: relative;
-  left: 100px;
-  top: 15px;
-}
-/* 遊戲規格 */
-.btwidg3 {
-  position: relative;
-  left: 212px;
-  top: -23px;
-}
-/* 退換貨須知 */
-.btwidg4 {
-  position: relative;
-  left: 323px;
-  top: -61px;
+  margin-bottom: 60px;
 }
 /* 遊戲敘述 */
 .box456 {
@@ -87,10 +64,12 @@
 }
 /* 遊戲大圖 */
 .abb {
-  width: 550px;
-  height: 400px;
-  padding: 20px;
+  position: absolute;
+  width: 500px;
+  height: 350px;
   border-radius: 50px;
+  top: 100px;
+  left: 30px;
 }
 .favorite4 {
   position: absolute;
@@ -102,32 +81,81 @@
   top: 440px;
   left: 860px;
 }
-/* 按鈕 */
-.button6 {
-  position: relative;
-  width: 400px;
-  font-size: 20px;
-  border: 5px;
-  font-weight: bold;
-  left: 50px;
-}
-.button7 {
-  position: absolute;
-  top: 15px;
-  left: 100px;
-  font-size: 20px;
-}
+
 /* 討論區 */
 .forum {
   position: absolute;
   width: 300px;
   height: 150px;
-  top: 1200px;
+  top: 1170px;
   left: 880px;
+}
+/* 回到遊戲 */
+.backto {
+  position: absolute;
+  width: 250px;
+  height: 100px;
+  top: 670px;
+  right: 10px;
 }
 .pprice {
   position: absolute;
   font-size: 40px;
   left: 880px;
   top: 380px;
+}
+/* 遊戲敘述 */
+.box457 {
+  position: absolute;
+  width: 800px;
+  /* height: 600px; */
+  word-wrap: break-word;
+  word-break: normal;
+  top: 900px;
+  left: 200px;
+  font-size: 18px;
+  text-indent: 36px;
+  font-weight: bold;
+}
+.ellipsis6 {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.about1 {
+  /* background-color: white; */
+  position: absolute;
+  top: -80px;
+  /* left: -40px; */
+  font-size: 20px;
+  color: black;
+  border: var(--fontColor);
+  border-radius: 10px;
+  border-color: var(--fontColor);
+  width: 150px;
+  height: 50px;
+  padding: 0px -50px 0px -50px;
+  box-shadow: 1px 1px 1px 1px var(--shadow);
+}
+.about1:hover {
+  background-color: silver;
+}
+.about1Active {
+  background-color: var(--doButton);
+  color: white;
+}
+.about1Result {
+  position: relative;
+  top: -40px;
+}
+
+/* 紅字提醒 */
+.redone {
+  color: red;
 }

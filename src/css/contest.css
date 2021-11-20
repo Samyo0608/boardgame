@@ -104,6 +104,37 @@ input[type="checkbox"] {
   cursor: pointer;
   text-decoration: none;
 }
+
+.doButton:hover {
+  color: white;
+  background: #66b3ff;
+  width: 129px;
+  height: 37px;
+  border-radius: 12px;
+  font-size: 25px;
+  text-align: center;
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.doButton:active {
+  color: white;
+  background: #0066cc;
+  width: 129px;
+  height: 37px;
+  border-radius: 12px;
+  font-size: 25px;
+  text-align: center;
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .disButton {
   color: white;
   background: var(--disButton);

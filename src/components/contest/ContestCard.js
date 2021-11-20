@@ -4,7 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Row,Col,Form,FormControl,Button} from "react-bootstrap";
 import {LABELIMGS} from "../../configs/config"
 import {Link} from 'react-router-dom';
+import moment from "moment";
+// var moment = require('moment')
 
+// 定義台灣制的日曆
+
+// The end of moment defined.
 
 function ContestCard(props) {
     const {id,date,title,innertext,limit,category,img,no} =props;
@@ -30,7 +35,7 @@ function ContestCard(props) {
                     <div className="contestPic">
                     <img alt="遊戲圖片" className="images" src={img} fluid />
                     </div>
-                    <p className="fs-5 m-2">{date}</p>
+                    <p className="fs-5 m-2">{moment(date).format("YYYY年MM月DD日")}</p>
                     <h5>《{title}》</h5>
                     <p className="p-2 m-2">{innertext}</p>
                     <Link to={`/contestInfo/${id}`} className="d-flex">
