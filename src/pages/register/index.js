@@ -4,18 +4,37 @@ import { Button, Image, Form, Row, Col } from "react-bootstrap";
 import "../../css/register.css";
 import { API_URL } from "../../configs/config";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Register(props) {
+  //儲存email、帳號、密碼、第二次密碼
   const [member, setMember] = useState({
     email: "",
+    account: "",
     password: "",
     rePassword: "",
+  });
+
+  // sweetAlert2 toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    onOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
   });
 
   async function handleSubmit(e) {
     //e.preventDefault() -> 取消DOM的預設功能
     e.preventDefault();
-    if (member.password === member.rePassword && member.email !== "") {
+    if (
+      member.password === member.rePassword &&
+      member.email !== "" &&
+      member.account !== ""
+    ) {
       try {
         let req = await axios.post(`${API_URL}/auth/register`, member, {
           // res cors -> cookie
@@ -25,21 +44,41 @@ function Register(props) {
           withCredentials: true,
         });
         if (req.data.code === "102") {
-          alert("此email已有人使用");
+          Toast.fire({
+            icon: "error",
+            title: "此email已有人使用",
+          });
         } else if (req.data.code === "106") {
-          alert("此帳號已有人使用");
+          Toast.fire({
+            icon: "error",
+            title: "此帳號已有人使用",
+          });
         } else {
-          alert("註冊成功");
-          props.history.push("/login");
+          Swal.fire({
+            icon: "success",
+            title: "註冊成功",
+            text: "歡迎加入遊戲職人",
+          }).then((res) => {
+            props.history.push("/login");
+          });
         }
       } catch (e) {
         console.log("handleSubmit", e);
-        alert("註冊失敗");
+        Toast.fire({
+          icon: "question",
+          title: "註冊失敗，請洽網站管理員",
+        });
       }
     } else if (member.password !== member.rePassword) {
-      alert("密碼驗證失敗");
+      Toast.fire({
+        icon: "error",
+        title: "密碼驗證失敗",
+      });
     } else {
-      alert("信箱或帳號未填寫");
+      Toast.fire({
+        icon: "error",
+        title: "信箱或帳號未填寫",
+      });
     }
   }
 
@@ -139,6 +178,7 @@ function Register(props) {
             controlId="formBasicRCheckBox"
           >
             <Form.Check
+              className="lineHeight"
               type="CheckBox"
               label="我了解網站資訊並同意相關服務條款"
               required
