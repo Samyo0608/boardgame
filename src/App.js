@@ -11,7 +11,6 @@ import booking from "./pages/booking_pages/booking_index.js";
 import Discuss from "./pages/discuss/discuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
-import bookingCheck from "./pages/booking_pages/booking_check.js";
 import {
   HashRouter,
   BrowserRouter,
@@ -94,7 +93,6 @@ function App() {
             />
             <Route exact={true} path="/newdiscuss" component={NewDiscuss} />
             <Route exact={true} path="/discuss" component={Discuss} />
-            <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
             {/* <Route exact={true} path="/contestInfo" component={contestInfo} /> */}
             <Route

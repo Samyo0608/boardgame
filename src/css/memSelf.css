@@ -33,6 +33,15 @@
   line-height: 150px;
 }
 
+.changeImg div {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 150px;
+}
+
 .changeImg button {
   max-width: 100px;
   width: 100px;
@@ -40,12 +49,48 @@
   color: #da5656;
   border: 1px solid #da5656;
   border-radius: 1.2rem;
+  padding: 5px 10px;
 }
 
 .changeImg button:hover {
   background: #c4c3c2;
 }
 
+.labelInput {
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.labelInput:hover {
+  background: #dbdbdb;
+  cursor: pointer;
+}
+
+.modalBody {
+  width: 100%;
+  height: 100%;
+  border-top: 0.5px dashed #000000;
+  border-bottom: 0.5px dashed #000000;
+}
+
+.modalBody div {
+  line-height: 350px;
+  font-size: 24px;
+}
+
+.reactCrop {
+  width: 500px;
+  height: 500px;
+}
+
+.previewCrop {
+  border: 1px solid #000;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+}
 .memForm {
   margin-bottom: 10rem;
 }

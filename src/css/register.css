@@ -69,3 +69,8 @@
   max-width: 400px;
   width: 400px;
 }
+
+/* Check按鈕字高 */
+.lineHeight {
+  line-height: 30px;
+}
