@@ -21,10 +21,6 @@ function Register(props) {
     position: "top-end",
     showConfirmButton: false,
     timer: 2000,
-    onOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
   });
 
   async function handleSubmit(e) {
