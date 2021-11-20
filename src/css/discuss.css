@@ -41,13 +41,66 @@
   line-height: 30px;
 }
 
+/* 搜尋列 */
+
+.disSearchBox {
+  padding-top: 8px;
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  background-color: #a2e2ea;
+  height: 56px;
+  width: 360px;
+  border-radius: 50px;
+}
+.searchCancel {
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  display: inline-block;
+  background-color: rgb(196, 196, 196);
+  border-radius: 50px;
+  /* border: 1px solid rgb(117, 117, 117); */
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 20px;
+  width: 25px;
+  height: 25px;
+  box-shadow: 0px 0px 2px rgb(61, 61, 61);
+  transition: 0.3s;
+}
+.searchCancel:hover {
+  color: black;
+}
+.searchCancel:active {
+  color: black;
+  background-color: rgb(165, 165, 165);
+}
+.disSearchSelect {
+  margin-right: 14px;
+  display: inline-block;
+  width: 100px;
+}
+
+.discussSearch {
+  display: inline-block;
+  width: 200px;
+}
+
+.disSearchBtn {
+  position: absolute;
+  right: 25px;
+  bottom: 9px;
+}
+
 /* 討論區內容 */
 .r_discussPicBox {
   position: absolute;
   z-index: 0;
-  right: 0;
-  top: -200px;
-  max-width: 210px;
+  right: -2px;
+  top: -105px;
+  width: 160px;
 }
 .r_discussBox {
   position: relative;
@@ -55,7 +108,7 @@
   padding-bottom: 20px;
   background-color: #fffed9;
   margin: auto;
-  margin-top: 250px;
+  margin-top: 30px;
   margin-bottom: 0px;
   border-radius: 8px;
   /* border: 1px solid rgb(211, 211, 211); */
@@ -88,6 +141,9 @@
 }
 .discussNameBox {
 }
+.timeTd {
+  width: 350px;
+}
 
 .r_discussButton {
   font-weight: bold;
@@ -111,7 +167,17 @@
   margin-top: 100px;
 }
 
+.hotDiscussBox {
+  position: absolute;
+  width: 80px;
+  top: -90px;
+}
+.hotDiscussPic {
+  object-fit: contain;
+  width: 100%;
+}
 .discussRecommendBoxOut {
+  position: relative;
   margin: auto;
   width: 95%;
   height: 290px;

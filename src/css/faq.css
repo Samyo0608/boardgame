@@ -152,7 +152,7 @@ input[type="search"].faq_input_content {
 }
 
 .minus {
-  background-color:#0c4499;
+  background-color: #0c4499;
   width: 25px;
   height: 5px;
   border-radius: 4px;
@@ -175,7 +175,7 @@ input[type="search"].faq_input_content {
 }
 /* 答覆表格設定 */
 .answer_block td,
-th {
+.answer_block th {
   border: 1px solid rgb(156, 154, 154);
 }
 /* 配送取貨*/
