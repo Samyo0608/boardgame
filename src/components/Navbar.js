@@ -207,10 +207,10 @@ function TopNavbar(props) {
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
             </Link>
-            <Link className="ms-2 me-3" to="" onClick={centerClick}>
+            <a className="ms-2 me-3" href="#/" onClick={centerClick}>
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
-            </Link>
+            </a>
             {sessionMember.id && (
               <a href="/" onClick={handleClick}>
                 <FontAwesomeIcon icon={faSignOutAlt} />

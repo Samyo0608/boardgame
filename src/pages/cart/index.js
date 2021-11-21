@@ -1,32 +1,63 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
-import "../../css/cart.css";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+// import "../../css/cart.css";
 import Cart1 from "../../components/cart/Cart1";
-import Cart2 from "../../components/cart/Cart2";
 function Cart(props) {
   return (
     <>
-      <Container>
-        <h2 className="text-center">購物車</h2>
-        <div className="titleLineBox">
-          <img alt="" className="titleLine" src="img/index/line.png" />
+      {/* 頂端 */}
+      <div className="cartWidth">
+        <div>
+          <h2 className="text-center mt-3 bold">購物車</h2>
+          <div className="titleLineBox">
+            <img alt="" className="titleLine" src="img/index/line.png" />
+          </div>
         </div>
-        <div className="button1">
-          <Button variant="outline-primary">我的最愛( ) </Button>{" "}
-          <Button variant="outline-primary">我的遊戲( ) </Button>
+        <div className="d-flex justify-content-start">
+          <Button className="me-3" variant="outline-primary">
+            全部選取
+          </Button>
+          <Button className="" variant="outline-secondary">
+            刪除
+          </Button>
         </div>
-        <Button className="button2" variant="outline-secondary">
-          全部刪除
-        </Button>
-        <Button className="button3" variant="primary">
-          全部選取
-        </Button>
-        <p className="payman11">訂購商品</p>
-        <Cart1 />
-        {/* 結帳 */}
-        <Cart2 />
-      </Container>
+        <div className="mt-3 payman11 text-center">
+          <span>購 物 清 單</span>
+        </div>
+        {/* 頂端 end*/}
+
+        {/* container cart1 component*/}
+        <div className="CartListBG d-flex flex-column justify-content-start align-items-center">
+          <Cart1 />
+        </div>
+
+        {/* footer */}
+        <div className="d-flex justify-content-between mt-3 mb-3 align-items-center">
+          <Link to="/cartcheck">
+            <Button className="buttoncheck" variant="secondary">
+              回首頁
+            </Button>
+          </Link>
+          <div className="d-flex justify-content-center align-items-center total ms-5">
+            <span className="bold me-1 ms-5">共計　</span>
+            <span className="text-danger bold">5432　</span>
+            <span className="bold">元</span>
+          </div>
+          <div className="">
+            <Link to="/cartcheck">
+              <Button className="buttoncheck" variant="success">
+                確認訂單
+              </Button>
+            </Link>
+            <Link to="/">
+              <button className="btn btn-light comebuy ms-3">繼續購物</button>
+            </Link>
+          </div>
+        </div>
+        {/* footer end*/}
+      </div>
     </>
   );
 }
