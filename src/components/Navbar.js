@@ -22,6 +22,7 @@ import {
 import "./Navbar.css";
 import axios from "axios";
 import { API_URL } from "../configs/config";
+import Swal from "sweetalert2";
 
 function TopNavbar(props) {
   const [select, setSelect] = useState();
@@ -31,6 +32,8 @@ function TopNavbar(props) {
     account: "",
     point: "",
   });
+
+  // 初始載入資料
   useEffect((e) => {
     async function session() {
       try {
@@ -45,23 +48,42 @@ function TopNavbar(props) {
     session();
   }, []);
 
+  // logout按鈕事件
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       await axios.get(`${API_URL}/auth/logout`, {
         withCredentials: true,
       });
-      alert("登出成功");
-      window.location.replace("/");
+      Swal.fire({
+        icon: "success",
+        title: "登出成功",
+        text: "登出成功，回首頁",
+      }).then((res) => {
+        window.location.replace("/");
+      });
     } catch (e) {
       console.error(e);
-      alert("登出失敗");
+      Swal.fire({
+        icon: "error",
+        title: "登出失敗",
+        text: "請聯繫網站管理員",
+      });
     }
   };
 
   const centerClick = () => {
     if (!sessionMember.id) {
-      alert("請先登入");
+      Swal.fire({
+        icon: "info",
+        title: "請先登入",
+        text: "尚未登入呦，請先登入網站再進入會員中心^_^",
+        footer: '<a href="/" class="btn btn-light">回首頁</a>',
+      }).then((res) => {
+        window.location.replace("/login");
+      });
+    } else {
+      window.location.replace(`/memberCenter${sessionMember.account}`);
     }
   };
 
@@ -185,15 +207,7 @@ function TopNavbar(props) {
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
             </Link>
-            <Link
-              className="ms-2 me-3"
-              to={
-                sessionMember.id
-                  ? `/memberCenter${sessionMember.account}`
-                  : "/login"
-              }
-              onClick={centerClick}
-            >
+            <Link className="ms-2 me-3" to="" onClick={centerClick}>
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
             </Link>

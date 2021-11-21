@@ -4,7 +4,7 @@ const product = [
     product_name: "狼人殺",
     product_type: "策略",
     product_img: "/img/product/crime.jpg",
-    product_price: 123,
+    product_price: 13,
     product_content: "544654",
   },
   {

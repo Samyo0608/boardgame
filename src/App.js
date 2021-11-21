@@ -10,13 +10,13 @@ import booking from "./pages/booking_pages/booking_index.js";
 import Discuss from "./pages/discuss/discuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
-import bookingCheck from "./pages/booking_pages/booking_check.js";
 import {
   HashRouter,
   BrowserRouter,
   Route,
   Switch,
   Link,
+  useLocation,
 } from "react-router-dom";
 import contest from "./pages/contest/contest_index.js";
 import TopNavbar from "./components/Navbar";
@@ -41,6 +41,7 @@ function App() {
       <div className="bodyWidth">
         <BrowserRouter>
           <TopNavbar className="" pathname="" />
+
           <Switch>
             <Route
               exact={true}
@@ -89,7 +90,6 @@ function App() {
             />
             <Route exact={true} path="/newdiscuss" component={NewDiscuss} />
             <Route exact={true} path="/discuss" component={Discuss} />
-            <Route exact={true} path="/bookingCheck" component={bookingCheck} />
             <Route exact={true} path="/contest" component={contest} />
             {/* <Route exact={true} path="/contestInfo" component={contestInfo} /> */}
             <Route
@@ -102,11 +102,11 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
             <Route exact={true} path="/Cartcheck" component={Cartcheck} />
-            <Route exact={true} path="/loading" component={Loading} />
+            <Route path="" component={Loading} />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
-      <Footer />
     </>
   );
 }

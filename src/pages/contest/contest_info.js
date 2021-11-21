@@ -15,8 +15,9 @@ import {withRouter} from "react-router-dom"
 import axios from "axios";
 import { API_URL } from '../../configs/config';
 import Button from "@restart/ui/esm/Button";
+import moment from "moment";
+import Swal from 'sweetalert2'
 
- 
 
 
 function Contest_info(props) {
@@ -69,12 +70,12 @@ function Contest_info(props) {
     contest_email:"",
   });
   
-
+ // 寫一個存放投票陣列的鉤子 
 
   async function handleSubmit(e) {
     e.preventDefault();
     try{
-      let res = await axios.post(`${API_URL}/keyin/in`,
+      let res = await axios.post(`${API_URL}/contest/keyin`,
       signup
     );
     } catch(e) {
@@ -82,12 +83,14 @@ function Contest_info(props) {
     }  
   }
 
-  //頁數判斷
+  // 頁數判斷
   const pageNow = info.contest_id
   const pageNoFront = String(pageNow -1)
   const pageNoBack = String(pageNow +1)
 
-  
+  // BarChart陣列
+
+
   
 
   const show = (
@@ -119,9 +122,9 @@ function Contest_info(props) {
 
           <Row className="fontActivity d-flex">
             <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽日期:</Col>
-            <Col  md={8} className="mt-4">{info.contestDateStart}</Col>
+            <Col  md={8} className="mt-4">{moment(info.contestDateStart).format("YYYY年MM月DD日")}</Col>
             <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />報名截止日期:</Col>
-            <Col  md={8} className="mt-4">{info.contestDateEnd}</Col>
+            <Col  md={8} className="mt-4">{moment(info.contestDateEnd).format("YYYY年MM月DD日")}</Col>
             <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽模式:</Col>
             <Col  md={8} className="mt-4">{info.contestModel}</Col>
             <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽方法:</Col>
@@ -143,7 +146,7 @@ function Contest_info(props) {
         <Form method="post" onSubmit={handleSubmit}>
           <Form.Group as={Row} className="fontActivity" >
             <Form.Label column md={4}>
-            <FontAwesomeIcon icon={faDice} className="mt-4" />活動名稱</Form.Label>
+            <FontAwesomeIcon icon={faDice} className="mt-4" />　活動名稱</Form.Label>
             <Col md={8}>
               <Form.Control 
                 name="contest_title"
@@ -162,7 +165,7 @@ function Contest_info(props) {
           </Form.Group>
 
           <Form.Group as={Row} className="fontActivity" >
-            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />姓　名</Form.Label>
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　姓　　名</Form.Label>
             <Col md={8}>
               <Form.Control 
                 name="contest_title"
@@ -180,7 +183,7 @@ function Contest_info(props) {
           </Form.Group>
 
           <Form.Group as={Row} className="fontActivity" >
-            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />連絡電話</Form.Label>
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　連絡電話</Form.Label>
             <Col md={8}>
               <Form.Control 
                 name="contest_title"
@@ -198,7 +201,7 @@ function Contest_info(props) {
           </Form.Group>
 
           <Form.Group as={Row} className="fontActivity" >
-            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />聯絡信箱</Form.Label>
+            <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　聯絡信箱</Form.Label>
             <Col md={8}>
               <Form.Control 
                 name="contest_title"

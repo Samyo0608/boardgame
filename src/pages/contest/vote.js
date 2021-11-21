@@ -34,54 +34,100 @@ const categoryButton=[
 // 假資料帶入vote
 
 
-const allVote=[
-    {
-     id:1,
-     game_name:"傳情畫意家庭",
-     vote_get:2,
-     product_type:1,
-    },
-    {
-        id:1,
-        game_name:"傳情畫意家庭2",
-        vote_get:2,
-        product_type:1,
-       },
-    {
-     id:2,
-     game_name:"估估劃劃卡牌",
-     vote_get:3,
-     product_type:2,
-    },
-    {
-     id:3,
-     game_name:"諾亞方舟策略",
-     vote_get:8,
-     product_type:3,
-    },
-]
+// const allVote=[
+//     {
+//      id:1,
+//      game_name:"傳情畫意家庭",
+//      vote_get:2,
+//      product_type:1,
+//     },
+//     {
+//         id:1,
+//         game_name:"傳情畫意家庭2",
+//         vote_get:2,
+//         product_type:1,
+//        },
+//     {
+//      id:2,
+//      game_name:"估估劃劃卡牌",
+//      vote_get:3,
+//      product_type:2,
+//     },
+//     {
+//      id:3,
+//      game_name:"諾亞方舟策略",
+//      vote_get:8,
+//      product_type:3,
+//     },
+// ]
 
 // 跑一個迴圈將物件放入陣列
 const barchartRun = (b)=>{
     const bar =[]
     for(let i = 0; b< b.length; i++) {
-        bar.push({...b[i]})
+        bar[i].push({...b[i]})
     }
     return bar
+}
+
+// 迴圈 bar vote標籤
+const voteBarNo=(b)=>{
+    // let label=[,]
+    for(let i = 0; b < b.length; i++) {
+        b.product_name.push()
+        // console.log(b[0].product_name)
+    }
+    return (b)
+}
+
+// 迴圈 bar vote票數
+const voteBarGet=(b)=>{
+    let get=[]
+    for(let i = 0 ; b < b.length; i++){
+        get=b[i].product_vote.push()
+    }
+    return get
 }
 
 function Vote(props) {
     const[status,setStatus] = useState(2);
     // 寫一個跑資料的迴圈去承接到barchart
-    const[barno,setBarno] = useState(barchartRun(allVote))
+    const[barno,setBarno] = useState(barchartRun(barchartRun))
+    // 承接Label陣列的鉤子
+    const[labelName,setLabelName] = useState();
+
 
     useEffect(async () =>{
         let res = await axios.get(`${API_URL}/vote/list`);
         setBarno(res.data);
-        console.log(barno)
+        
+        // 可以叫出lable值
       },[])
+      console.log(barno) 
+      // 全系列labels
+      const textArr=[];
+      const labelData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            textArr.push(barno[i].product_name)
+        }
+        return textArr
+    }
 
+    labelData();
+    console.log(textArr)
 
+    // 全系列投票
+    const voteArr=[]
+    const voteData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            voteArr.push(barno[i].product_vote)
+        }
+        return voteArr
+    }
+    
+    voteData();
+    console.log(voteData)
+    
     return (
         <>
          {/* 投票活動 */}
@@ -108,7 +154,7 @@ function Vote(props) {
 
    {/* 投票長條圖及結果開始 */}
 <div className={`voteResult pt-3 ${status===1?"d-block":"d-none"}`}>
-        <h2 className="text-center">目前投票結果全</h2>
+        <h2 className="text-center">目前投票結果</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
@@ -119,9 +165,9 @@ function Vote(props) {
         {
             <BarChart
                 className="chartContainer"
-                type={allVote.product_type===1}
-                vote={allVote.vote_get}
-                gamename={allVote.game_name}
+                gamename={textArr}
+                vote={voteData}
+                // gamename={barno.product_name}
             />
         }
         
@@ -159,7 +205,7 @@ function Vote(props) {
     <div className={`voteChoose ${ status === 1 ? "d-block" : "d-none"}`}>
     <div >
         <div>
-        <h2 className="text-center pt-3">我也要投票!全</h2>
+        <h2 className="text-center pt-3">我也要投票!</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
@@ -168,10 +214,10 @@ function Vote(props) {
             <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
 
             {
-                allVote.map((v,i) => {
+                barno.map((v,i) => {
                 return(
                 <VoteLabel 
-                  name={v.game_name} />
+                  name={v.product_name} />
                 )                    
             })}
             
@@ -188,7 +234,7 @@ function Vote(props) {
 
 {/* 投票長條圖及結果開始 */}
 <div className={`voteResult pt-3 ${status===2?"d-block":"d-none"}`}>
-        <h2 className="text-center">目前投票結果家庭</h2>
+        <h2 className="text-center">目前投票結果</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
@@ -199,9 +245,9 @@ function Vote(props) {
         {
             <BarChart
                 className="chartContainer"
-                type={allVote.product_type===1}
-                vote={allVote.vote_get}
-                gamename={allVote.game_name}
+                type={barno.product_type==="家庭"}
+                vote={barno.vote_get}
+                gamename={barno.game_name}
             />
         }
         
@@ -238,7 +284,7 @@ function Vote(props) {
     {/* 投票區域開始 */}
     <div>
         <div>
-        <h2 className="text-center pt-3">我也要投票!家庭</h2>
+        <h2 className="text-center pt-3">我也要投票!</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
@@ -248,10 +294,10 @@ function Vote(props) {
             
             {
                 
-                allVote.map((v,i) => {
-                    if(v.product_type === 1){
+                barno.map((v,i) => {
+                    if(v.product_type === "家庭"){
                         return (
-                            <VoteLabel name={v.game_name} />
+                            <VoteLabel name={v.product_name} />
                         )
                     }                   
             })}
@@ -267,7 +313,7 @@ function Vote(props) {
 
 {/* 投票長條圖及結果開始 */}
 <div className={`voteResult pt-3 ${ status === 3 ? "d-block" : "d-none"}` }>
-        <h2 className="text-center">目前投票結果卡牌</h2>
+        <h2 className="text-center">目前投票結果</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
@@ -310,7 +356,7 @@ function Vote(props) {
     {/* 投票區域開始 */}
     <div>
         <div>
-        <h2 className="text-center pt-3">我也要投票!卡牌</h2>
+        <h2 className="text-center pt-3">我也要投票!</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
@@ -320,10 +366,10 @@ function Vote(props) {
            
             {
                 
-                allVote.map((v,i) => {
-                    if(v.product_type === 2){
+                barno.map((v,i) => {
+                    if(v.product_type === "卡牌"){
                         return (
-                            <VoteLabel name={v.game_name} />
+                            <VoteLabel name={v.product_name} />
                         )
                     }                   
             })}
@@ -340,7 +386,7 @@ function Vote(props) {
 
 {/* 投票長條圖及結果開始 */}
 <div className={`voteResult pt-3 ${status === 4 ? "d-block":"d-none"}`}>
-        <h2 className="text-center">目前投票結果策略</h2>
+        <h2 className="text-center">目前投票結果</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
@@ -383,7 +429,7 @@ function Vote(props) {
     {/* 投票區域開始 */}
     <div>
         <div>
-        <h2 className="text-center pt-3">我也要投票!策略</h2>
+        <h2 className="text-center pt-3">我也要投票!</h2>
         <div className="titleLineBox">
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
@@ -393,10 +439,10 @@ function Vote(props) {
             
             {
                 
-                allVote.map((v,i) => {
-                    if(v.product_type === 3){
+                barno.map((v,i) => {
+                    if(v.product_type === "策略"){
                         return (
-                            <VoteLabel name={v.game_name} />
+                            <VoteLabel name={v.product_name} />
                         )
                     }                   
             })}

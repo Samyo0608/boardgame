@@ -128,29 +128,33 @@
 }
 .awesomeButton {
   margin-right: 20px;
-  background-color: #4972b0;
+  color: #4972b0;
+  background-color: #ffffff;
   border-radius: 50px;
+  border: 3px solid #4972b0;
   width: 100px;
   height: 40px;
   text-decoration: none;
   font-weight: bold;
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
 }
-.awesomeBox {
-  width: 30px;
-}
-.awesomeImg {
-  object-fit: contain;
-  width: 100%;
-}
-.awesomeText {
-  padding-top: 15px;
-  padding-left: 10px;
-  margin-right: 5px;
+.awesomeButton:hover {
+  background-color: #4972b0;
   color: white;
 }
+.awesomeButton:active {
+  background-color: #48638b;
+  border-color: #48638b;
+  color: white;
+}
+.awesomeImg {
+  font-size: 20px;
+}
+
 .likeButton {
-  background-color: #fde7e7;
+  background-color: #ffffff;
+  border: 3px solid #ff7676;
+  color: #ff7676;
   border-radius: 50px;
   width: 100px;
   height: 40px;
@@ -158,17 +162,22 @@
   font-weight: bold;
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
 }
-.likeBox {
-  width: 30px;
+
+.likeButton:hover {
+  background-color: #ff7676;
+  color: white;
 }
+.likeButtonActive {
+  background-color: #ff8787;
+  color: white;
+}
+.likeButton:active {
+  background-color: #dd6565;
+  border-color: #dd6565;
+}
+
 .likeImg {
-  object-fit: contain;
-  width: 100%;
-}
-.likeText {
-  padding-top: 15px;
-  padding-left: 10px;
-  color: black;
+  font-size: 20px;
 }
 
 /* 回覆者 */

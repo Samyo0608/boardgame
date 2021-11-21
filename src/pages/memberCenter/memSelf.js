@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Modal } from "react-bootstrap";
 import "../../css/memSelf.css";
 import Sidebar from "../../components/memberSidebar/index";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../../configs/config";
+import { API_URL, PHOTO_URL } from "../../configs/config";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload, faImages } from "@fortawesome//free-solid-svg-icons";
+import Swal from "sweetalert2";
 
 // 縣市鄉鎮api
 const area_data = {
@@ -420,16 +425,42 @@ const townships = countries.map((v, i, array) =>
 );
 
 function MemSelf(props) {
+  // 更換頭像 start
+  const [show, setShow] = useState(false);
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [crop, setCrop] = useState({
+    unit: "%",
+    width: 50,
+    height: 50,
+    x: 25,
+    y: 25,
+  });
+  const [result, setResult] = useState(null);
+  const [preview, setPreview] = useState(null);
+  // 更換頭像 end
+
   const userAccount = useParams();
+
+  // 地址串接
   const [countryName, setCountryName] = useState("");
   const [town, setTown] = useState("");
   const [otherAddress, setOtherAddress] = useState("");
+
+  // 生日串接
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+
+  // 地址option
   const [country, setCountry] = useState(-1);
   const [township, setTownship] = useState(-1);
 
+  // 串接結果
+  const address = countryName.concat(",", town, ",", otherAddress);
+  const birth = year.concat("/", month, "/", day);
+
+  //user資料
   const [user, setUser] = useState({
     account: "",
     address: "",
@@ -442,8 +473,12 @@ function MemSelf(props) {
     photo: "",
     point: 0,
   });
-  const address = countryName.concat(",", town, ",", otherAddress);
-  const birth = year.concat("/", month, "/", day);
+
+  // 存入照片資料(帳號、Blob圖片檔案)
+  const [dataFile, setDataFile] = useState({
+    account: userAccount.account,
+    photo: null,
+  });
 
   useEffect(
     (e) => {
@@ -463,6 +498,7 @@ function MemSelf(props) {
     [address]
   );
 
+  // 進入畫面時載入資料
   useEffect((e) => {
     async function userData() {
       try {
@@ -488,18 +524,156 @@ function MemSelf(props) {
     userData();
   }, []);
 
+  // 更新圖片時載入資料
+  useEffect(() => {
+    async function userData() {
+      try {
+        let userData = await axios.get(
+          `${API_URL}/member/${userAccount.account}`,
+          {
+            withCredentials: true,
+          }
+        );
+        setUser(userData.data[0]);
+      } catch (e) {
+        console.log("獲取資料失敗");
+      }
+    }
+    userData();
+  }, [show]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/member/memSelf/${user.account}`, user, {
         withCredentials: true,
       });
-      alert("更新完成");
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        title: "Good Job!",
+        text: "個人資料更新成功",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          window.location.reload();
+        }
+      });
     } catch (e) {
       console.error("登入錯誤", e);
     }
   }
+
+  // 圖片上傳 function start
+  const fileChange = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleClose = (e) => {
+    setShow(false);
+  };
+  // crop轉成canvas
+  function getCroppedImg() {
+    const canvas = document.createElement("canvas");
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext("2d");
+
+    // New lines to be added
+    const pixelRatio = window.devicePixelRatio;
+    canvas.width = crop.width * pixelRatio;
+    canvas.height = crop.height * pixelRatio;
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.imageSmoothingQuality = "high";
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+    //轉成png
+    const base64Image = canvas.toDataURL("image/jpg");
+    setPreview(base64Image);
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => {
+          blob.name = Date.now();
+          resolve(blob);
+        },
+        "image/jpeg",
+        1
+      );
+    });
+  }
+  // sweetAlert2 toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+  });
+
+  // 預覽圖片
+  async function test() {
+    if (file) {
+      const croppedImg = await getCroppedImg();
+      setResult(croppedImg);
+      let newData = { ...dataFile };
+      newData.photo = croppedImg;
+      setDataFile(newData);
+    } else {
+      Toast.fire({
+        icon: "error",
+        title: "請先上傳圖片 !",
+      });
+    }
+  }
+
+  // (按鈕)上傳圖片
+  async function fileUpdate(e) {
+    if (preview !== null) {
+      e.preventDefault();
+      try {
+        let formData = new FormData();
+        formData.append("account", dataFile.account);
+        formData.append("photo", dataFile.photo);
+        await axios.post(
+          `${API_URL}/member/memSelf/photo/${user.account}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        setShow(false);
+        Toast.fire({
+          icon: "success",
+          title: "照片上傳成功 !",
+        });
+        // for (var pair of formData.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      Toast.fire({
+        icon: "error",
+        title: "請先檢視剪裁後的圖片 !",
+      });
+    }
+  }
+  // 圖片上傳 function end
 
   const handleChange = (e) => {
     let newUser = { ...user };
@@ -517,9 +691,84 @@ function MemSelf(props) {
           <p className="h2 bold titleMargin mt-5">基本資料</p>
           <div className="mb-5 bold d-flex justify-content-between align-items-center changeImg">
             <p>個人頭像</p>
-            <img alt="123" src="/img/memberCenter/memberhead.png" />
-            <Button>更換頭像</Button>
+            {user.photo ? (
+              <img
+                alt="個人頭像"
+                src={`${PHOTO_URL}/public/uploads/${user.photo}`}
+              />
+            ) : (
+              <div clssName="changeImg">
+                <span>頭像</span>
+                <FontAwesomeIcon icon={faImages} className="me-2" />
+              </div>
+            )}
+
+            <button
+              onClick={(e) => {
+                setShow(true);
+              }}
+            >
+              更換頭像
+            </button>
           </div>
+
+          {/* 更換頭像，彈跳視窗 start*/}
+          <Modal show={show} onHide={handleClose} centered size="xl">
+            <Modal.Header closeButton>
+              <Modal.Title>更換頭像</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="d-flex justify-content-around align-items-center modalBody">
+              {file ? (
+                <ReactCrop
+                  className="reactCrop"
+                  src={file}
+                  onImageLoaded={setImage}
+                  crop={crop}
+                  onChange={setCrop}
+                  circularCrop="false"
+                  ruleOfThirds="true"
+                />
+              ) : (
+                <div className="text-center">圖片剪裁區</div>
+              )}
+              {result ? (
+                <img src={preview} alt="cropImage" className="previewCrop" />
+              ) : (
+                <div className="text-center me-5">圖片預覽區</div>
+              )}
+            </Modal.Body>
+            <Modal.Footer className="d-flex justify-content-center">
+              <form method="post" className="d-flex">
+                <label className="me-3 labelInput">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="d-none"
+                    onChange={fileChange}
+                  />
+                  <FontAwesomeIcon icon={faUpload} className="me-2" />
+                  <span>載入照片</span>
+                </label>
+                <input type="hidden" name="photo" />
+                <div>
+                  <Button
+                    variant="danger"
+                    className="me-3"
+                    onClick={fileUpdate}
+                  >
+                    上傳
+                  </Button>
+                  <Button variant="success me-3" onClick={test}>
+                    預覽(確認剪裁)
+                  </Button>
+                  <Button variant="secondary" onClick={handleClose}>
+                    取消
+                  </Button>
+                </div>
+              </form>
+            </Modal.Footer>
+          </Modal>
+          {/* 更換頭像，彈跳視窗 end*/}
           <Form method="post" className="formSize bold" onSubmit={handleSubmit}>
             <Form.Group as={Row} className="mb-3" controlId="memId">
               <Form.Label column sm="2">
@@ -622,7 +871,7 @@ function MemSelf(props) {
                       maxlength="4"
                       minlength="4"
                       className="me-2"
-                      value={user.birth.split("/")[0]}
+                      defaultValue={user.birth.split("/")[0]}
                       onChange={(e) => {
                         setYear(e.target.value);
                       }}
@@ -639,9 +888,8 @@ function MemSelf(props) {
                       name="month"
                       placeholder="月"
                       maxlength="2"
-                      defaultValue="1"
                       className="me-2"
-                      value={user.birth.split("/")[1]}
+                      defaultValue={user.birth.split("/")[1]}
                       onChange={(e) => {
                         setMonth(e.target.value);
                       }}
@@ -658,9 +906,8 @@ function MemSelf(props) {
                       name="day"
                       placeholder="日"
                       maxlength="2"
-                      defaultValue="1"
                       className="me-2"
-                      value={user.birth.split("/")[2]}
+                      defaultValue={user.birth.split("/")[2]}
                       onChange={(e) => {
                         setDay(e.target.value);
                       }}
@@ -729,7 +976,7 @@ function MemSelf(props) {
                     <Form.Control
                       type="text"
                       placeholder="剩餘完整地址"
-                      value={user.address.split(",")[2]}
+                      defaultValue={user.address.split(",")[2]}
                       onChange={(e) => {
                         setOtherAddress(e.target.value);
                       }}
