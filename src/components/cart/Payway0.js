@@ -1,39 +1,35 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-// import PropTypes from "prop-types";
-import "../../css/cart.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "../../css/cart.css";
 
-const Payway0 = () => {
+function Cart1(props) {
+  const { product_name, product_price } = props;
+
   return (
     <>
-      <Container>
-        {/* 遊戲一 */}
-        <div className="box12">
-          <div className="box123">
-            <input type="checkbox" />
+      <div className="mt-5 mb-4">
+        <div className="checkCartBox d-flex justify-content-between align-items-center">
+          <div className="ms-3">
             <img className="cartpic" src="/img/product/game1.jpg" alt="" />
-            <div className="pnumber">
-              <p>遊戲名稱: </p>
-            </div>
-            <div className="pname">
-              <p>犯人在跳舞</p>
-            </div>
-            <div className="amount10">
-              <span className="amount11" id="quantity">
-                數量: 1
-              </span>
-            </div>
-            <p className="cartprice">Price: $888</p>
-            <img className="str1" src="/img/product/stright.png" alt="" />
-            <div className="trackit">
-              <p>加入收藏</p>
-              <p>移除</p>
-            </div>
           </div>
+
+          <div className="">
+            <span className="h3 mt-2 bold">{product_name}</span>
+          </div>
+
+          <div>
+            <div className="d-flex justify-content-around align-items-center me-5">
+              <p className="bold h4 count me-2" id="count">
+                數量 : 1
+              </p>
+            </div>
+            <p className="cartprice mt-4">Price: ${product_price}</p>
+          </div>
+          <div className="d-flex justify-content-around align-items-center me-5"></div>
         </div>
-      </Container>
+      </div>
     </>
   );
-};
+}
 
-export default Payway0;
+export default Cart1;

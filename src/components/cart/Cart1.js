@@ -13,7 +13,7 @@ function Cart1(props) {
   return (
     <>
       {/* 遊戲一 */}
-      <div className="box12 mt-5">
+      <div className="mt-5 mb-3">
         <div className="box123 d-flex justify-content-between align-items-center">
           <div>
             <input className="ms-3" type="checkbox" />

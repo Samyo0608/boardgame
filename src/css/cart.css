@@ -10,6 +10,7 @@
   height: 100%;
   background: rgb(196, 230, 250);
   border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 /* Cart index end*/
 
@@ -17,15 +18,16 @@
 /* 小BOX */
 .box123 {
   width: 900px;
-  height: 250px;
+  height: 100%;
   background-color: #fff;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(189, 186, 186);
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 /* 購物車圖 */
 .cartpic {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
 }
 
@@ -55,8 +57,37 @@
 }
 /* Cart1 component end*/
 
+/* cartCheck頁面 start */
+
+/* background start */
+.cartCheckBG {
+  width: 100%;
+  height: 100%;
+  background: rgb(196, 230, 250);
+  border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 白色框內樣式 */
+.checkCartBox {
+  width: 900px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px rgb(189, 186, 186);
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+/* background end */
+
+/* cartCheck form 訂購人資料 */
+.checkCartForm {
+  width: 80%;
+}
+
 /* 結帳 */
 .total {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
   font-size: 25px;
 }
 .totalprice {

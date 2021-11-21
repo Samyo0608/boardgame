@@ -19,7 +19,7 @@ function Cart(props) {
           <Button className="me-3" variant="outline-primary">
             全部選取
           </Button>
-          <Button className="" variant="outline-secondary">
+          <Button className="" variant="outline-danger">
             刪除
           </Button>
         </div>
@@ -29,8 +29,13 @@ function Cart(props) {
         {/* 頂端 end*/}
 
         {/* container cart1 component*/}
-        <div className="CartListBG d-flex flex-column justify-content-start align-items-center">
+        <div className="CartListBG d-flex flex-column justify-content-between align-items-center">
           <Cart1 />
+          <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
+            <span className="bold me-1 ms-5">共計　</span>
+            <span className="text-danger bold">5432　</span>
+            <span className="bold me-3">元</span>
+          </div>
         </div>
 
         {/* footer */}
@@ -40,11 +45,6 @@ function Cart(props) {
               回首頁
             </Button>
           </Link>
-          <div className="d-flex justify-content-center align-items-center total ms-5">
-            <span className="bold me-1 ms-5">共計　</span>
-            <span className="text-danger bold">5432　</span>
-            <span className="bold">元</span>
-          </div>
           <div className="">
             <Link to="/cartcheck">
               <Button className="buttoncheck" variant="success">

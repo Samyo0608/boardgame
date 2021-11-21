@@ -102,7 +102,6 @@ function App() {
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
             <Route exact={true} path="/Cart" component={Cart} />
             <Route exact={true} path="/Cartcheck" component={Cartcheck} />
-            <Route path="" component={Loading} />
           </Switch>
           <Footer />
         </BrowserRouter>
