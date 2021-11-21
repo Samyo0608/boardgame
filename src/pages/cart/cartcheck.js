@@ -16,10 +16,6 @@ function Cartcheck(props) {
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
-        <div className="button1">
-          <Button variant="outline-primary">我的最愛( ) </Button>{" "}
-          <Button variant="outline-primary">我的遊戲( ) </Button>
-        </div>
         <Button className="button2" variant="outline-secondary">
           全部刪除
         </Button>
