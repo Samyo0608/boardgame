@@ -1,39 +1,71 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
+import { FloatingLabel, Form } from "react-bootstrap";
 import "../../css/cart.css";
-import Cart3 from "../../components/cart/Cart3";
-import Payway from "../../components/cart/Payway";
 import Payway0 from "../../components/cart/Payway0";
-import Payway2 from "../../components/cart/Payway2";
-import Payway1 from "../../components/cart/Payway1";
 
 function Cartcheck(props) {
   return (
-    <>
-      <Container>
-        <h2 className="text-center">購物車</h2>
+    <div className="cartWidth d-flex flex-column mb-4">
+      {/* 上方標題 */}
+      <div className="mb-3 mt-3">
+        <h2 className="text-center bold">訂單確認</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
-        <Button className="button2" variant="outline-secondary">
-          全部刪除
-        </Button>
-        <Button className="button3" variant="primary">
-          全部選取
-        </Button>
-        <p className="payman11">訂購商品</p>
-        {/* 訂購單 */}
-        <Payway0 />
-        {/* 訂購方法 */}
-        <Payway />
-        <Payway2 />
-        <Payway1 />
-        {/* 確認結帳 */}
+      </div>
 
-        <Cart3 />
-      </Container>
-    </>
+      {/* 訂購項目 */}
+      <div className="d-flex flex-column justify-content-start align-items-center">
+        <div className="mt-3 payman11 text-center">訂 購 項 目</div>
+        <div className="d-flex flex-column justify-content-start align-items-center cartCheckBG">
+          <Payway0 />
+          <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
+            <span className="bold me-1 ms-5">共計　</span>
+            <span className="text-danger bold">5432　</span>
+            <span className="bold me-3">元</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 訂購人資料 */}
+      <div className="d-flex flex-column justify-content-start align-items-center">
+        <div className="mt-3 payman11 text-center">收 件 人 資 料</div>
+        <div className="d-flex flex-column justify-content-start align-items-center cartCheckBG">
+          <form className="checkCartForm row mt-4" method="post">
+            {/* 第一層 */}
+            <FloatingLabel
+              controlId="email"
+              label="電子信箱"
+              className="col-8 mb-3"
+            >
+              <Form.Control type="email" placeholder="name@example.com" />
+            </FloatingLabel>
+            <FloatingLabel controlId="user" label="收件人" className="col-4">
+              <Form.Control type="text" placeholder="收件人姓名" />
+            </FloatingLabel>
+            {/* 第二層 */}
+            <FloatingLabel
+              controlId="phone"
+              label="手機號碼"
+              className="col-4 mb-3"
+            >
+              <Form.Control type="text" placeholder="09xxxxxxxx" />
+            </FloatingLabel>
+            <FloatingLabel controlId="user" label="收件地址" className="col-8">
+              <Form.Control type="text" placeholder="收件人地址" />
+            </FloatingLabel>
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <div className="d-flex align-items-center">
+                <input type="checkbox" />
+                <label className="bold">同使用者資料(自動帶入資料)</label>
+              </div>
+              <button className="btn btn-light">確認送出</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 
