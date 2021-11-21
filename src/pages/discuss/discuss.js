@@ -126,8 +126,6 @@ const Discuss = (props) => {
               全部
             </Link>
           </li>
-
-          {/* 討論區結果 */}
           {gameType.map((v, i) => {
             return (
               <li className="">

@@ -9,6 +9,7 @@ import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import Discuss from "./pages/discuss/discuss.js";
+import MemberDiscuss from "./pages/discuss/memberDiscuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
 import {
@@ -76,6 +77,11 @@ function App() {
               exact={true}
               path="/memberCenter:account/memberProduct"
               component={MemberProduct}
+            />
+            <Route
+              exact={true}
+              path="/memberCenter:account/memberDiscuss"
+              component={MemberDiscuss}
             />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />

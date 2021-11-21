@@ -10,6 +10,7 @@ import {
   faKey,
   faChessBoard,
   faEthernet,
+  faCommentDots,
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/memberCenter.css";
 import axios from "axios";
@@ -208,7 +209,12 @@ function MemberCenter(props) {
               <div>點數明細</div>
             </Link>
           </div>
-          <div className="col bold h3 memberLinkHeight"></div>
+          <div className="col bold h3 memberLinkHeight">
+            <Link to={`/memberCenter${sessionMember.account}/memberDiscuss`}>
+              <FontAwesomeIcon icon={faCommentDots} className="me-1" />
+              收藏文章
+            </Link>
+          </div>
         </div>
       </div>
     </Container>

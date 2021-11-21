@@ -127,7 +127,8 @@
   right: 2px;
 }
 .awesomeButton {
-  margin-right: 20px;
+  margin-right: 0px;
+  margin-left: 20px;
   color: #4972b0;
   background-color: #ffffff;
   border-radius: 50px;
@@ -164,11 +165,12 @@
 }
 
 .likeButton:hover {
-  background-color: #ff7676;
+  background-color: #ff9191;
+  border-color: #ff9191;
   color: white;
 }
 .likeButtonActive {
-  background-color: #ff8787;
+  background-color: #ff7676;
   color: white;
 }
 .likeButton:active {
