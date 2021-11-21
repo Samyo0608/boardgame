@@ -33,7 +33,7 @@ function parseTime(inputString) {
 }
 
 const CreateMessage = (props) => {
-  const [question, setQuestion] = useState({});
+  const [question, setQuestion] = useState({ messages: [] });
   const [newMessageContent, setNewMessageContent] = useState("");
   const location = useLocation();
 
@@ -60,13 +60,12 @@ const CreateMessage = (props) => {
     await fetchQuestion();
   };
 
-
   useEffect(() => {
     fetchQuestion();
   }, []);
   return (
     <>
-      {/* 問題標題 */}
+      {/* 顧客提問紀錄 */}
       <div class="historicalMessageFrame">
         <p>問題單編號:{question.question_id}</p>
         <div class="shiftright">
@@ -82,6 +81,25 @@ const CreateMessage = (props) => {
         </div>
         <span class="shiftright">{parseTime(question.created_at)}</span>
       </div>
+      {question.messages.map((message) => {
+        return (
+          <div class="historicalMessageFrame">
+            <div class="shiftright">
+              <span>{message.is_from_user ? "您的留言":"客服回覆"}</span>
+              <img
+                src="/img/customer_service/miniature_head.png"
+                class="miniatureHead"
+                alt=""
+              />
+            </div>
+            <div class="historicalMessage">
+              <span>{message.content}</span>
+            </div>
+            <span class="shiftright">{parseTime(message.created_at)}</span>
+          </div>
+        );
+      })}
+      {/* 顧客再次發出提問 */}
 
       <p class="subtitle">問題內容</p>
       <div>
