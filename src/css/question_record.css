@@ -9,26 +9,26 @@
   position: relative;
   width: 1200px;
   height: 880px;
-  left:-15px
+  left: -15px;
 }
 /*分頁*/
-.pagination div{
-  border-top:1px solid rgb(126, 124, 124);
-  border-left:1px solid rgb(126, 124, 124) ;
-  border-right:1px solid rgb(126, 124, 124) ;
+.pagination div {
+  border-top: 1px solid rgb(126, 124, 124);
+  border-left: 1px solid rgb(126, 124, 124);
+  border-right: 1px solid rgb(126, 124, 124);
   list-style: none;
   width: 200px;
   height: 80px;
   background-color: rgb(255, 255, 255);
   text-align: center;
-  line-height:80px;
+  line-height: 80px;
   font-weight: bold;
 }
-.pagination{
-  margin:60px 0 0 90px;
+.pagination {
+  margin: 60px 0 0 90px;
 }
-.pagination a{
-  text-decoration:none
+.pagination a {
+  text-decoration: none;
 }
 /* 內文內框 */
 .messageInner {
@@ -38,40 +38,37 @@
   height: 700px;
   background-color: rgb(255, 255, 255);
 }
-.messageInner a{
+.messageInner a {
   text-decoration: none;
 }
 /* 問題列表 */
-.OuterOptionBox{
-  border:1px solid rgb(255, 255, 255);
+.OuterOptionBox {
+  border: 1px solid rgb(255, 255, 255);
   display: flex;
-  padding:10px;
-  margin:10px 0 0 0px ;
+  padding: 10px;
+  margin: 10px 0 0 0px;
 }
-.red_point{
-  width:25px;
-  height:25px;
+.red_point {
+  width: 25px;
+  height: 25px;
   background-image: url(../img/customer_service/red_point.png);
   background-repeat: no-repeat;
   margin-top: 50px;
   margin-right: 10px;
 }
-.optionBox{
- 
-  border:1px solid rgb(158, 157, 157);
+.optionBox {
+  cursor: pointer;
+  border: 1px solid rgb(158, 157, 157);
   width: 600px;
   height: 120px;
-  padding:10px;
-
+  padding: 10px;
 }
 
-
-
 /* 右側圖 */
-.communicationPicture{
+.communicationPicture {
   width: 400px;
   height: 320px;
   position: absolute;
-  right:60px;
+  right: 60px;
   bottom: 30px;
 }

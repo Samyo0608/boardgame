@@ -4,6 +4,7 @@ import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import React, { useState } from "react";
 import CreateQuestion from "./create_question";
 import QuestionRecord from "./question_record";
+import CreateMessage from "./create_message";
 
 const CustomerServicePage = () => {
   const { path, url } = useRouteMatch();
@@ -34,6 +35,7 @@ const CustomerServicePage = () => {
             <Route exact path={`${path}/`} component={CreateQuestion} />
             <Route path={`${path}/create`} component={CreateQuestion} />
             <Route path={`${path}/record`} component={QuestionRecord} />
+            <Route path={`${path}/create_message`} component={CreateMessage} />
           </Switch>
         </div>
       </div>

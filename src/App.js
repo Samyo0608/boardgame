@@ -4,7 +4,6 @@ import React from "react";
 import FAQPage from "./pages/customer_service/faq";
 import InstantQAPage from "./pages/customer_service/instant_qa_page";
 import CustomerServicePage from "./pages/customer_service/customer_service_message";
-import EditReply from "./pages/customer_service/edit_reply";
 import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
@@ -68,8 +67,6 @@ function App() {
               path="/customer_service_message"
               component={CustomerServicePage}
             />
-
-            <Route path="/edit_reply" component={EditReply} />
             <Route path="/faq" component={FAQPage} />
             <Route
               exact={true}
