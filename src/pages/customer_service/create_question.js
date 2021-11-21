@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "../../css/customer_service_message.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { API_URL } from "../../configs/config";
 import axios from "axios";
@@ -9,13 +9,13 @@ import { useHistory } from "react-router-dom";
 
 
 const categoryHierarchy = {
-  "商店相關":["商店相關2"],
-  "訂單進度":["訂單進度2"],
-  "退換維修相關問題":[],
-  "會員相關":[],
-  "折價卷":[],
-  "發票與退款":[],
+  "會員相關":["修改會員資料","忘記帳號密碼","紅利點數相關問題"],
+  "購物相關":["出貨進度","更改訂單","取消訂單","更改付款方式"],
+  "商品與配送":["新品與庫存","商品規格疑問","商品錯誤或瑕疵","付款及配送疑問"],
+  "退換貨相關":["申請退換貨","查詢退換貨進度"],
+  "發票與退款":["退款進度","發票問題"],
 }
+const USER_ID = 1;
 
 const CreateQuestion = () => {
   const history = useHistory();
@@ -23,11 +23,10 @@ const CreateQuestion = () => {
   const [subCategory, setSubCategory] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const mainCategoryOptions = [
-    "商店相關",
-    "訂單進度",
-    "退換維修相關問題",
     "會員相關",
-    "折價卷",
+    "購物相關",
+    "商品與配送",
+    "退換貨相關",
     "發票與退款",
   ];
   const [subCategoryOptions, setSubCategoryOptions] = useState([]);
@@ -54,7 +53,7 @@ const CreateQuestion = () => {
       return;
     }
     const postQuestionBody = {
-      user_id: 1,
+      user_id: USER_ID,
       category: mainCategory[0],
       subcategory: subCategory[0],
       content: questionContent,
@@ -65,7 +64,7 @@ const CreateQuestion = () => {
       state: { isActive: true },
     });
   };
-
+  
   return (
     <>
       {/* 問題類別 */}
@@ -73,21 +72,21 @@ const CreateQuestion = () => {
       <div class="outerCoating">
         <Form.Group class="questionTopicOuter">
           <Typeahead
-            id="basic-typeahead-single"
+            id="area"
             labelKey="name"
             onChange={selecltMainCategory}
             options={mainCategoryOptions}
-            placeholder="Choose a state..."
+            placeholder="請選擇..."
             selected={mainCategory}
           />
         </Form.Group>
         <Form.Group class="questionTopicOuter">
           <Typeahead
-            id="basic-typeahead-single"
+            id="area"
             labelKey="name"
             onChange={setSubCategory}
             options={subCategoryOptions}
-            placeholder="Choose a state..."
+            placeholder="請選擇..."
             selected={subCategory}
           />
         </Form.Group>

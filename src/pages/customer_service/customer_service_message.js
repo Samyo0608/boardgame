@@ -12,8 +12,8 @@ const CustomerServicePage = () => {
     <div className="container justify-content-center flex-column">
       {/* header */}
       {/* title */}
-      <div class="djustTitle">
-        <h3>客服留言</h3>
+      <div class="djustTitleFram">
+        <h3 class="djustTitle">客服留言</h3>
         <img src="/img/customer_service/small_dice.png" class="csDice" alt="" />
       </div>
       {/* 外框背景 */}

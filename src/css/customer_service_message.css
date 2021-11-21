@@ -1,18 +1,18 @@
 /* header */
 /* title */
 
-.adjustTitle {
+.adjustTitleFram{
   margin: 0 0 0 50px;
   position: relative;
 }
-.adjustTitle h3 {
+.adjustTitle{
   font-size: 28px;
   font-weight: bold;
 }
 .csDice {
   width: 300px;
   position: absolute;
-  top: 42px;
+  top: -5px;
   left: 400px;
 }
 /* 外框背景 */
