@@ -9,6 +9,7 @@ import axios from "axios";
 import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 import { API_URL, URL } from "../../configs/config";
+import Swal from "sweetalert2";
 
 const Reply = () => {
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
@@ -49,7 +50,7 @@ const Reply = () => {
     point: "",
   });
 
-  // e.target 就是事件發生的目標
+  // 處理輸入欄位變化，e.target 就是事件發生的目標
   function handleDiscussChange(e) {
     let newInsertDiscuss = { ...insertDiscuss };
     newInsertDiscuss[e.target.name] = e.target.value;
@@ -91,15 +92,27 @@ const Reply = () => {
         user_id: sessionMember.id,
         discuss_id: discuss_id,
       };
-      let resKeep = await axios.post(
-        `http://localhost:3001/api/discuss/keep`,
-        keepData
-      );
-      setKeepStatus(true);
+      if (keepStatus === false) {
+        let resKeep = await axios.post(
+          `http://localhost:3001/api/discuss/keep`,
+          keepData
+        );
+        setKeepStatus(true);
+        Swal.fire("Good job!", "已將此文章加入收藏!", "success");
+      } else {
+        let resKeepDelete = await axios.post(
+          `http://localhost:3001/api/discuss/keepDelete`,
+          keepData
+        );
+        setKeepStatus(false);
+        Swal.fire("Good job!", "已將此文章從收藏移除!", "success");
+      }
     }
   };
 
   // 初始渲染
+
+  // 抓標題和回覆內容
   useEffect(async () => {
     window.scrollTo(0, 0);
     let res = await axios.get(
@@ -112,6 +125,7 @@ const Reply = () => {
     setreplyTitle(resTitle.data[0]);
   }, []);
 
+  // 統計每人發文數
   useEffect(async () => {
     let resDiscussCount = await axios.get(
       `http://localhost:3001/api/discuss/discussCount`
@@ -119,6 +133,7 @@ const Reply = () => {
     setDiscussCount(resDiscussCount.data);
   }, []);
 
+  // 統計每人回覆數
   useEffect(async () => {
     let resReplyCount = await axios.get(
       `http://localhost:3001/api/discuss/replyCount`
@@ -134,7 +149,7 @@ const Reply = () => {
         });
         setSessionMember(memberSession.data);
       } catch (e) {
-        // alert("獲取資料失敗");
+        alert("獲取資料失敗");
       }
     }
     session();
@@ -244,6 +259,17 @@ const Reply = () => {
                     <div className="twoButton d-flex">
                       <a
                         href="#/"
+                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
+                          keepStatus === true ? "likeButtonActive" : ""
+                        } ${i === 0 ? "" : "d-none"}`}
+                        onClick={keepClick}
+                      >
+                        收藏
+                        <FontAwesomeIcon className="likeImg" icon={faHeart} />
+                      </a>
+
+                      <a
+                        href="#/"
                         className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
                       >
                         17人
@@ -251,17 +277,6 @@ const Reply = () => {
                           className="awesomeImg"
                           icon={faThumbsUp}
                         />
-                      </a>
-
-                      <a
-                        href="#/"
-                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
-                          keepStatus === true ? "likeButtonActive" : ""
-                        }`}
-                        onClick={keepClick}
-                      >
-                        收藏
-                        <FontAwesomeIcon className="likeImg" icon={faHeart} />
                       </a>
                     </div>
                   </div>
