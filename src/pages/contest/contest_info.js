@@ -70,7 +70,7 @@ function Contest_info(props) {
     contest_email:"",
   });
   
-
+ // 寫一個存放投票陣列的鉤子 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -83,12 +83,14 @@ function Contest_info(props) {
     }  
   }
 
-  //頁數判斷
+  // 頁數判斷
   const pageNow = info.contest_id
   const pageNoFront = String(pageNow -1)
   const pageNoBack = String(pageNow +1)
 
-  
+  // BarChart陣列
+
+
   
 
   const show = (

@@ -65,23 +65,69 @@ const categoryButton=[
 const barchartRun = (b)=>{
     const bar =[]
     for(let i = 0; b< b.length; i++) {
-        bar.push({...b[i]})
+        bar[i].push({...b[i]})
     }
     return bar
+}
+
+// 迴圈 bar vote標籤
+const voteBarNo=(b)=>{
+    // let label=[,]
+    for(let i = 0; b < b.length; i++) {
+        b.product_name.push()
+        // console.log(b[0].product_name)
+    }
+    return (b)
+}
+
+// 迴圈 bar vote票數
+const voteBarGet=(b)=>{
+    let get=[]
+    for(let i = 0 ; b < b.length; i++){
+        get=b[i].product_vote.push()
+    }
+    return get
 }
 
 function Vote(props) {
     const[status,setStatus] = useState(2);
     // 寫一個跑資料的迴圈去承接到barchart
     const[barno,setBarno] = useState(barchartRun(barchartRun))
+    // 承接Label陣列的鉤子
+    const[labelName,setLabelName] = useState();
+
 
     useEffect(async () =>{
         let res = await axios.get(`${API_URL}/vote/list`);
         setBarno(res.data);
-        console.log(barno)
+        
+        // 可以叫出lable值
       },[])
+      console.log(barno) 
+      // 全系列labels
+      const textArr=[];
+      const labelData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            textArr.push(barno[i].product_name)
+        }
+        return textArr
+    }
 
+    labelData();
+    console.log(textArr)
 
+    // 全系列投票
+    const voteArr=[]
+    const voteData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            voteArr.push(barno[i].product_vote)
+        }
+        return voteArr
+    }
+    
+    voteData();
+    console.log(voteData)
+    
     return (
         <>
          {/* 投票活動 */}
@@ -119,9 +165,9 @@ function Vote(props) {
         {
             <BarChart
                 className="chartContainer"
-                type={barno.product_type}
-                vote={barno.product_vote}
-                gamename={barno.product_name}
+                gamename={textArr}
+                vote={voteData}
+                // gamename={barno.product_name}
             />
         }
         
