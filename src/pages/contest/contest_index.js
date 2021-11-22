@@ -64,13 +64,13 @@ function Index(props) {
         
             <p className="fs-3 fontColor">分類:</p>
             <form action="" className="d-inline">
-                <input type="checkbox" className="" value="" id="card" />
+                <input type="checkbox" className="checkboxCon" value="" id="card" />
 
 
                 <label For="card" className="fs-3 fontColor">卡牌</label>
-                <input type="checkbox" className="" value="" id="family" />
+                <input type="checkbox" className="checkboxCon" value="" id="family" />
                 <label for="family" className="fs-3 fontColor">家庭</label>
-                <input type="checkbox" className="" value="" id="stategy"/>
+                <input type="checkbox" className="checkboxCon" value="" id="stategy"/>
                 <label for="stategy" className="fs-3 fontColor"> 策略</label>
                 <label className="fs-3 fontColor">
                     <span className="deleButton">&#10005; 清除結果</span>

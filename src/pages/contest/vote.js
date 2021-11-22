@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import "../../css/vote.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Container, Row,Col,} from 'react-bootstrap';
+import {Container, Row,Col,Form,Button} from 'react-bootstrap';
 import BarChart from '../../components/contest/BarChart';
 import VoteLabel from '../../components/contest/VoteLabel.js'
 import {withRouter} from "react-router-dom"
@@ -89,6 +89,9 @@ const voteBarGet=(b)=>{
     return get
 }
 
+
+
+
 function Vote(props) {
     const[status,setStatus] = useState(2);
     // 寫一個跑資料的迴圈去承接到barchart
@@ -101,10 +104,11 @@ function Vote(props) {
         let res = await axios.get(`${API_URL}/vote/list`);
         setBarno(res.data);
         
-        // 可以叫出lable值
+        // 可以叫出label值
       },[])
-      console.log(barno) 
-      // 全系列labels
+      //console.log(barno) 
+
+    // 全系列labels
       const textArr=[];
       const labelData = ()=>{
         for(let i=0; i<barno.length;i++){
@@ -112,9 +116,7 @@ function Vote(props) {
         }
         return textArr
     }
-
     labelData();
-    console.log(textArr)
 
     // 全系列投票
     const voteArr=[]
@@ -123,11 +125,107 @@ function Vote(props) {
             voteArr.push(barno[i].product_vote)
         }
         return voteArr
-    }
-    
+    }  
     voteData();
-    console.log(voteData)
     
+    // 家庭系列labels
+
+    const textFami=[];
+    const famiData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="家庭")
+            textFami.push(barno[i].product_name)
+        }
+        return textFami
+    }
+    famiData();
+    
+    // 家庭系列投票
+    const voteFami=[]
+    const voFami=()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="家庭")
+            voteFami.push(barno[i].product_vote)
+        }
+        return voteFami 
+    }
+    voFami();
+
+    // 卡牌系列labels
+
+    const textCard=[];
+    const cardData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="卡牌")
+            textCard.push(barno[i].product_name)
+        }
+        return textCard
+    }
+    cardData();
+    
+    // 卡牌系列投票
+    const voteCard=[]
+    const voCard=()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="卡牌")
+            voteCard.push(barno[i].product_vote)
+        }
+        return voteCard 
+    }
+    voCard();
+
+    // 策略系列labels
+
+    const textTrag=[];
+    const tragData = ()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="策略")
+            textTrag.push(barno[i].product_name)
+        }
+        return textTrag
+    }
+    tragData();
+        
+    // 策略系列投票
+    const voteTrag=[]
+    const voTrag=()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="策略")
+            voteTrag.push(barno[i].product_vote)
+        }
+         return voteTrag 
+     }
+    voTrag();
+
+    // 投票的函式
+    const voteAdd=(i)=>{
+        let newVote=i.product_vote;
+        newVote+=1;
+        console.log(newVote)
+        return(
+            Number(newVote)
+        )
+    }
+  
+    // 投票的鉤子
+    const [voted,setVoted] =useState(console.log(voteAdd(barno)));
+      
+     // 寫一個存放投票陣列的鉤子 
+    
+      async function handleSubmit(e) {
+        e.preventDefault();
+        try{
+          let res = await axios.post(`${API_URL}/contest/keyin`,
+          voted
+        );
+        } catch(e) {
+          console.log("handleSubmit",e)
+        }  
+      }
+
+
+
+    // 網頁內容開始
     return (
         <>
          {/* 投票活動 */}
@@ -166,7 +264,7 @@ function Vote(props) {
             <BarChart
                 className="chartContainer"
                 gamename={textArr}
-                vote={voteData}
+                vote={voteArr}
                 // gamename={barno.product_name}
             />
         }
@@ -203,7 +301,7 @@ function Vote(props) {
     
     {/* 投票區域開始 */}
     <div className={`voteChoose ${ status === 1 ? "d-block" : "d-none"}`}>
-    <div >
+    <div>
         <div>
         <h2 className="text-center pt-3">我也要投票!</h2>
         <div className="titleLineBox">
@@ -211,7 +309,7 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <Form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
 
             {
                 barno.map((v,i) => {
@@ -222,8 +320,8 @@ function Vote(props) {
             })}
             
             
-            <input type="submit" value="送  出" className="submitVote m-3" />
-            </form>
+            <Button type="submit" className="submitVote m-3" >送  出</Button>
+            </Form>
         </div>
      </div>
 </div>
@@ -245,9 +343,8 @@ function Vote(props) {
         {
             <BarChart
                 className="chartContainer"
-                type={barno.product_type==="家庭"}
-                vote={barno.vote_get}
-                gamename={barno.game_name}
+                gamename={textFami}
+                vote={voteFami}
             />
         }
         
@@ -297,7 +394,18 @@ function Vote(props) {
                 barno.map((v,i) => {
                     if(v.product_type === "家庭"){
                         return (
-                            <VoteLabel name={v.product_name} />
+                            <VoteLabel name={v.product_name}
+                            value={setVoted}
+                            // onChange={
+                            //     (e)=>{
+                            //     let newBarno={...barno};
+                            //     newBarno[i].product_vote=e.target.value + 1;
+                            //     setBarno(newBarno)
+                            //     console.log(barno[i].product_vote)
+                                    
+                            //     }
+                            // }
+                            />
                         )
                     }                   
             })}
@@ -322,7 +430,11 @@ function Vote(props) {
 
         {/* 長條圖在這 */}
         
-        <BarChart/>
+        <BarChart
+            className="chartContainer"
+            gamename={textCard}
+            vote={voteCard}
+        />
 
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
@@ -369,7 +481,9 @@ function Vote(props) {
                 barno.map((v,i) => {
                     if(v.product_type === "卡牌"){
                         return (
-                            <VoteLabel name={v.product_name} />
+                            <VoteLabel name={v.product_name}
+                             value={setVoted}
+                             />
                         )
                     }                   
             })}
@@ -395,7 +509,11 @@ function Vote(props) {
 
         {/* 長條圖在這 */}
         
-        <BarChart/>
+        <BarChart
+            className="chartContainer"
+            gamename={textTrag}
+            vote={voteTrag}
+        />
 
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
@@ -435,21 +553,26 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <Form method="post" className="fs-2 p-2 justify-content-left align-items-center mb-3">
             
             {
                 
                 barno.map((v,i) => {
                     if(v.product_type === "策略"){
                         return (
-                            <VoteLabel name={v.product_name} />
+                            <VoteLabel name={v.product_name} 
+                            vote={v.product_vote}
+                            />
                         )
                     }                   
             })}
             
             
-            <input type="submit" value="送  出" className="submitVote m-3" />
-            </form>
+            <Button type="submit" className="submitVote m-3" 
+            onClick={(e)=>{
+                
+            }}>送  出</Button>
+            </Form>
         </div>
      </div>
 </div>
