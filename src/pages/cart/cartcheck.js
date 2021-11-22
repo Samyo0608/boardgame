@@ -39,10 +39,14 @@ function Cartcheck(props) {
               label="電子信箱"
               className="col-8 mb-3"
             >
-              <Form.Control type="email" placeholder="name@example.com" />
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                required
+              />
             </FloatingLabel>
             <FloatingLabel controlId="user" label="收件人" className="col-4">
-              <Form.Control type="text" placeholder="收件人姓名" />
+              <Form.Control type="text" placeholder="收件人姓名" required />
             </FloatingLabel>
             {/* 第二層 */}
             <FloatingLabel
@@ -50,17 +54,17 @@ function Cartcheck(props) {
               label="手機號碼"
               className="col-4 mb-3"
             >
-              <Form.Control type="text" placeholder="09xxxxxxxx" />
+              <Form.Control type="text" required placeholder="09xxxxxxxx" />
             </FloatingLabel>
             <FloatingLabel controlId="user" label="收件地址" className="col-8">
-              <Form.Control type="text" placeholder="收件人地址" />
+              <Form.Control type="text" placeholder="收件人地址" required />
             </FloatingLabel>
             <div className="d-flex justify-content-between align-items-center mb-4">
               <div className="d-flex align-items-center">
                 <input type="checkbox" />
                 <label className="bold">同使用者資料(自動帶入資料)</label>
               </div>
-              <button className="btn btn-light">確認送出</button>
+              <button className="btn btn-danger">結帳</button>
             </div>
           </form>
         </div>

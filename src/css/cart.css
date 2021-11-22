@@ -18,7 +18,7 @@
 /* 小BOX */
 .box123 {
   width: 900px;
-  height: 100%;
+  height: 150px;
   background-color: #fff;
   box-shadow: 2px 2px 2px rgb(189, 186, 186);
   padding: 5px 10px;
@@ -26,8 +26,8 @@
 }
 /* 購物車圖 */
 .cartpic {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   border-radius: 20px;
 }
 
@@ -52,13 +52,12 @@
 .vLine {
   margin-right: 30px;
   width: 2px;
-  height: 200px;
+  height: 100px;
   border-left: 2px dashed #ff6d6d;
 }
 /* Cart1 component end*/
 
 /* cartCheck頁面 start */
-
 /* background start */
 .cartCheckBG {
   width: 100%;
@@ -88,32 +87,12 @@
 .total {
   width: 100%;
   background: rgba(255, 255, 255, 0.8);
-  font-size: 25px;
+  font-size: 20px;
 }
-.totalprice {
-  display: flex;
-  font-size: 40px;
-  color: red;
-  font-weight: bolder;
-  margin-top: -15px;
-}
+
 .comebuy {
   border: 1px solid rgb(201, 201, 201);
   background: none;
-}
-
-/* 訂購人資料 */
-.payman {
-  position: relative;
-  top: -40px;
-  background-color: rgb(59, 137, 255);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #fff;
-  text-align: left;
-  font-size: 20px;
-  padding-left: 10px;
-  font-weight: bold;
 }
 
 /* 商品清單列 */
@@ -127,37 +106,9 @@
   border-radius: 10px 10px 0 0;
   color: #fff;
 }
-.payman2 {
-  position: relative;
-  top: -10px;
-  left: 70px;
-}
-.payman3 {
-  position: relative;
-  font-size: 20px;
-  top: -30px;
-  left: 150px;
-}
-.payman4 {
-  position: relative;
-  top: -275px;
-  left: 500px;
-}
-.payman5 {
-  font-size: 20px;
-}
-.payman6 {
-  position: relative;
-  font-size: 20px;
-  top: 20px;
-  left: 20px;
-}
-.payman10 {
-  position: relative;
-  font-size: 20px;
-  top: -35px;
-  left: 40px;
-}
-.red {
-  background-color: #fff;
+
+/* checkbox */
+.CartCheckBox {
+  width: 10px;
+  height: 10px;
 }
