@@ -59,7 +59,6 @@ function Contest_info(props) {
     contestMethod: '',
     contestPic: '',
     category: '',
-
   })
 
   // 填寫報名資訊用
