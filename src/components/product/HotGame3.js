@@ -24,7 +24,7 @@ const HotGame3 = (props) => {
         </div>
         <div className="p3">
           <NavLink to="/aboutgame/" className="a1">
-            <p className="ellipsis">{product_content}</p>
+            <p className="ellipsis2">{product_content}</p>
           </NavLink>
         </div>
 
