@@ -12,13 +12,14 @@ function Game(props) {
       <Row className="shadowbox4">
         <Col>
           <img className="pic" src={product_img} alt="" />
+
           <div>
             <article className={typecolor3[product_type]}>
               {product_type}
             </article>
           </div>
           <div>
-            <NavLink to="/aboutgame" activeClassName="a1">
+            <NavLink to="/aboutgame/" className="a1">
               <p className="gamename">{product_name}</p>
             </NavLink>
           </div>
