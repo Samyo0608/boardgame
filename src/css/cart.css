@@ -109,6 +109,26 @@
 
 /* checkbox */
 .CartCheckBox {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 5px;
+}
+
+/* 點數折抵 */
+.pointBox {
+  width: 100%;
+}
+
+/* 點數折抵input */
+.inputPoint {
+  height: 30px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 5px;
+  width: 80px;
+}
+
+/* 結帳鈕 */
+.endButton {
+  width: 100px;
 }

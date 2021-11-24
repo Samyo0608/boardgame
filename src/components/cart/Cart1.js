@@ -10,7 +10,7 @@ import {
 import "../../css/cart.css";
 
 function Cart1(props) {
-  const { name, price, imgURL, checked, id, type } = props;
+  const { name, price, imgURL, id, type } = props;
   const [count, setCount] = useState(1);
   const oneProductPrice = price * count;
 
@@ -38,15 +38,18 @@ function Cart1(props) {
 
   const handleMinus = () => {
     setCount(count - 1);
+    props.setCheck(!props.check);
     console.log(JSON.parse(localStorage.getItem(name)));
   };
 
   const handlePlus = () => {
     setCount(count + 1);
+    props.setCheck(!props.check);
     console.log(JSON.parse(localStorage.getItem(name)));
   };
 
   const handleDelete = () => {
+    props.setCheck(!props.check);
     localStorage.removeItem(name);
   };
 
@@ -55,11 +58,6 @@ function Cart1(props) {
       <div className="mb-3">
         <div className="box123 row align-items-center">
           <div className="col-3">
-            <input
-              className="ms-3 CartCheckBox"
-              type="checkbox"
-              checked={checked}
-            />
             <img
               className="cartpic"
               src={`/product_img/550x400/${imgURL}`}
