@@ -7,6 +7,7 @@ import Cart1 from "../../components/cart/Cart1";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 function Cart(props) {
+  const [check, setCheck] = useState(false);
   const [fullCheck, setFullCheck] = useState(false);
   const [product, setProduct] = useState([
     {
@@ -17,6 +18,12 @@ function Cart(props) {
       product_type: "",
     },
   ]);
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
+  });
 
   // 加入count
   const insertCountPro = (product) => {
@@ -44,7 +51,7 @@ function Cart(props) {
 
   useEffect(() => {
     setLocal(cartSave);
-  }, [cartSave]);
+  }, [product, check]);
 
   let total = 0;
   const totalMoney = (e) => {
@@ -63,12 +70,25 @@ function Cart(props) {
       setProduct(productItem.data);
     }
     product();
+    setLocal(localArray());
   }, []);
 
-  const CheckClicks = (e) => {
-    setFullCheck(!fullCheck);
-  };
+  // session載入
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        // alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
 
+  //刪除購物車按鈕
   const deleteClicks = (e) => {
     if (fullCheck) {
       localStorage.clear();
@@ -87,15 +107,8 @@ function Cart(props) {
           </div>
         </div>
         <div className="d-flex justify-content-start">
-          <Button
-            className="me-3"
-            variant="outline-primary"
-            onClick={CheckClicks}
-          >
-            全部選取
-          </Button>
           <Button className="" variant="outline-danger" onClick={deleteClicks}>
-            刪除
+            清除購物車
           </Button>
         </div>
         <div className="mt-3 payman11 text-center">
@@ -137,7 +150,9 @@ function Cart(props) {
                   imgURL={v.product_img}
                   id={v.product_id}
                   type={v.product_type}
-                  checked={fullCheck}
+                  // checked={fullCheck}
+                  check={check}
+                  setCheck={setCheck}
                 />
               );
             })}
@@ -152,18 +167,18 @@ function Cart(props) {
 
         {/* footer */}
         <div className="d-flex justify-content-between mt-3 mb-3 align-items-center">
-          <Link to="/cartcheck">
+          <Link to="/">
             <Button className="buttoncheck" variant="secondary">
               回首頁
             </Button>
           </Link>
           <div className="">
-            <Link to="/cartcheck">
+            <Link to={`/Cart${sessionMember.account}/Cartcheck`}>
               <Button className="buttoncheck" variant="success">
                 確認訂單
               </Button>
             </Link>
-            <Link to="/">
+            <Link to="/Product">
               <button className="btn btn-light comebuy ms-3">繼續購物</button>
             </Link>
           </div>
