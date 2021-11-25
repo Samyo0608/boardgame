@@ -15,6 +15,8 @@ import "@fullcalendar/timegrid/main.css";
 import "@fullcalendar/common/main.css";
 import "@fullcalendar/core/locales-all.js";
 import moment from "moment";
+// 動畫
+import Dice from "react-dice-roll";
 
 // 按鈕套件
 const Swal = require("sweetalert2");
@@ -39,7 +41,14 @@ function Booking() {
     bookingContent
       .filter((match) => !match.repeatExecute)
       .forEach((item) => {
-        item.title = "房型：" + item.room + "\n";
+        if (item.room === "fourRoom") {
+          item.room = "四人房";
+        } else if (item.room === "sixRoom") {
+          item.room = "六人房";
+        }
+
+        console.log(item.endTime);
+        item.title = item.room + "已滿";
         item.start = item.startTime;
         item.end = item.endTime;
       });
@@ -64,17 +73,6 @@ function Booking() {
     endTime: "",
   });
 
-  // 測試用
-  const [member, setMember] = useState({
-    room: "",
-    name: "",
-    phone: "",
-    email: "",
-    startTime: "",
-    endTime: "",
-    order_date: "",
-  });
-
   // 專門處理每個欄位輸入用
   const handleFieldChange = (e) => {
     console.log(e.target.name, e.target.value, e.target.value);
@@ -83,10 +81,12 @@ function Booking() {
     const updatedFields = { ...fields, [name]: value };
     setFields(updatedFields);
   };
+
   // 當表單檢查有不合法的訊息時會呼叫
   const handleFormInvalid = (e) => {
     // 阻擋form的預設送出行為(錯誤泡泡訊息)
     e.preventDefault();
+
     const updatedFieldErrors = {
       ...fieldErrors,
       [e.target.name]: e.target.validationMessage,
@@ -96,9 +96,11 @@ function Booking() {
 
   // 這段函式是為了跟錯誤訊息搭配用,當整個表單有更動時會觸發
   const handleFormChange = (e) => {
-    let newMember = { ...member };
-    newMember[e.target.name] = e.target.value;
-    setMember(newMember);
+    const updatedFieldErrors = {
+      ...fieldErrors,
+      [e.target.name]: "",
+    };
+    setFieldErrors(updatedFieldErrors);
   };
 
   // 表單送出觸發事件
@@ -118,7 +120,7 @@ function Booking() {
         denyButtonText: `取消`,
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.post(`http://localhost:3001/api/booking/order`, member, {
+          axios.post(`http://localhost:3001/api/booking/order`, fields, {
             withCredentials: true,
           });
           Swal.fire("感謝您的訂購!", "", "success");
@@ -304,15 +306,18 @@ function Booking() {
               className="form-control-lg"
               style={formStyle}
               placeholder="電話"
-              type="text"
+              type="tel"
               name="phone"
+              pattern="^[0-9]*[1-9][0-9]*$"
+              minLength="10"
+              maxLength="10"
               value={fields.phone}
               onChange={handleFieldChange}
               required
             />
             {/* 錯誤訊息 */}
             {fieldErrors.phone !== "" && (
-              <div className="error">{fieldErrors.phone}</div>
+              <div className="error">請填寫正確的手機號碼</div>
             )}
           </div>
           {/* 信箱填寫表格 */}
@@ -336,57 +341,42 @@ function Booking() {
           {/* 開始時間選取欄位 */}
           <div class="formStyle">
             <label class="form-label">開始： </label>
+
             <input
-              type="datetime-local"
+              id="date"
               className="form-control-lg"
+              type={"datetime-local"}
+              min={new Date().toISOString().slice(0, -8)}
               style={formStyle}
               name="startTime"
               value={fields.startTime}
               onChange={handleFieldChange}
               required
-            ></input>
+            />
             {/* 錯誤訊息 */}
             {fieldErrors.startTime !== "" && (
               <div className="error">{fieldErrors.startTime}</div>
             )}
           </div>
+
           {/* 結束時間選取欄位 */}
           <div class="formStyle">
             <label class="form-label">結束： </label>
             <input
               type="datetime-local"
+              min={new Date().toISOString().slice(0, -8)}
               className="form-control-lg"
               style={formStyle}
               name="endTime"
               value={fields.endTime}
               onChange={handleFieldChange}
               required
-            ></input>
+            />
             {/* 錯誤訊息 */}
             {fieldErrors.endTime !== "" && (
               <div className="error">{fieldErrors.endTime}</div>
             )}
           </div>
-          {/* 時段選取欄位 */}
-          {/* <div className="formStyle">
-            <label className="form-label">時段： </label>
-            <select
-              className="form-control-lg"
-              style={formStyle}
-              name="time"
-              value={fields.time}
-              onChange={handleFieldChange}
-              required
-            >
-              <option value="">時段...</option>
-              <option value="morning">上午(09:00-12:00)</option>
-              <option value="afternoon">下午(13:00-15:00)</option>
-            </select> */}
-          {/* 錯誤訊息 */}
-          {/* {fieldErrors.time !== "" && (
-              <div className="error">{fieldErrors.time}</div>
-            )}
-          </div> */}
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
 
           {/* 訂購確認按鈕 */}
@@ -406,9 +396,14 @@ function Booking() {
           src="img/booking/roomExplainBg.jpg"
         />
       </div>
-      <div>
-        <img alt="" className="diceImg" src="img/booking/dice.png"></img>
+      <div className="dice1">
+        <Dice size={180} />
       </div>
+      <div className="dice2">
+        <Dice size={180} />
+      </div>
+
+      {/* <img alt="" className="diceImg" src="img/booking/dice.png"></img> */}
     </>
   );
 }
