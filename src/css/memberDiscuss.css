@@ -14,23 +14,30 @@
   background-color: white;
 }
 
+.mdtitleTd {
+  width: 100px;
+}
+.mdtimeTd {
+  width: 200px;
+}
+
 .deleteKeepBtn {
-  color: white;
-  background-color: rgb(255, 43, 43);
   border-radius: 5px;
   border: none;
   width: 30px;
   height: 30px;
+  color: white;
+  background-color: rgb(255, 43, 43);
   box-shadow: 1px 1px 2px rgb(184, 184, 184),
     2px 2px 8px rgb(255, 130, 130) inset;
 }
 .deleteKeepBtn:hover {
-  background-color: rgb(255, 75, 75);
+  background-color: rgb(253, 71, 71);
   box-shadow: 1px 1px 2px rgb(121, 121, 121);
 }
 .deleteKeepBtn:active {
   /* background-color: rgb(196, 15, 15); */
-  box-shadow: 2px 2px 8px rgb(95, 95, 95) inset;
+  box-shadow: 2px 2px 8px rgba(95, 95, 95, 0.37) inset;
 }
 
 .goDiscussBtn {
@@ -39,21 +46,21 @@
   line-height: 33px;
   margin-left: 20px;
   border: none;
-  background-color: rgb(68, 118, 255);
   color: white;
   border-radius: 5px;
   width: 110px;
   height: 33px;
-  box-shadow: 1px 1px 2px rgb(184, 184, 184),
-    2px 2px 8px rgb(133, 146, 255) inset;
+  background-color: #2196d4;
+  box-shadow: 1px 1px 2px rgb(184, 184, 184);
 }
 .goDiscussBtn:hover {
-  background-color: rgb(92, 135, 255);
   color: white;
-  box-shadow: 1px 1px 3px rgb(83, 83, 83);
+  background-color: #23a6ec;
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 8px rgba(127, 216, 252, 0.582) inset;
 }
 .goDiscussBtn:active {
-  background-color: rgb(51, 98, 230);
   color: white;
+  background-color: #1f8cc7;
   box-shadow: 2px 2px 15px rgba(141, 141, 141, 0.596) inset;
 }

@@ -100,13 +100,13 @@ function MemberDiscuss(props) {
                             <th scope="row" className="">
                               <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                             </th>
-                            <td>
-                              <Link to={`discuss/reply/${v.id}`}>
+                            <td className="mdtitleTd">
+                              <Link to={`../discuss/reply/${v.id}`}>
                                 {v.title}
                               </Link>
                             </td>
-                            <td>{v.i_user_id}</td>
-                            <td className="timeTd">
+                            <td className="mduserTd">{v.i_user_id}</td>
+                            <td className="mdtimeTd">
                               {moment(v.created_at.toString()).format(
                                 "YYYY-MM-DD HH:mm:ss"
                               )}

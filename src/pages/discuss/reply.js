@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/reply.css";
-import React from "react";
+import React, { Component } from "react";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,10 @@ import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 import { API_URL, URL } from "../../configs/config";
 import Swal from "sweetalert2";
+import DiscussQuill from "../../components/discuss/discussQuill";
+import { Container } from "react-bootstrap";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 
 const Reply = () => {
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
@@ -34,12 +38,37 @@ const Reply = () => {
   // 收藏功能設定狀態
   const [keepStatus, setKeepStatus] = useState({});
 
+  //按讚功能撈資料
+  const [discussLikeData, setDiscussLikeData] = useState([
+    {
+      user_id: "",
+      discuss_content_id: "",
+    },
+  ]);
+
+  // 按讚功能設定狀態
+  const [discussLike, setDiscussLike] = useState([
+    { discusss_content_id: "", user_id: "" },
+  ]);
+  // 按讚功能設定狀態
+  const [likeStatus, setLikeStatus] = useState({});
+
   // 新增回覆資料
   const [insertDiscuss, setInsertDiscuss] = useState({
     discuss_id: discuss_id,
     user_id: "",
     content: "",
     floor: "1",
+  });
+
+  const [quillContent, setQuillContent] = useState({});
+  const [addDiscuss, setAddDiscuss] = useState({
+    user_id: "",
+    type: "",
+    title: "",
+    content: "",
+    floor: "0",
+    lastId: "",
   });
 
   // 登入狀態
@@ -49,6 +78,8 @@ const Reply = () => {
     account: "",
     point: "",
   });
+
+  // 文字編輯器
 
   // 處理輸入欄位變化，e.target 就是事件發生的目標
   function handleDiscussChange(e) {
@@ -62,21 +93,67 @@ const Reply = () => {
   async function handleInsertDiscussSubmit(e) {
     e.preventDefault();
     try {
-      // json 格式無法傳檔案，改成用 form data
-      let formData = new FormData();
-      formData.append("discuss_id", insertDiscuss.discuss_id);
-      formData.append("user_id", insertDiscuss.user_id);
-      formData.append("content", insertDiscuss.content);
-      formData.append("floor", insertDiscuss.floor);
-      // 測試資料
-      for (var key of formData.entries()) {
-        console.log(key[0] + ", " + key[1]);
+      if (!sessionMember.id) {
+        alert("請先登入");
+        window.location.href = `/login`;
+      } else {
+        // json 格式無法傳檔案，改成用 form data
+        let formData = new FormData();
+        formData.append("discuss_id", insertDiscuss.discuss_id);
+        formData.append("user_id", sessionMember.id);
+        formData.append("content", insertDiscuss.content);
+        formData.append("floor", insertDiscuss.floor);
+        // 測試資料
+        // for (var key of formData.entries()) {
+        //   console.log(key[0] + ", " + key[1]);
+        // }
+        let res = await axios.post(
+          `http://localhost:3001/api/discuss/insertDiscuss`,
+          formData
+        );
+        Swal.fire({
+          icon: "success",
+          title: "回覆成功",
+          text: "已提交您的回覆",
+        }).then((res) => {
+          window.location.reload();
+        });
       }
-      let res = await axios.post(
-        `http://localhost:3001/api/discuss/insertDiscuss`,
-        formData
-      );
-      window.location.reload();
+    } catch (e) {
+      console.log("handleInsertDiscussSubmit", e);
+    }
+  }
+
+  // 提交回覆表單(quill)
+  async function handleQuillInsertDiscussSubmit(e) {
+    // e.preventDefault();
+    try {
+      if (!sessionMember.id) {
+        alert("請先登入");
+        window.location.href = `/login`;
+      } else {
+        // json 格式無法傳檔案，改成用 form data
+        let formData = new FormData();
+        formData.append("discuss_id", discuss_id);
+        formData.append("user_id", sessionMember.id);
+        formData.append("content", quillContent);
+        formData.append("floor", "1");
+        // 測試資料
+        // for (var key of formData.entries()) {
+        //   console.log(key[0] + ", " + key[1]);
+        // }
+        let res = await axios.post(
+          `http://localhost:3001/api/discuss/insertDiscuss`,
+          formData
+        );
+        Swal.fire({
+          icon: "success",
+          title: "回覆成功",
+          text: "已提交您的回覆",
+        }).then((res) => {
+          window.location.reload();
+        });
+      }
     } catch (e) {
       console.log("handleInsertDiscussSubmit", e);
     }
@@ -141,6 +218,7 @@ const Reply = () => {
     setReplyCount(resReplyCount.data);
   }, []);
 
+  // 抓會員session
   useEffect((e) => {
     async function session() {
       try {
@@ -155,6 +233,7 @@ const Reply = () => {
     session();
   }, []);
 
+  // 抓是否已按過收藏，抓按讚資料
   const isFirstRun = useRef(true);
   useEffect(async () => {
     if (isFirstRun.current) {
@@ -174,7 +253,10 @@ const Reply = () => {
     } else {
       setKeepStatus(true);
     }
-    console.log(resDiscussKeep.data);
+    let resDiscussLikeData = await axios.post(
+      `http://localhost:3001/api/discuss/likeData`
+    );
+    setDiscussLikeData(resDiscussLikeData.data);
   }, [sessionMember]);
 
   return (
@@ -190,7 +272,6 @@ const Reply = () => {
           <p className="fs-5">討論區</p>
         </div>
       </div>
-
       {/* 麵包屑 */}
       <div className="replyBread text-end">
         <a className="replyBreadContent" href="#/">
@@ -201,7 +282,7 @@ const Reply = () => {
       <div className="replyPicBox">
         <img alt="" className="replyPic" src="../../img/reply/reply1.png" />
       </div>
-      <a className="replyButton text-center" href="#/">
+      <a className="replyButton text-center" href="#replyTarget">
         回覆
       </a>
       {/* 討論區內容 */}
@@ -248,7 +329,13 @@ const Reply = () => {
                 <div className="replyOutBox">
                   <div className="replyInBox">
                     {/* 文章內容 */}
-                    <p>{v.content}</p>
+                    {/* <p>{v.content}</p> */}
+                    <ReactQuill
+                      className="discussContentQuill"
+                      value={v.content}
+                      readOnly={true}
+                      theme={"bubble"}
+                    />
 
                     <p className="postTime text-secondary">
                       發表於 :{" "}
@@ -259,20 +346,81 @@ const Reply = () => {
                     <div className="twoButton d-flex">
                       <a
                         href="#/"
-                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
-                          keepStatus === true ? "likeButtonActive" : ""
+                        className={`keepButton col-2 d-flex justify-content-evenly align-items-center ${
+                          keepStatus === true ? "keepButtonActive" : ""
                         } ${i === 0 ? "" : "d-none"}`}
                         onClick={keepClick}
                       >
                         收藏
-                        <FontAwesomeIcon className="likeImg" icon={faHeart} />
+                        <FontAwesomeIcon className="keepImg" icon={faHeart} />
                       </a>
 
                       <a
                         href="#/"
-                        className="awesomeButton col-2 d-flex justify-content-evenly align-items-center"
+                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
+                          discussLikeData.filter((lv) => {
+                            return (
+                              lv.user_id === sessionMember.id &&
+                              lv.discuss_content_id === v.id
+                            );
+                          }).length === 0
+                            ? ""
+                            : "likeButtonActive"
+                        }`}
+                        onClick={async () => {
+                          if (!sessionMember.id) {
+                            alert("請先登入");
+                            window.location.href = `/login`;
+                          } else {
+                            const likeData = {
+                              user_id: sessionMember.id,
+                              discuss_content_id: v.id,
+                            };
+
+                            if (
+                              discussLikeData.filter((lv) => {
+                                return (
+                                  lv.user_id === sessionMember.id &&
+                                  lv.discuss_content_id === v.id
+                                );
+                              }).length === 0
+                            ) {
+                              let resLike = await axios.post(
+                                `http://localhost:3001/api/discuss/like`,
+                                likeData
+                              );
+                              let resDiscussLikeData = await axios.post(
+                                `http://localhost:3001/api/discuss/likeData`
+                              );
+                              setDiscussLikeData(resDiscussLikeData.data);
+                              Swal.fire(
+                                "Good job!",
+                                "已發送您的讚!",
+                                "success"
+                              );
+                            } else {
+                              let resLikeDelete = await axios.post(
+                                `http://localhost:3001/api/discuss/likeDelete`,
+                                likeData
+                              );
+                              let resDiscussLikeDataDel = await axios.post(
+                                `http://localhost:3001/api/discuss/likeData`
+                              );
+                              setDiscussLikeData(resDiscussLikeDataDel.data);
+                              Swal.fire(
+                                "Good job!",
+                                "已收回您的讚!",
+                                "success"
+                              );
+                            }
+                          }
+                        }}
                       >
-                        17人
+                        {
+                          discussLikeData.filter((lv) => {
+                            return lv.discuss_content_id === v.id;
+                          }).length
+                        }
                         <FontAwesomeIcon
                           className="awesomeImg"
                           icon={faThumbsUp}
@@ -288,14 +436,13 @@ const Reply = () => {
       })}
 
       {/* 參加討論 */}
-
-      <div className="newReplyBox d-flex">
+      <div className="newReplyBox d-flex" id="replyTarget">
         <div className="redBirdBox mx-4">
           <img className="redBirdImg" src="../../img/reply/bird3.png" alt="" />
         </div>
         <div className="ms-5">
           <p className="fw-bold">參加討論</p>
-          <div className="replyInputBox position-relative pt-1">
+          <div className="replyInputBox position-relative">
             <div className="greenBirdBox">
               <img
                 className="greenBirdImg"
@@ -303,29 +450,20 @@ const Reply = () => {
                 src="../../img/reply/bird2.png"
               />
             </div>
-            {/* <div className="replyInputFloor text-center">3樓</div> */}
             <div className="textareaBox">
-              <form onSubmit={handleInsertDiscussSubmit}>
-                <label>id :</label>
-                <input
-                  className="form-control"
-                  name="user_id"
-                  type="text"
-                  value={insertDiscuss.user_id}
-                  onChange={handleDiscussChange}
-                />
-                <label>內容 :</label>
-                <textarea
-                  className="form-control"
-                  name="content"
-                  rows="11"
-                  cols="102"
-                  value={insertDiscuss.content}
-                  onChange={handleDiscussChange}
-                  placeholder="Leave a comment here"
-                />
-                <button className="replySubmitButton text-center">送出</button>
-              </form>
+              <DiscussQuill
+                addDiscuss={addDiscuss}
+                setAddDiscuss={setAddDiscuss}
+                setQuillContent={setQuillContent}
+              />
+              <button
+                onClick={() => {
+                  handleQuillInsertDiscussSubmit();
+                }}
+                className="replySubmitButton text-center"
+              >
+                送出
+              </button>
             </div>
           </div>
         </div>
