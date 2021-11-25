@@ -22,25 +22,42 @@
 }
 .aboutbagd {
   position: relative;
-  top: 155px;
+  top: 100px;
+  left: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  margin-bottom: 160px;
+}
+
+.aboutbb {
+  position: relative;
+  top: 20px;
   left: 100px;
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 15px;
   margin-bottom: 60px;
 }
+
 /* 遊戲敘述 */
 .box456 {
   position: absolute;
-  width: 400px;
-  /* height: 600px; */
+  width: 420px;
+  background-color: rgba(255, 255, 255, 0.767);
+  height: 250px;
   word-wrap: break-word;
   word-break: normal;
   top: 150px;
-  left: 550px;
+  left: 520px;
   font-size: 18px;
   text-indent: 36px;
   font-weight: bold;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 20px;
+  border-radius: 15px;
+  margin-top: -30px;
 }
 .ellipsis3 {
   position: absolute;
@@ -53,7 +70,16 @@
   white-space: normal;
 }
 /* 標題 */
-.p6 {
+.p6-1 {
+  background-color: rgb(243, 70, 40);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+.p6-2 {
   background-color: rgb(59, 137, 255);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -62,11 +88,21 @@
   font-size: 30px;
   font-weight: bold;
 }
+.p6-3 {
+  background-color: rgb(255, 160, 59);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 /* 遊戲大圖 */
 .abb {
   position: absolute;
-  width: 500px;
-  height: 350px;
+  width: 450px;
+  height: 300px;
   border-radius: 50px;
   top: 100px;
   left: 30px;
@@ -85,10 +121,10 @@
 /* 討論區 */
 .forum {
   position: absolute;
-  width: 300px;
+  width: 350px;
   height: 150px;
-  top: 1170px;
-  left: 880px;
+  top: 1200px;
+  left: 30px;
 }
 /* 回到遊戲 */
 .backto {
@@ -131,8 +167,7 @@
 .about1 {
   /* background-color: white; */
   position: absolute;
-  top: -80px;
-  /* left: -40px; */
+  top: -20px;
   font-size: 20px;
   color: black;
   border: var(--fontColor);
@@ -152,7 +187,7 @@
 }
 .about1Result {
   position: relative;
-  top: -40px;
+  top: 20px;
 }
 
 /* 紅字提醒 */
