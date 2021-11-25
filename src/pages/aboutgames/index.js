@@ -3,8 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+
 import { API_URL } from "../../configs/config";
 const attentionButton = [
   {
@@ -34,7 +36,6 @@ function Aboutgame(props) {
   }, [props.match.params.id]);
 
   const [status, setStatus] = useState(1);
-
   const [aboutgame, setaboutgame] = useState({
     product_id: "",
     product_name: "",
@@ -44,49 +45,18 @@ function Aboutgame(props) {
     return_detail: "",
     product_info: "",
   });
-  // const product = [
-  //   {
-  //     product_id: 1,
-  //     product_name: "狼人殺",
-  //     product_type: "策略",
-  //     product_img: "/img/product/crime.jpg",
-  //     product_price: 123,
-  //     product_content:
-  //       "扮演勇敢的拓荒者，來到這座不知名的島上，你們叫它卡坦島。創立了第一批的村莊，收集資源，鋪設道路，興建城市，並且透過交易各取所需，解決資源分佈不均的問題。然而卡坦島畢竟是個小島，土地與資源都很有限；當勢力越來越強大，衝突也隨之而來。你是否能從群雄中脫穎而出，稱霸卡坦島？",
-  //     product_info:
-  //       "運籌帷幄，決勝千里！你身處中世紀時代的奧爾良。為了執掌一方霸權，你將徵募農民、商人、騎士、僧侶等列隨從來開拓商路、建設城市、研究科技，從而擴大你的影響力。騎士擴大你行動的疆域，確保你商路的安全；工匠能夠建造貿易站，開發各種提高效率的工具；學者在科學上開拓進取。另外，修道院也非常重要，不得不說，這些僧侶讓你避免了命運帶來的挫折。為了更好地發展，你總是想執行更多行動。獲勝的手段多種多樣，關鍵在於你是否能夠駕馭策略，融合所有的要素，最終擊敗你的對手！",
-  //     return_detail: "牌套：126張",
-  //   },
-  //   {
-  //     product_id: 2,
-  //     product_name: "不要殺",
-  //     product_type: "策略",
-  //     product_img: "/product_img/550x400/Cat_10.png",
-  //     product_price: 456,
-  //     product_content:
-  //       "在群島爭霸中，我們可妥善運用神明賜予的力量，還有神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使群島爭霸非常有在玩希臘神話遊戲",
-  //   },
-  //   {
-  //     product_id: 3,
-  //     product_name: "布拉克斯",
-  //     product_type: "卡牌",
-  //     product_img: "/product_img/550x400/Blokus.png",
-  //     product_price: 999,
-  //     product_content: "1234567我的貓咪在哪裡~",
-  //   },
-  // ];
-  return (
+
+  const show = (
     <>
       <Container>
         <div className="hr"></div>
         <div className="box">
-          <p className="p6">{setaboutgame.product_name}</p>
-
-          <img className="abb" src={setaboutgame.product_img} alt="" />
+          <p className="p6">{aboutgame.product_name}</p>
+          <img className="abb" src={aboutgame.product_img} alt="" />
           <div className="box456">
-            <p className="ellipsis3">{setaboutgame.product_content}</p>
+            <p className="ellipsis3">{aboutgame.product_content}</p>
           </div>
-          <p className="pprice">${setaboutgame.product_price}</p>
+          <p className="pprice">${aboutgame.product_price}</p>
           <a href="#/">
             <img className="favorite4" src="/img/product/favorite.png" alt="" />
           </a>
@@ -94,9 +64,9 @@ function Aboutgame(props) {
             <img className="buy4" src="/img/product/buy.png" alt="" />
           </a>
         </div>
-        <NavLink to="/product">
+        <Link to="/product">
           <img className=" backto" src="/img/product/back.png" alt="" />
-        </NavLink>
+        </Link>
         <div
           className="aboutbagd"
           style={{
@@ -109,9 +79,9 @@ function Aboutgame(props) {
         ></div>
 
         <div>
-          <NavLink to="/discuss">
+          <Link to="/discuss">
             <img className="forum" src="/img/product/forum.png" alt="" />
-          </NavLink>
+          </Link>
           <div className="box457">
             <Row>
               {attentionButton.map((v, i) => {
@@ -137,7 +107,7 @@ function Aboutgame(props) {
                 status === 1 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{setaboutgame.product_info}</p>
+              <p className="ellipsis6">{aboutgame.product_info}</p>
             </div>
             {/* 遊戲內容 */}
 
@@ -146,7 +116,7 @@ function Aboutgame(props) {
                 status === 2 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{setaboutgame.return_detail}</p>
+              <p className="ellipsis6">{aboutgame.return_detail}</p>
             </div>
 
             {/* 退換貨說明 */}
@@ -186,6 +156,7 @@ function Aboutgame(props) {
       </Container>
     </>
   );
-}
 
-export default Aboutgame;
+  return <>{show}</>;
+}
+export default withRouter(Aboutgame);

@@ -2,11 +2,12 @@ import React from "react";
 import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { typecolor2 } from "../../configs/config";
 
 const HotGame2 = (props) => {
   const {
+    product_id,
     product_name,
     product_type,
     product_img,
@@ -24,9 +25,9 @@ const HotGame2 = (props) => {
         </div>
 
         <div className="p3">
-          <NavLink to="/aboutgame/" className="a1">
-            <p className="ellipsis2">{product_content}</p>
-          </NavLink>
+          <Link to={`/aboutgame/${product_id}`} className="a1">
+            <div className="ellipsis2">{product_content}</div>
+          </Link>
         </div>
         <span>${product_price}</span>
         <p className="p5">投票數:</p>
