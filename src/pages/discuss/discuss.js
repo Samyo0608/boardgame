@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { API_URL, URL } from "../../configs/config";
+import Swal from "sweetalert2";
 
 const gameType = [
   { id: 2, name: "家庭", type: "family" },
@@ -20,6 +22,13 @@ const Discuss = (props) => {
   const [discussType, setDiscussType] = useState("all");
   const [searchDiscuss, setSearchDiscuss] = useState({
     keyword: "",
+  });
+  // 登入狀態
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
   });
 
   // 處理輸入欄位變動
@@ -48,10 +57,26 @@ const Discuss = (props) => {
   }
 
   // 初始渲染
+  // 撈討論區資料
   useEffect(async () => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
     setDisplayDiscuss(res.data);
+  }, []);
+
+  // 抓會員session
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    session();
   }, []);
 
   const TYPE_COLOR = {
@@ -128,9 +153,8 @@ const Discuss = (props) => {
           </li>
           {gameType.map((v, i) => {
             return (
-              <li className="">
+              <li key={v.id} className="">
                 <Link
-                  key={v.id}
                   to="#/"
                   className={`d-inline-block mx-5 recommendType text-decoration-none text-center ${
                     discussType === v.type ? "recommendTypeActive" : ""
@@ -172,10 +196,15 @@ const Discuss = (props) => {
                           <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                         </th>
                         <td>
-                          <Link to={`discuss/reply/${v.id}`}>{v.title}</Link>
+                          <Link
+                            className="text-decoration-none"
+                            to={`discuss/reply/${v.id}`}
+                          >
+                            {v.title}
+                          </Link>
                         </td>
                         <td>{v.i_user_id}</td>
-                        <td>{v.cot}</td>
+                        <td className="rcountTd">{v.cot}</td>
                         <td className="timeTd">
                           {moment(v.created_at.toString()).format(
                             "YYYY-MM-DD HH:mm:ss"
@@ -190,7 +219,24 @@ const Discuss = (props) => {
                 </tbody>
               </table>
             </div>
-            <Link className="r_discussButton text-center" to="/newdiscuss">
+            <Link
+              className="r_discussButton text-center"
+              onClick={() => {
+                if (!sessionMember.id) {
+                  Swal.fire({
+                    icon: "info",
+                    title: "請先登入",
+                    text: "尚未登入呦，請先登入網站再進入會員中心^_^",
+                    footer: '<a href="/" class="btn btn-light">回首頁</a>',
+                  }).then((res) => {
+                    window.location.replace("/login");
+                  });
+                } else {
+                  window.location.replace("/newdiscuss");
+                }
+              }}
+              to="#/"
+            >
               開新話題
             </Link>
           </div>
