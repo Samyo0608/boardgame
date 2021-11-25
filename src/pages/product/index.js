@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 // import reactDom from "react-dom";
 // import PropTypes from "prop-types";
 import "../../css/vote.css";
@@ -9,6 +9,9 @@ import HotGame from "../../components/product/HotGame";
 import Game from "../../components/product/Game";
 import HotGame2 from "../../components/product/HotGame2";
 import HotGame3 from "../../components/product/HotGame3";
+// import { version } from "react-dom";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
 
 // 分類按鈕的狀態圖
 const categoryButton = [
@@ -31,34 +34,35 @@ const categoryButton = [
 ];
 
 function Product(props) {
-  const [status, setStatus] = useState(2);
-  const product = [
-    {
-      product_id: 1,
-      product_name: "狼人殺",
-      product_type: "家庭",
-      product_img: "/img/product/crime.jpg",
-      product_price: 123,
-      product_content: "544654",
-    },
-    {
-      product_id: 2,
-      product_name: "不要殺",
-      product_type: "策略",
-      product_img: "/product_img/550x400/Cat_10.png",
-      product_price: 456,
-      product_content:
-        "在群島爭霸中，我們可妥善運用神明賜予的力量，還有神獸來扭轉戰局，精美的插圖與符合神話故事中的能力，使群島爭霸非常有在玩希臘神話遊戲",
-    },
-    {
-      product_id: 3,
-      product_name: "布拉克斯",
-      product_type: "卡牌",
-      product_img: "/product_img/550x400/Blokus.png",
-      product_price: 999,
-      product_content: "1234567我的貓咪在哪裡~",
-    },
-  ];
+  const [status, setStatus] = useState(1);
+
+  // 全部遊戲
+  const [hotproductall, sethotproductall] = useState([]);
+  useEffect(async () => {
+    let res = await axios.get(`${API_URL}/productlist/all`);
+    sethotproductall(res.data);
+  }, []);
+
+  // 家庭遊戲
+  const [hotproductfamily, sethotproductfamily] = useState([]);
+  useEffect(async () => {
+    let res = await axios.get(`${API_URL}/productlist/family`);
+    sethotproductfamily(res.data);
+  }, []);
+
+  // 卡牌遊戲
+  const [hotproductcard, sethotproductcard] = useState([]);
+  useEffect(async () => {
+    let res = await axios.get(`${API_URL}/productlist/card`);
+    sethotproductcard(res.data);
+  }, []);
+
+  // 策略遊戲
+  const [hotproductstrategy, sethotproductstrategy] = useState([]);
+  useEffect(async () => {
+    let res = await axios.get(`${API_URL}/productlist/strategy`);
+    sethotproductstrategy(res.data);
+  }, []);
 
   return (
     <>
@@ -90,27 +94,36 @@ function Product(props) {
           className={`voteResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}
         >
           <Container>
-            <HotGame
-              product_name={product[0].product_name}
-              product_type={product[0].product_type}
-              product_price={product[0].product_price}
-              product_img={product[0].product_img}
-              product_content={product[0].product_content}
-            />
-            <HotGame2
-              product_name={product[1].product_name}
-              product_type={product[1].product_type}
-              product_price={product[1].product_price}
-              product_img={product[1].product_img}
-              product_content={product[1].product_content}
-            />
-            <HotGame3
-              product_name={product[2].product_name}
-              product_type={product[2].product_type}
-              product_price={product[2].product_price}
-              product_img={product[2].product_img}
-              product_content={product[2].product_content}
-            />
+            <Row>
+              <HotGame
+                product_id={hotproductall[0]?.product_id}
+                product_vote={hotproductall[0]?.product_vote}
+                product_name={hotproductall[0]?.product_name}
+                product_type={hotproductall[0]?.product_type}
+                product_content={hotproductall[0]?.product_content}
+                product_price={hotproductall[0]?.product_price}
+                product_img={hotproductall[0]?.product_img}
+              />
+              <HotGame2
+                product_id={hotproductall[1]?.product_id}
+                product_vote={hotproductall[1]?.product_vote}
+                product_name={hotproductall[1]?.product_name}
+                product_type={hotproductall[1]?.product_type}
+                product_content={hotproductall[1]?.product_content}
+                product_price={hotproductall[1]?.product_price}
+                product_img={hotproductall[1]?.product_img}
+              />
+
+              <HotGame3
+                product_id={hotproductall[2]?.product_id}
+                product_vote={hotproductall[2]?.product_vote}
+                product_name={hotproductall[2]?.product_name}
+                product_type={hotproductall[2]?.product_type}
+                product_content={hotproductall[2]?.product_content}
+                product_price={hotproductall[2]?.product_price}
+                product_img={hotproductall[2]?.product_img}
+              />
+            </Row>
             {/* 排序紐 */}
             <div className="buttooon0">
               <Button className="button123">價格排序</Button>
@@ -120,28 +133,15 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {product.map((value, index) => {
+                {hotproductall.slice(3).map((product) => {
                   return (
                     <Col md={4}>
                       <Game
-                        product_name={product[0].product_name}
-                        product_type={product[0].product_type}
-                        product_price={product[0].product_price}
-                        product_img={product[0].product_img}
-                      />
-                    </Col>
-                  );
-                })}
-              </Row>
-              <Row>
-                {product.map((value, index) => {
-                  return (
-                    <Col md={4}>
-                      <Game
-                        product_name={product[0].product_name}
-                        product_type={product[0].product_type}
-                        product_price={product[0].product_price}
-                        product_img={product[0].product_img}
+                        product_id={product.product_id}
+                        product_name={product.product_name}
+                        product_type={product.product_type}
+                        product_price={product.product_price}
+                        product_img={product.product_img}
                       />
                     </Col>
                   );
@@ -150,32 +150,40 @@ function Product(props) {
             </div>
           </Container>
         </div>
-        {/* 家庭遊戲 */}
+        {/* 家庭系列 */}
         <div
           className={`voteResult pt-3 ${status === 2 ? "d-block" : "d-none"}`}
         >
           <Container>
-            <HotGame
-              product_name={product[2].product_name}
-              product_type={product[2].product_type}
-              product_price={product[2].product_price}
-              product_img={product[2].product_img}
-              product_content={product[2].product_content}
-            />
-            <HotGame2
-              product_name={product[1].product_name}
-              product_type={product[1].product_type}
-              product_price={product[1].product_price}
-              product_img={product[1].product_img}
-              product_content={product[1].product_content}
-            />
-            <HotGame3
-              product_name={product[0].product_name}
-              product_type={product[0].product_type}
-              product_price={product[0].product_price}
-              product_img={product[0].product_img}
-              product_content={product[0].product_content}
-            />
+            <Row>
+              <HotGame
+                product_id={hotproductfamily[0]?.product_id}
+                product_vote={hotproductfamily[0]?.product_vote}
+                product_name={hotproductfamily[0]?.product_name}
+                product_type={hotproductfamily[0]?.product_type}
+                product_content={hotproductfamily[0]?.product_content}
+                product_price={hotproductfamily[0]?.product_price}
+                product_img={hotproductfamily[0]?.product_img}
+              />
+              <HotGame2
+                product_id={hotproductfamily[1]?.product_id}
+                product_vote={hotproductfamily[1]?.product_vote}
+                product_name={hotproductfamily[1]?.product_name}
+                product_type={hotproductfamily[1]?.product_type}
+                product_content={hotproductfamily[1]?.product_content}
+                product_price={hotproductfamily[1]?.product_price}
+                product_img={hotproductfamily[1]?.product_img}
+              />
+              <HotGame3
+                product_id={hotproductfamily[2]?.product_id}
+                product_vote={hotproductfamily[2]?.product_vote}
+                product_name={hotproductfamily[2]?.product_name}
+                product_type={hotproductfamily[2]?.product_type}
+                product_content={hotproductfamily[2]?.product_content}
+                product_price={hotproductfamily[2]?.product_price}
+                product_img={hotproductfamily[2]?.product_img}
+              />
+            </Row>
             {/* 排序紐 */}
             <div className="buttooon0">
               <Button className="button123">價格排序</Button>
@@ -185,14 +193,15 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {product.map((value, index) => {
+                {hotproductfamily.slice(3).map((product) => {
                   return (
                     <Col md={4}>
                       <Game
-                        product_name={product[0].product_name}
-                        product_type={product[0].product_type}
-                        product_price={product[0].product_price}
-                        product_img={product[0].product_img}
+                        product_id={product.product_id}
+                        product_name={product.product_name}
+                        product_type={product.product_type}
+                        product_price={product.product_price}
+                        product_img={product.product_img}
                       />
                     </Col>
                   );
@@ -201,32 +210,41 @@ function Product(props) {
             </div>
           </Container>
         </div>
-        {/* 卡牌遊戲 */}
+        {/* 卡牌系列 */}
         <div
           className={`voteResult pt-3 ${status === 3 ? "d-block" : "d-none"}`}
         >
           <Container>
-            <HotGame
-              product_name={product[1].product_name}
-              product_type={product[1].product_type}
-              product_price={product[1].product_price}
-              product_img={product[1].product_img}
-              product_content={product[1].product_content}
-            />
-            <HotGame2
-              product_name={product[0].product_name}
-              product_type={product[0].product_type}
-              product_price={product[0].product_price}
-              product_img={product[0].product_img}
-              product_content={product[0].product_content}
-            />
-            <HotGame3
-              product_name={product[2].product_name}
-              product_type={product[2].product_type}
-              product_price={product[2].product_price}
-              product_img={product[2].product_img}
-              product_content={product[2].product_content}
-            />
+            <Row>
+              <HotGame
+                product_id={hotproductcard[0]?.product_id}
+                product_vote={hotproductcard[0]?.product_vote}
+                product_name={hotproductcard[0]?.product_name}
+                product_type={hotproductcard[0]?.product_type}
+                product_content={hotproductcard[0]?.product_content}
+                product_price={hotproductcard[0]?.product_price}
+                product_img={hotproductcard[0]?.product_img}
+              />
+
+              <HotGame2
+                product_id={hotproductcard[1]?.product_id}
+                product_vote={hotproductcard[1]?.product_vote}
+                product_name={hotproductcard[1]?.product_name}
+                product_type={hotproductcard[1]?.product_type}
+                product_content={hotproductcard[1]?.product_content}
+                product_price={hotproductcard[1]?.product_price}
+                product_img={hotproductcard[1]?.product_img}
+              />
+              <HotGame3
+                product_id={hotproductcard[2]?.product_id}
+                product_vote={hotproductcard[2]?.product_vote}
+                product_name={hotproductcard[2]?.product_name}
+                product_type={hotproductcard[2]?.product_type}
+                product_content={hotproductcard[2]?.product_content}
+                product_price={hotproductcard[2]?.product_price}
+                product_img={hotproductcard[2]?.product_img}
+              />
+            </Row>
             {/* 排序紐 */}
             <div className="buttooon0">
               <Button className="button123">價格排序</Button>
@@ -236,14 +254,15 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {product.map((value, index) => {
+                {hotproductcard.slice(3).map((product) => {
                   return (
                     <Col md={4}>
                       <Game
-                        product_name={product[0].product_name}
-                        product_type={product[0].product_type}
-                        product_price={product[0].product_price}
-                        product_img={product[0].product_img}
+                        product_id={product.product_id}
+                        product_name={product.product_name}
+                        product_type={product.product_type}
+                        product_price={product.product_price}
+                        product_img={product.product_img}
                       />
                     </Col>
                   );
@@ -252,32 +271,41 @@ function Product(props) {
             </div>
           </Container>
         </div>
-        {/* 策略遊戲 */}
+
+        {/* 策略系列 */}
         <div
           className={`voteResult pt-3 ${status === 4 ? "d-block" : "d-none"}`}
         >
           <Container>
-            <HotGame
-              product_name={product[0].product_name}
-              product_type={product[0].product_type}
-              product_price={product[0].product_price}
-              product_img={product[0].product_img}
-              product_content={product[0].product_content}
-            />
-            <HotGame2
-              product_name={product[1].product_name}
-              product_type={product[1].product_type}
-              product_price={product[1].product_price}
-              product_img={product[1].product_img}
-              product_content={product[1].product_content}
-            />
-            <HotGame3
-              product_name={product[0].product_name}
-              product_type={product[0].product_type}
-              product_price={product[0].product_price}
-              product_img={product[0].product_img}
-              product_content={product[0].product_content}
-            />
+            <Row>
+              <HotGame
+                product_id={hotproductstrategy[0]?.product_id}
+                product_vote={hotproductstrategy[0]?.product_vote}
+                product_name={hotproductstrategy[0]?.product_name}
+                product_type={hotproductstrategy[0]?.product_type}
+                product_content={hotproductstrategy[0]?.product_content}
+                product_price={hotproductstrategy[0]?.product_price}
+                product_img={hotproductstrategy[0]?.product_img}
+              />
+              <HotGame2
+                product_id={hotproductstrategy[1]?.product_id}
+                product_vote={hotproductstrategy[1]?.product_vote}
+                product_name={hotproductstrategy[1]?.product_name}
+                product_type={hotproductstrategy[1]?.product_type}
+                product_content={hotproductstrategy[1]?.product_content}
+                product_price={hotproductstrategy[1]?.product_price}
+                product_img={hotproductstrategy[1]?.product_img}
+              />
+              <HotGame3
+                product_id={hotproductstrategy[2]?.product_id}
+                product_vote={hotproductstrategy[2]?.product_vote}
+                product_name={hotproductstrategy[2]?.product_name}
+                product_type={hotproductstrategy[2]?.product_type}
+                product_content={hotproductstrategy[2]?.product_content}
+                product_price={hotproductstrategy[2]?.product_price}
+                product_img={hotproductstrategy[2]?.product_img}
+              />
+            </Row>
             {/* 排序紐 */}
             <div className="buttooon0">
               <Button className="button123">價格排序</Button>
@@ -287,14 +315,15 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {product.map((value, index) => {
+                {hotproductstrategy.slice(3).map((product) => {
                   return (
                     <Col md={4}>
                       <Game
-                        product_name={product[0].product_name}
-                        product_type={product[0].product_type}
-                        product_price={product[0].product_price}
-                        product_img={product[0].product_img}
+                        product_id={product.product_id}
+                        product_name={product.product_name}
+                        product_type={product.product_type}
+                        product_price={product.product_price}
+                        product_img={product.product_img}
                       />
                     </Col>
                   );

@@ -59,7 +59,6 @@ function Contest_info(props) {
     contestMethod: '',
     contestPic: '',
     category: '',
-
   })
 
   // 填寫報名資訊用
@@ -68,16 +67,59 @@ function Contest_info(props) {
     contest_name: "",
     contest_phone:"",
     contest_email:"",
+    contest_title_no: 0,
   });
-  
+
+    // 報名數增加的按鈕
+    const[count,setCount]=useState(info.contest_title_no)
+
+  useEffect(()=>{
+    let newSignup = {...signup}
+    newSignup.contest_title_no = count;
+    newSignup.contest_title = info.contest_title;
+    setSignup(newSignup)
+    let newUpdate = {...update}
+    newUpdate.contest_title_no = count;
+    newUpdate.contest_title = info.contest_title;
+    setUpate(newUpdate)
+  },[count])
+
+  console.log(signup)
+  console.log(count)
+
+  const [update, setUpate] = useState({
+    contest_title:"",
+    contest_title_no: 0,
+  })
+
  // 寫一個存放投票陣列的鉤子 
 
   async function handleSubmit(e) {
+
+    // SweatAlert
+    
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    Swal.fire({
+      icon: 'success',
+      title: '已收到您的資料',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
     e.preventDefault();
     try{
       let res = await axios.post(`${API_URL}/contest/keyin`,
       signup
     );
+    await axios.post(`${API_URL}/contest/update`,update);
+    
     } catch(e) {
       console.log("handleSubmit",e)
     }  
@@ -151,15 +193,8 @@ function Contest_info(props) {
               <Form.Control 
                 name="contest_title"
                 type="text"
-                required
                 className="conInputStyle mt-4"
-                // value={signup.contest_title}
-                onChange={(e) => {
-                  let newSignup = {...signup};
-                  newSignup.contest_title =e.target.value;
-                  setSignup(newSignup)
-                  console.log(signup)
-                }}
+                value={info.contest_title}
               />
             </Col>
           </Form.Group>
@@ -168,8 +203,9 @@ function Contest_info(props) {
             <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　姓　　名</Form.Label>
             <Col md={8}>
               <Form.Control 
+                required
                 name="contest_title"
-                placeholder=""
+                placeholder="請輸入姓名"
                 className="conInputStyle mt-4"
                 // value={signup.contest_name}
                 onChange={(e) => {
@@ -186,8 +222,9 @@ function Contest_info(props) {
             <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　連絡電話</Form.Label>
             <Col md={8}>
               <Form.Control 
+                required
                 name="contest_title"
-                placeholder=""
+                placeholder="請輸入連絡電話"
                 className="conInputStyle mt-4"
                 // value={signup.contest_title}
                 onChange={(e) => {
@@ -204,8 +241,9 @@ function Contest_info(props) {
             <Form.Label column md={4}><FontAwesomeIcon icon={faDice} className="mt-4" />　聯絡信箱</Form.Label>
             <Col md={8}>
               <Form.Control 
+                required
                 name="contest_title"
-                placeholder=""
+                placeholder="請輸入信箱"
                 className="conInputStyle mt-4"
                 // value={signup.contest_email}
                 onChange={(e) => {
@@ -215,9 +253,20 @@ function Contest_info(props) {
                   console.log(signup)
                 }}
               />
+               <Form.Control 
+                type="hidden"
+                name="contest_title_no"
+                placeholder="0"
+                className="conInputStyle mt-4"
+              />
             </Col>
           </Form.Group>
-          <Button type="submit" className={info.contest_limit -info.contest_title_no === 0 ? "disConSubmit" : "conSubmit"}>{info.contest_limit -info.contest_title_no === 0 ? "已額滿" : "送　出"}</Button>
+          <Button type="submit" className={info.contest_limit -info.contest_title_no === 0 ? "disConSubmit" : "conSubmit"} 
+          onClick={(e) =>{
+            setCount(count + 1)
+            console.log(signup)
+          }}
+          >{info.contest_limit -info.contest_title_no === 0 ? "已額滿" : "送　出"}</Button>
         </Form>
 
         </div>
@@ -232,10 +281,7 @@ function Contest_info(props) {
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </Link>
         </div>
-      </div>
-
-
-
+      </div>     
     </>
 
     

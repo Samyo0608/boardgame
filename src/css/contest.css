@@ -33,7 +33,7 @@
   z-index: 1;
 }
 
-input[type="checkbox"] {
+.checkboxCon {
   margin-right: 10px;
   margin-left: 10px;
   cursor: pointer;
