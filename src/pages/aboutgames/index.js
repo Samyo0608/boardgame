@@ -6,6 +6,7 @@ import "../../css/product.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { p6 } from "../../configs/config";
 
 import { API_URL } from "../../configs/config";
 const attentionButton = [
@@ -49,24 +50,44 @@ function Aboutgame(props) {
   const show = (
     <>
       <Container>
-        <div className="hr"></div>
-        <div className="box">
-          <p className="p6">{aboutgame.product_name}</p>
-          <img className="abb" src={aboutgame.product_img} alt="" />
-          <div className="box456">
-            <p className="ellipsis3">{aboutgame.product_content}</p>
+        <div>
+          <div className="hr"></div>
+
+          <div
+            className="aboutbb"
+            style={{
+              backgroundImage: `url(${
+                process.env.PUBLIC_URL + "/img/product/123.png"
+              })`,
+              width: "1000px",
+              height: "510px",
+            }}
+          >
+            <article className={p6[aboutgame.product_type]}>
+              {aboutgame.product_name}
+            </article>
+
+            <img className="abb" src={aboutgame.product_img} alt="" />
+            <div className="box456">
+              <p className="ellipsis3">{aboutgame.product_content}</p>
+            </div>
+            <p className="pprice">${aboutgame.product_price}</p>
+            <a href="#/">
+              <img
+                className="favorite4"
+                src="/img/product/favorite.png"
+                alt=""
+              />
+            </a>
+            <a href="#/">
+              <img className="buy4" src="/img/product/buy.png" alt="" />
+            </a>
           </div>
-          <p className="pprice">${aboutgame.product_price}</p>
-          <a href="#/">
-            <img className="favorite4" src="/img/product/favorite.png" alt="" />
-          </a>
-          <a href="#/">
-            <img className="buy4" src="/img/product/buy.png" alt="" />
-          </a>
+          <Link to="/product">
+            <img className=" backto" src="/img/product/back.png" alt="" />
+          </Link>
         </div>
-        <Link to="/product">
-          <img className=" backto" src="/img/product/back.png" alt="" />
-        </Link>
+
         <div
           className="aboutbagd"
           style={{
@@ -74,7 +95,7 @@ function Aboutgame(props) {
               process.env.PUBLIC_URL + "/img/product/BK.png"
             })`,
             width: "1000px",
-            height: "650px",
+            height: "525px",
           }}
         ></div>
 

@@ -97,6 +97,7 @@ function Product(props) {
             <Row>
               <HotGame
                 product_id={hotproductall[0]?.product_id}
+                product_vote={hotproductall[0]?.product_vote}
                 product_name={hotproductall[0]?.product_name}
                 product_type={hotproductall[0]?.product_type}
                 product_content={hotproductall[0]?.product_content}
@@ -105,6 +106,7 @@ function Product(props) {
               />
               <HotGame2
                 product_id={hotproductall[1]?.product_id}
+                product_vote={hotproductall[1]?.product_vote}
                 product_name={hotproductall[1]?.product_name}
                 product_type={hotproductall[1]?.product_type}
                 product_content={hotproductall[1]?.product_content}
@@ -114,6 +116,7 @@ function Product(props) {
 
               <HotGame3
                 product_id={hotproductall[2]?.product_id}
+                product_vote={hotproductall[2]?.product_vote}
                 product_name={hotproductall[2]?.product_name}
                 product_type={hotproductall[2]?.product_type}
                 product_content={hotproductall[2]?.product_content}
@@ -155,6 +158,7 @@ function Product(props) {
             <Row>
               <HotGame
                 product_id={hotproductfamily[0]?.product_id}
+                product_vote={hotproductfamily[0]?.product_vote}
                 product_name={hotproductfamily[0]?.product_name}
                 product_type={hotproductfamily[0]?.product_type}
                 product_content={hotproductfamily[0]?.product_content}
@@ -163,6 +167,7 @@ function Product(props) {
               />
               <HotGame2
                 product_id={hotproductfamily[1]?.product_id}
+                product_vote={hotproductfamily[1]?.product_vote}
                 product_name={hotproductfamily[1]?.product_name}
                 product_type={hotproductfamily[1]?.product_type}
                 product_content={hotproductfamily[1]?.product_content}
@@ -171,6 +176,7 @@ function Product(props) {
               />
               <HotGame3
                 product_id={hotproductfamily[2]?.product_id}
+                product_vote={hotproductfamily[2]?.product_vote}
                 product_name={hotproductfamily[2]?.product_name}
                 product_type={hotproductfamily[2]?.product_type}
                 product_content={hotproductfamily[2]?.product_content}
@@ -212,6 +218,7 @@ function Product(props) {
             <Row>
               <HotGame
                 product_id={hotproductcard[0]?.product_id}
+                product_vote={hotproductcard[0]?.product_vote}
                 product_name={hotproductcard[0]?.product_name}
                 product_type={hotproductcard[0]?.product_type}
                 product_content={hotproductcard[0]?.product_content}
@@ -221,6 +228,7 @@ function Product(props) {
 
               <HotGame2
                 product_id={hotproductcard[1]?.product_id}
+                product_vote={hotproductcard[1]?.product_vote}
                 product_name={hotproductcard[1]?.product_name}
                 product_type={hotproductcard[1]?.product_type}
                 product_content={hotproductcard[1]?.product_content}
@@ -229,6 +237,7 @@ function Product(props) {
               />
               <HotGame3
                 product_id={hotproductcard[2]?.product_id}
+                product_vote={hotproductcard[2]?.product_vote}
                 product_name={hotproductcard[2]?.product_name}
                 product_type={hotproductcard[2]?.product_type}
                 product_content={hotproductcard[2]?.product_content}
@@ -271,6 +280,7 @@ function Product(props) {
             <Row>
               <HotGame
                 product_id={hotproductstrategy[0]?.product_id}
+                product_vote={hotproductstrategy[0]?.product_vote}
                 product_name={hotproductstrategy[0]?.product_name}
                 product_type={hotproductstrategy[0]?.product_type}
                 product_content={hotproductstrategy[0]?.product_content}
@@ -279,6 +289,7 @@ function Product(props) {
               />
               <HotGame2
                 product_id={hotproductstrategy[1]?.product_id}
+                product_vote={hotproductstrategy[1]?.product_vote}
                 product_name={hotproductstrategy[1]?.product_name}
                 product_type={hotproductstrategy[1]?.product_type}
                 product_content={hotproductstrategy[1]?.product_content}
@@ -287,6 +298,7 @@ function Product(props) {
               />
               <HotGame3
                 product_id={hotproductstrategy[2]?.product_id}
+                product_vote={hotproductstrategy[2]?.product_vote}
                 product_name={hotproductstrategy[2]?.product_name}
                 product_type={hotproductstrategy[2]?.product_type}
                 product_content={hotproductstrategy[2]?.product_content}

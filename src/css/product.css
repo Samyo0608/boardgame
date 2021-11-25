@@ -24,9 +24,34 @@
   text-decoration: none;
 }
 /* 遊戲標題 */
-.p1 {
+.type41 {
+  position: relative;
+  background-color: rgb(243, 70, 40);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  width: 450px;
+  padding-left: 10px;
+  left: -11px;
+  font-weight: bold;
+}
+.type42 {
   position: relative;
   background-color: rgb(59, 137, 255);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  width: 450px;
+  padding-left: 10px;
+  left: -11px;
+  font-weight: bold;
+}
+
+.type43 {
+  position: relative;
+  background-color: rgb(255, 160, 59);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   color: #fff;
@@ -83,14 +108,14 @@
 /* 投票數 */
 .p5 {
   position: absolute;
-  color: rgb(59, 137, 255);
+  color: rgba(41, 81, 88, 0.836);
   font-size: 15px;
   top: 240px;
   font-weight: bold;
 }
 .p8 {
   position: absolute;
-  color: rgb(59, 137, 255);
+  color: rgb(41, 81, 88, 0.836);
   font-size: 20px;
   top: 500px;
   font-weight: bold;

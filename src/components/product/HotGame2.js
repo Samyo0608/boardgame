@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
 import { Link } from "react-router-dom";
-import { typecolor2 } from "../../configs/config";
+import { typecolor2, typecolor4 } from "../../configs/config";
 
 const HotGame2 = (props) => {
   const {
@@ -13,12 +13,13 @@ const HotGame2 = (props) => {
     product_img,
     product_price,
     product_content,
+    product_vote,
   } = props;
   return (
     <>
       {/* 第二名 */}
       <Container className="posi">
-        <p className="p1">{product_name}</p>
+        <article className={typecolor4[product_type]}>{product_name}</article>
         <div>
           <img className="abcd" src={product_img} alt="" />
           <article className={typecolor2[product_type]}>{product_type}</article>
@@ -30,7 +31,7 @@ const HotGame2 = (props) => {
           </Link>
         </div>
         <span>${product_price}</span>
-        <p className="p5">投票數:</p>
+        <p className="p5">投票數: {product_vote} 票</p>
         <div className="iconflex2">
           <a href="#/">
             <img className="favorite2" src="/img/product/favorite.png" alt="" />
