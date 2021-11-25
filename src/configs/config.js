@@ -24,3 +24,14 @@ export const typecolor3 = {
   策略: "type31",
   卡牌: "type32",
 };
+
+export const typecolor4 = {
+  家庭: "type41",
+  策略: "type42",
+  卡牌: "type43",
+};
+export const p6 = {
+  家庭: "p6-1",
+  策略: "p6-2",
+  卡牌: "p6-3",
+};

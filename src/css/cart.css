@@ -10,6 +10,7 @@
   height: 100%;
   background: rgb(196, 230, 250);
   border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 /* Cart index end*/
 
@@ -17,15 +18,16 @@
 /* 小BOX */
 .box123 {
   width: 900px;
-  height: 250px;
+  height: 150px;
   background-color: #fff;
-  box-shadow: 8px 8px 5px rgb(189, 186, 186);
-  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(189, 186, 186);
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 /* 購物車圖 */
 .cartpic {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 20px;
 }
 
@@ -50,39 +52,47 @@
 .vLine {
   margin-right: 30px;
   width: 2px;
-  height: 200px;
+  height: 100px;
   border-left: 2px dashed #ff6d6d;
 }
 /* Cart1 component end*/
 
+/* cartCheck頁面 start */
+/* background start */
+.cartCheckBG {
+  width: 100%;
+  height: 100%;
+  background: rgb(196, 230, 250);
+  border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* 白色框內樣式 */
+.checkCartBox {
+  width: 900px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px rgb(189, 186, 186);
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+/* background end */
+
+/* cartCheck form 訂購人資料 */
+.checkCartForm {
+  width: 80%;
+}
+
 /* 結帳 */
 .total {
-  font-size: 25px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
 }
-.totalprice {
-  display: flex;
-  font-size: 40px;
-  color: red;
-  font-weight: bolder;
-  margin-top: -15px;
-}
+
 .comebuy {
   border: 1px solid rgb(201, 201, 201);
   background: none;
-}
-
-/* 訂購人資料 */
-.payman {
-  position: relative;
-  top: -40px;
-  background-color: rgb(59, 137, 255);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #fff;
-  text-align: left;
-  font-size: 20px;
-  padding-left: 10px;
-  font-weight: bold;
 }
 
 /* 商品清單列 */
@@ -96,37 +106,29 @@
   border-radius: 10px 10px 0 0;
   color: #fff;
 }
-.payman2 {
-  position: relative;
-  top: -10px;
-  left: 70px;
+
+/* checkbox */
+.CartCheckBox {
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 5px;
 }
-.payman3 {
-  position: relative;
-  font-size: 20px;
-  top: -30px;
-  left: 150px;
+
+/* 點數折抵 */
+.pointBox {
+  width: 100%;
 }
-.payman4 {
-  position: relative;
-  top: -275px;
-  left: 500px;
+
+/* 點數折抵input */
+.inputPoint {
+  height: 30px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 5px;
+  width: 80px;
 }
-.payman5 {
-  font-size: 20px;
-}
-.payman6 {
-  position: relative;
-  font-size: 20px;
-  top: 20px;
-  left: 20px;
-}
-.payman10 {
-  position: relative;
-  font-size: 20px;
-  top: -35px;
-  left: 40px;
-}
-.red {
-  background-color: #fff;
+
+/* 結帳鈕 */
+.endButton {
+  width: 100px;
 }

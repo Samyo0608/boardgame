@@ -4875,6 +4875,11 @@ eslint-plugin-react-hooks@^4.2.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.3.0.tgz#318dbf312e06fab1c835a4abef00121751ac1172"
   integrity sha512-XslZy0LnMn+84NEG9jSGR6eGqaZB3133L8xewQo3fQagbQuGt7a63gf+P1NGKZavEYEC3UXaWEAA/AqDkuN6xA==
 
+eslint-plugin-react-hooks@^4.2.1-beta-149b420f6-20211119:
+  version "4.2.1-beta-149b420f6-20211119"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.1-beta-149b420f6-20211119.tgz#183ee5420a6db51b09b64694826dbeda17b492f8"
+  integrity sha512-wTNvhQhv/c3yyXbHFBhvGJDlOuFSA8F+ih/RAwVlZcJjDll+17u55xCI/1I5CWhaMukoYtizQf+qi52veglSvQ==
+
 eslint-plugin-react@^7.21.5:
   version "7.27.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.27.1.tgz#469202442506616f77a854d91babaae1ec174b45"
@@ -9641,10 +9646,17 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
+
 react-dom-factories@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-dom-factories/-/react-dom-factories-1.0.2.tgz#eb7705c4db36fb501b3aa38ff759616aa0ff96e0"
   integrity sha1-63cFxNs2+1AbOqOP91lhaqD/luA=
+
+react-dice-roll@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-dice-roll/-/react-dice-roll-1.2.2.tgz#df77249133f12f4cce2512d52b5b6354ed15c236"
+  integrity sha512-QNG+RVs3CymhTkNLwfDdJ93kL4vWO+luHkQAhuNxnus9jOFUZY54AJhlDa4y576S20oEuW47nO7HvEDCtST9wQ==
+
 
 react-dom@^17.0.2:
   version "17.0.2"

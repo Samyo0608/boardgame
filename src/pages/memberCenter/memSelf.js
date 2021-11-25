@@ -985,13 +985,11 @@ function MemSelf(props) {
                 </Row>
               </Form.Group>
             </div>
-            <Button
-              variant="primary"
-              type="submit"
-              className="mt-5 btnWidth ms-5"
-            >
-              確認
-            </Button>
+            <div className="btnWidth mb-5">
+              <Button variant="primary" type="submit" className="mt-5">
+                確認
+              </Button>
+            </div>
           </Form>
         </div>
       </div>
