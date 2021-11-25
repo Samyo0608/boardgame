@@ -33,6 +33,7 @@
 /* 包廂介紹的文字 */
 /* 六人房文字 */
 .sixRoomText {
+  height: 420px;
   text-align: center;
   padding: 40px;
   font-size: 20px;
@@ -139,7 +140,7 @@
 }
 /* 行事曆內容的title */
 .fc-event-title {
-  font-size: 15px;
+  font-size: 20px;
   color: #8c5832;
   white-space: pre-wrap;
 }
@@ -244,4 +245,16 @@
   position: absolute;
   bottom: 150px;
   left: 850px;
+}
+.dice1 {
+  position: absolute;
+  left: 900px;
+  bottom: 180px;
+  transform: rotate(10deg);
+}
+.dice2 {
+  position: absolute;
+  left: 1000px;
+  bottom: 350px;
+  transform: rotate(-20deg);
 }
