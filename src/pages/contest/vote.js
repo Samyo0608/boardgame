@@ -10,6 +10,7 @@ import VoteLabel from '../../components/contest/VoteLabel.js'
 import {withRouter} from "react-router-dom"
 import axios from "axios";
 import { API_URL } from '../../configs/config';
+import { faAmbulance } from '@fortawesome/free-solid-svg-icons';
 // 分類按鈕的狀態圖
 const categoryButton=[
     {
@@ -80,14 +81,6 @@ const voteBarNo=(b)=>{
     return (b)
 }
 
-// 迴圈 bar vote票數
-const voteBarGet=(b)=>{
-    let get=[]
-    for(let i = 0 ; b < b.length; i++){
-        get=b[i].product_vote.push()
-    }
-    return get
-}
 
 
 
@@ -96,10 +89,33 @@ function Vote(props) {
     const[status,setStatus] = useState(2);
     // 寫一個跑資料的迴圈去承接到barchart
     const[barno,setBarno] = useState(barchartRun(barchartRun))
-    // 承接Label陣列的鉤子
-    const[labelName,setLabelName] = useState();
 
+    // 承接投票更新的鉤子
+    const[count,setCount]=useState(0)
+    const[update,setUpdate]=useState({
+        product_name:"",
+        product_vote:0,
+    })
 
+    useEffect(()=>{
+
+    })
+
+    // 投票用送出函式
+    async function handleSubmit(e) {
+        e.preventDefault();
+        try{
+            let res = await axios.post(`${API_URL}/vote/addVoted`,
+            voted,{withCredentials:true},
+            window.location.reload()
+        );
+        } catch(e) {
+            console.log("handleSubmit",e)
+            }  
+        }
+
+        // console.log("確認是否傳回父層");
+        // console.log(count) 
     useEffect(async () =>{
         let res = await axios.get(`${API_URL}/vote/list`);
         setBarno(res.data);
@@ -208,22 +224,45 @@ function Vote(props) {
     }
   
     // 投票的鉤子
-    const [voted,setVoted] =useState(console.log(voteAdd(barno)));
-      
+    const [voted,setVoted] =useState(
+        {
+            product_name:"",
+            product_vote:0,
+        }
+    );
+
+  
+
+    // 鎖定標籤的鉤子
+    const[votename,setVotename] = useState("");
      // 寫一個存放投票陣列的鉤子 
+
+      let originVote = 0;
+      // 
+      const searchName=(b)=>{
+        for(let i = 0; i < b.length; i++) {
+            if(barno[i].product_name === votename){
+                return(
+                    barno[i].product_vote
+                )
+            }
+            // originVote =barno[i].product_vote
+        }
+    }
     
-      async function handleSubmit(e) {
-        e.preventDefault();
-        try{
-          let res = await axios.post(`${API_URL}/contest/keyin`,
-          voted
-        );
-        } catch(e) {
-          console.log("handleSubmit",e)
-        }  
-      }
+    let newvoted = {...voted}
+      useEffect(()=>{      
+        newvoted.product_name = votename;
+        searchName(barno);
+        newvoted.product_vote= searchName(barno) + 1;
+        setVoted(newvoted)
+        },[votename])
+ 
 
-
+    // 檢查父元素標籤的值
+    // console.log("父元素內的值",count)
+    // console.log(votename)
+    
 
     // 網頁內容開始
     return (
@@ -315,7 +354,11 @@ function Vote(props) {
                 barno.map((v,i) => {
                 return(
                 <VoteLabel 
-                  name={v.product_name} />
+                  name={v.product_name}
+                  vote={v.product_vote}
+                  votename={votename}
+                  setVotename={setVotename}  
+                  />
                 )                    
             })}
             
@@ -387,28 +430,23 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3" onSubmit={handleSubmit}>
             
             {
                 
                 barno.map((v,i) => {
                     if(v.product_type === "家庭"){
                         return (
-                            <VoteLabel name={v.product_name}
-                            value={setVoted}
-                            // onChange={
-                            //     (e)=>{
-                            //     let newBarno={...barno};
-                            //     newBarno[i].product_vote=e.target.value + 1;
-                            //     setBarno(newBarno)
-                            //     console.log(barno[i].product_vote)
-                                    
-                            //     }
-                            // }
+                            <VoteLabel 
+                            name={v.product_name}
+                            vote={v.product_vote}
+                            votename={votename}
+                            setVotename={setVotename}  
                             />
                         )
-                    }                   
+                    }                 
             })}
+            
             
             
             <input type="submit" value="送  出" className="submitVote m-3" />
@@ -481,9 +519,12 @@ function Vote(props) {
                 barno.map((v,i) => {
                     if(v.product_type === "卡牌"){
                         return (
-                            <VoteLabel name={v.product_name}
-                             value={setVoted}
-                             />
+                            <VoteLabel 
+                                name={v.product_name} 
+                                vote={v.product_vote}
+                                count={count}
+                                setCount={setCount}
+                            />
                         )
                     }                   
             })}
@@ -560,8 +601,11 @@ function Vote(props) {
                 barno.map((v,i) => {
                     if(v.product_type === "策略"){
                         return (
-                            <VoteLabel name={v.product_name} 
-                            vote={v.product_vote}
+                            <VoteLabel 
+                                name={v.product_name} 
+                                vote={v.product_vote}
+                                count={count}
+                                setCount={setCount}
                             />
                         )
                     }                   
