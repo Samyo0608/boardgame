@@ -1,6 +1,6 @@
 import {React,useState,useEffect} from 'react'
-import reactDom from 'react-dom';
-import PropTypes from 'prop-types'
+// import reactDom from 'react-dom';
+// import PropTypes from 'prop-types'
 import "../../css/vote.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -97,9 +97,6 @@ function Vote(props) {
         product_vote:0,
     })
 
-    useEffect(()=>{
-
-    })
 
     // 投票用送出函式
     async function handleSubmit(e) {
@@ -116,7 +113,7 @@ function Vote(props) {
 
         // console.log("確認是否傳回父層");
         // console.log(count) 
-    useEffect(async () =>{
+        useEffect(async () =>{
         let res = await axios.get(`${API_URL}/vote/list`);
         setBarno(res.data);
         
@@ -264,6 +261,98 @@ function Vote(props) {
     // console.log(votename)
     
 
+    // [全系列]複製一個陣列，對陣列的票數進行排名
+        
+    const newrank=[...barno];
+    newrank.sort(function(a, b) {
+        var nameA = a.product_vote; // ignore upper and lowercase
+        var nameB = b.product_vote; // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+
+    // 家庭系列排名
+    const famiRank=[]
+    const famiIn=()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="家庭")
+            famiRank.push(barno[i])
+        }
+         return famiRank
+     }
+    famiIn();
+    // 將家庭陣列中的vote排大小
+    famiRank.sort(function(a, b) {
+        var nameA = a.product_vote; // ignore upper and lowercase
+        var nameB = b.product_vote; // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    // console.log(famiRank)
+       
+    // 卡牌系列排名
+    const cardRank=[]
+    const cardIn=()=>{
+        for(let i=0; i<barno.length;i++){
+            if (barno[i].product_type==="卡牌")
+            cardRank.push(barno[i])
+        }
+         return cardRank
+     }
+    cardIn();
+    // 將家庭陣列中的vote排大小
+    cardRank.sort(function(a, b) {
+        var nameA = a.product_vote; // ignore upper and lowercase
+        var nameB = b.product_vote; // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    // console.log(cardRank)
+    
+   // 策略系列排名
+   const tragRank=[]
+   const tragIn=()=>{
+       for(let i=0; i<barno.length;i++){
+           if (barno[i].product_type==="策略")
+           tragRank.push(barno[i])
+       }
+        return tragRank
+    }
+   tragIn();
+   // 將家庭陣列中的vote排大小
+   tragRank.sort(function(a, b) {
+       var nameA = a.product_vote; // ignore upper and lowercase
+       var nameB = b.product_vote; // ignore upper and lowercase
+       if (nameA < nameB) {
+         return 1;
+       }
+       if (nameA > nameB) {
+         return -1;
+       }
+       // names must be equal
+       return 0;
+     });
+   console.log(tragRank)
+
+
     // 網頁內容開始
     return (
         <>
@@ -310,20 +399,21 @@ function Vote(props) {
         
 
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
+        {/* 圖片路徑有做判斷 */}
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[2].product_img : ""} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family08_avalon.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[0].product_img : ""} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family05_geisters.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[1].product_img : ""} fluid />
                 </div>
                     
             </Col>
@@ -395,18 +485,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[2].product_img : ""}  fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family08_avalon.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[0].product_img : ""} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family05_geisters.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[1].product_img : ""} fluid />
                 </div>
                     
             </Col>
@@ -477,18 +567,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[2].product_img : ""} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family08_avalon.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[0].product_img : ""} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family05_geisters.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[1].product_img : ""}s fluid />
                 </div>
                     
             </Col>
@@ -522,8 +612,8 @@ function Vote(props) {
                             <VoteLabel 
                                 name={v.product_name} 
                                 vote={v.product_vote}
-                                count={count}
-                                setCount={setCount}
+                                votename={votename}
+                                setVotename={setVotename}
                             />
                         )
                     }                   
@@ -559,18 +649,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family06_incanGold.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[2].product_img : ""} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family08_avalon.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[0].product_img : ""} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src='/img/contest/vote/family05_geisters.jpg' fluid />
+                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[1].product_img : ""} fluid />
                 </div>
                     
             </Col>

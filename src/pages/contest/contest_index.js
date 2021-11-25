@@ -106,9 +106,9 @@ function Index(props) {
          if(searchitem === "") {
            return searchResults();
          }else if(
-           v.contest_title.includes(searchitem) ||
-           v.contest_innertext.includes(searchitem) ||
-           v.category.includes(searchitem)
+          contest.length > 0 ? v.contest_title.includes(searchitem) : searchitem ||
+          contest.length > 0 ? v.contest_innertext.includes(searchitem) : searchitem ||
+          contest.length > 0 ? v.category.includes(searchitem) : searchitem
          ){
            return searchResults();
          }
