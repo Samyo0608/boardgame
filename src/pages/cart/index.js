@@ -48,18 +48,35 @@ function Cart(props) {
     return cartSave;
   };
   const [local, setLocal] = useState(localArray());
-
   useEffect(() => {
     setLocal(cartSave);
   }, [product, check]);
-
-  let total = 0;
-  const totalMoney = (e) => {
-    for (let i = 0; i < local.length; i++) {
-      total = total + local[i].count * local[i].product_price;
+  //----------------------------------
+  // 抓取localStorage
+  const localArr = (pro) => {
+    let newStorage = [];
+    // localStorage.getItem(key)
+    for (let i = 0; i < pro.length; i++) {
+      if (localStorage.getItem(pro[i].product_name)) {
+        newStorage.push(JSON.parse(localStorage.getItem(pro[i].product_name)));
+      }
     }
+    return newStorage;
   };
-  totalMoney();
+
+  // 呼叫function localArr 用productData帶入找localStorage的值
+  const localList = localArr(product);
+  // ------------------------------------
+
+  const totalMoney = (lcl) => {
+    let total = 0;
+    for (let i = 0; i < lcl.length; i++) {
+      total = total + lcl[i].count * lcl[i].product_price;
+    }
+    return total;
+  };
+
+  let localtotal = totalMoney(localList);
 
   // 載入資料庫
   useEffect((e) => {
@@ -70,7 +87,6 @@ function Cart(props) {
       setProduct(productItem.data);
     }
     product();
-    setLocal(localArray());
   }, []);
 
   // session載入
@@ -141,7 +157,7 @@ function Cart(props) {
                 );
               })}
             </div>
-            {local.map((v, i) => {
+            {localList.map((v, i) => {
               return (
                 <Cart1
                   key={i}
@@ -160,7 +176,7 @@ function Cart(props) {
 
           <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
             <span className="bold me-1 ms-5">共計　</span>
-            <span className="text-danger bold">{total}　</span>
+            <span className="text-danger bold">{localtotal}　</span>
             <span className="bold me-3">元</span>
           </div>
         </div>
