@@ -47,7 +47,7 @@ function Booking() {
           item.room = "六人房";
         }
 
-        console.log(item.endTime);
+        // console.log(item.endTime);
         item.title = item.room + "已滿";
         item.start = item.startTime;
         item.end = item.endTime;
@@ -346,7 +346,9 @@ function Booking() {
               id="date"
               className="form-control-lg"
               type={"datetime-local"}
-              min={new Date().toISOString().slice(0, -8)}
+              min={new Date(+new Date() + 8 * 3600 * 1000)
+                .toISOString()
+                .slice(0, -8)}
               style={formStyle}
               name="startTime"
               value={fields.startTime}
@@ -364,7 +366,9 @@ function Booking() {
             <label class="form-label">結束： </label>
             <input
               type="datetime-local"
-              min={new Date().toISOString().slice(0, -8)}
+              min={new Date(+new Date() + 8 * 3600 * 1000)
+                .toISOString()
+                .slice(0, -8)}
               className="form-control-lg"
               style={formStyle}
               name="endTime"
