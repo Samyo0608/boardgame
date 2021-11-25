@@ -137,8 +137,9 @@
 .pprice {
   position: absolute;
   font-size: 40px;
-  left: 880px;
+  left: 860px;
   top: 380px;
+  font-weight: bold;
 }
 /* 遊戲敘述 */
 .box457 {
@@ -167,7 +168,7 @@
 .about1 {
   /* background-color: white; */
   position: absolute;
-  top: -20px;
+  top: -60px;
   font-size: 20px;
   color: black;
   border: var(--fontColor);
@@ -187,7 +188,7 @@
 }
 .about1Result {
   position: relative;
-  top: 20px;
+  top: -20px;
 }
 
 /* 紅字提醒 */
