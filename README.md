@@ -7,11 +7,11 @@ https://imgur.com/RZ64te2
 
 ## 登入頁面
 
-https://imgur.com/GEnLyCl
+https://imgur.com/GEnLyCl.jpg
 
 ## 註冊頁面
 
-https://imgur.com/OPkymyW
+https://imgur.com/OPkymyW.jpg
 
 ## 會員中心
 
