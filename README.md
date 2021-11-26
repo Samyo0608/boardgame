@@ -15,7 +15,7 @@ https://imgur.com/OPkymyW.jpg
 
 ## 會員中心
 
-![alt text](https://imgur.com/6OfKYJW)
+![alt text](https://imgur.com/6OfKYJW.jpg)
 https://imgur.com/sPjMA0Q
 
 ## 會員中心-基本資料
