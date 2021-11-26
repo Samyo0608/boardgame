@@ -31,7 +31,7 @@ function Cart1(props) {
       newStorage.product_price = price;
       // 此時cartLocal已經做變動了，再將這個值產生localStorage覆蓋原本的值
       localStorage.setItem(name, JSON.stringify(newStorage));
-      console.log(name);
+      // console.log(name);
     },
     [count]
   );

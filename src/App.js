@@ -46,6 +46,11 @@ function App() {
           <Switch>
             <Route
               exact={true}
+              path="/Cartcheck:account"
+              component={Cartcheck}
+            />
+            <Route
+              exact={true}
               path="/memberCenter:account/memberPoint"
               component={MemberPoint}
             />
@@ -108,11 +113,6 @@ function App() {
             <Route exact={true} path="/Aboutgame/:id" component={Aboutgame} />
 
             <Route exact={true} path="/Aboutgame" component={Aboutgame} />
-            <Route
-              exact={true}
-              path="/Cart:account/Cartcheck"
-              component={Cartcheck}
-            />
             <Route exact={true} path="/Cart:account" component={Cart} />
           </Switch>
           <Footer />
