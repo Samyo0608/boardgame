@@ -85,6 +85,7 @@ function Cartcheck(props) {
   const handleChange = (e) => {
     let newFinalData = { ...finalData };
     newFinalData[e.target.name] = e.target.value;
+    newFinalData.newPoint = parseInt((AllPrice - point) / 50);
     setFinalData(newFinalData);
   };
 
@@ -95,6 +96,7 @@ function Cartcheck(props) {
       newFinalData.email = member.email;
       newFinalData.phone = member.phone;
       newFinalData.address = member.address;
+      newFinalData.newPoint = parseInt((AllPrice - point) / 50);
     } else {
       newFinalData = {};
     }
@@ -102,10 +104,23 @@ function Cartcheck(props) {
   }, [check]);
 
   console.log(finalData);
-
+  console.log(accParams.account);
   // 送出結帳
-  async function handleSubmit() {
-    await axios.post(`${API_URL}/cart/member/${accParams.account}`);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      let res = await axios.post(
+        `${API_URL}/cart/test/${accParams.account}`,
+        finalData,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("上傳成功");
+      console.log(res);
+    } catch (e) {
+      console.log("上傳失敗", e);
+    }
   }
 
   return (
@@ -205,6 +220,13 @@ function Cartcheck(props) {
                 </label>
               </div>
             </div>
+            <button
+              type="submit"
+              className="btn btn-danger endButton"
+              // onSubmit={handleSubmit03}
+            >
+              結帳
+            </button>
           </form>
         </div>
       </div>
@@ -255,14 +277,11 @@ function Cartcheck(props) {
       </div>
       {/* 結帳按鈕 */}
       <form
+        onSubmit={handleSubmit}
         method="post"
         className="mb-3 mt-2 d-flex justify-content-end pointBox"
       >
-        <button
-          type="submit"
-          className="btn btn-danger endButton"
-          onSubmit={handleSubmit}
-        >
+        <button type="submit" className="btn btn-danger endButton">
           結帳
         </button>
       </form>
