@@ -74,7 +74,7 @@ const DEFAULT_HISTORY = [
               height="130px"
               width="140px"
             />{" "}
-            <span class="">配送取貨</span>
+            <span class="click_range_title">配送取貨</span>
             <ul class="list_background">
               <li class="click_range_list">商品自取</li>
               <li class="click_range_list">配送方式</li>
@@ -329,7 +329,7 @@ const InstantQAPage = () => {
           {/* 放大字型 */}
           <span
             id="enlarge_font_size"
-            onClick={(e) => setFontSize(fontSize === "27px" ? "16px" : "27px")}
+            onClick={(e) => setFontSize(fontSize === "18px" ? "16px" : "18px")}
           >
             <img
               src="/img/customer_service/enlarge-smallsize.png"

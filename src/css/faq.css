@@ -133,12 +133,6 @@ input[type="search"].faq_input_content {
 .question_list {
   padding: 0px;
 }
-.content_question li {
-  margin-left: 20px;
-  list-style-type: none;
-  padding-bottom: 20px;
-  border-bottom: 4px #d3cece solid;
-}
 .abreast2 {
   display: inline-flex;
   justify-content: space-between;
@@ -160,18 +154,29 @@ input[type="search"].faq_input_content {
 .minus.animation {
   position: absolute;
   top: 0px;
+  transform: rotate(360deg);
+  transition-duration:0.5s;
 }
 .minus.rotated {
   transform: rotate(90deg);
+  transition-duration:0.5s;
 }
 
 .answer_block {
   padding-right: 80px;
   transition: 1s;
-  left: 0;
+  padding-left:40px;
 }
 .answer_block p {
-  margin: 0;
+  margin:0;
+}
+/* 答覆清單設定 */
+.listtext__item{
+  display: list-item;
+  list-style-type: square;
+  margin-bottom: 5px;
+  border:none;
+
 }
 /* 答覆表格設定 */
 .answer_block td,.answer_block
@@ -247,14 +252,18 @@ th {
   float: left;
   padding: 25px 25px 25px 15px;
 }
-.link_message {
+.link_message_fram {
   border: solid #aaa5a5;
   margin-top: -20px;
   margin-left: 50px;
   font-weight: bold;
   width: 260px;
 }
-.link_message p {
+.link_message{
+  color: #000;
+
+}
+.link_message_fram p {
   margin-bottom: 5px;
 }
 
@@ -297,7 +306,7 @@ th {
   color: #0c4499;
 }
 .opions_frame img:hover {
-  filter: opacity(0.7) invert(60%) drop-shadow(0px 0px 0px #0099ff);
+  filter: opacity(0.5) invert(20%) drop-shadow(0px 0px 0px #0099ff);
 }
 /* .stretch_button:hover {
   transform: rotate(360deg);

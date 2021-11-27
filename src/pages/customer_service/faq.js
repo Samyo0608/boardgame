@@ -9,8 +9,16 @@ const faqQuestionCategories = {
       question: "該如何加入會員呢？",
       answerBlock: (
         <>
-          電腦版：請您點選右上角「登入/註冊」，可選擇「手機號碼驗證註冊」或「使用Facebook快速註冊」。
-          手機版/APP：請您點選右下角「個人」，可選擇以「手機號碼」、「Facebook」或「Apple
+          <p>
+            電腦版：請您點選右上角
+            <a href="/login" class="hover_style" alt="">
+              「登入/註冊」
+            </a>
+            ，可選擇「手機號碼驗證註冊」或「使用Facebook快速註冊」。
+          </p>
+          <p>
+            手機版/APP：請您點選右下角「個人」，可選擇以「手機號碼」、「Facebook」或「Apple
+          </p>
           ID」(限iOS用戶)註冊。
         </>
       ),
@@ -19,31 +27,117 @@ const faqQuestionCategories = {
       question: "忘記密碼怎麼辦？",
       answerBlock: (
         <>
-          若您忘記密碼，請您先「會員登入」後，點選「忘記密碼」
+          若您忘記密碼，請您先「
+          <a href="/login" class="hover_style" alt="">
+            <a href="/login" class="hover_style" alt="">
+              會員登入
+            </a>
+          </a>
+          」後，點選「
+          <a href="/login" class="hover_style" alt="">
+            忘記密碼」
+          </a>
           再輸入註冊的電子郵件/手機號碼，系統會自動發送密碼重設通知給您，再請您依照通知步驟重新設定密碼即可。
         </>
       ),
     },
     {
       question: "忘記登入的會員帳號？",
-      answerBlock: <>煩請直接與客服中心聯繫。</>,
+      answerBlock: (
+        <>
+          煩請使用「
+          <a href="/customer_service_message" class="hover_style" alt="">
+            客服留言
+          </a>
+          」直接與客服中心聯繫。
+        </>
+      ),
     },
     {
       question: "該如何修改個人資料及密碼？",
       answerBlock: (
         <>
-          電腦版：請「會員登入」至「個人資料及密碼修改」即可進行變更。
-          手機版/APP：請「會員登入」後至「個人」上方大頭照點選「姓名」後即可進行變更。
-          ※ 如更新E-mail帳號，請留意新信箱是否可正常收取lativ相關信件通知喔。
+          煩請使用「
+          <a href="/customer_service_message" class="hover_style" alt="">
+            客服留言
+          </a>
+          」直接與客服中心聯繫。
+          <p>
+            電腦版：請「
+            <a href="/login" class="hover_style" alt="">
+              <a href="/login" class="hover_style" alt="">
+                會員登入
+              </a>
+            </a>
+            」至「個人資料及密碼修改」即可進行變更。
+          </p>
+          <p>
+            手機版/APP：請「
+            <a href="/login" class="hover_style" alt="">
+              <a href="/login" class="hover_style" alt="">
+                會員登入
+              </a>
+            </a>
+            」後至「個人」上方大頭照點選「姓名」後即可進行變更。
+          </p>
+          <p style={{ color: "#c14948" }}>
+            ※
+            如更新E-mail帳號，請留意新信箱是否可正常收取遊戲職人相關信件通知喔。
+          </p>
         </>
       ),
     },
     {
-      question: "如何透過「線上客服」聯繫？？",
+      question: "如何透過「線上客服」聯繫？",
       answerBlock: (
         <>
-          請於上班時間至「訂單查詢」中「客服問與答」點選「客服」，即可進行諮詢。
-          上班時間09:00-18:00(例假日暫不提供服務)
+          請於上班時間至「
+          <a
+            href="/memberCenterundefined/memberProduct"
+            class="hover_style"
+            alt=""
+          >
+            訂單查詢
+          </a>
+          」中「客服問與答」點選「
+          <a href="/customer_service_message" class="hover_style" alt="">
+            客服留言
+          </a>
+          」，即可進行諮詢。 上班時間09:00-18:00(例假日暫不提供服務)
+        </>
+      ),
+    },
+    {
+      question: "常收不到訂單確認信、商品到貨通知信、會員電子報？",
+      answerBlock: (
+        <>
+          若未於收件夾看到Game
+          Master的E-mail可F至垃圾信件夾內或是促銷內容分頁內搜尋，並且建議將Game
+          Master的E-mail設定為收件連絡者，可盡量避免收不到訂單信件、商品到貨訊息及錯過優惠訊息的遺憾。
+        </>
+      ),
+    },
+    {
+      question: "如何訂閱及取消電子報？",
+      answerBlock: (
+        <>
+          請於官網右下角輸入您的電子信箱定點選【訂閱電子報】，即可完成訂閱。登入會員後，請至「
+          <a href="/memberCenter:account/" class="hover_style" alt="">
+            我的帳戶
+          </a>
+          」登入後，再點選「
+          <a href="/memberCenterundefined/memSelf" class="hover_style" alt="">
+            會員資訊
+          </a>
+          」即可修改訂閱狀態。
+        </>
+      ),
+    },
+    {
+      question: "加入遊戲職人會員有什麼好處?",
+      answerBlock: (
+        <>
+          遊戲職人將不定期舉辦會員優惠活動，加入遊戲職人會員可以即時獲得優惠及新品上市等最新訊息。
         </>
       ),
     },
@@ -54,14 +148,13 @@ const faqQuestionCategories = {
       answerBlock: (
         <>
           <p>
-            {" "}
             第一次購物：註冊帳號＞輸入手機號碼註冊＞選擇商品＞加入購物車＞前往結帳＞填寫收件資訊＞完成購物{" "}
-            <p>
-              非第一次購物：選擇商品＞加入購物車＞前往結帳＞會員登入＞填寫收件資訊＞完成購物
-            </p>
-            <p>
-              ※提醒您，商品加入購物車但未結帳前，並無保留商品庫存功能，商品庫存分配將以結帳順序為依據。
-            </p>
+          </p>
+          <p>
+            非第一次購物：選擇商品＞加入購物車＞前往結帳＞會員登入＞填寫收件資訊＞完成購物
+          </p>
+          <p style={{ color: "#c14948" }}>
+            ※提醒您，商品加入購物車但未結帳前，並無保留商品庫存功能，商品庫存分配將以結帳順序為依據。
           </p>
         </>
       ),
@@ -77,19 +170,41 @@ const faqQuestionCategories = {
       ),
     },
     {
+      question: "如何查詢目前訂單的處理情況？",
+      answerBlock: (
+        <>
+          <p>
+            完成訂購商品時，我們會同步發訂單確認函到您的信箱，內含訂單編號。若後續需要查詢訂單狀態，請登入「
+            <a href="/memberCenter:account/" class="hover_style" alt="">
+              我的帳戶
+            </a>
+            」的「
+            <a
+              href="/memberCenterundefined/memberProduct"
+              class="hover_style"
+              alt=""
+            >
+              訂單查詢
+            </a>
+            」查詢。
+          </p>
+        </>
+      ),
+    },
+    {
       question: "如何修改、加訂或合併訂單？",
       answerBlock: (
         <>
           <p>
             1.
-            為避免影響商品庫存及避免帳務錯誤，請恕我們無法為您再將訂單『修改』或『加購』或『合併』訂單商品。
+            為避免影響商品庫存及帳務錯誤，請恕我們無法為您再將訂單『修改』或『加購』或『合併』訂單商品。
           </p>
           <p>
             {" "}
             2. 若您已結帳完成訂單而有此需求，建議您可自行點選『取消訂單』。
           </p>
           <br></br>
-          <p>
+          <p style={{ color: "#c14948" }}>
             ※提醒您，如遇訂單狀態已完成出貨無法攔截時，請恕無法協助取消訂單；如有不適合的商品，再請您於七日鑑賞期內辦理退貨服務。
           </p>
         </>
@@ -105,11 +220,45 @@ const faqQuestionCategories = {
           <p>
             提醒您！以下情況將無法為您辦理退貨，煩請留意以免影響您的退貨權益。
           </p>
-          <p>1.商品已有使用摺痕或髒污或味道，請恕無法接受退貨。</p>
+          <p>1.商品已有使用痕跡或髒污或味道，請恕無法接受退貨。</p>
           <p>2.退回時，商品配件不全。</p>
           <p>3.已在商品上加工，非商品原樣。</p>
           <p>4.活動贈品未退回。</p>
           <p>5.超過七天鑑賞期。</p>{" "}
+        </>
+      ),
+    },
+    {
+      question: "如何知道是否付款成功？",
+      answerBlock: (
+        <>
+          <p>
+            如果您付款成功，系統將會發送一封訂購成功通知信至您訂購時所留存的聯絡
+            E-mail，您可再進行確認。
+          </p>
+          <p style={{ color: "#c14948" }}>
+            ※ 如您是 yahoo 或是 hotmail
+            可先至垃圾郵件匣進行確認，並強烈建議您使用Gmail或非Yahoo或hotmail信箱，以保障您訂購後的相關權益。
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "商品出貨後會用什麼方式通知？",
+      answerBlock: (
+        <>
+          <p>商品出貨後，系統將會發送『出貨通知信』至訂購人之聯絡 E-mail。</p>
+        </>
+      ),
+    },
+    {
+      question: "會員點數折抵說明",
+      answerBlock: (
+        <>
+          <p>獲得之折扣點數，在結帳時點選【我要使用點數】可立即折抵。</p>
+          <p>
+            會員點數經使用後即失效，無法因取消訂單／退貨／換貨／重新下單，或任何操作上因素要求退回，亦不得轉成等值現金或商品。
+          </p>
         </>
       ),
     },
@@ -146,7 +295,7 @@ const faqQuestionCategories = {
                 <td class="table_item">超商取貨</td>
                 <td class="table_content">
                   <b>商品將配送至您所指定的門市</b>
-                  ，到店時將會發送取貨通知簡訊、E-mail或會員中心通知您前往取貨。
+                  ，到店時會發送簡訊、E-mail或會員中心通知您前往取貨。
                   <br></br>提醒事項： <br></br> ※
                   因『超商取貨付款』有材積限制，下單時若發現超過材積限制時，建議您分批下單（如有運費產生請恕無法合併計算）。
                   <br></br>※
@@ -189,17 +338,36 @@ const faqQuestionCategories = {
             <b>修改訂單：</b>
           </p>
           <p>
-            訂單送出後即無法修改訂單內容，如需修改，您可由「會員登入」登入帳號，取消訂單後再重新下單。
+            訂單送出後即無法修改訂單內容，如需修改，您可由「
+            <a href="/login" class="hover_style" alt="">
+              會員登入
+            </a>
+            」登入帳號，取消訂單後再重新下單。
           </p>
           <p>
             <b>取消訂單：</b>
           </p>
           <p>
-            訂單尚未進入包裝作業前您可由「會員登入」登入帳號，自行取消訂單，
+            訂單尚未進入包裝作業前您可由「
+            <a href="/login" class="hover_style" alt="">
+              會員登入
+            </a>
+            」登入帳號，自行取消訂單，
           </p>
           <p>
-            由「會員登入」登入帳號 ＞
-            進入「訂單查詢/問答/退貨查詢」狀態點選「取消訂單」，即完成取消該筆訂單。
+            由「
+            <a href="/login" class="hover_style" alt="">
+              會員登入
+            </a>
+            」登入帳號 ＞ 進入「
+            <a
+              href="/memberCenterundefined/memberProduct"
+              class="hover_style"
+              alt=""
+            >
+              訂單查詢
+            </a>
+            」狀態點選「取消訂單」，即完成取消該筆訂單。
           </p>{" "}
           <br></br>
           <p>※ 訂單取消後即無法復原。</p>
@@ -273,8 +441,8 @@ const faqQuestionCategories = {
           </p>
           <br></br>
           <p>若出貨量增加，出貨時間，請依據最新消息之公告說明為準！</p>
-          <a href="/">
-            <u>【最新消息】</u>
+          <a href="/" class="hover_style">
+            <u class="hover_style">【最新消息】</u>
           </a>
         </>
       ),
@@ -322,7 +490,11 @@ const faqQuestionCategories = {
             因超商門市取貨購物流程，須連結到超商訂單系統中，並非單獨於本公司系統中完成，若您完成超商門市選取後，若非因門市自身暫停服務問題，將無法再變更門市，請您見諒！
           </p>
           <p>
-            您可由「會員登入」查詢，如訂單尚未進入包裝作業，您可自行取消訂單，再重新下單選擇正確的取件門市即可。
+            您可由「
+            <a href="/login" class="hover_style" alt="">
+              會員登入
+            </a>
+            」查詢，如訂單尚未進入包裝作業，您可自行取消訂單，再重新下單選擇正確的取件門市即可。
           </p>
         </>
       ),
@@ -370,7 +542,7 @@ const faqQuestionCategories = {
       ),
     },
     {
-      question: "退款方式及退款時間？",
+      question: "退款方式及退款時間?",
       answerBlock: (
         <>
           <table>
@@ -416,8 +588,88 @@ const faqQuestionCategories = {
           <p>1. 超過7天退貨期限。</p>
           <p>
             2.
-            商品已有使用痕跡、味道或人為造成髒污、商品配件丟失或損毀等，恕不接受退貨。
+            商品已有使用痕跡或人為造成髒污、商品配件丟失或損毀等，恕不接受退貨。
           </p>
+        </>
+      ),
+    },
+    {
+      question: "七天鑑賞期內退貨",
+      answerBlock: (
+        <>
+          <p>
+            根據消費者保護法之規定，遊戲職人提供您「享有商品到貨七天鑑賞期
+            <b>(非試用期)</b> ， 隨時解約退貨」之權益。
+          </p>
+          <p style={{ color: "#c14948" }}>
+            ※提醒您:商品退貨時，必須回復原狀，亦即必須回復至您收到商品時的原始狀態
+            (包含商品、附件、內外包裝、隨機文件、贈品、發票等）。
+          </p>{" "}
+          <br></br>
+          <p>下列情形可能影響您的退貨權限：</p>
+          <p>
+            1.在不影響您檢查商品情形下，您將商品包裝毀損、封條移除、貼膠移除或標籤拆除等情形。
+          </p>
+          <p>
+            2.其他逾越檢查之必要，或可歸責於您之事由，致商品有毀損、滅失或變更者。
+          </p>
+          <p>
+            3.請您在收到商品後立即確認商品狀況，若有瑕疵、缺失、毀損等重大瑕疵，請於收到商品七天鑑賞期內，於上班時間來電或完成退貨程序，
+            我們會儘快為您處理。
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "退款說明",
+      answerBlock: (
+        <>
+          <p>
+            商品確認收回後，提供上您的相關資料，需 3-5
+            個工作天進行退款（不含假日）因繳款方式不同，退款方式分為二種：
+          </p>
+          <ul>
+            <li class="listtext__item">
+              信用卡：我們將透過綠界科技-第三方金流協助您辦理退刷作業。退刷申請後非立刻退刷完成，發卡銀行需要預計7-14個工作天(不含假日)退刷完成。
+            </li>
+            <li class="listtext__item">
+              ATM 繳費：需提供您的匯款資料（存摺封面）E-mail
+              至客服中心，退款申請後預計7-10天(不含假日)退還至您指定的帳戶中。
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      question: "換貨說明",
+      answerBlock: (
+        <>
+          <ul>
+            <li class="listtext__item">
+              如需要換貨，請先聯絡客服，說明換貨原因。
+            </li>
+            <li class="listtext__item">若非商品瑕疵，恕不接受退換貨。</li>
+            <li class="listtext__item">
+              無條件退換貨須符合下述條件其中一項：
+              <ol>
+                <li>實際收到的商品與所訂購商品不符合。</li>
+                <li>產品包裝內配件不齊全或商品規格與外包裝說明不符合。</li>
+                <li>商品有瑕疵或於運送過程中有損壞者。</li>
+              </ol>
+            </li>
+            <li class="listtext__item">
+              <p style={{ color: "#c14948" }}>
+                商品退換貨必須整筆訂單一起辦理退貨，且商品為全新狀態且完整包裝（包含外包裝、贈品等），恕無法部分退貨。
+              </p>
+              商品主體及其內容物 ( 如各項零附件、手冊、 贈品等 )
+              均不可有短缺、破損、書寫文字或標記、使用之破壞 (
+              如刮痕、摔傷、擠壓變形、受潮)
+              及任何目視可見之人為損壞或人為使用痕跡。
+            </li>
+            <li class="listtext__item">
+              到貨商品超過七天(含假日)以上，恕不接受退換貨。
+            </li>
+          </ul>
         </>
       ),
     },
@@ -428,24 +680,62 @@ const faqQuestionCategories = {
       answerBlock: (
         <>
           <p>
-            根據財政部令「電子發票實施作業要點」，於消費開立之「二聯電子發票」、「三聯電子發票」，不主動寄送，
-            <br></br>遊戲職人亦會將發票號碼上傳至政府平台。
+            根據財政部{" "}
+            <a
+              href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg019159/ch04/type2/gov30/num8/Eg.htm"
+              target="_blank"
+              class="hover_style"
+            >
+              「電子發票實施作業要點」
+            </a>
+            ，於消費開立之「二聯電子發票」、「三聯電子發票」，不主動寄送，
+            遊戲職人亦會將發票號碼上傳至政府平台，相關資料請參考{" "}
+            <a
+              href="https://www.einvoice.nat.gov.tw/ein_upload/html/ESQ/ESQ800W.html"
+              target="_blank"
+              class="hover_style"
+            >
+              電子發票說明
+            </a>
+            。
           </p>
           <br></br>
           <p>
-            或您可於出貨後24小時於
+            或您可於出貨後24小時於 【
             <a
-              href="http://localhost:3000/memberCenter/memberProduct"
-              style={{ textDecoration: "none" }}
+              href="/memberCenterundefined/memberProduct"
+              class="hover_style"
+              alt=""
             >
-              【訂單查詢】
+              訂單查詢
             </a>
-            中查閱訂單發票內容，相關資料請參考財政部電子發票整合服務平台 。
+            】 中查閱訂單發票內容，相關資料請參考財政部電子發票整合服務平台 。
           </p>
           <br></br>
           <p>
             目前遊戲職人消費開立之「三聯電子發票」為會員載具，尚未開放共通性載具選項。
           </p>
+        </>
+      ),
+    },
+    {
+      question: "什麼時候會收到我的發票？",
+      answerBlock: (
+        <>
+          <ul>
+            <li class="listtext__item">
+              訂單成立後（完成付款），系統會同時開立發票，「綠界金流」及
+              遊戲職人 官網會寄送發票開立通知的電子信件。也可於48小時後至{" "}
+              <a href="https://www.einvoice.nat.gov.tw/index" target="_blank" class="hover_style">
+                財政部電子發票整合服務平台
+              </a>
+              查詢。
+            </li>
+            <li class="listtext__item">
+              公司戶電子發票：訂單成立後（完成付款），系統會同時開立發票，「綠界金流」及遊戲職人
+              官網會寄送發票開立通知的電子信件。並且您可於「綠界金流」寄送的通知信中取得「電子發票證明聯」電子檔，即可自行列印紙本電子發票。
+            </li>
+          </ul>
         </>
       ),
     },
@@ -456,14 +746,15 @@ const faqQuestionCategories = {
           <p>請在結帳流程中的「發票資訊」處，選擇三聯電子發票並填寫統一編號</p>
           <br></br>
           <p>
-            您可於出貨後24小時至
+            您可於出貨後24小時至 【
             <a
-              href="http://localhost:3000/memberCenter/memberProduct"
-              style={{ textDecoration: "none" }}
+              href="/memberCenterundefined/memberProduct"
+              class="hover_style"
+              alt=""
             >
-              【訂單查詢】
+              訂單查詢
             </a>
-            中下載開立的發票，該三聯電子發票證明聯，即為會計憑證，<br></br>
+            】 中下載開立的發票，該三聯電子發票證明聯，即為會計憑證，<br></br>
             亦可透過此單據向公司報帳進行核銷(可直接黏貼於傳票上)，相關說明，請參考財政部。
           </p>{" "}
         </>
@@ -522,6 +813,7 @@ const faqQuestionCategories = {
                   <a
                     href="https://www.ibon.com.tw/operate.aspx?fromPage=life.aspx&routeIDListInfo=4;F021;0,7,39,106#gsc.tab=0"
                     target="_blank"
+                    class="hover_style"
                   >
                     ibon中獎發票列印步驟
                   </a>
@@ -568,14 +860,19 @@ const faqQuestionCategories = {
                 <td align="center" colspan="5" valign="middle">
                   <table border="0" cellpadding="0" cellspacing="0" width="98%">
                     <tbody>
-                      <tr>
-                        <td height="76">
-                          （註1）※
-                          如您未曾至財政部電子發票整合服務平台進行手機條碼或自然人憑證之歸戶設定，您的發票即為未歸戶。
-                          <br></br>
-                          （註2）※
-                          建議您，可至財政部電子發票整合服務平台進行歸戶設定，即可透過平台自動對獎及兌獎至指定帳戶。
-                        </td>
+                      <tr height="76">
+                        （註1）※
+                        如您未曾至財政部電子發票整合平台進行手機條碼或自然人憑證之歸戶設定，即為未歸戶。
+                        <br></br>
+                        （註2）※ 建議您，可至{" "}
+                        <a
+                          href="https://www.einvoice.nat.gov.tw/index"
+                          target="_blank"
+                          class="hover_style"
+                        >
+                          財政部電子發票整合平台
+                        </a>
+                        進行歸戶設定，即可透過平台自動對獎及兌獎至指定帳戶。
                       </tr>
                     </tbody>
                   </table>
@@ -587,23 +884,79 @@ const faqQuestionCategories = {
       ),
     },
     {
-      question: "如何計算「七天鑑賞期」？",
+      question: "列印了訂單查詢內的發票資訊電子檔，可以拿這張紙去銀行行庫兌獎嗎？",
       answerBlock: (
         <>
-          <p>根據消保法規定七日鑑賞期權益 於完成簽收取件的隔日起算至第7天止</p>
-          <p>(如您的收件地址有管理員代收，則以代收的隔日起算)。</p>
-          <br></br>
-          <p>
-            提醒您！以下情況將無法為您辦理退貨，煩請留意以免影響您的退貨權益。
-          </p>
-          <p>1.商品已有使用摺痕或髒污或味道，請恕無法接受退貨。</p>
-          <p>2.退回時，商品配件不全。</p>
-          <p>3.已在商品上加工，非商品原樣。</p>
-          <p>4.活動贈品未退回。</p>
-          <p>5.超過七天鑑賞期。</p>{" "}
+        <ul>
+            <li class="listtext__item">
+            依統一發票使用辦法規定，發票兌獎必須使用電子發票證明聯正本。(一張發票僅有一張正本，訂單查詢內所提供的列印僅供參考之用，不具兌獎的功能。)
+            </li>
+            <li class="listtext__item">
+            其他有關領獎事項依「統一發票給獎辦法」規定辦理。如有任何兌獎疑慮，可至 <a href="https://www.einvoice.nat.gov.tw/index" target="_blank" class="hover_style">
+                財政部電子發票整合服務平台
+              </a>-常用功能查詢，或撥打電子發票24小時免付費專線
+              <a href="tel:0800-521-988" title="電子發票24小時免付費專線">0800-521-988</a>。
+            </li>
+          </ul>
         </>
       ),
     },
+    {
+      question: "發票可以指定開立其它品名、金額或日期嗎？",
+      answerBlock: (
+        <>
+          <p>本公司已全面導入電子式發票系統，發票一旦開立即完成無法更動其內容，發票商品名稱將依訂購當時品名和金額開立，請恕無法指定開立日期、其它品名或金額。</p>
+        </>
+      ),
+    },
+    {
+      question: ".一筆訂單可以開立多張發票嗎？",
+      answerBlock: (
+        <>
+          <p>因本公司發票採用系統化自動開立，故一筆訂單對應一張發票，請恕無法分別開立多張。如有分別開立需求，請將商品分別下單。</p>
+        </>
+      ),
+    },
+    {
+      question: "發票欲申請換開為個人戶或公司戶？",
+      answerBlock: (
+        <>
+          <p>依統一發票使用辦法規定，只有書寫錯誤得換開；個人戶發票無法換開為公司戶發票；公司戶發票無法換開為個人戶發票。發票一經開立，對於買方名稱及統一編號不得任意更改或應買方要求改開其他營利事業及統一編號。</p>
+        </>
+      ),
+    },
+    {
+      question: "公司戶收到發票後，是否還能修改抬頭、統編？",
+      answerBlock: (
+        <>
+          <p>收到發票五日內，若資料有誤，需更改抬頭名稱或統一編號，請您於「<a
+              href="/memberCenterundefined/memberProduct"
+              class="hover_style"
+              alt=""
+            >
+              訂單查詢
+            </a>」頁面，點選   <a href="/customer_service_message" class="hover_style" alt="">
+            【聯絡客服】
+          </a>，註明要修改的抬頭、統編及發票寄送EMAIL地址，客服人員將會盡速為您處理。以利為您換開發票，一般處理時間需約二週。</p>
+        </>
+      ),
+    },
+    {
+      question: "商品猶豫期間內辦理退貨，但沒有發票那該怎麼辦？",
+      answerBlock: (
+        <>
+<ul>
+            <li class="listtext__item">
+            「個人電子發票」：退貨時無需附回發票；我們將於退貨作業完成後，於系統直接作廢發票。
+            </li>
+            <li class="listtext__item">
+            「公司戶電子發票」：因您已線上同意退訂退款說明，故毋須將紙本折讓單寄回本公司，如已下載列印電子發票證明聯進行報帳，請務必下載列印退貨折讓單，並交付您的財會單位。
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    
   ],
 };
 
@@ -802,7 +1155,8 @@ const CustomerServicePage = () => {
                     class="drop_down"
                   />
                 </div>
-                <div class="link_message">
+                <a href="/customer_service_message" class="hover_style link_message" >
+                <div class="link_message_fram" >
                   <img
                     src="/img/customer_service/document_icon.png"
                     class="document_icon"
@@ -812,6 +1166,7 @@ const CustomerServicePage = () => {
                   <p>我們會定時查看，</p>
                   <p>盡快回覆您!</p>
                 </div>
+                </a>
               </div>
             </div>
             {/* div結尾(內文問題框架) */}
