@@ -46,6 +46,11 @@ function App() {
           <Switch>
             <Route
               exact={true}
+              path="/Cartcheck:account"
+              component={Cartcheck}
+            />
+            <Route
+              exact={true}
               path="/memberCenter:account/memberPoint"
               component={MemberPoint}
             />
@@ -106,6 +111,7 @@ function App() {
             <Route exact={true} path="/vote" component={vote} />
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame/:id" component={Aboutgame} />
+
             <Route
               exact={true}
               path="/Cart:account/Cartcheck"

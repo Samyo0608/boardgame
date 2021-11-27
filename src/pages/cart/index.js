@@ -189,7 +189,7 @@ function Cart(props) {
             </Button>
           </Link>
           <div className="">
-            <Link to={`/Cart${sessionMember.account}/Cartcheck`}>
+            <Link to={`/Cartcheck${sessionMember.account}`}>
               <Button className="buttoncheck" variant="success">
                 確認訂單
               </Button>
