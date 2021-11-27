@@ -88,7 +88,7 @@ const DEFAULT_HISTORY = [
               height="130px"
               width="140px"
             />{" "}
-            <span class="click_range_title">退換貨</span>
+            <span class="click_range_title">退貨</span>
             <ul class="list_background">
               <li class="click_range_list">退貨規定</li>
               <li class="click_range_list">退貨方式</li>
@@ -259,6 +259,7 @@ const InstantQAPage = () => {
   const [dialogHistory, setDialogHistory] = useState(DEFAULT_HISTORY);
   const [utteranceText, setUtteranceText] = useState("");
   const [utteranceOptions, setUtteranceOptions] = useState([]);
+  const [fontSize, setFontSize] = useState("16px");
   const sendUtterance = (event) => {
     if (event.key === "Enter") {
       replyWithBot();
@@ -322,11 +323,14 @@ const InstantQAPage = () => {
         />
       </div>
       {/* 外框背景 */}
-      <div class="outer">
+      <div class="outer" style={{ "font-size": fontSize }}>
         {/* 內文內框 */}
         <div class="inner">
           {/* 放大字型 */}
-          <span id="enlarge_font_size">
+          <span
+            id="enlarge_font_size"
+            onClick={(e) => setFontSize(fontSize === "27px" ? "16px" : "27px")}
+          >
             <img
               src="/img/customer_service/enlarge-smallsize.png"
               class="enlarge"
