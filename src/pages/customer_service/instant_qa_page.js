@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../../css/instant_QA.css";
 import InstantQADialogBox from "./instant_qa_dialog_box";
 
@@ -123,11 +123,25 @@ const INTENT_MAP = {
     ],
   },
   angry: {
-    regexes: [/(生氣)|(廢物)|(垃圾)/,/87/],
+    regexes: [/(生氣)|(廢物)|(垃圾)/, /87/],
     replies: [
       {
         type: "text",
-        payload:<div class="robot_answer"><span><img src="/img/customer_service/sad.png" alt="" />   嗚嗚~被罵了，我會繼續努力學習，讓您覺得我成長了。</span><div class="robot_answer_inner">需要專人服務，可於<a href="/customer_service_message" alt="">《客服留言》</a>留下您的問題，將盡快協助您~服務時間：每日09:00~17:30</div></div>
+        payload: (
+          <div class="robot_answer">
+            <span>
+              <img src="/img/customer_service/sad.png" alt="" />{" "}
+              嗚嗚~被罵了，我會繼續努力學習，讓您覺得我成長了。
+            </span>
+            <div class="robot_answer_inner">
+              需要專人服務，可於
+              <a href="/customer_service_message" alt="">
+                《客服留言》
+              </a>
+              留下您的問題，將盡快協助您~服務時間：每日09:00~17:30
+            </div>
+          </div>
+        ),
       },
     ],
   },
@@ -136,7 +150,11 @@ const INTENT_MAP = {
     replies: [
       {
         type: "text",
-        payload: <p class="robot_answer">T︵T我最討厭遇到問題無法回答，所以我一直很努力學習新知</p>,
+        payload: (
+          <p class="robot_answer">
+            T︵T我最討厭遇到問題無法回答，所以我一直很努力學習新知
+          </p>
+        ),
       },
     ],
   },
@@ -145,26 +163,44 @@ const INTENT_MAP = {
     replies: [
       {
         type: "text",
-        payload:<div class="robot_answer"><span><img src="/img/customer_service/sad.png" alt="" />  目前沒有完全符合您提問的答案，建議您換個方式描述或是一次詢問單一問題，或許我就能回答您喔，謝謝~</span><div class="robot_answer_inner">需要專人服務，可於<a href="/customer_service_message" alt="">《客服留言》</a>留下您的問題，將盡快協助您~服務時間：每日09:00~17:30</div></div>,
+        payload: (
+          <div class="robot_answer">
+            <span>
+              <img src="/img/customer_service/sad.png" alt="" />{" "}
+              目前沒有完全符合您提問的答案，建議您換個方式描述或是一次詢問單一問題，或許我就能回答您喔，謝謝~
+            </span>
+            <div class="robot_answer_inner">
+              需要專人服務，可於
+              <a href="/customer_service_message" alt="">
+                《客服留言》
+              </a>
+              留下您的問題，將盡快協助您~服務時間：每日09:00~17:30
+            </div>
+          </div>
+        ),
       },
     ],
   },
   broken: {
-    regexes: [/(壞掉)/,/(壞)/],
+    regexes: [/(壞掉)/, /(壞)/],
     replies: [
       {
         type: "text",
-        payload:<p class="robot_answer">沒有啊，智能客服很正常的！</p>,
+        payload: <p class="robot_answer">沒有啊，智能客服很正常的！</p>,
       },
     ],
   },
   love: {
-    regexes: [/(愛)|(喜歡)|(我愛你)/,/(謝謝)/],
+    regexes: [/(愛)|(喜歡)|(我愛你)/, /(謝謝)/],
     replies: [
       {
         type: "text",
-        payload:<span class="robot_answer"><img src="/img/customer_service/care.png" alt="" />感謝您的愛護和支持，我會繼續努力的！
-        </span>,
+        payload: (
+          <span class="robot_answer">
+            <img src="/img/customer_service/care.png" alt="" />
+            感謝您的愛護和支持，我會繼續努力的！
+          </span>
+        ),
       },
     ],
   },
@@ -173,18 +209,40 @@ const INTENT_MAP = {
     replies: [
       {
         type: "text",
-        payload: <p class="robot_answer">請您於<a href="/login">「會員登入」</a>頁面點選<a href="/login">「忘記密碼」</a>，輸入您註冊的電子郵件地址，系統會自動發送密碼重設通知給您，再請您依照通知步驟重新設定密碼即可。</p>,
+        payload: (
+          <p class="robot_answer">
+            請您於<a href="/login">「會員登入」</a>頁面點選
+            <a href="/login">「忘記密碼」</a>
+            ，輸入您註冊的電子郵件地址，系統會自動發送密碼重設通知給您，再請您依照通知步驟重新設定密碼即可。
+          </p>
+        ),
       },
     ],
   },
   points: {
-    regexes: [/(點數回饋)|(點數計算)|(點數)/, /(點數有效期)|(點數到期)|(點數期限)/],
+    regexes: [
+      /(點數回饋)|(點數計算)|(點數)/,
+      /(點數有效期)|(點數到期)|(點數期限)/,
+    ],
     replies: [
       {
         type: "text",
-        payload: <div class="robot_answer"><ul><li class="robot_answer_list">如何獲得點數？</li>於遊戲直人消費50元，可回饋1點紅利點數，小數點以下不列入紅利點數，亦無法累計至下筆訂單合併計算；除此之外，運費亦不列入紅利點數計算。</ul>
-        <ul><li class="robot_answer_list">紅利點數有使用期限嗎？</li>紅利點數沒有使用期限。(紅利點數屬於回饋性質，恕無法折換現金。)</ul>
-        <ul><li class="robot_answer_list"> 紅利點數何時會生效？</li>紅利點數將會於到貨後第7天由系統自動發送至該會員帳戶。例如：若出貨日為01月30日，則02月07日系統會自動發送紅利點數，倘若此期間會員若因故而取消/未完成訂單，系統則不給予紅利點數。</ul></div>,
+        payload: (
+          <div class="robot_answer">
+            <ul>
+              <li class="robot_answer_list">如何獲得點數？</li>
+              於遊戲直人消費50元，可回饋1點紅利點數，小數點以下不列入紅利點數，亦無法累計至下筆訂單合併計算；除此之外，運費亦不列入紅利點數計算。
+            </ul>
+            <ul>
+              <li class="robot_answer_list">紅利點數有使用期限嗎？</li>
+              紅利點數沒有使用期限。(紅利點數屬於回饋性質，恕無法折換現金。)
+            </ul>
+            <ul>
+              <li class="robot_answer_list"> 紅利點數何時會生效？</li>
+              紅利點數將會於到貨後第7天由系統自動發送至該會員帳戶。例如：若出貨日為01月30日，則02月07日系統會自動發送紅利點數，倘若此期間會員若因故而取消/未完成訂單，系統則不給予紅利點數。
+            </ul>
+          </div>
+        ),
       },
     ],
   },
@@ -197,6 +255,7 @@ const DEFAULT_NO_REPLIES = [
 ];
 
 const InstantQAPage = () => {
+  const innerTrail = useRef(null);
   const [dialogHistory, setDialogHistory] = useState(DEFAULT_HISTORY);
   const [utteranceText, setUtteranceText] = useState("");
   const [utteranceOptions, setUtteranceOptions] = useState([]);
@@ -242,9 +301,13 @@ const InstantQAPage = () => {
     setUtteranceText("");
   };
 
-  const handleSelectUtteranceOption = (e)=>{
+  const handleSelectUtteranceOption = (e) => {
     console.log(e);
-  }
+  };
+
+  useEffect(() => {
+    innerTrail.current.scrollIntoView({ behavior: "smooth" });
+  });
 
   return (
     <div className="container justify-content-center flex-column">
@@ -280,9 +343,10 @@ const InstantQAPage = () => {
               }}
             ></InstantQADialogBox>
           ))}
-          
+
+          <div style={{ float: "left", clear: "both" }} ref={innerTrail}></div>
         </div>
-        
+
         {/* 輸入問題外框*/}
         <div class="input_question_outer">
           {/* 輸入問題框*/}
@@ -299,7 +363,12 @@ const InstantQAPage = () => {
               onChange={(e) => setUtteranceText(e.target.value)}
               onKeyDown={sendUtterance}
             />
-            <img onClick={replyWithBot} src="/img/customer_service/sent.png" class="sent_img" alt="" />
+            <img
+              onClick={replyWithBot}
+              src="/img/customer_service/sent.png"
+              class="sent_img"
+              alt=""
+            />
             {/* 自動搜尋問題外框*/}
             <div class="automatic_search_outer">
               {/* 自動搜尋問題列表 */}
