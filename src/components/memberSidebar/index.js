@@ -7,6 +7,7 @@ import {
   faKey,
   faChessBoard,
   faEthernet,
+  faCommentDots,
 } from "@fortawesome//free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -80,7 +81,10 @@ function Sidebar(props) {
           </NavLink>
         </li>
         <li className="col-12">
-          <NavLink to={`/memberCenter${sessionMember.account}/rePassword`} activeClassName="linkSelected">
+          <NavLink
+            to={`/memberCenter${sessionMember.account}/rePassword`}
+            activeClassName="linkSelected"
+          >
             <div className="ms-6">
               <FontAwesomeIcon icon={faKey} className="me-1" />
               密碼修改
@@ -120,7 +124,10 @@ function Sidebar(props) {
           </NavLink>
         </li>
         <li className="">
-          <NavLink to={`/memberCenter${sessionMember.account}/memberRent`} activeClassName="linkSelected">
+          <NavLink
+            to={`/memberCenter${sessionMember.account}/memberRent`}
+            activeClassName="linkSelected"
+          >
             <div className="ms-6">
               <FontAwesomeIcon icon={faEthernet} className="me-1" />
               場地租賃
@@ -157,6 +164,18 @@ function Sidebar(props) {
             <div className="ms-6 d-flex align-items-center">
               <div className="bold point point-sidebar me-1">P</div>
               <span>點數明細</span>
+            </div>
+          </NavLink>
+        </li>
+        <li className="">
+          <NavLink
+            to={`/memberCenter${sessionMember.account}/memberDiscuss`}
+            activeClassName="linkSelected"
+            className="text-decoration-none"
+          >
+            <div className="ms-6 d-flex align-items-center">
+              <FontAwesomeIcon icon={faCommentDots} className="me-1" />
+              <span className="">收藏文章</span>
             </div>
           </NavLink>
         </li>

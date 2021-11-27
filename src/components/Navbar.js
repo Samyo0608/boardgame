@@ -87,6 +87,21 @@ function TopNavbar(props) {
     }
   };
 
+  const cartClick = () => {
+    if (!sessionMember.id) {
+      Swal.fire({
+        icon: "info",
+        title: "請先登入",
+        text: "尚未登入呦，請先登入網站再進入購物車",
+        footer: '<a href="/" class="btn btn-light">回首頁</a>',
+      }).then((res) => {
+        window.location.replace("/login");
+      });
+    } else {
+      window.location.replace(`/Cart${sessionMember.account}`);
+    }
+  };
+
   const navbarItem = [
     {
       title: "首頁",
@@ -203,14 +218,14 @@ function TopNavbar(props) {
         </Nav>
         <div className="me-2">
           <div className="mb-3 TopRightLink">
-            <Link className="ms-2 me-3" to="/Cart">
+            <a className="ms-2 me-3" href="#/" onClick={cartClick}>
               <FontAwesomeIcon icon={faShoppingCart} />
               購物車
-            </Link>
-            <Link className="ms-2 me-3" to="" onClick={centerClick}>
+            </a>
+            <a className="ms-2 me-3" href="#/" onClick={centerClick}>
               <FontAwesomeIcon icon={faUserCircle} />
               會員中心
-            </Link>
+            </a>
             {sessionMember.id && (
               <a href="/" onClick={handleClick}>
                 <FontAwesomeIcon icon={faSignOutAlt} />

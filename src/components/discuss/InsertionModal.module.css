@@ -1,0 +1,70 @@
+.ImageSystem {
+  max-width: 100%;
+  background-color: #fff;
+  color: #444;
+  padding: 5px 12px;
+  z-index: 10;
+  margin: 100px 19px 19px 19px;
+  position: absolute;
+  box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19) !important;
+  border: solid #e8e8e8 1px !important;
+  border-radius: 0.75em !important;
+}
+
+.CloseBtn {
+  font-size: 20px;
+  line-height: 20px;
+  color: white;
+  background-color: rgb(255, 43, 43);
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 8px rgb(255, 130, 130) inset;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.CloseBtn:hover {
+  background-color: rgb(255, 75, 75);
+  box-shadow: 1px 1px 2px rgb(121, 121, 121);
+}
+.CloseBtn:active {
+  box-shadow: 2px 2px 8px rgba(95, 95, 95, 0.377) inset;
+}
+
+.Label {
+  width: 100%;
+  float: left;
+  text-align: left;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.UploadBtn {
+  display: block;
+  width: 100%;
+}
+
+.ImageUploader {
+  margin: auto;
+  width: 100%;
+}
+
+.DisplayImage {
+  width: 100%;
+  max-height: 300px;
+  margin: 5px 0 5px 0;
+  object-fit: contain;
+}
+
+.FloatingAlert {
+  bottom: 30px;
+  right: 180px;
+  position: fixed;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}

@@ -71,6 +71,13 @@
   right: 25px;
   top: 430px;
 }
+.replyButton:hover {
+  color: black;
+  background-color: #b6eff7;
+}
+.replyButton:active {
+  background-color: #7ddeeb;
+}
 
 .firstF {
   margin-top: 100px;
@@ -102,13 +109,27 @@
   position: relative;
   margin: auto;
   margin-top: 15px;
-  padding-top: 15px;
-  padding-left: 10px;
+  /* padding-top: 15px;
+  padding-left: 10px; */
   padding-bottom: 100px;
   width: 95%;
   min-height: 230px;
   /* height: 100%; */
   background-color: white;
+}
+/* .discussContentQuill {
+  width: 100% !important;
+  margin: 0px !important;
+  height: auto !important;
+}
+.discussContentQuill > div {
+  width: 100%;
+  min-height: 230px !important;
+  height: auto !important;
+} */
+.discussContentQuill > div > div {
+  padding-top: 10px;
+  padding-left: 0;
 }
 
 /* 其他樓 */
@@ -126,8 +147,9 @@
   bottom: 15px;
   right: 2px;
 }
-.awesomeButton {
-  margin-right: 20px;
+.likeButton {
+  margin-right: 0px;
+  margin-left: 20px;
   color: #4972b0;
   background-color: #ffffff;
   border-radius: 50px;
@@ -138,20 +160,26 @@
   font-weight: bold;
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
 }
-.awesomeButton:hover {
-  background-color: #4972b0;
+.likeButton:hover {
+  background-color: #5c87c7;
+  border-color: #5c87c7;
   color: white;
 }
-.awesomeButton:active {
+.likeButton:active {
   background-color: #48638b;
   border-color: #48638b;
   color: white;
 }
+.likeButtonActive {
+  background-color: #4972b0;
+  color: white;
+}
+
 .awesomeImg {
   font-size: 20px;
 }
 
-.likeButton {
+.keepButton {
   background-color: #ffffff;
   border: 3px solid #ff7676;
   color: #ff7676;
@@ -163,20 +191,21 @@
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
 }
 
-.likeButton:hover {
+.keepButton:hover {
+  background-color: #ff9191;
+  border-color: #ff9191;
+  color: white;
+}
+.keepButtonActive {
   background-color: #ff7676;
   color: white;
 }
-.likeButtonActive {
-  background-color: #ff8787;
-  color: white;
-}
-.likeButton:active {
+.keepButton:active {
   background-color: #dd6565;
   border-color: #dd6565;
 }
 
-.likeImg {
+.keepImg {
   font-size: 20px;
 }
 
@@ -232,7 +261,8 @@
 }
 
 .replyInputBox {
-  width: 900px;
+  /* width: 900px; */
+  padding-top: 1px;
   padding-bottom: 20px;
   border-radius: 10px;
   background-color: #a2e2ea;
@@ -246,6 +276,7 @@
   top: 2px;
   left: -45px;
 }
+
 .textareaBox {
   margin: auto;
   margin-top: 10px;
@@ -265,6 +296,12 @@
   border: none;
   font-weight: bold;
   box-shadow: 1px 1px 2px rgb(148, 148, 148);
+}
+.replySubmitButton:hover {
+  background-color: #b6eff7;
+}
+.replySubmitButton:active {
+  background-color: #7ddeeb;
 }
 
 /* 熱門推薦標題 */

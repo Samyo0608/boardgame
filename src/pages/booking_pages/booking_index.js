@@ -5,74 +5,53 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import axios from "axios";
+import { API_URL } from "../../configs/config";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
-import axios from "axios";
-import { API_URL } from "../../configs/config";
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/core/locales-all.js";
+import moment from "moment";
+// 動畫
+import Dice from "react-dice-roll";
 
 // 按鈕套件
-// const Swal = require("sweetalert2");
-
-// 測試資料
-const parsing = [
-  {
-    title: "四人房",
-    start: "2021-11-10T09:00:00",
-    end: "2021-11-10T12:00:00",
-  },
-  {
-    title: "六人房",
-    start: "2021-11-12T13:00:00",
-    end: "2021-11-12T17:00:00",
-  },
-  {
-    title: "四人房",
-    start: "2021-11-09",
-    end: "",
-  },
-];
+const Swal = require("sweetalert2");
 
 // 讀取資料
 function Booking() {
+  // 讀取資料庫
   const [bookingContent, setbookingContent] = useState([]);
-  // const [bookingOrderContent, setbookingOrderContent] = useState([]);
 
   useEffect(async () => {
     let bookingContent = await axios.post(`${API_URL}/booking`);
     //${API_URL}/booking = http://localhost:3001/api/booking
     setbookingContent(bookingContent.data);
-
-    // let bookingOrderContent = await axios.post(`${API_URL}/booking/order`);
-    // setbookingOrderContent(bookingOrderContent.data);
   }, []);
 
   // console.log(bookingContent);
 
-  // 按鈕套件
-  // function alertCheck() {
-  //   Swal.fire({
-  //     title: "請問是否確認下訂呢?",
-  //     showDenyButton: true,
-  //     confirmButtonText: "確認",
-  //     denyButtonText: `取消`,
-  //   }).then((result) => {
-  //     /* Read more about isConfirmed, isDenied below */
-  //     if (result.isConfirmed) {
-  //       Swal.fire("感謝您的訂購!", "", "success");
-
-  //       // fetch("", { url: "", method: "" });
-  //       // console.log("test");
-  //     } else if (result.isDenied) {
-  //       Swal.fire("期待您的下次訂購", "", "info");
-  //       // console.log("test2");
-  //     }
-  //   });
-  // }
-
   // 日曆套件
+  // 轉換JSON至FullCalendar
+
+  bookingContent &&
+    bookingContent
+      .filter((match) => !match.repeatExecute)
+      .forEach((item) => {
+        if (item.room === "fourRoom") {
+          item.room = "四人房";
+        } else if (item.room === "sixRoom") {
+          item.room = "六人房";
+        }
+
+        // console.log(item.endTime);
+        item.title = item.room + "已滿";
+        item.start = item.startTime;
+        item.end = item.endTime;
+      });
 
   // 使用物件值作為狀態值,儲存所有欄位
   const [fields, setFields] = useState({
@@ -80,8 +59,9 @@ function Booking() {
     name: "",
     phone: "",
     email: "",
-    date: "",
-    time: "",
+    startTime: "",
+    endTime: "",
+    order_date: "",
   });
   // 儲存欄位錯誤訊息
   const [fieldErrors, setFieldErrors] = useState({
@@ -89,19 +69,8 @@ function Booking() {
     name: "",
     phone: "",
     email: "",
-    date: "",
-    time: "",
-  });
-
-  // 測試用
-  const [member, setMember] = useState({
-    room: "",
-    name: "",
-    phone: "",
-    email: "",
-    date: "",
-    time: "",
-    order_date: "",
+    startTime: "",
+    endTime: "",
   });
 
   // 專門處理每個欄位輸入用
@@ -112,10 +81,12 @@ function Booking() {
     const updatedFields = { ...fields, [name]: value };
     setFields(updatedFields);
   };
+
   // 當表單檢查有不合法的訊息時會呼叫
   const handleFormInvalid = (e) => {
     // 阻擋form的預設送出行為(錯誤泡泡訊息)
     e.preventDefault();
+
     const updatedFieldErrors = {
       ...fieldErrors,
       [e.target.name]: e.target.validationMessage,
@@ -125,14 +96,11 @@ function Booking() {
 
   // 這段函式是為了跟錯誤訊息搭配用,當整個表單有更動時會觸發
   const handleFormChange = (e) => {
-    let newMember = { ...member };
-    newMember[e.target.name] = e.target.value;
-    setMember(newMember);
-    // const updatedFieldErrors = {
-    //   ...fieldErrors,
-    //   [e.target.name]: "",
-    // };
-    // setFieldErrors(updatedFieldErrors);
+    const updatedFieldErrors = {
+      ...fieldErrors,
+      [e.target.name]: "",
+    };
+    setFieldErrors(updatedFieldErrors);
   };
 
   // 表單送出觸發事件
@@ -141,28 +109,26 @@ function Booking() {
     e.preventDefault();
     // 使用onSubmit時,可用FormData獲取各欄位的值(另一種得到表單值的方式)
     // 注意:FormData是要用各欄位的name屬性
-    // const formData = new FormData(e.target);
-    // console.log(formData.get("room"));
-    // console.log(formData.get("name"));
-    // console.log(formData.get("phone"));
-    // console.log(formData.get("email"));
-    // console.log(formData.get("date"));
-    // console.log(formData.get("time"));
     // 先驗證沒問題後才會呼叫alertCheck跳出視窗確認
-    // alertCheck();
     // 驗證成功,用fetch或ajax送到伺服器
 
     try {
-      console.log(member);
-      let res = await axios.post(
-        `http://localhost:3001/api/booking/order`,
-        member,
-        {
-          // 因為會讓 res cors 寫 cookie
-          withCredentials: true,
+      Swal.fire({
+        title: "請問是否確認下訂呢?",
+        showDenyButton: true,
+        confirmButtonText: "確認",
+        denyButtonText: `取消`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(`http://localhost:3001/api/booking/order`, fields, {
+            withCredentials: true,
+          });
+          Swal.fire("感謝您的訂購!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("期待您的下次訂購", "", "info");
         }
-      );
-    } catch (e) {
+      });
+    } catch {
       console.log("handleSubmit", e);
     }
   }
@@ -230,11 +196,17 @@ function Booking() {
 
       <div className="site">
         {/* 場地租借日曆 */}
-        <div className="calendar">
+        <div id="calender" className="calendar">
           <FullCalendar
             defaultView="dayGridMonth"
             plugins={[dayGridPlugin, timeGridPlugin]} // 載入外掛
             locale="zh-tw"
+            navLinks={true}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
             buttonText={{
               today: "今天",
               month: "月",
@@ -242,8 +214,20 @@ function Booking() {
               day: "天",
             }}
             allDayText="全天"
-            firstDay={1} // /周一至周六為1～6，周日為0
-            events={parsing}
+            slotLabelFormat={{
+              hour: "2-digit",
+              minute: "2-digit",
+              meridiem: false,
+              hour12: false,
+            }}
+            eventSources={[bookingContent]}
+            displayEventEnd
+            eventTimeFormat={{
+              hour: "2-digit",
+              minute: "2-digit",
+              meridiem: false,
+              hour12: false,
+            }}
           />
         </div>
       </div>
@@ -273,6 +257,10 @@ function Booking() {
           onChange={handleFormChange}
           id="frmCheck"
         >
+          <h5 name="order_date" value={fields.order_date}>
+            訂單時間：{moment().format("YYYY/MM/DD")}
+          </h5>
+
           {/* 房型下拉選單 */}
           <div className="formStyle">
             <label className="form-label">房型： </label>
@@ -318,15 +306,18 @@ function Booking() {
               className="form-control-lg"
               style={formStyle}
               placeholder="電話"
-              type="text"
+              type="tel"
               name="phone"
+              pattern="^[0-9]*[1-9][0-9]*$"
+              minLength="10"
+              maxLength="10"
               value={fields.phone}
               onChange={handleFieldChange}
               required
             />
             {/* 錯誤訊息 */}
             {fieldErrors.phone !== "" && (
-              <div className="error">{fieldErrors.phone}</div>
+              <div className="error">請填寫正確的手機號碼</div>
             )}
           </div>
           {/* 信箱填寫表格 */}
@@ -347,41 +338,47 @@ function Booking() {
               <div className="error">{fieldErrors.email}</div>
             )}
           </div>
-          {/* 日期選取欄位 */}
+          {/* 開始時間選取欄位 */}
           <div class="formStyle">
-            <label class="form-label">日期： </label>
+            <label class="form-label">開始： </label>
+
             <input
-              type="date"
+              id="date"
               className="form-control-lg"
+              type={"datetime-local"}
+              min={new Date(+new Date() + 8 * 3600 * 1000)
+                .toISOString()
+                .slice(0, -8)}
               style={formStyle}
-              name="date"
-              value={fields.date}
+              name="startTime"
+              value={fields.startTime}
               onChange={handleFieldChange}
               required
-            ></input>
+            />
             {/* 錯誤訊息 */}
-            {fieldErrors.date !== "" && (
-              <div className="error">{fieldErrors.date}</div>
+            {fieldErrors.startTime !== "" && (
+              <div className="error">{fieldErrors.startTime}</div>
             )}
           </div>
-          {/* 時段選取欄位 */}
-          <div className="formStyle">
-            <label className="form-label">時段： </label>
-            <select
+
+          {/* 結束時間選取欄位 */}
+          <div class="formStyle">
+            <label class="form-label">結束： </label>
+            <input
+              type="datetime-local"
+              min={new Date(+new Date() + 8 * 3600 * 1000)
+                .toISOString()
+                .slice(0, -8)}
               className="form-control-lg"
               style={formStyle}
-              name="time"
-              value={fields.time}
+              name="endTime"
+              value={fields.endTime}
               onChange={handleFieldChange}
               required
-            >
-              <option value="">時段...</option>
-              <option value="morning">上午(09:00-12:00)</option>
-              <option value="afternoon">下午(13:00-15:00)</option>
-            </select>
+            />
             {/* 錯誤訊息 */}
-            {fieldErrors.time !== "" && (
-              <div className="error">{fieldErrors.time}</div>
+            {fieldErrors.endTime !== "" && (
+              <div className="error">{fieldErrors.endTime}</div>
             )}
           </div>
           <img alt="" className="Meeple" src="img/booking/Meeple.png" />
@@ -403,9 +400,14 @@ function Booking() {
           src="img/booking/roomExplainBg.jpg"
         />
       </div>
-      <div>
-        <img alt="" className="diceImg" src="img/booking/dice.png"></img>
+      <div className="dice1">
+        <Dice size={180} />
       </div>
+      <div className="dice2">
+        <Dice size={180} />
+      </div>
+
+      {/* <img alt="" className="diceImg" src="img/booking/dice.png"></img> */}
     </>
   );
 }

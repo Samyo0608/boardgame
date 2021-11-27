@@ -1,16 +1,3 @@
-.gametype {
-  color: black;
-  text-decoration: none;
-  font-size: 30px;
-  padding: 0 30px 0px 30px;
-}
-.gametype:hover {
-  color: rgb(218, 67, 22);
-  text-decoration: none;
-  padding: 0 30px 10px 30px;
-  width: 100px;
-  border-bottom: 5px solid rgb(219, 81, 16);
-}
 .buttooon0 {
   position: absolute;
   width: 100px;
@@ -37,9 +24,34 @@
   text-decoration: none;
 }
 /* 遊戲標題 */
-.p1 {
+.type41 {
+  position: relative;
+  background-color: rgb(243, 70, 40);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  width: 450px;
+  padding-left: 10px;
+  left: -11px;
+  font-weight: bold;
+}
+.type42 {
   position: relative;
   background-color: rgb(59, 137, 255);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  width: 450px;
+  padding-left: 10px;
+  left: -11px;
+  font-weight: bold;
+}
+
+.type43 {
+  position: relative;
+  background-color: rgb(255, 160, 59);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   color: #fff;
@@ -59,7 +71,7 @@
   top: 350px;
   left: 50px;
   font-size: 18px;
-  text-indent: 20px;
+  text-indent: 36px;
   font-weight: bold;
 }
 /* 第二名遊戲介紹 */
@@ -72,7 +84,7 @@
   top: 70px;
   left: 220px;
   font-size: 18px;
-  text-indent: 20px;
+  text-indent: 36px;
   font-weight: bold;
 }
 .ellipsis {
@@ -80,7 +92,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   white-space: normal;
 }
@@ -89,23 +101,23 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   white-space: normal;
 }
 /* 投票數 */
 .p5 {
   position: absolute;
-  color: rgb(59, 137, 255);
+  color: rgba(41, 81, 88, 0.836);
   font-size: 15px;
   top: 240px;
   font-weight: bold;
 }
 .p8 {
   position: absolute;
-  color: rgb(59, 137, 255);
+  color: rgb(41, 81, 88, 0.836);
   font-size: 20px;
-  top: 500px;
+  top: 510px;
   font-weight: bold;
 }
 /* 二，三遊戲 */
@@ -121,7 +133,7 @@
 }
 .posi span {
   position: absolute;
-  left: 370px;
+  left: 360px;
   top: 180px;
   font-weight: bold;
   font-size: 25px;
@@ -136,9 +148,15 @@
   left: 610px;
   top: 585px;
 }
+.posi:hover {
+  box-shadow: 8px 8px 5px rgb(148, 148, 148);
+}
+.posi2:hover {
+  box-shadow: 8px 8px 5px rgb(148, 148, 148);
+}
 .posi2 span {
   position: absolute;
-  left: 370px;
+  left: 360px;
   top: 180px;
   font-weight: bold;
   font-size: 25px;
@@ -154,11 +172,14 @@
   top: 10px;
   left: -250px;
 }
+.shadowbox:hover {
+  box-shadow: 8px 8px 5px rgb(148, 148, 148);
+}
 .shadowbox span {
   position: absolute;
   font-size: 30px;
   top: 440px;
-  left: 350px;
+  left: 330px;
   font-weight: bold;
 }
 
@@ -338,12 +359,13 @@
 /* 下牌遊戲圖片 */
 .pic {
   position: relative;
-  width: 220px;
+  width: 230px;
   height: 200px;
-  padding: 10px;
   margin-top: 20px;
-  border-radius: 30px;
+  right: -5px;
+  display: flex;
 }
+
 .favorite3 {
   margin: 0 20px 30px 20px;
   height: 50px;
@@ -370,16 +392,21 @@
   height: 350px;
   box-shadow: 8px 8px 5px rgb(189, 186, 186);
   border-radius: 5px;
-  top: 70px;
-
+  top: 100px;
   margin-left: 50px;
-  margin-top: 30px;
+  margin-top: 50px;
 }
+.shadowbox4:hover {
+  box-shadow: 8px 8px 5px rgb(148, 148, 148);
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
 .shadowbox4 span {
   position: absolute;
-  top: 300px;
-  left: 160px;
-  font-size: 18px;
+  top: 295px;
+  left: 170px;
+  font-size: 25px;
   font-weight: bold;
 }
 .iconflex {
@@ -400,12 +427,12 @@
 .boxer123 {
   position: relative;
   width: 1000px;
-  height: 880px;
+  height: 950px;
 }
 
 .container1456 {
   max-width: 1129px;
-  height: 1600px;
+  height: 1700px;
   border: solid;
   border-radius: 10px;
   border-color: var(--primary);

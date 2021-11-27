@@ -8,6 +8,7 @@ import Footer from "./components/Footer.js";
 import Index from "./pages/discuss/index.js";
 import booking from "./pages/booking_pages/booking_index.js";
 import Discuss from "./pages/discuss/discuss.js";
+import MemberDiscuss from "./pages/discuss/memberDiscuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
 import {
@@ -45,6 +46,11 @@ function App() {
           <Switch>
             <Route
               exact={true}
+              path="/Cartcheck:account"
+              component={Cartcheck}
+            />
+            <Route
+              exact={true}
               path="/memberCenter:account/memberPoint"
               component={MemberPoint}
             />
@@ -74,6 +80,11 @@ function App() {
               path="/memberCenter:account/memberProduct"
               component={MemberProduct}
             />
+            <Route
+              exact={true}
+              path="/memberCenter:account/memberDiscuss"
+              component={MemberDiscuss}
+            />
             <Route exact={true} path="/" component={Index} />
             <Route exact={true} path="/login" component={Login} />
             <Route exact={true} path="/register" component={Register} />
@@ -99,10 +110,14 @@ function App() {
             />
             <Route exact={true} path="/vote" component={vote} />
             <Route exact={true} path="/Product" component={Product} />
-            <Route exact={true} path="/Aboutgame" component={Aboutgame} />
-            <Route exact={true} path="/Cart" component={Cart} />
-            <Route exact={true} path="/Cartcheck" component={Cartcheck} />
-            <Route path="" component={Loading} />
+            <Route exact={true} path="/Aboutgame/:id" component={Aboutgame} />
+
+            <Route
+              exact={true}
+              path="/Cart:account/Cartcheck"
+              component={Cartcheck}
+            />
+            <Route exact={true} path="/Cart:account" component={Cart} />
           </Switch>
           <Footer />
         </BrowserRouter>

@@ -1,71 +1,45 @@
-# Getting Started with Create React App
+# 首頁
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](https://imgur.com/5Xe9Fab.jpg)
+![alt text](https://imgur.com/zNjZaOh.jpg)
+![alt text](https://imgur.com/FTt41A8.jpg)
+![alt text](https://imgur.com/RZ64te2.jpg)
 
-## Available Scripts
+## 登入頁面
 
-In the project directory, you can run:
+![alt text](https://imgur.com/GEnLyCl.jpg)
 
-### `yarn start`
+## 註冊頁面
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![alt text](https://imgur.com/OPkymyW.jpg)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 會員中心
 
-### `yarn test`
+![alt text](https://imgur.com/6OfKYJW.jpg)
+![alt text](https://imgur.com/sPjMA0Q.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 會員中心-基本資料
 
-### `yarn build`
+![alt text](https://imgur.com/psVjZHC.jpg)
+![alt text](https://imgur.com/ENv1D3e.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 會員中心-密碼修改
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![alt text](https://imgur.com/uyGTR2F.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 會員中心-桌遊購買
 
-### `yarn eject`
+![alt text](https://imgur.com/9vTpSLb.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 會員中心-場地租賃
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![alt text](https://imgur.com/XcekjfN.jpg)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 會員中心-點數明細
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![alt text](https://imgur.com/tXLlzfP.jpg)
 
-## Learn More
+## 購物車
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# boardgame
+![alt text](https://imgur.com/5OUW7ty.jpg)
+![alt text](https://imgur.com/d1nxMM7.jpg)

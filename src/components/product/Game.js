@@ -1,11 +1,13 @@
 import React from "react";
-import { Col, Row, NavLink } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
 import { typecolor3 } from "../../configs/config";
+import { Link } from "react-router-dom";
 
 function Game(props) {
-  const { product_name, product_type, product_img, product_price } = props;
+  const { product_name, product_type, product_img, product_price, product_id } =
+    props;
 
   return (
     <>
@@ -17,11 +19,9 @@ function Game(props) {
               {product_type}
             </article>
           </div>
-          <div>
-            <NavLink to="/aboutgame" activeClassName="a1">
-              <p className="gamename">{product_name}</p>
-            </NavLink>
-          </div>
+          <Link to={`/aboutgame/${product_id}`} className="a1">
+            <div className="gamename">{product_name}</div>
+          </Link>
           <br></br>
           <span>${product_price}</span>
           <div className="iconflex">
