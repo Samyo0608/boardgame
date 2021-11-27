@@ -52,7 +52,11 @@ const InstantQADialogBox = ({ message, handleSelectItem }) => {
               ? "/img/customer_service/customer_avatar.png"
               : "/img/customer_service/Commissioner_avatar.png"
           }
-          class="commissioner_avatar "
+          class={
+            message.isCustomer
+              ? "customer_avatar"
+              : "commissioner_avatar"
+          }
           alt=""
         />
         <div>
