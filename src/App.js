@@ -112,7 +112,11 @@ function App() {
             <Route exact={true} path="/Product" component={Product} />
             <Route exact={true} path="/Aboutgame/:id" component={Aboutgame} />
 
-            <Route exact={true} path="/Aboutgame" component={Aboutgame} />
+            <Route
+              exact={true}
+              path="/Cart:account/Cartcheck"
+              component={Cartcheck}
+            />
             <Route exact={true} path="/Cart:account" component={Cart} />
           </Switch>
           <Footer />

@@ -64,6 +64,91 @@ function Product(props) {
     sethotproductstrategy(res.data);
   }, []);
 
+  // 全系列排名
+  const AllRank = [];
+  const allIn = () => {
+    for (let i = 0; i < hotproductall.length; i++) {
+      if (hotproductall[i]) AllRank.push(hotproductall[i]);
+    }
+    return AllRank;
+  };
+  allIn();
+  // 將全系列陣列中的vote排大小
+  AllRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+  // 家庭排名
+  const FamilyRank = [];
+  const familyIn = () => {
+    for (let i = 0; i < hotproductfamily.length; i++) {
+      if (hotproductfamily[i]) FamilyRank.push(hotproductfamily[i]);
+    }
+    return FamilyRank;
+  };
+  familyIn();
+  // 將家庭陣列中的vote排大小
+  FamilyRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+  // 卡牌排名
+  const CardRank = [];
+  const cardIn = () => {
+    for (let i = 0; i < hotproductcard.length; i++) {
+      if (hotproductcard[i]) CardRank.push(hotproductcard[i]);
+    }
+    return CardRank;
+  };
+  cardIn();
+  // 將卡牌陣列中的vote排大小
+  CardRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+  // 策略排名
+  const StrategyRank = [];
+  const strategyIn = () => {
+    for (let i = 0; i < hotproductstrategy.length; i++) {
+      if (hotproductstrategy[i]) StrategyRank.push(hotproductstrategy[i]);
+    }
+    return StrategyRank;
+  };
+  strategyIn();
+  // 將策略陣列中的vote排大小
+  StrategyRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+
   return (
     <>
       <h2 className="text-center">產品頁面</h2>
@@ -96,32 +181,32 @@ function Product(props) {
           <Container>
             <Row>
               <HotGame
-                product_id={hotproductall[0]?.product_id}
-                product_vote={hotproductall[0]?.product_vote}
-                product_name={hotproductall[0]?.product_name}
-                product_type={hotproductall[0]?.product_type}
-                product_content={hotproductall[0]?.product_content}
-                product_price={hotproductall[0]?.product_price}
-                product_img={hotproductall[0]?.product_img}
+                product_id={AllRank[0]?.product_id}
+                product_vote={AllRank[0]?.product_vote}
+                product_name={AllRank[0]?.product_name}
+                product_type={AllRank[0]?.product_type}
+                product_content={AllRank[0]?.product_content}
+                product_price={AllRank[0]?.product_price}
+                product_img={AllRank[0]?.product_img}
               />
               <HotGame2
-                product_id={hotproductall[1]?.product_id}
-                product_vote={hotproductall[1]?.product_vote}
-                product_name={hotproductall[1]?.product_name}
-                product_type={hotproductall[1]?.product_type}
-                product_content={hotproductall[1]?.product_content}
-                product_price={hotproductall[1]?.product_price}
-                product_img={hotproductall[1]?.product_img}
+                product_id={AllRank[1]?.product_id}
+                product_vote={AllRank[1]?.product_vote}
+                product_name={AllRank[1]?.product_name}
+                product_type={AllRank[1]?.product_type}
+                product_content={AllRank[1]?.product_content}
+                product_price={AllRank[1]?.product_price}
+                product_img={AllRank[1]?.product_img}
               />
 
               <HotGame3
-                product_id={hotproductall[2]?.product_id}
-                product_vote={hotproductall[2]?.product_vote}
-                product_name={hotproductall[2]?.product_name}
-                product_type={hotproductall[2]?.product_type}
-                product_content={hotproductall[2]?.product_content}
-                product_price={hotproductall[2]?.product_price}
-                product_img={hotproductall[2]?.product_img}
+                product_id={AllRank[2]?.product_id}
+                product_vote={AllRank[2]?.product_vote}
+                product_name={AllRank[2]?.product_name}
+                product_type={AllRank[2]?.product_type}
+                product_content={AllRank[2]?.product_content}
+                product_price={AllRank[2]?.product_price}
+                product_img={AllRank[2]?.product_img}
               />
             </Row>
             {/* 排序紐 */}
@@ -157,31 +242,31 @@ function Product(props) {
           <Container>
             <Row>
               <HotGame
-                product_id={hotproductfamily[0]?.product_id}
-                product_vote={hotproductfamily[0]?.product_vote}
-                product_name={hotproductfamily[0]?.product_name}
-                product_type={hotproductfamily[0]?.product_type}
-                product_content={hotproductfamily[0]?.product_content}
-                product_price={hotproductfamily[0]?.product_price}
-                product_img={hotproductfamily[0]?.product_img}
+                product_id={FamilyRank[0]?.product_id}
+                product_vote={FamilyRank[0]?.product_vote}
+                product_name={FamilyRank[0]?.product_name}
+                product_type={FamilyRank[0]?.product_type}
+                product_content={FamilyRank[0]?.product_content}
+                product_price={FamilyRank[0]?.product_price}
+                product_img={FamilyRank[0]?.product_img}
               />
               <HotGame2
-                product_id={hotproductfamily[1]?.product_id}
-                product_vote={hotproductfamily[1]?.product_vote}
-                product_name={hotproductfamily[1]?.product_name}
-                product_type={hotproductfamily[1]?.product_type}
-                product_content={hotproductfamily[1]?.product_content}
-                product_price={hotproductfamily[1]?.product_price}
-                product_img={hotproductfamily[1]?.product_img}
+                product_id={FamilyRank[1]?.product_id}
+                product_vote={FamilyRank[1]?.product_vote}
+                product_name={FamilyRank[1]?.product_name}
+                product_type={FamilyRank[1]?.product_type}
+                product_content={FamilyRank[1]?.product_content}
+                product_price={FamilyRank[1]?.product_price}
+                product_img={FamilyRank[1]?.product_img}
               />
               <HotGame3
-                product_id={hotproductfamily[2]?.product_id}
-                product_vote={hotproductfamily[2]?.product_vote}
-                product_name={hotproductfamily[2]?.product_name}
-                product_type={hotproductfamily[2]?.product_type}
-                product_content={hotproductfamily[2]?.product_content}
-                product_price={hotproductfamily[2]?.product_price}
-                product_img={hotproductfamily[2]?.product_img}
+                product_id={FamilyRank[2]?.product_id}
+                product_vote={FamilyRank[2]?.product_vote}
+                product_name={FamilyRank[2]?.product_name}
+                product_type={FamilyRank[2]?.product_type}
+                product_content={FamilyRank[2]?.product_content}
+                product_price={FamilyRank[2]?.product_price}
+                product_img={FamilyRank[2]?.product_img}
               />
             </Row>
             {/* 排序紐 */}
@@ -217,32 +302,32 @@ function Product(props) {
           <Container>
             <Row>
               <HotGame
-                product_id={hotproductcard[0]?.product_id}
-                product_vote={hotproductcard[0]?.product_vote}
-                product_name={hotproductcard[0]?.product_name}
-                product_type={hotproductcard[0]?.product_type}
-                product_content={hotproductcard[0]?.product_content}
-                product_price={hotproductcard[0]?.product_price}
-                product_img={hotproductcard[0]?.product_img}
+                product_id={CardRank[0]?.product_id}
+                product_vote={CardRank[0]?.product_vote}
+                product_name={CardRank[0]?.product_name}
+                product_type={CardRank[0]?.product_type}
+                product_content={CardRank[0]?.product_content}
+                product_price={CardRank[0]?.product_price}
+                product_img={CardRank[0]?.product_img}
               />
 
               <HotGame2
-                product_id={hotproductcard[1]?.product_id}
-                product_vote={hotproductcard[1]?.product_vote}
-                product_name={hotproductcard[1]?.product_name}
-                product_type={hotproductcard[1]?.product_type}
-                product_content={hotproductcard[1]?.product_content}
-                product_price={hotproductcard[1]?.product_price}
-                product_img={hotproductcard[1]?.product_img}
+                product_id={CardRank[1]?.product_id}
+                product_vote={CardRank[1]?.product_vote}
+                product_name={CardRank[1]?.product_name}
+                product_type={CardRank[1]?.product_type}
+                product_content={CardRank[1]?.product_content}
+                product_price={CardRank[1]?.product_price}
+                product_img={CardRank[1]?.product_img}
               />
               <HotGame3
-                product_id={hotproductcard[2]?.product_id}
-                product_vote={hotproductcard[2]?.product_vote}
-                product_name={hotproductcard[2]?.product_name}
-                product_type={hotproductcard[2]?.product_type}
-                product_content={hotproductcard[2]?.product_content}
-                product_price={hotproductcard[2]?.product_price}
-                product_img={hotproductcard[2]?.product_img}
+                product_id={CardRank[2]?.product_id}
+                product_vote={CardRank[2]?.product_vote}
+                product_name={CardRank[2]?.product_name}
+                product_type={CardRank[2]?.product_type}
+                product_content={CardRank[2]?.product_content}
+                product_price={CardRank[2]?.product_price}
+                product_img={CardRank[2]?.product_img}
               />
             </Row>
             {/* 排序紐 */}
@@ -279,31 +364,31 @@ function Product(props) {
           <Container>
             <Row>
               <HotGame
-                product_id={hotproductstrategy[0]?.product_id}
-                product_vote={hotproductstrategy[0]?.product_vote}
-                product_name={hotproductstrategy[0]?.product_name}
-                product_type={hotproductstrategy[0]?.product_type}
-                product_content={hotproductstrategy[0]?.product_content}
-                product_price={hotproductstrategy[0]?.product_price}
-                product_img={hotproductstrategy[0]?.product_img}
+                product_id={StrategyRank[0]?.product_id}
+                product_vote={StrategyRank[0]?.product_vote}
+                product_name={StrategyRank[0]?.product_name}
+                product_type={StrategyRank[0]?.product_type}
+                product_content={StrategyRank[0]?.product_content}
+                product_price={StrategyRank[0]?.product_price}
+                product_img={StrategyRank[0]?.product_img}
               />
               <HotGame2
-                product_id={hotproductstrategy[1]?.product_id}
-                product_vote={hotproductstrategy[1]?.product_vote}
-                product_name={hotproductstrategy[1]?.product_name}
-                product_type={hotproductstrategy[1]?.product_type}
-                product_content={hotproductstrategy[1]?.product_content}
-                product_price={hotproductstrategy[1]?.product_price}
-                product_img={hotproductstrategy[1]?.product_img}
+                product_id={StrategyRank[1]?.product_id}
+                product_vote={StrategyRank[1]?.product_vote}
+                product_name={StrategyRank[1]?.product_name}
+                product_type={StrategyRank[1]?.product_type}
+                product_content={StrategyRank[1]?.product_content}
+                product_price={StrategyRank[1]?.product_price}
+                product_img={StrategyRank[1]?.product_img}
               />
               <HotGame3
-                product_id={hotproductstrategy[2]?.product_id}
-                product_vote={hotproductstrategy[2]?.product_vote}
-                product_name={hotproductstrategy[2]?.product_name}
-                product_type={hotproductstrategy[2]?.product_type}
-                product_content={hotproductstrategy[2]?.product_content}
-                product_price={hotproductstrategy[2]?.product_price}
-                product_img={hotproductstrategy[2]?.product_img}
+                product_id={StrategyRank[2]?.product_id}
+                product_vote={StrategyRank[2]?.product_vote}
+                product_name={StrategyRank[2]?.product_name}
+                product_type={StrategyRank[2]?.product_type}
+                product_content={StrategyRank[2]?.product_content}
+                product_price={StrategyRank[2]?.product_price}
+                product_img={StrategyRank[2]?.product_img}
               />
             </Row>
             {/* 排序紐 */}
