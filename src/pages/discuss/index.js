@@ -11,6 +11,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+// 輪播照片套件
+import Slider from "react-slick";
+// 租賃日曆
+import Calendar from "./FullCalendarIndex.js";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -24,6 +28,14 @@ const rentType = [
 ];
 
 const Index = () => {
+  // 輪播套件
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="container overflow-hidden">
       {/* banner */}
@@ -224,11 +236,28 @@ const Index = () => {
       </div>
 
       {/* 場地租借內容 */}
-      <div class="recommendBox">
+      <div class="recommendBox-booking">
         <div className="rentPicBox">
+          {/* 場地租借首頁照片 */}
           <img alt="" className="rentPic" src="/img/index/rent.png" />
         </div>
-        <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
+        <div className="bookingBG">
+          <div className="sliderIndex">
+            <Slider {...settings}>
+              <div>
+                <img alt="" className="" src="img/booking/siteIndex-3.jpg" />
+              </div>
+              <div>
+                <img alt="" className="" src="img/booking/siteIndex-4.jpg" />
+              </div>
+            </Slider>
+          </div>
+          <div className="calendarIndex">
+            <Calendar />
+          </div>
+        </div>
+
+        {/* <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
           {rentType.map((v, i) => {
             return (
               <li key={v.id} className="">
@@ -329,8 +358,9 @@ const Index = () => {
               </a>
             </div>
           </div>
-        </div>
-        <a class="rentButton text-center" href="#/">
+        </div> */}
+
+        <a class="rentButton text-center" href="/booking">
           前往出租
         </a>
       </div>

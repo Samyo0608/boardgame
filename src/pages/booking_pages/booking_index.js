@@ -7,13 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
-import timeGridPlugin from "@fullcalendar/timegrid";
-import "@fullcalendar/daygrid/main.css";
-import "@fullcalendar/timegrid/main.css";
-import "@fullcalendar/common/main.css";
-import "@fullcalendar/core/locales-all.js";
+import Calendar from "./FullCalendar.js";
 import moment from "moment";
 // 動畫
 import Dice from "react-dice-roll";
@@ -33,25 +27,6 @@ function Booking() {
   }, []);
 
   // console.log(bookingContent);
-
-  // 日曆套件
-  // 轉換JSON至FullCalendar
-
-  bookingContent &&
-    bookingContent
-      .filter((match) => !match.repeatExecute)
-      .forEach((item) => {
-        if (item.room === "fourRoom") {
-          item.room = "四人房";
-        } else if (item.room === "sixRoom") {
-          item.room = "六人房";
-        }
-
-        // console.log(item.endTime);
-        item.title = item.room + "已滿";
-        item.start = item.startTime;
-        item.end = item.endTime;
-      });
 
   // 使用物件值作為狀態值,儲存所有欄位
   const [fields, setFields] = useState({
@@ -197,38 +172,7 @@ function Booking() {
       <div className="site">
         {/* 場地租借日曆 */}
         <div id="calender" className="calendar">
-          <FullCalendar
-            defaultView="dayGridMonth"
-            plugins={[dayGridPlugin, timeGridPlugin]} // 載入外掛
-            locale="zh-tw"
-            navLinks={true}
-            headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            buttonText={{
-              today: "今天",
-              month: "月",
-              week: "周",
-              day: "天",
-            }}
-            allDayText="全天"
-            slotLabelFormat={{
-              hour: "2-digit",
-              minute: "2-digit",
-              meridiem: false,
-              hour12: false,
-            }}
-            eventSources={[bookingContent]}
-            displayEventEnd
-            eventTimeFormat={{
-              hour: "2-digit",
-              minute: "2-digit",
-              meridiem: false,
-              hour12: false,
-            }}
-          />
+          <Calendar />
         </div>
       </div>
 
