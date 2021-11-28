@@ -11,24 +11,263 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import IndexVote from "../../components/contest/IndexVote";
+import axios from "axios";
+import { API_URL } from '../../configs/config';
 // 輪播照片套件
 import Slider from "react-slick";
-// 租賃日曆
 import Calendar from "./FullCalendarIndex.js";
 
 const gameType = [
   { id: 1, name: "全部" },
   { id: 2, name: "家庭" },
-  { id: 3, name: "策略" },
-  { id: 4, name: "卡牌" },
+  { id: 3, name: "卡牌" },
+  { id: 4, name: "策略" },
 ];
 const rentType = [
   { id: 1, name: "四人房" },
   { id: 2, name: "六人房" },
 ];
 
+// 跑一個迴圈將物件放入陣列
+const barchartRun = (b)=>{
+  const bar =[]
+  for(let i = 0; b< b.length; i++) {
+      bar[i].push({...b[i]})
+  }
+  return bar
+}
+
 const Index = () => {
-  // 輪播套件
+
+  // 投票狀態鉤子
+  const[status,setStatus] = useState(1);
+  // 投票資料帶入
+  const [barno,setBarno]=useState(barchartRun(barchartRun));
+  // 從資料庫中叫出產品JSON
+  useEffect(async () =>{
+    let res = await axios.get(`${API_URL}/vote/list`);
+    setBarno(res.data);
+  },[])
+ 
+
+ // [全系列]
+ const newrank=[...barno];
+ newrank.sort(function(a, b) {
+     var nameA = a.product_vote; 
+     var nameB = b.product_vote; 
+     if (nameA < nameB) {
+       return 1;
+     }
+     if (nameA > nameB) {
+       return -1;
+     }
+     return 0;
+   }); 
+
+const newRank2=[];
+const newIn2=()=>{
+  for(let i=0; i<newrank.length;i++){
+      if (i<5)
+      newRank2.push(newrank[i])
+  }
+   return newRank2
+}
+newIn2();
+
+// 全標籤
+const textAll=[];
+const allData = ()=>{
+    for(let i=0; i<newRank2.length;i++){
+        if (newRank2[i].product_id > 0)
+        textAll.push(newRank2[i].product_name)
+    }
+    return textAll
+}
+allData();
+
+// 全票數
+const allArr=[]
+   const allVoted = ()=>{
+       for(let i=0; i<newRank2.length;i++){
+           allArr.push(newRank2[i].product_vote)
+       }
+       return allArr
+   }  
+   allVoted();
+
+
+
+  
+ // [家庭]
+ const famiRank=[]
+ const famiIn=()=>{
+     for(let i=0; i<barno.length;i++){
+         if (barno[i].product_type==="家庭")
+         famiRank.push(barno[i])
+     }
+      return famiRank
+  }
+  
+ famiIn();
+ famiRank.sort(function(a, b) {
+     var nameA = a.product_vote; 
+     var nameB = b.product_vote; 
+     if (nameA < nameB) {
+       return 1;
+     }
+     if (nameA > nameB) {
+       return -1;
+     }
+     return 0;
+   });
+
+   // 取出卡牌前五名迴圈
+  const famiRank2=[]
+  const famiIn2=()=>{
+    for(let i=0; i<famiRank.length;i++){
+        if (i<5)
+        famiRank2.push(famiRank[i])
+    }
+     return famiRank2
+ }
+ famiIn2();
+//  console.log("家庭",famiRank2)
+// 家庭標籤
+ const textFami=[];
+ const famiData = ()=>{
+     for(let i=0; i<famiRank2.length;i++){
+         if (famiRank2[i].product_type==="家庭")
+         textFami.push(famiRank2[i].product_name)
+     }
+     return textFami
+ }
+ famiData();
+
+// 家庭票數
+const famiArr=[]
+    const famiVoted = ()=>{
+        for(let i=0; i<famiRank2.length;i++){
+            famiArr.push(famiRank2[i].product_vote)
+        }
+        return famiArr
+    }  
+    famiVoted();
+   
+ // [卡牌]
+ const cardRank=[]
+ const cardIn=()=>{
+     for(let i=0; i<barno.length;i++){
+         if (barno[i].product_type==="卡牌")
+         cardRank.push(barno[i])
+     }
+      return cardRank
+  }
+ cardIn();
+//  console.log("卡牌全",cardRank)
+ cardRank.sort(function(a, b) {
+     var nameA = a.product_vote; 
+     var nameB = b.product_vote; 
+     if (nameA < nameB) {
+       return 1;
+     }
+     if (nameA > nameB) {
+       return -1;
+     }
+     return 0;
+   });
+
+// 取出卡牌前五名迴圈
+  const cardRank2=[]
+  const cardIn2=()=>{
+    for(let i=0; i<cardRank.length;i++){
+        if (i<5)
+        cardRank2.push(cardRank[i])
+    }
+     return cardRank2
+ }
+ cardIn2();
+
+// 卡牌標籤
+ const textCard=[];
+ const cardData = ()=>{
+     for(let i=0; i<cardRank2.length;i++){
+         if (cardRank2[i].product_type==="卡牌")
+         textCard.push(cardRank2[i].product_name)
+     }
+     return textCard
+ }
+ cardData();
+
+// 卡片票數
+const cardArr=[]
+    const cardVoted = ()=>{
+        for(let i=0; i<cardRank2.length;i++){
+            cardArr.push(cardRank2[i].product_vote)
+        }
+        return cardArr
+    }  
+    cardVoted();
+
+ 
+// [策略]
+const tragRank=[]
+const tragIn=()=>{
+    for(let i=0; i<barno.length;i++){
+        if (barno[i].product_type==="策略")
+        tragRank.push(barno[i])
+    }
+     return tragRank
+ }
+tragIn();
+// console.log(tragRank)
+tragRank.sort(function(a, b) {
+    var nameA = a.product_vote; 
+    var nameB = b.product_vote; 
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+// 取出策略前五名迴圈
+  const tragRank2=[]
+  const tragIn2=()=>{
+    for(let i=0; i<tragRank.length;i++){
+        if (i<5)
+        tragRank2.push(tragRank[i])
+    }
+     return tragRank2
+ }
+ tragIn2();
+//  console.log(tragRank2)
+// 策略標籤
+ const textTrag=[];
+ const tragData = ()=>{
+     for(let i=0; i<tragRank2.length;i++){
+         if (tragRank2[i].product_type==="策略")
+         textTrag.push(tragRank2[i].product_name)
+     }
+     return textTrag
+ }
+ tragData();
+//  console.log("策略標籤",textTrag)
+// 策略票數
+const tragArr=[]
+    const tragVoted = ()=>{
+        for(let i=0; i<tragRank2.length;i++){
+            tragArr.push(tragRank2[i].product_vote)
+        }
+        return tragArr
+    }  
+    tragVoted();
+    // console.log("策略票數",tragArr)
+
+// 排名結束
+
+// 輪播套件
   var settings = {
     dots: true,
     infinite: true,
@@ -36,6 +275,7 @@ const Index = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  
   return (
     <div className="container overflow-hidden">
       {/* banner */}
@@ -381,73 +621,61 @@ const Index = () => {
           {gameType.map((v, i) => {
             return (
               <li key={v.id} className="">
-                <a
-                  href="#/"
-                  className="d-inline-block recommendType text-decoration-none text-center"
+                <button
+                  className={`d-inline-block recommendType text-decoration-none text-center ${ status === v.id ? "recommendActive" : ""}`}
+                  onClick={(e) => {setStatus(v.id)}}
                 >
                   {v.name}
-                </a>
+                </button>
               </li>
             );
           })}
         </ul>
 
         {/* 投票box */}
-        <div className="clanderContentBox">
-          <div className="row">
-            <div className="col ms-5 mt-5">
-              <div className="position-relative voteImgBox">
-                <div className="voteImgB">
-                  <img className="voteImg" alt="" src="img/index/game1.jpg" />
-                  <a
-                    href="#/"
-                    className="text-decoration-none text-center recommendTag d-inline-block pt-1"
-                  >
-                    <img
-                      alt=""
-                      src="img/index/family-tag.png"
-                      className="tagImg"
-                    />
-                    <p className="tagText fs-6 fw-normal">家庭</p>
-                  </a>
-                  <a
-                    href="#/"
-                    className="text-dark text-center text-decoration-none voteCart d-inline-block"
-                  >
-                    <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
-                    購買
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col text-center fw-bold mt-5">
-              <a href="#/" className="rankBox1 rankBox">
-                <div className="rankVote">108票</div>
-                <div className="rankTitle">四季物語</div>
-              </a>
-              <a href="#/" className="rankBox2 rankBox">
-                <div className="rankVote">90票</div>
-                <div className="rankTitle">夢想人生</div>
-              </a>
-              <a href="#/" className="rankBox3 rankBox">
-                <div className="rankVote">70票</div>
-                <div className="rankTitle">烏邦果</div>
-              </a>
-              <a href="#/" className="rankBox4 rankBox">
-                <div className="rankVote">60票</div>
-                <div className="rankTitle">傳情畫意</div>
-              </a>
-              <a href="#/" className="rankBox5 rankBox">
-                <div className="rankVote">40票</div>
-                <div className="rankTitle">說書人</div>
-              </a>
-            </div>
-          </div>
-          <div className="voteLine"></div>
+        <div className={`${status===1?"d-block":"d-none"}`} >
+        <IndexVote 
+          vote={allArr}
+          name={textAll}
+          rankArr1={newRank2.length>0 ? newRank2[0].product_img : ""}
+          rankArr2={newRank2.length>0 ? newRank2[1].product_img : ""}
+          rankArr3={newRank2.length>0 ? newRank2[2].product_img : ""}
+           />
         </div>
-        <a class="voteButton text-center" href="#/">
+        <div className={`${status===2?"d-block":"d-none"}`} >
+        <IndexVote
+          vote={famiArr}
+          name={textFami}
+          rankArr1={famiRank2.length>0 ? famiRank2[0].product_img : ""}
+          rankArr2={famiRank2.length>0 ? famiRank2[1].product_img : ""}
+          rankArr3={famiRank2.length>0 ? famiRank2[2].product_img : ""}
+           />
+        </div>
+        <div className={`${status===3?"d-block":"d-none"}`} >
+        <IndexVote 
+           vote={cardArr}
+           name={textCard}
+           rankArr1={cardRank2.length>0 ? cardRank2[0].product_img : ""}
+           rankArr2={cardRank2.length>0 ? cardRank2[1].product_img : ""}
+           rankArr3={cardRank2.length>0 ? cardRank2[2].product_img : ""}
+        />
+        </div>
+        <div className={`${status===4?"d-block":"d-none"}`} >
+        <IndexVote 
+          vote={tragArr}
+          name={textTrag}
+          rankArr1={tragRank2.length>0 ? tragRank2[0].product_img : ""}
+          rankArr2={tragRank2.length>0 ? tragRank2[1].product_img : ""}
+          rankArr3={tragRank2.length>0 ? tragRank2[2].product_img : ""}
+        />
+        </div>
+        
+
+
+
+        <Link to="/vote" target="_top" class="voteButton text-center" href="#/">
           前往投票
-        </a>
+        </Link>
       </div>
 
       {/* 當期比賽+插圖 */}
@@ -499,12 +727,13 @@ const Index = () => {
           {gameType.map((v, i) => {
             return (
               <li key={v.id} className="">
-                <a
-                  href="#/"
+                <button
+                  
                   className="d-inline-block recommendType text-decoration-none text-center"
-                >
+                  onClick={(e) => {setStatus(v.id)}}>
                   {v.name}
-                </a>
+                </button>
+                
               </li>
             );
           })}
