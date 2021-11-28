@@ -114,7 +114,9 @@ const CreateMessage = (props) => {
         ></textarea>
       </div>
       <button class="backButton">
-        <span>回上頁</span>
+      <a href="/customer_service_message/record">
+        <span padding="200px">回上頁</span>
+      </a>
       </button>
       <button onClick={sendMessage} class="submitButton">
         <span>送出</span>

@@ -54,8 +54,8 @@ const CreateQuestion = () => {
     }
     const postQuestionBody = {
       user_id: USER_ID,
-      category: mainCategory[0],
-      subcategory: subCategory[0],
+      category: mainCategory,
+      subcategory: subCategory,
       content: questionContent,
     };
     await axios.post(`${API_URL}/cutomerService/questions`, postQuestionBody);

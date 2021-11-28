@@ -13,7 +13,7 @@
 .csDice {
   width: 200px;
   position: absolute;
-  top: 20px;
+  top: 15px;
   right:450px;
 }
 /* 外框背景 */
@@ -97,6 +97,6 @@
   width: 400px;
   height: 370px;
   position: absolute;
-  right: 60px;
+  right: 70px;
   bottom: 30px;
 }

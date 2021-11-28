@@ -35,19 +35,24 @@
   width: 1020px;
   height: 700px;
   background-color: rgb(255, 255, 255);
+  overflow: auto;
 }
 .historicalMessageFrame{
   margin: 10px 0px 10px 40px; 
+  position: relative;
 }
 .historicalMessage{
   width: 650px;
   border-radius:10px;
   border:1px solid black;
   min-height:50px;
-  padding:15px
+  padding:15px;
+  margin-top:45px;
 }
 
 .shiftright{
+  position:absolute;
+  right: 335px;
 
 }
 .subtitle
@@ -90,6 +95,6 @@ margin-left: 40px;
   width: 400px;
   height: 320px;
   position: absolute;
-  right:30px;
+  right:50px;
   bottom: 30px;
 }
