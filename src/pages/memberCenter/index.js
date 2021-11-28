@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MemProductItem from "../../components/memProductItem/memProductItem";
 import MemberRentItem from "../../components/memberRent/memberRentItem";
@@ -15,25 +15,6 @@ import {
 import "../../css/memberCenter.css";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
-
-// 假資料
-const Detail = [
-  {
-    image: "/img/memberCenter/boardgame01.png",
-    proName: "夢想人生",
-    status: "等待取貨",
-    price: "350",
-    count: "2",
-    date: "2021/10/01",
-    total: "700",
-    endDate: "2021/10/03 01:20:03",
-    tracDate: "2021/10/01 21:03:56",
-    startDate: "2021/10/01 09:54:11",
-    userName: "王大明",
-    userPhone: "0912345678",
-    address: "桃園市中壢區中央路300號",
-  },
-];
 
 const DetailRent = [
   {
@@ -67,13 +48,18 @@ const List = [
 ];
 
 function MemberCenter(props) {
+  const history = useParams().account;
   const [status, setStatus] = useState(2);
+  // 接收session
   const [sessionMember, setSessionMember] = useState({
     id: "",
     email: "",
     account: "",
     point: "",
   });
+  // 接收order
+  const [order, setOrder] = useState([]);
+  // 撈取session
   useEffect((e) => {
     async function session() {
       try {
@@ -86,6 +72,34 @@ function MemberCenter(props) {
       }
     }
     session();
+  }, []);
+  // 接收產品資料
+  const [product, setProduct] = useState([]);
+
+  // 過濾order-只要尚未完成的訂單
+  let newOrder = order.filter((x) => x.order_check < 3);
+
+  // 撈取產品訂單(product_order)資料，且只要非訂單完成的部分
+  useEffect((e) => {
+    async function order() {
+      let ProductOrder = await axios.get(
+        `${API_URL}/member/productOrder/${history}`,
+        { withCredentials: true }
+      );
+      setOrder(ProductOrder.data);
+    }
+    order();
+  }, []);
+
+  // 撈取產品資料
+  useEffect((e) => {
+    async function product() {
+      let product = await axios.get(`${API_URL}/cart/`, {
+        withCredentials: true,
+      });
+      setProduct(product.data);
+    }
+    product();
   }, []);
 
   return (
@@ -115,26 +129,13 @@ function MemberCenter(props) {
           })}
         </div>
         <div
-          className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
+          className={`d-flex flex-column justify-content-start align-items-center objectDiv pt-3 pb-4 ${
             status === 2 ? "d-block" : "d-none"
           }`}
         >
-          <MemProductItem
-            productImg={Detail[0].image}
-            productName={Detail[0].proName}
-            productStatus={Detail[0].status}
-            productPrice={Detail[0].price}
-            productCount={Detail[0].count}
-            orderDate={Detail[0].date}
-            productTotal={Detail[0].total}
-            getDate={Detail[0].getDate}
-            trafTimeEnd={Detail[0].endDate}
-            trafTimeIng={Detail[0].tracDate}
-            trafTimeStart={Detail[0].startDate}
-            userName={Detail[0].userName}
-            userPhone={Detail[0].userPhone}
-            userAddress={Detail[0].address}
-          />
+          {newOrder.map((v, i) => {
+            return <MemProductItem detail={newOrder[i]} product={product} />;
+          })}
         </div>
         <div
           className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
@@ -156,7 +157,7 @@ function MemberCenter(props) {
             status === 3 ? "d-block" : "d-none"
           }`}
         >
-          <div className="d-flex justify-content-center pointDiv">
+          <div className="d-flex justify-content-center pointDiv mt-3">
             <div className="d-flex justify-content-center align-items-center ms-3">
               <div className="me-1 bold point point-mem h4">P</div>
               <span className="h1 text-main me-5 bold">

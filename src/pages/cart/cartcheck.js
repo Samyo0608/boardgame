@@ -6,6 +6,7 @@ import "../../css/cart.css";
 import Payway0 from "../../components/cart/Payway0";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import Swal from "sweetalert2";
 
 function Cartcheck(props) {
   // 儲存api-product資料
@@ -33,6 +34,7 @@ function Cartcheck(props) {
     phone: "",
     address: "",
     newPoint: 0,
+    point: 0,
   });
 
   // 載入網頁就先抓資料
@@ -68,9 +70,9 @@ function Cartcheck(props) {
     }
     return newStorage;
   };
-
   // 呼叫function localArr 用productData帶入找localStorage的值
   const localList = localArr(productData);
+
   // 計算總價
   const totalMoney = (cnt) => {
     let total = 0;
@@ -81,43 +83,89 @@ function Cartcheck(props) {
   };
   let AllPrice = totalMoney(localList);
 
+  // forEach產生localStorage的商品、價格、數量串(照順序)
+  const productName = (Arr) => {
+    let productName = [];
+    let productPrice = [];
+    let productCount = [];
+    let proNameString = "";
+    let proPriceString = "";
+    let proCountString = "";
+    Arr.forEach((v) => {
+      productName.push(v.product_name);
+      productPrice.push(v.product_price);
+      productCount.push(v.count);
+      proNameString = productName.toString();
+      proPriceString = productPrice.toString();
+      proCountString = productCount.toString();
+    });
+    return { proNameString, proPriceString, proCountString };
+  };
+  const productNameTotal = productName(localList);
+
   // input onChange事件(把finalData要的資料存入狀態)
   const handleChange = (e) => {
     let newFinalData = { ...finalData };
     newFinalData[e.target.name] = e.target.value;
-    newFinalData.newPoint = parseInt((AllPrice - point) / 50);
-    setFinalData(newFinalData);
+    newFinalData.newPoint =
+      member.point - point + parseInt((AllPrice - point) / 50);
+    newFinalData.total = AllPrice - point;
+    let assign = Object.assign(newFinalData, productNameTotal);
+    setFinalData(assign);
   };
 
+  // 點擊同使用者資料後觸發資料帶入以及刪除事件
   useEffect(() => {
     let newFinalData = { ...finalData };
+    let assign = Object.assign(newFinalData, productNameTotal);
     if (check) {
-      newFinalData.name = member.name;
-      newFinalData.email = member.email;
-      newFinalData.phone = member.phone;
-      newFinalData.address = member.address;
-      newFinalData.newPoint = parseInt((AllPrice - point) / 50);
+      assign.name = member.name;
+      assign.email = member.email;
+      assign.phone = member.phone;
+      assign.address = member.address;
+      assign.newPoint =
+        member.point - point + parseInt((AllPrice - point) / 50);
+      assign.total = AllPrice - point;
     } else {
-      newFinalData = {};
+      assign = {};
     }
-    setFinalData(newFinalData);
+    setFinalData(assign);
   }, [check]);
 
-  console.log(finalData);
-  console.log(accParams.account);
   // 送出結帳
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      let res = await axios.post(
-        `${API_URL}/cart/test/${accParams.account}`,
-        finalData,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log("上傳成功");
-      console.log(res);
+      if (point <= member.point) {
+        let res = await axios.post(
+          `${API_URL}/cart/member/${accParams.account}`,
+          finalData,
+          {
+            withCredentials: true,
+          }
+        );
+        let order = await axios.post(
+          `${API_URL}/cart/order/${accParams.account}`,
+          finalData,
+          {
+            withCredentials: true,
+          }
+        );
+        Swal.fire({
+          icon: "success",
+          title: "結帳成功",
+          text: "感謝您的消費",
+        }).then((result) => {
+          localStorage.clear();
+          window.location.replace(`/memberCenter${accParams.account}`);
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "折抵點數過多!",
+          text: "欲折抵點數不可大於剩餘點數",
+        });
+      }
     } catch (e) {
       console.log("上傳失敗", e);
     }
@@ -220,13 +268,6 @@ function Cartcheck(props) {
                 </label>
               </div>
             </div>
-            <button
-              type="submit"
-              className="btn btn-danger endButton"
-              // onSubmit={handleSubmit03}
-            >
-              結帳
-            </button>
           </form>
         </div>
       </div>
@@ -250,14 +291,16 @@ function Cartcheck(props) {
                 type="text"
                 required
                 onChange={(e) => {
-                  if (Number(e.target.value) <= member.point) {
-                    setPoint(Number(e.target.value));
-                    let newPoint = { ...finalData };
-                    newPoint.newPoint = parseInt(
-                      (AllPrice - Number(e.target.value)) / 50
-                    );
-                    setFinalData(newPoint);
-                  }
+                  // if (Number(e.target.value) <= member.point) {
+                  setPoint(Number(e.target.value));
+                  let newPoint = { ...finalData };
+                  newPoint.newPoint =
+                    member.point -
+                    Number(e.target.value) +
+                    parseInt((AllPrice - Number(e.target.value)) / 50);
+                  newPoint.total = AllPrice - Number(e.target.value);
+                  setFinalData(newPoint);
+                  // }
                 }}
               />
               <label className="ms-2">點</label>
