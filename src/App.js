@@ -11,6 +11,7 @@ import Discuss from "./pages/discuss/discuss.js";
 import MemberDiscuss from "./pages/discuss/memberDiscuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
+import EditReply from "./pages/discuss/editReply.js";
 import {
   HashRouter,
   BrowserRouter,
@@ -94,6 +95,11 @@ function App() {
               component={MemberCenter}
             />
             <Route exact={true} path="/booking" component={booking} />
+            <Route
+              exact={true}
+              path="/discuss/editReply"
+              component={EditReply}
+            />
             <Route
               exact={true}
               path="/discuss/reply/:discuss_id?"

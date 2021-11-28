@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../css/discuss.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome//free-solid-svg-icons";
@@ -9,6 +8,9 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { API_URL, URL } from "../../configs/config";
 import Swal from "sweetalert2";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
+import "../../css/discuss.css";
 
 const gameType = [
   { id: 2, name: "家庭", type: "family" },
@@ -18,7 +20,25 @@ const gameType = [
 
 const Discuss = (props) => {
   const [discuss, setDiscuss] = useState([]);
+  const [discussContent, setDiscussContent] = useState([
+    {
+      discuss_id: "",
+      content: "",
+      created_at: "",
+    },
+  ]);
   const [displayDiscuss, setDisplayDiscuss] = useState([]);
+  const [displayDiscussContent, setDisplayDiscussContent] = useState([
+    {
+      id: "",
+      type: "",
+      title: "",
+      i_user_id: "",
+      user_id: "",
+      created_at: "",
+      cot: "",
+    },
+  ]);
   const [discussType, setDiscussType] = useState("all");
   const [searchDiscuss, setSearchDiscuss] = useState({
     keyword: "",
@@ -62,6 +82,12 @@ const Discuss = (props) => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
     setDisplayDiscuss(res.data);
+  }, []);
+
+  // 撈討論區內容
+  useEffect(async () => {
+    let res = await axios.get(`http://localhost:3001/api/discuss/indexContent`);
+    setDiscussContent(res.data);
   }, []);
 
   // 抓會員session
@@ -195,13 +221,23 @@ const Discuss = (props) => {
                         <th scope="row" className="">
                           <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                         </th>
-                        <td>
+                        <td className="text-start discussTitleTd">
                           <Link
-                            className="text-decoration-none"
+                            className="discussTitleLink"
                             to={`discuss/reply/${v.id}`}
                           >
                             {v.title}
                           </Link>
+                          <ReactQuill
+                            className="indexDiscussContentQuill"
+                            value={
+                              discussContent.filter((dc) => {
+                                return dc.discuss_id === v.id;
+                              })[0]?.content || ""
+                            }
+                            readOnly={true}
+                            theme={"bubble"}
+                          />
                         </td>
                         <td>{v.i_user_id}</td>
                         <td className="rcountTd">{v.cot}</td>

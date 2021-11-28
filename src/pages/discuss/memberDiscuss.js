@@ -130,8 +130,8 @@ function MemberDiscuss(props) {
                                         `http://localhost:3001/api/discuss/keepDelete`,
                                         {
                                           discuss_id: v.id,
-                                          user_id: sessionDiscussMember.id,
-                                        }
+                                        },
+                                        { withCredentials: true }
                                       );
                                       let res = await axios.post(
                                         `http://localhost:3001/api/discuss/memberDiscuss`,

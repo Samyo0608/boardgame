@@ -141,6 +141,15 @@
 }
 .discussNameBox {
 }
+.discussTitleTd {
+  padding: 0 0 0 20px !important;
+  line-height: 38px;
+  width: 260px;
+}
+.discussTitleLink {
+  font-size: 18px;
+  text-decoration: none;
+}
 .rcountTd {
   width: 80px;
 }
@@ -148,6 +157,39 @@
   width: 350px;
 }
 
+.indexDiscussContentQuill {
+}
+.indexDiscussContentQuill > div > div {
+  padding: 0px;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+}
+
+.indexDiscussContentQuill > div > div > h1,
+.indexDiscussContentQuill > div > div > h2,
+.indexDiscussContentQuill > div > div > h2 > span {
+  font-size: 14px !important;
+  color: rgb(105, 105, 105) !important;
+  max-width: 260px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+.indexDiscussContentQuill > div > div > p {
+  font-size: 14px !important;
+  color: rgb(105, 105, 105) !important;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+.indexDiscussContentQuill > div > div > p > img,
+.indexDiscussContentQuill > div > div > iframe {
+  display: none !important;
+}
 .r_discussButton {
   font-weight: bold;
   color: white;

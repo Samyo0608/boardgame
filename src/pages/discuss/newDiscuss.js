@@ -79,7 +79,8 @@ const NewDiscuss = (props) => {
       } else {
         let resNewDiscuss = await axios.post(
           `http://localhost:3001/api/discuss/addNewDiscuss`,
-          addDiscuss
+          addDiscuss,
+          { withCredentials: true }
         );
         let newAddDiscuss = { ...addDiscuss };
         newAddDiscuss.lastId = resNewDiscuss.data;
@@ -105,7 +106,8 @@ const NewDiscuss = (props) => {
       }
       let resNewDiscussContent = await axios.post(
         `http://localhost:3001/api/discuss/addNewDiscussContent`,
-        addDiscuss
+        addDiscuss,
+        { withCredentials: true }
       );
       Swal.fire({
         icon: "success",
@@ -170,15 +172,6 @@ const NewDiscuss = (props) => {
               setAddDiscuss={setAddDiscuss}
               setQuillContent={setQuillContent}
             />
-            {/* <textarea
-              className="form-control"
-              rows="11"
-              cols="102"
-              placeholder="Leave a comment here"
-              name="content"
-              value={addDiscuss.content}
-              onChange={handleNewDiscussChange}
-            /> */}
             <button className="newdiscussSubmitButton text-center">送出</button>
           </form>
         </div>

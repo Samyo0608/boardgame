@@ -27,7 +27,7 @@
   background-color: #a2e2ea;
   position: absolute;
   bottom: 25px;
-  right: 30px;
+  right: 150px;
   width: 90px;
   height: 32px;
   line-height: 32px;
@@ -42,4 +42,30 @@
 }
 .newdiscussSubmitButton:active {
   background-color: #7ddeeb;
+}
+
+.newdiscussFormBox > form > div > .quillDiscussContentBtn {
+  right: -7px;
+}
+
+.newdiscussCancelButton {
+  color: rgb(65, 65, 65);
+  text-decoration: none;
+  background-color: #d4d4d4;
+  position: absolute;
+  bottom: 25px;
+  right: 30px;
+  width: 90px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50px;
+  border: none;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px rgb(148, 148, 148);
+}
+.newdiscussCancelButton:hover {
+  background-color: rgb(228, 228, 228);
+}
+.newdiscussCancelButton:active {
+  background-color: rgb(167, 167, 167);
 }
