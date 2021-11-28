@@ -29,9 +29,9 @@ const CreateQuestion = () => {
     "退換貨相關",
     "發票與退款",
   ];
-  const [subCategoryOptions, setSubCategoryOptions] = useState([]);
+  const [subCategoryOptions, setSubCategoryOptions] = useState(categoryHierarchy[mainCategoryOptions[0]]);
   const selecltMainCategory = (e) => {
-    setMainCategory(e);
+      setMainCategory(e);
     if(mainCategory.length ===0){
       return;
     }
