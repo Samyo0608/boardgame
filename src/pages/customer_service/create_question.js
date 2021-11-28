@@ -6,7 +6,6 @@ import { API_URL } from "../../configs/config";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 const categoryHierarchy = {
   會員相關: ["修改會員資料", "忘記帳號密碼", "紅利點數相關問題"],
   購物相關: ["出貨進度", "更改訂單", "取消訂單", "更改付款方式"],
@@ -36,9 +35,9 @@ const CreateQuestion = () => {
   const [subCategoryOptions, setSubCategoryOptions] = useState([]);
   const selecltMainCategory = (e) => {
     setMainCategory(e);
+    setSubCategory("");
     setSubCategoryOptions(categoryHierarchy[e]);
   };
-
 
   const createQuestion = async () => {
     if (mainCategory.length === 0) {
@@ -77,9 +76,11 @@ const CreateQuestion = () => {
           className="questionTopicOuter"
           onChange={(e) => selecltMainCategory(e.target.value)}
         >
-          <option>請選擇...</option>
+          <option value="">請選擇...</option>
           {mainCategoryOptions.map((item) => (
-            <option value={item}>{item}</option>
+            <option value={item} key={item}>
+              {item}
+            </option>
           ))}
         </Form.Control>
         <Form.Control
@@ -88,9 +89,11 @@ const CreateQuestion = () => {
           className="questionTopicOuter"
           onChange={(e) => setSubCategory(e.target.value)}
         >
-          <option>請選擇...</option>
+          <option  value="">請選擇...</option>
           {subCategoryOptions.map((item) => (
-            <option value={item}>{item}</option>
+            <option value={item} key={item}>
+              {item}
+            </option>
           ))}
         </Form.Control>
       </div>
