@@ -70,25 +70,7 @@ function MemberProduct(props) {
           {/* map資料 */}
           {Detail.map((v, i) => {
             const Item = () => {
-              return (
-                <MemProductItem
-                  key={i}
-                  productImg={v.image}
-                  productName={v.proName}
-                  productStatus={v.status}
-                  productPrice={v.price}
-                  productCount={v.count}
-                  orderDate={v.date}
-                  productTotal={v.total}
-                  getDate={v.getDate}
-                  trafTimeEnd={v.endDate}
-                  trafTimeIng={v.tracDate}
-                  trafTimeStart={v.startDate}
-                  userName={v.userName}
-                  userPhone={v.userPhone}
-                  userAddress={v.address}
-                />
-              );
+              return <MemProductItem key={i} detail={Detail[i]} />;
             };
 
             if (inputValue === "") {
@@ -109,4 +91,3 @@ function MemberProduct(props) {
 }
 
 export default MemberProduct;
-

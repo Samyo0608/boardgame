@@ -14,6 +14,9 @@ import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import IndexVote from "../../components/contest/IndexVote";
 import axios from "axios";
 import { API_URL } from '../../configs/config';
+// 輪播照片套件
+import Slider from "react-slick";
+import Calendar from "./FullCalendarIndex.js";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -36,6 +39,7 @@ const barchartRun = (b)=>{
 }
 
 const Index = () => {
+
   // 投票狀態鉤子
   const[status,setStatus] = useState(1);
   // 投票資料帶入
@@ -263,7 +267,15 @@ const tragArr=[]
 
 // 排名結束
 
-
+// 輪播套件
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  
   return (
     <div className="container overflow-hidden">
       {/* banner */}
@@ -464,11 +476,28 @@ const tragArr=[]
       </div>
 
       {/* 場地租借內容 */}
-      <div class="recommendBox">
+      <div class="recommendBox-booking">
         <div className="rentPicBox">
+          {/* 場地租借首頁照片 */}
           <img alt="" className="rentPic" src="/img/index/rent.png" />
         </div>
-        <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
+        <div className="bookingBG">
+          <div className="sliderIndex">
+            <Slider {...settings}>
+              <div>
+                <img alt="" className="" src="img/booking/siteIndex-3.jpg" />
+              </div>
+              <div>
+                <img alt="" className="" src="img/booking/siteIndex-4.jpg" />
+              </div>
+            </Slider>
+          </div>
+          <div className="calendarIndex">
+            <Calendar />
+          </div>
+        </div>
+
+        {/* <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
           {rentType.map((v, i) => {
             return (
               <li key={v.id} className="">
@@ -569,8 +598,9 @@ const tragArr=[]
               </a>
             </div>
           </div>
-        </div>
-        <a class="rentButton text-center" href="#/">
+        </div> */}
+
+        <a class="rentButton text-center" href="/booking">
           前往出租
         </a>
       </div>

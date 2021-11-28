@@ -166,7 +166,6 @@ function Cart(props) {
                   imgURL={v.product_img}
                   id={v.product_id}
                   type={v.product_type}
-                  // checked={fullCheck}
                   check={check}
                   setCheck={setCheck}
                 />
@@ -189,9 +188,14 @@ function Cart(props) {
             </Button>
           </Link>
           <div className="">
-            <Link to={`/Cart${sessionMember.account}/Cartcheck`}>
-              <Button className="buttoncheck" variant="success">
+            <Link to={`/Cartcheck${sessionMember.account}`}>
+              <Button
+                className="buttoncheck"
+                variant="success"
+                disabled={local.length === 0 ? true : false}
+              >
                 確認訂單
+                {console.log(local)}
               </Button>
             </Link>
             <Link to="/Product">

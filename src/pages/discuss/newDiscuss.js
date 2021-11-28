@@ -6,7 +6,9 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
-const Promise = require("bluebird");
+import { API_URL, URL } from "../../configs/config";
+import Swal from "sweetalert2";
+import DiscussQuill from "../../components/discuss/discussQuill";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -17,6 +19,7 @@ const gameType = [
 
 const NewDiscuss = (props) => {
   const [newDiscussType, setNewDiscussType] = useState([{ type: "" }]);
+  const [quillContent, setQuillContent] = useState({});
   const [addDiscuss, setAddDiscuss] = useState({
     user_id: "",
     type: "",
@@ -26,6 +29,13 @@ const NewDiscuss = (props) => {
     lastId: "",
   });
   const [stateLastId, setStateLastId] = useState([]);
+  // 登入狀態
+  const [sessionMember, setSessionMember] = useState({
+    id: "",
+    email: "",
+    account: "",
+    point: "",
+  });
 
   // 處理輸入欄位變動
   function handleNewDiscussChange(e) {
@@ -41,50 +51,73 @@ const NewDiscuss = (props) => {
     setNewDiscussType(res.data);
   }, []);
 
+  // 抓會員session
+  useEffect((e) => {
+    async function session() {
+      try {
+        let memberSession = await axios.get(`${API_URL}/session/member`, {
+          withCredentials: true,
+        });
+        setSessionMember(memberSession.data);
+        let newAddDiscuss = { ...addDiscuss };
+        newAddDiscuss.user_id = memberSession.data.id;
+        setAddDiscuss(newAddDiscuss);
+      } catch (e) {
+        alert("獲取資料失敗");
+      }
+    }
+    session();
+  }, []);
+
   // 提交申請
   async function handleNewDiscussSubmit(e) {
     e.preventDefault();
     try {
-      let resNewDiscuss = await axios.post(
-        `http://localhost:3001/api/discuss/addNewDiscuss`,
-        addDiscuss
-      );
-
-      // console.log(resNewDiscuss.data);
-      let newAddDiscuss = { ...addDiscuss };
-      newAddDiscuss.lastId = resNewDiscuss.data;
-      setAddDiscuss(newAddDiscuss);
-      setStateLastId(resNewDiscuss.data);
-
-      //  let resNewDiscussContent = await axios.post(
-      //    `http://localhost:3001/api/discuss/addNewDiscussContent`,
-      //    addDiscuss
-      //  );
-
-      // window.location.reload();
+      if (!sessionMember.id) {
+        alert("請先登入");
+        window.location.href = `/login`;
+      } else {
+        let resNewDiscuss = await axios.post(
+          `http://localhost:3001/api/discuss/addNewDiscuss`,
+          addDiscuss
+        );
+        let newAddDiscuss = { ...addDiscuss };
+        newAddDiscuss.lastId = resNewDiscuss.data;
+        setAddDiscuss(newAddDiscuss);
+        setStateLastId(resNewDiscuss.data);
+        //  let resNewDiscussContent = await axios.post(
+        //    `http://localhost:3001/api/discuss/addNewDiscussContent`,
+        //    addDiscuss
+        //  );
+        // window.location.reload();
+      }
     } catch (e) {
       console.log("handleNewDiscussSubmit", e);
     }
   }
 
   const isFirstRun = useRef(true);
-  useEffect(async () => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
+  useEffect(() => {
+    async function secondSubmit() {
+      if (isFirstRun.current) {
+        isFirstRun.current = false;
+        return;
+      }
+      let resNewDiscussContent = await axios.post(
+        `http://localhost:3001/api/discuss/addNewDiscussContent`,
+        addDiscuss
+      );
+      Swal.fire({
+        icon: "success",
+        title: "回覆成功",
+        text: "已提交您的回覆",
+      }).then((res) => {
+        window.location.href = `http://localhost:3000/discuss`;
+      });
     }
-    let resNewDiscussContent = await axios.post(
-      `http://localhost:3001/api/discuss/addNewDiscussContent`,
-      addDiscuss
-    );
-    window.location.href = `http://localhost:3000/discuss`;
+    secondSubmit();
   }, [stateLastId]);
 
-  const TYPE_COLOR = {
-    家庭: "discussTagFamily",
-    策略: "discussTagTrag",
-    卡牌: "discussTagCard",
-  };
   return (
     <div className="overflow-hidden">
       {/* banner */}
@@ -106,14 +139,6 @@ const NewDiscuss = (props) => {
       <div className="newDiscussBoxOut">
         <div className="newdiscussFormBox position-relative">
           <form onSubmit={handleNewDiscussSubmit}>
-            <label>user_ID</label>
-            <input
-              className="form-control"
-              type="text"
-              name="user_id"
-              value={addDiscuss.user_id}
-              onChange={handleNewDiscussChange}
-            />
             <select
               className="form-select discussSelect my-3"
               name="type"
@@ -122,7 +147,7 @@ const NewDiscuss = (props) => {
               value={addDiscuss.type}
               required
             >
-              <option value="0">選擇分類</option>
+              <option value="">選擇分類</option>
               {newDiscussType.map((v, i) => {
                 return (
                   <option key={i} value={v.type}>
@@ -138,8 +163,14 @@ const NewDiscuss = (props) => {
               name="title"
               value={addDiscuss.title}
               onChange={handleNewDiscussChange}
+              required
             />
-            <textarea
+            <DiscussQuill
+              addDiscuss={addDiscuss}
+              setAddDiscuss={setAddDiscuss}
+              setQuillContent={setQuillContent}
+            />
+            {/* <textarea
               className="form-control"
               rows="11"
               cols="102"
@@ -147,7 +178,7 @@ const NewDiscuss = (props) => {
               name="content"
               value={addDiscuss.content}
               onChange={handleNewDiscussChange}
-            />
+            /> */}
             <button className="newdiscussSubmitButton text-center">送出</button>
           </form>
         </div>

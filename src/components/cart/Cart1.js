@@ -8,6 +8,7 @@ import {
   faTrashAlt,
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/cart.css";
+import Swal from "sweetalert2";
 
 function Cart1(props) {
   const { name, price, imgURL, id, type } = props;
@@ -31,10 +32,22 @@ function Cart1(props) {
       newStorage.product_price = price;
       // 此時cartLocal已經做變動了，再將這個值產生localStorage覆蓋原本的值
       localStorage.setItem(name, JSON.stringify(newStorage));
-      console.log(name);
+      // console.log(name);
     },
     [count]
   );
+
+  //sweetAlert2 Toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    onOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   const handleMinus = () => {
     setCount(count - 1);
@@ -51,6 +64,10 @@ function Cart1(props) {
   const handleDelete = () => {
     props.setCheck(!props.check);
     localStorage.removeItem(name);
+    Toast.fire({
+      icon: "success",
+      title: "已將商品移除購物車",
+    });
   };
 
   return (

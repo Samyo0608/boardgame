@@ -66,7 +66,6 @@ function Aboutgame(props) {
             <article className={p6[aboutgame.product_type]}>
               {aboutgame.product_name}
             </article>
-
             <img className="abb" src={aboutgame.product_img} alt="" />
             <div className="box456">
               <p className="ellipsis3">{aboutgame.product_content}</p>

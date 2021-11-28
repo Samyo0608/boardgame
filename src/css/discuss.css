@@ -141,6 +141,9 @@
 }
 .discussNameBox {
 }
+.rcountTd {
+  width: 80px;
+}
 .timeTd {
   width: 350px;
 }
@@ -156,10 +159,20 @@
   padding-top: 2px;
   text-decoration: none;
   background-color: #2196d4;
-  box-shadow: 1px 1px 2px rgb(148, 148, 148);
+  box-shadow: 1px 1px 2px rgb(184, 184, 184);
   position: absolute;
   right: 40px;
   top: 55px;
+}
+.r_discussButton:hover {
+  color: white;
+  background-color: #23a6ec;
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 8px rgba(127, 216, 252, 0.582) inset;
+}
+.r_discussButton:active {
+  background-color: #1f8cc7;
+  box-shadow: 2px 2px 15px rgba(141, 141, 141, 0.596) inset;
 }
 
 /* 熱門推薦標題 */

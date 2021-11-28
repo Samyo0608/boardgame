@@ -113,28 +113,20 @@
   border: 1px solid rgb(173, 173, 173);
 }
 /* 行事曆標題 */
-.fc-toolbar-title {
-  color: #301b10;
-}
+
 /* 行事曆週期 */
 .fc-col-header-cell-cushion {
   color: #8c5832;
   font-size: 18px;
 }
-/* 行事曆箭頭 */
-.fc-icon {
-  /* color: #03c9c2; */
-}
 
 /* 行事曆日期 */
 .fc-daygrid-day-number {
   font-size: 19px;
-  right: 85px;
   color: #000000;
 }
 /* 行事曆內容的time */
 .fc-event-time {
-  font-size: 15px;
   color: #8c5832;
   white-space: pre-wrap;
 }
