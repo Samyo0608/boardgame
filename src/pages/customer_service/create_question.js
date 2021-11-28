@@ -19,7 +19,7 @@ const USER_ID = 1;
 
 const CreateQuestion = () => {
   const history = useHistory();
-  const [mainCategory, setMainCategory] = useState("");
+  const [mainCategory, setMainCategory] = useState([]);
   const [subCategory, setSubCategory] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const mainCategoryOptions = [
@@ -72,12 +72,13 @@ const CreateQuestion = () => {
       <div class="outerCoating">
         <Form.Group class="questionTopicOuter">
           <Typeahead
+          defaultSelected={mainCategory}
             id="area"
             labelKey="name"
             onChange={selecltMainCategory}
             options={mainCategoryOptions}
             placeholder="請選擇..."
-            selected={mainCategory}
+            // selected={mainCategory}
           />
         </Form.Group>
         <Form.Group class="questionTopicOuter">

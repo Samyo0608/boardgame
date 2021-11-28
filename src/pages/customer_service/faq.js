@@ -1145,16 +1145,29 @@ const CustomerServicePage = () => {
               </div>
               <div>
                 {/* 客服留言連結 */}
-                <div class="expand_down">
-                  <span onClick={() => switchShowMoreBlock()}>
-                    查看更多常見問題
-                  </span>
-                  <img
+                <div>
+                
+                  <div class="expand_down" onClick={() => switchShowMoreBlock()}>
+                  向下展開
+                  </div>
+                  {/* <img
                     src="/img/customer_service/drop_down.png"
                     alt=""
                     class="drop_down"
-                  />
-                </div>
+                  /> */}
+                  <div class="poster__arrows">
+        <div class="poster__arrow poster__arrow-1">
+
+        </div> 
+        <div class="poster__arrow poster__arrow-2">
+
+        </div> 
+        <div class="poster__arrow poster__arrow-3">
+
+        </div>
+        </div>
+                
+                </div>  
                 <a href="/customer_service_message" class="hover_style link_message" >
                 <div class="link_message_fram" >
                   <img

@@ -206,6 +206,10 @@
 	margin-top: -5px;
 	margin-right: -10px;
 }
+/* 機器人答覆內容 */
+.connect_us{
+  margin-left: 150px;
+}
 /* 輸入問題*/
 .input_question_outer {
   border: 1px solid rgb(255, 255, 255);

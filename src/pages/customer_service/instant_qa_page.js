@@ -231,7 +231,7 @@ const INTENT_MAP = {
           <div class="robot_answer">
             <ul>
               <li class="robot_answer_list">如何獲得點數？</li>
-              於遊戲直人消費50元，可回饋1點紅利點數，小數點以下不列入紅利點數，亦無法累計至下筆訂單合併計算；除此之外，運費亦不列入紅利點數計算。
+              於遊戲職人消費50元，可回饋1點紅利點數，小數點以下不列入紅利點數，亦無法累計至下筆訂單合併計算；除此之外，運費亦不列入紅利點數計算。
             </ul>
             <ul>
               <li class="robot_answer_list">紅利點數有使用期限嗎？</li>
@@ -241,6 +241,74 @@ const INTENT_MAP = {
               <li class="robot_answer_list"> 紅利點數何時會生效？</li>
               紅利點數將會於到貨後第7天由系統自動發送至該會員帳戶。例如：若出貨日為01月30日，則02月07日系統會自動發送紅利點數，倘若此期間會員若因故而取消/未完成訂單，系統則不給予紅利點數。
             </ul>
+          </div>
+        ),
+      },
+    ],
+  },
+  member_profile: {
+    regexes: [
+      /(修改資料)|(會員資料)|(改密碼)/,
+      /(個人資料)|(密碼修改)|(密碼)/,
+    ],
+    replies: [
+      {
+        type: "text",
+        payload: (
+          <div class="robot_answer">
+         煩請使用「
+          <a href="/customer_service_message" class="hover_style" alt="">
+            客服留言
+          </a>
+          」直接與客服中心聯繫。
+          
+<ul>
+              <li class="robot_answer_list"> 電腦版：</li>
+          <p>
+           請「
+            <a href="/login" class="hover_style" alt="">
+              <a href="/login" class="hover_style" alt="">
+                會員登入
+              </a>
+            </a>
+            」至「個人資料及密碼修改」即可進行變更。
+          </p>
+          <li class="robot_answer_list"> 手機版/APP：</li>
+          <p>
+           請「
+            <a href="/login" class="hover_style" alt="">
+              <a href="/login" class="hover_style" alt="">
+                會員登入
+              </a>
+            </a>
+            」後至「個人」上方大頭照點選「姓名」後即可進行變更。
+          </p>
+          <p style={{ color: "#c14948" }}>
+            ※
+            如更新E-mail帳號，請留意新信箱是否可正常收取遊戲職人相關信件通知喔。
+          </p>
+          </ul>
+          </div>
+        ),
+      },
+    ],
+  },
+  connect_us: {
+    regexes: [
+      /(聯繫我們)|(聯絡)|(客服)/,
+      /(電話)|(真人)|(客訴)/,
+    ],
+    replies: [
+      {
+        type: "text",
+        payload: (
+          <div class="robot_answer">
+        <img src="/img/customer_service/order_problem.png" alt="" class="commissioner_avatar"></img>
+          
+          <div class="connect_us">訂單相關問題，欲與專人聯繫，歡迎來電<br></br>客服專線：<a href="tel:02-6631-8168" title="來電Nobby by TESCOM訂單客服專線">0800-095-099</a><br></br>
+            歡迎來信：<a href="mailto: tablegame2021@gmail.com" title="聯絡客服"> tablegame2021@gmail.com</a><br></br>
+            營業時間：10:00~17:00，六日、國定假日除外</div>
+       
           </div>
         ),
       },
