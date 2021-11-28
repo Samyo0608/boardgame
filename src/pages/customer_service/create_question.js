@@ -7,19 +7,23 @@ import { API_URL } from "../../configs/config";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 const categoryHierarchy = {
-  "會員相關":["修改會員資料","忘記帳號密碼","紅利點數相關問題"],
-  "購物相關":["出貨進度","更改訂單","取消訂單","更改付款方式"],
-  "商品與配送":["新品與庫存","商品規格疑問","商品錯誤或瑕疵","付款及配送疑問"],
-  "退換貨相關":["申請退換貨","查詢退換貨進度"],
-  "發票與退款":["退款進度","發票問題"],
-}
+  會員相關: ["修改會員資料", "忘記帳號密碼", "紅利點數相關問題"],
+  購物相關: ["出貨進度", "更改訂單", "取消訂單", "更改付款方式"],
+  商品與配送: [
+    "新品與庫存",
+    "商品規格疑問",
+    "商品錯誤或瑕疵",
+    "付款及配送疑問",
+  ],
+  退換貨相關: ["申請退換貨", "查詢退換貨進度"],
+  發票與退款: ["退款進度", "發票問題"],
+};
 const USER_ID = 1;
 
 const CreateQuestion = () => {
   const history = useHistory();
-  const [mainCategory, setMainCategory] = useState([]);
+  const [mainCategory, setMainCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [questionContent, setQuestionContent] = useState("");
   const mainCategoryOptions = [
@@ -29,14 +33,10 @@ const CreateQuestion = () => {
     "退換貨相關",
     "發票與退款",
   ];
-  const [subCategoryOptions, setSubCategoryOptions] = useState(categoryHierarchy[mainCategoryOptions[0]]);
+  const [subCategoryOptions, setSubCategoryOptions] = useState([]);
   const selecltMainCategory = (e) => {
-      setMainCategory(e);
-    if(mainCategory.length ===0){
-      return;
-    }
-    const mainCategoryText = mainCategory[0]
-    setSubCategoryOptions(categoryHierarchy[mainCategoryText])
+    setMainCategory(e);
+    setSubCategoryOptions(categoryHierarchy[e]);
   };
 
   const createQuestion = async () => {
@@ -64,33 +64,34 @@ const CreateQuestion = () => {
       state: { isActive: true },
     });
   };
-  
+
   return (
     <>
       {/* 問題類別 */}
       <p class="subtitle">問題類別</p>
       <div class="outerCoating">
-        <Form.Group class="questionTopicOuter">
-          <Typeahead
-          defaultSelected={mainCategory}
-            id="area"
-            labelKey="name"
-            onChange={selecltMainCategory}
-            options={mainCategoryOptions}
-            placeholder="請選擇..."
-            // selected={mainCategory}
-          />
-        </Form.Group>
-        <Form.Group class="questionTopicOuter">
-          <Typeahead
-            id="area"
-            labelKey="name"
-            onChange={setSubCategory}
-            options={subCategoryOptions}
-            placeholder="請選擇..."
-            selected={subCategory}
-          />
-        </Form.Group>
+        <Form.Control
+          as="select"
+          custom
+          className="questionTopicOuter"
+          onChange={(e) => selecltMainCategory(e.target.value)}
+        >
+          <option>請選擇...</option>
+          {mainCategoryOptions.map((item) => (
+            <option value={item}>{item}</option>
+          ))}
+        </Form.Control>
+        <Form.Control
+          as="select"
+          custom
+          className="questionTopicOuter"
+          onChange={(e) => setSubCategory(e.target.value)}
+        >
+          <option>請選擇...</option>
+          {subCategoryOptions.map((item) => (
+            <option value={item}>{item}</option>
+          ))}
+        </Form.Control>
       </div>
       <p class="subtitle">問題內容</p>
       <div>
