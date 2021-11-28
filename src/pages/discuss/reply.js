@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Modal } from "react-bootstrap";
 import "../../css/reply.css";
 import React, { Component } from "react";
 import { useState, useEffect, useRef } from "react";
@@ -8,10 +9,9 @@ import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import moment from "moment";
 import { Link, useParams } from "react-router-dom";
-import { API_URL, URL } from "../../configs/config";
+import { API_URL, URL, PHOTO_URL } from "../../configs/config";
 import Swal from "sweetalert2";
 import DiscussQuill from "../../components/discuss/discussQuill";
-import { Container } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 
@@ -30,6 +30,9 @@ const Reply = () => {
 
   // 統計回覆數設定狀態
   const [replyCount, setReplyCount] = useState([{ user_id: "", cot: "" }]);
+
+  // 編輯狀態
+  const [editStatus, setEditStatus] = useState();
 
   // 收藏功能設定狀態
   const [discussKeep, setDiscussKeep] = useState([
@@ -79,51 +82,6 @@ const Reply = () => {
     point: "",
   });
 
-  // 文字編輯器
-
-  // 處理輸入欄位變化，e.target 就是事件發生的目標
-  function handleDiscussChange(e) {
-    let newInsertDiscuss = { ...insertDiscuss };
-    newInsertDiscuss[e.target.name] = e.target.value;
-    setInsertDiscuss(newInsertDiscuss);
-    // setMember({ ...member, [e.target.name]: e.target.value });
-  }
-
-  // 提交回覆表單
-  async function handleInsertDiscussSubmit(e) {
-    e.preventDefault();
-    try {
-      if (!sessionMember.id) {
-        alert("請先登入");
-        window.location.href = `/login`;
-      } else {
-        // json 格式無法傳檔案，改成用 form data
-        let formData = new FormData();
-        formData.append("discuss_id", insertDiscuss.discuss_id);
-        formData.append("user_id", sessionMember.id);
-        formData.append("content", insertDiscuss.content);
-        formData.append("floor", insertDiscuss.floor);
-        // 測試資料
-        // for (var key of formData.entries()) {
-        //   console.log(key[0] + ", " + key[1]);
-        // }
-        let res = await axios.post(
-          `http://localhost:3001/api/discuss/insertDiscuss`,
-          formData
-        );
-        Swal.fire({
-          icon: "success",
-          title: "回覆成功",
-          text: "已提交您的回覆",
-        }).then((res) => {
-          window.location.reload();
-        });
-      }
-    } catch (e) {
-      console.log("handleInsertDiscussSubmit", e);
-    }
-  }
-
   // 提交回覆表單(quill)
   async function handleQuillInsertDiscussSubmit(e) {
     // e.preventDefault();
@@ -144,7 +102,8 @@ const Reply = () => {
         // }
         let res = await axios.post(
           `http://localhost:3001/api/discuss/insertDiscuss`,
-          formData
+          formData,
+          { withCredentials: true }
         );
         Swal.fire({
           icon: "success",
@@ -165,21 +124,23 @@ const Reply = () => {
       alert("請先登入");
       window.location.href = `/login`;
     } else {
-      const keepData = {
-        user_id: sessionMember.id,
-        discuss_id: discuss_id,
-      };
       if (keepStatus === false) {
         let resKeep = await axios.post(
           `http://localhost:3001/api/discuss/keep`,
-          keepData
+          { discuss_id },
+          {
+            withCredentials: true,
+          }
         );
         setKeepStatus(true);
         Swal.fire("Good job!", "已將此文章加入收藏!", "success");
       } else {
         let resKeepDelete = await axios.post(
           `http://localhost:3001/api/discuss/keepDelete`,
-          keepData
+          { discuss_id },
+          {
+            withCredentials: true,
+          }
         );
         setKeepStatus(false);
         Swal.fire("Good job!", "已將此文章從收藏移除!", "success");
@@ -240,13 +201,13 @@ const Reply = () => {
       isFirstRun.current = false;
       return;
     }
-    const keepData = {
-      user_id: sessionMember.id,
-      discuss_id: discuss_id,
-    };
+
     let resDiscussKeep = await axios.post(
       `http://localhost:3001/api/discuss/keepStatus`,
-      keepData
+      { discuss_id },
+      {
+        withCredentials: true,
+      }
     );
     if (resDiscussKeep.data.length === 0) {
       setKeepStatus(false);
@@ -254,7 +215,10 @@ const Reply = () => {
       setKeepStatus(true);
     }
     let resDiscussLikeData = await axios.post(
-      `http://localhost:3001/api/discuss/likeData`
+      `http://localhost:3001/api/discuss/likeData`,
+      {
+        withCredentials: true,
+      }
     );
     setDiscussLikeData(resDiscussLikeData.data);
   }, [sessionMember]);
@@ -296,11 +260,15 @@ const Reply = () => {
                 <div className="replyerImgBox">
                   <img
                     alt=""
-                    src="../../img/reply/replyer1.png"
+                    src={
+                      v.photo === ""
+                        ? `../../img/reply/replyer1.png`
+                        : `${PHOTO_URL}/public/uploads/${v.photo}`
+                    }
                     className="replyerImg"
                   />
                 </div>
-                <p>{v.user_id}</p>
+                <p>{v.account}</p>
                 <p>
                   {discussCount.filter((dv) => {
                     return dv.user_id === Number(v.user_id);
@@ -329,13 +297,18 @@ const Reply = () => {
                 <div className="replyOutBox">
                   <div className="replyInBox">
                     {/* 文章內容 */}
-                    {/* <p>{v.content}</p> */}
-                    <ReactQuill
-                      className="discussContentQuill"
-                      value={v.content}
-                      readOnly={true}
-                      theme={"bubble"}
-                    />
+                    {v.valid === 0 ? (
+                      <p className="deletedReply">
+                        =====此回覆已被使用者刪除=====
+                      </p>
+                    ) : (
+                      <ReactQuill
+                        className="discussContentQuill"
+                        value={v.content}
+                        readOnly={true}
+                        theme={"bubble"}
+                      />
+                    )}
 
                     <p className="postTime text-secondary">
                       發表於 :{" "}
@@ -343,7 +316,67 @@ const Reply = () => {
                         "YYYY-MM-DD HH:mm:ss"
                       )}
                     </p>
+
+                    {/* 編輯和刪除 */}
                     <div className="twoButton d-flex">
+                      {v.user_id === sessionMember.id && v.valid === 1 ? (
+                        <div className="replyUserBtn">
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              Swal.fire({
+                                title: "確定要刪除此則回覆嗎?",
+                                text: "此操作無法復原",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "確定",
+                                cancelButtonText: "不要",
+                              }).then(async (result) => {
+                                if (result.isConfirmed) {
+                                  let resDiscussKeep = await axios.post(
+                                    `http://localhost:3001/api/discuss/deleteReply`,
+                                    { id: v.id },
+                                    {
+                                      withCredentials: true,
+                                    }
+                                  );
+                                  Swal.fire(
+                                    "刪除成功!",
+                                    "您的回覆已經被刪除",
+                                    "success"
+                                  );
+                                  let res = await axios.get(
+                                    `http://localhost:3001/api/discuss/reply/${discuss_id}`
+                                  );
+                                  setDiscussContent(res.data);
+                                }
+                              });
+                            }}
+                            className="replyDelete"
+                          >
+                            刪除
+                          </button>
+                          <Link
+                            discuss_content_id={v.id}
+                            to={{
+                              pathname: "../editReply",
+                              discuss_content_id: v.id,
+                              discuss_id: discuss_id,
+                            }}
+                            className="replyEdit"
+                            onClick={() => {
+                              setEditStatus(v.id);
+                            }}
+                          >
+                            編輯
+                          </Link>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+
                       <a
                         href="#/"
                         className={`keepButton col-2 d-flex justify-content-evenly align-items-center ${
@@ -387,10 +420,16 @@ const Reply = () => {
                             ) {
                               let resLike = await axios.post(
                                 `http://localhost:3001/api/discuss/like`,
-                                likeData
+                                likeData,
+                                {
+                                  withCredentials: true,
+                                }
                               );
                               let resDiscussLikeData = await axios.post(
-                                `http://localhost:3001/api/discuss/likeData`
+                                `http://localhost:3001/api/discuss/likeData`,
+                                {
+                                  withCredentials: true,
+                                }
                               );
                               setDiscussLikeData(resDiscussLikeData.data);
                               Swal.fire(
@@ -401,10 +440,16 @@ const Reply = () => {
                             } else {
                               let resLikeDelete = await axios.post(
                                 `http://localhost:3001/api/discuss/likeDelete`,
-                                likeData
+                                likeData,
+                                {
+                                  withCredentials: true,
+                                }
                               );
                               let resDiscussLikeDataDel = await axios.post(
-                                `http://localhost:3001/api/discuss/likeData`
+                                `http://localhost:3001/api/discuss/likeData`,
+                                {
+                                  withCredentials: true,
+                                }
                               );
                               setDiscussLikeData(resDiscussLikeDataDel.data);
                               Swal.fire(
