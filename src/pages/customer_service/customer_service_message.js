@@ -1,29 +1,34 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/customer_service_message.css";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
-import React, { useState } from "react";
 import CreateQuestion from "./create_question";
 import QuestionRecord from "./question_record";
 import CreateMessage from "./create_message";
-
+import { parseUrlParametesFromLocation } from "./create_message";
+import { useLocation } from "react-router-dom";
 const CustomerServicePage = () => {
   const { path, url } = useRouteMatch();
-
+  const location = useLocation();
+  const urlParameters = parseUrlParametesFromLocation(location.search);
+  const admin = urlParameters.admin === "true";
+  console.log("admin", admin);
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
       {/* title */}
-      <div class="djustTitleFram">
-        <h3 class="djustTitle">客服留言</h3>
+      <div class="adjustTitleFram">
+        <h3 class="adjustTitle">客服留言</h3>
         <img src="/img/customer_service/small_dice.png" class="csDice" alt="" />
       </div>
       {/* 外框背景 */}
       <div class="messageOuter">
         {/* 頁籤 */}
         <div class="pagination">
-          <Link to={`${url}/create`}>
-            <div>客服留言</div>
-          </Link>
+          {admin ? null : (
+            <Link to={`${url}/create`}>
+              <div>客服留言</div>
+            </Link>
+          )}
           <Link to={`${url}/record`}>
             <div>問答紀錄</div>
           </Link>

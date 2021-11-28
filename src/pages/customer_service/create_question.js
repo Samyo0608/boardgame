@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Typeahead } from "react-bootstrap-typeahead"; // ES2015
 import "../../css/customer_service_message.css";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { API_URL } from "../../configs/config";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+
 
 const categoryHierarchy = {
   會員相關: ["修改會員資料", "忘記帳號密碼", "紅利點數相關問題"],
@@ -38,6 +38,7 @@ const CreateQuestion = () => {
     setMainCategory(e);
     setSubCategoryOptions(categoryHierarchy[e]);
   };
+
 
   const createQuestion = async () => {
     if (mainCategory.length === 0) {

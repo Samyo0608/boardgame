@@ -38,6 +38,7 @@ const CreateMessage = (props) => {
   const location = useLocation();
 
   const urlParameters = parseUrlParametesFromLocation(location.search);
+  const admin = urlParameters.admin === "true";
 
   const fetchQuestion = async () => {
     const response = await axios.get(
@@ -51,7 +52,7 @@ const CreateMessage = (props) => {
       question_id: urlParameters.question_id,
       user_id: USER_ID,
       content: newMessageContent,
-      is_from_user: true,
+      is_from_user: !admin,
     };
     await axios.post(
       `${API_URL}/cutomerService/questions/${urlParameters.question_id}/messages`,
@@ -85,7 +86,7 @@ const CreateMessage = (props) => {
         return (
           <div class="historicalMessageFrame">
             <div class="shiftright">
-              <span>{message.is_from_user ? "您的留言":"客服回覆"}</span>
+              <span>{message.is_from_user ? "您的留言" : "客服回覆"}</span>
               <img
                 src="/img/customer_service/miniature_head.png"
                 class="miniatureHead"
@@ -131,3 +132,4 @@ const CreateMessage = (props) => {
   );
 };
 export default CreateMessage;
+export { parseUrlParametesFromLocation };
