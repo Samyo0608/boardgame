@@ -669,10 +669,6 @@ const tragArr=[]
           rankArr3={tragRank2.length>0 ? tragRank2[2].product_img : ""}
         />
         </div>
-        
-
-
-
         <Link to="/vote" target="_top" class="voteButton text-center" href="#/">
           前往投票
         </Link>
@@ -700,13 +696,13 @@ const tragArr=[]
           <p>舉辦日期 : 2021/09/01~09/07</p>
           <p>報名期限 : 2021/09/01~09/07</p>
           <p>尚餘名額 : 10位</p>
-          <a class="contestButton text-center" href="#/">
-            前往投票
-          </a>
+          <Link class="contestButton text-center" href="#/">
+            前往報名
+          </Link>
         </div>
-        <a class="contestMoreButton text-center" href="#/">
+        <Link to="contest" target="_top" class="contestMoreButton text-center" href="#/">
           看全部
-        </a>
+        </Link>
       </div>
 
       {/* 討論區標題 */}
