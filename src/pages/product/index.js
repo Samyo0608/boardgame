@@ -72,28 +72,6 @@ function Product(props) {
     sethotproductstrategy(res.data);
   }, []);
 
-  // 全系列price排名
-  const AllPriceRank = [];
-  const allpriceIn = () => {
-    for (let i = 0; i < hotproductall.length; i++) {
-      if (hotproductall[i]) AllPriceRank.push(hotproductall[i]);
-    }
-    return AllPriceRank;
-  };
-  allpriceIn();
-  // 將全系列陣列中的price排大小
-  AllPriceRank.sort(function (a, b) {
-    var nameA = a.product_price;
-    var nameB = b.product_price;
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return +1;
-    }
-    return 0;
-  });
-
   // 全系列排名
   const AllRank = [];
   const allIn = () => {
@@ -185,7 +163,7 @@ function Product(props) {
       <div className="titleLineBox">
         <img alt="" className="titleLine" src="img/index/line.png" />
       </div>
-      <div className="container1457">
+      <div className="container1456">
         <Row>
           {typeButton.map((v, i) => {
             return (
@@ -205,7 +183,9 @@ function Product(props) {
           })}
         </Row>
         {/* 全部遊戲 */}
-        <div className={`PPResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}>
+        <div
+          className={`voteResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}
+        >
           <Container>
             <Row>
               {AllRank?.slice(0, 1).map((product) => {
@@ -271,7 +251,7 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {AllRank?.slice(3).map((product) => {
+                {AllRank?.slice(3, 9).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
