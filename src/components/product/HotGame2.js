@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
@@ -15,6 +15,14 @@ const HotGame2 = (props) => {
     product_content,
     product_vote,
   } = props;
+
+  const [hot2] = useState({
+    product_id,
+    product_name,
+    product_type,
+    product_img,
+    product_price,
+  });
   return (
     <>
       {/* 第二名 */}
@@ -36,7 +44,13 @@ const HotGame2 = (props) => {
           <a href="#/">
             <img className="favorite2" src="/img/product/favorite.png" alt="" />
           </a>
-          <a href="#/">
+          <a
+            key={hot2}
+            onClick={() => {
+              localStorage.setItem(hot2.product_name, JSON.stringify(hot2));
+            }}
+            href="#/"
+          >
             <img className="buy2" src="/img/product/buy.png" alt="" />
           </a>
         </div>
