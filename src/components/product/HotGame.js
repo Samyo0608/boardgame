@@ -24,6 +24,14 @@ function HotGame(props) {
     product_price,
   });
 
+  // const insertCountPro = (hot1) => {
+  //   let state = [];
+  //   for (let i = 0; i < hot1.length; i++) {
+  //     state.push({ ...hot1[i], count: 1 });
+  //   }
+  //   return state;
+  // };
+
   return (
     <>
       {/* 第一名遊戲 */}

@@ -13,10 +13,15 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import IndexVote from "../../components/contest/IndexVote";
 import axios from "axios";
-import { API_URL } from '../../configs/config';
+import { API_URL } from "../../configs/config";
 // 輪播照片套件
 import Slider from "react-slick";
 import Calendar from "./FullCalendarIndex.js";
+import { Col, Row, Container } from "react-bootstrap";
+import Inproall from "../../components/product/Inproall";
+import Inprofamily from "../../components/product/Inprofamily";
+import Inprocard from "../../components/product/Inprocard";
+import Inprostrategy from "../../components/product/Inprostrategy";
 
 const gameType = [
   { id: 1, name: "全部" },
@@ -30,200 +35,30 @@ const rentType = [
 ];
 
 // 跑一個迴圈將物件放入陣列
-const barchartRun = (b)=>{
-  const bar =[]
-  for(let i = 0; b< b.length; i++) {
-      bar[i].push({...b[i]})
+const barchartRun = (b) => {
+  const bar = [];
+  for (let i = 0; b < b.length; i++) {
+    bar[i].push({ ...b[i] });
   }
-  return bar
-}
+  return bar;
+};
 
 const Index = () => {
-
   // 投票狀態鉤子
-  const[status,setStatus] = useState(1);
+  const [status, setStatus] = useState(1);
   // 投票資料帶入
-  const [barno,setBarno]=useState(barchartRun(barchartRun));
+  const [barno, setBarno] = useState(barchartRun(barchartRun));
   // 從資料庫中叫出產品JSON
-  useEffect(async () =>{
+  useEffect(async () => {
     let res = await axios.get(`${API_URL}/vote/list`);
     setBarno(res.data);
-  },[])
- 
+  }, []);
 
- // [全系列]
- const newrank=[...barno];
- newrank.sort(function(a, b) {
-     var nameA = a.product_vote; 
-     var nameB = b.product_vote; 
-     if (nameA < nameB) {
-       return 1;
-     }
-     if (nameA > nameB) {
-       return -1;
-     }
-     return 0;
-   }); 
-
-const newRank2=[];
-const newIn2=()=>{
-  for(let i=0; i<newrank.length;i++){
-      if (i<5)
-      newRank2.push(newrank[i])
-  }
-   return newRank2
-}
-newIn2();
-
-// 全標籤
-const textAll=[];
-const allData = ()=>{
-    for(let i=0; i<newRank2.length;i++){
-        if (newRank2[i].product_id > 0)
-        textAll.push(newRank2[i].product_name)
-    }
-    return textAll
-}
-allData();
-
-// 全票數
-const allArr=[]
-   const allVoted = ()=>{
-       for(let i=0; i<newRank2.length;i++){
-           allArr.push(newRank2[i].product_vote)
-       }
-       return allArr
-   }  
-   allVoted();
-
-
-
-  
- // [家庭]
- const famiRank=[]
- const famiIn=()=>{
-     for(let i=0; i<barno.length;i++){
-         if (barno[i].product_type==="家庭")
-         famiRank.push(barno[i])
-     }
-      return famiRank
-  }
-  
- famiIn();
- famiRank.sort(function(a, b) {
-     var nameA = a.product_vote; 
-     var nameB = b.product_vote; 
-     if (nameA < nameB) {
-       return 1;
-     }
-     if (nameA > nameB) {
-       return -1;
-     }
-     return 0;
-   });
-
-   // 取出卡牌前五名迴圈
-  const famiRank2=[]
-  const famiIn2=()=>{
-    for(let i=0; i<famiRank.length;i++){
-        if (i<5)
-        famiRank2.push(famiRank[i])
-    }
-     return famiRank2
- }
- famiIn2();
-//  console.log("家庭",famiRank2)
-// 家庭標籤
- const textFami=[];
- const famiData = ()=>{
-     for(let i=0; i<famiRank2.length;i++){
-         if (famiRank2[i].product_type==="家庭")
-         textFami.push(famiRank2[i].product_name)
-     }
-     return textFami
- }
- famiData();
-
-// 家庭票數
-const famiArr=[]
-    const famiVoted = ()=>{
-        for(let i=0; i<famiRank2.length;i++){
-            famiArr.push(famiRank2[i].product_vote)
-        }
-        return famiArr
-    }  
-    famiVoted();
-   
- // [卡牌]
- const cardRank=[]
- const cardIn=()=>{
-     for(let i=0; i<barno.length;i++){
-         if (barno[i].product_type==="卡牌")
-         cardRank.push(barno[i])
-     }
-      return cardRank
-  }
- cardIn();
-//  console.log("卡牌全",cardRank)
- cardRank.sort(function(a, b) {
-     var nameA = a.product_vote; 
-     var nameB = b.product_vote; 
-     if (nameA < nameB) {
-       return 1;
-     }
-     if (nameA > nameB) {
-       return -1;
-     }
-     return 0;
-   });
-
-// 取出卡牌前五名迴圈
-  const cardRank2=[]
-  const cardIn2=()=>{
-    for(let i=0; i<cardRank.length;i++){
-        if (i<5)
-        cardRank2.push(cardRank[i])
-    }
-     return cardRank2
- }
- cardIn2();
-
-// 卡牌標籤
- const textCard=[];
- const cardData = ()=>{
-     for(let i=0; i<cardRank2.length;i++){
-         if (cardRank2[i].product_type==="卡牌")
-         textCard.push(cardRank2[i].product_name)
-     }
-     return textCard
- }
- cardData();
-
-// 卡片票數
-const cardArr=[]
-    const cardVoted = ()=>{
-        for(let i=0; i<cardRank2.length;i++){
-            cardArr.push(cardRank2[i].product_vote)
-        }
-        return cardArr
-    }  
-    cardVoted();
-
- 
-// [策略]
-const tragRank=[]
-const tragIn=()=>{
-    for(let i=0; i<barno.length;i++){
-        if (barno[i].product_type==="策略")
-        tragRank.push(barno[i])
-    }
-     return tragRank
- }
-tragIn();
-// console.log(tragRank)
-tragRank.sort(function(a, b) {
-    var nameA = a.product_vote; 
-    var nameB = b.product_vote; 
+  // [全系列]
+  const newrank = [...barno];
+  newrank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
     if (nameA < nameB) {
       return 1;
     }
@@ -232,42 +67,198 @@ tragRank.sort(function(a, b) {
     }
     return 0;
   });
-// 取出策略前五名迴圈
-  const tragRank2=[]
-  const tragIn2=()=>{
-    for(let i=0; i<tragRank.length;i++){
-        if (i<5)
-        tragRank2.push(tragRank[i])
+
+  const newRank2 = [];
+  const newIn2 = () => {
+    for (let i = 0; i < newrank.length; i++) {
+      if (i < 5) newRank2.push(newrank[i]);
     }
-     return tragRank2
- }
- tragIn2();
-//  console.log(tragRank2)
-// 策略標籤
- const textTrag=[];
- const tragData = ()=>{
-     for(let i=0; i<tragRank2.length;i++){
-         if (tragRank2[i].product_type==="策略")
-         textTrag.push(tragRank2[i].product_name)
-     }
-     return textTrag
- }
- tragData();
-//  console.log("策略標籤",textTrag)
-// 策略票數
-const tragArr=[]
-    const tragVoted = ()=>{
-        for(let i=0; i<tragRank2.length;i++){
-            tragArr.push(tragRank2[i].product_vote)
-        }
-        return tragArr
-    }  
-    tragVoted();
-    // console.log("策略票數",tragArr)
+    return newRank2;
+  };
+  newIn2();
 
-// 排名結束
+  // 全標籤
+  const textAll = [];
+  const allData = () => {
+    for (let i = 0; i < newRank2.length; i++) {
+      if (newRank2[i].product_id > 0) textAll.push(newRank2[i].product_name);
+    }
+    return textAll;
+  };
+  allData();
 
-// 輪播套件
+  // 全票數
+  const allArr = [];
+  const allVoted = () => {
+    for (let i = 0; i < newRank2.length; i++) {
+      allArr.push(newRank2[i].product_vote);
+    }
+    return allArr;
+  };
+  allVoted();
+
+  // [家庭]
+  const famiRank = [];
+  const famiIn = () => {
+    for (let i = 0; i < barno.length; i++) {
+      if (barno[i].product_type === "家庭") famiRank.push(barno[i]);
+    }
+    return famiRank;
+  };
+
+  famiIn();
+  famiRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+
+  // 取出卡牌前五名迴圈
+  const famiRank2 = [];
+  const famiIn2 = () => {
+    for (let i = 0; i < famiRank.length; i++) {
+      if (i < 5) famiRank2.push(famiRank[i]);
+    }
+    return famiRank2;
+  };
+  famiIn2();
+  //  console.log("家庭",famiRank2)
+  // 家庭標籤
+  const textFami = [];
+  const famiData = () => {
+    for (let i = 0; i < famiRank2.length; i++) {
+      if (famiRank2[i].product_type === "家庭")
+        textFami.push(famiRank2[i].product_name);
+    }
+    return textFami;
+  };
+  famiData();
+
+  // 家庭票數
+  const famiArr = [];
+  const famiVoted = () => {
+    for (let i = 0; i < famiRank2.length; i++) {
+      famiArr.push(famiRank2[i].product_vote);
+    }
+    return famiArr;
+  };
+  famiVoted();
+
+  // [卡牌]
+  const cardRank = [];
+  const cardIn = () => {
+    for (let i = 0; i < barno.length; i++) {
+      if (barno[i].product_type === "卡牌") cardRank.push(barno[i]);
+    }
+    return cardRank;
+  };
+  cardIn();
+  //  console.log("卡牌全",cardRank)
+  cardRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+
+  // 取出卡牌前五名迴圈
+  const cardRank2 = [];
+  const cardIn2 = () => {
+    for (let i = 0; i < cardRank.length; i++) {
+      if (i < 5) cardRank2.push(cardRank[i]);
+    }
+    return cardRank2;
+  };
+  cardIn2();
+
+  // 卡牌標籤
+  const textCard = [];
+  const cardData = () => {
+    for (let i = 0; i < cardRank2.length; i++) {
+      if (cardRank2[i].product_type === "卡牌")
+        textCard.push(cardRank2[i].product_name);
+    }
+    return textCard;
+  };
+  cardData();
+
+  // 卡片票數
+  const cardArr = [];
+  const cardVoted = () => {
+    for (let i = 0; i < cardRank2.length; i++) {
+      cardArr.push(cardRank2[i].product_vote);
+    }
+    return cardArr;
+  };
+  cardVoted();
+
+  // [策略]
+  const tragRank = [];
+  const tragIn = () => {
+    for (let i = 0; i < barno.length; i++) {
+      if (barno[i].product_type === "策略") tragRank.push(barno[i]);
+    }
+    return tragRank;
+  };
+  tragIn();
+  // console.log(tragRank)
+  tragRank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+  // 取出策略前五名迴圈
+  const tragRank2 = [];
+  const tragIn2 = () => {
+    for (let i = 0; i < tragRank.length; i++) {
+      if (i < 5) tragRank2.push(tragRank[i]);
+    }
+    return tragRank2;
+  };
+  tragIn2();
+  //  console.log(tragRank2)
+  // 策略標籤
+  const textTrag = [];
+  const tragData = () => {
+    for (let i = 0; i < tragRank2.length; i++) {
+      if (tragRank2[i].product_type === "策略")
+        textTrag.push(tragRank2[i].product_name);
+    }
+    return textTrag;
+  };
+  tragData();
+  //  console.log("策略標籤",textTrag)
+  // 策略票數
+  const tragArr = [];
+  const tragVoted = () => {
+    for (let i = 0; i < tragRank2.length; i++) {
+      tragArr.push(tragRank2[i].product_vote);
+    }
+    return tragArr;
+  };
+  tragVoted();
+  // console.log("策略票數",tragArr)
+
+  // 排名結束
+
+  // 輪播套件
   var settings = {
     dots: true,
     infinite: true,
@@ -275,7 +266,7 @@ const tragArr=[]
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  
+
   return (
     <div className="container overflow-hidden">
       {/* banner */}
@@ -316,154 +307,44 @@ const tragArr=[]
 
       {/* 推薦桌遊內容 */}
       <div class="recommendBox">
-        <ul className="list-unstyled pt-3 d-flex justify-content-evenly">
+        <div className="voteBirdBox">
+          <img alt="" className="voteBirdPic" src="/img/index/bird1.png" />
+        </div>
+        <ul className="list-unstyled pt-4 d-flex justify-content-evenly">
           {gameType.map((v, i) => {
             return (
               <li key={v.id} className="">
-                <a
-                  href="#/"
-                  className="d-inline-block recommendType text-decoration-none text-center"
+                <button
+                  className={`d-inline-block recommendType text-decoration-none text-center ${
+                    status === v.id ? "recommendActive" : ""
+                  }`}
+                  onClick={(e) => {
+                    setStatus(v.id);
+                  }}
                 >
                   {v.name}
-                </a>
+                </button>
               </li>
             );
           })}
         </ul>
-        <div className="d-flex justify-content-evenly align-items-center">
-          <div>
-            <a href="#/" className="text-dark text-decoration-none text-center">
-              <div className="recommendProductBox position-relative">
-                <div className="rcmpB">
-                  <img className="rcmpI" alt="" src="img/index/game2.jpg" />
-                </div>
-                <p className="pt-3 mb-1">烏幫果</p>
-                <p>售價 : 100元</p>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} />
-                </a>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-                >
-                  <img alt="" src="img/index/trag-tag.png" className="tagImg" />
-                  <p className="tagText">策略</p>
-                </a>
-              </div>
-            </a>
+        {/* 全部系列 */}
 
-            <a href="#/" className="text-dark text-decoration-none text-center">
-              <div className="recommendProductBox position-relative">
-                <div className="rcmpB">
-                  <img className="rcmpI" alt="" src="img/index/game3.jpg" />
-                </div>
-                <p className="pt-3 mb-1">傳情畫意</p>
-                <p>售價 : 200元</p>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} />
-                </a>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-                >
-                  <img
-                    alt=""
-                    src="img/index/family-tag.png"
-                    className="tagImg"
-                  />
-                  <p className="tagText">家庭</p>
-                </a>
-              </div>
-            </a>
-          </div>
-          <a
-            href="#/"
-            className="text-dark text-decoration-none text-center fw-bold fs-5"
-          >
-            <div className="recommendProductBoxM position-relative">
-              <div className="rcmpMb">
-                <img className="rcmpMi" alt="" src="img/index/game1.jpg" />
-              </div>
-              <p className="pt-4 mb-3">四季物語</p>
-              <p>售價 : 300元</p>
-              <a
-                href="#/"
-                className="text-dark text-decoration-none recommendCartM d-inline-block"
-              >
-                <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
-                購買
-              </a>
-              <a
-                href="#/"
-                className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-              >
-                <img alt="" src="img/index/family-tag.png" className="tagImg" />
-                <p className="tagText fs-6 fw-normal">家庭</p>
-              </a>
-            </div>
-          </a>
-          <div>
-            <a href="#/" className="text-dark text-decoration-none text-center">
-              <div className="recommendProductBox position-relative">
-                <div className="rcmpB">
-                  <img className="rcmpI" alt="" src="img/index/game4.jpg" />
-                </div>
-                <p className="text-center pt-3 mb-1">夢想人生</p>
-                <p className="text-center">售價 : 200元</p>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} />
-                </a>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-                >
-                  <img alt="" src="img/index/card-tag.png" className="tagImg" />
-                  <p className="tagText">卡牌</p>
-                </a>
-              </div>
-            </a>
-
-            <a href="#/" className="text-dark text-decoration-none text-center">
-              <div className="recommendProductBox position-relative">
-                <div className="rcmpB">
-                  <img className="rcmpI" alt="" src="img/index/game5.jpg" />
-                </div>
-                <p className="text-center pt-3 mb-1">說書人</p>
-                <p className="text-center">售價 : 200元</p>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} />
-                </a>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-                >
-                  <img
-                    alt=""
-                    src="img/index/family-tag.png"
-                    className="tagImg"
-                  />
-                  <p className="tagText">家庭</p>
-                </a>
-              </div>
-            </a>
-          </div>
+        <div className={`${status === 1 ? "d-block" : "d-none"}`}>
+          <Inproall />
         </div>
-
-        <a class="moreButton text-center" href="#/">
-          看更多
-        </a>
+        <div className={`${status === 2 ? "d-block" : "d-none"}`}>
+          <Inprofamily />
+        </div>
+        <div className={`${status === 3 ? "d-block" : "d-none"}`}>
+          <Inprocard />
+        </div>
+        <div className={`${status === 4 ? "d-block" : "d-none"}`}>
+          <Inprostrategy />
+        </div>
+        <Link to="/product">
+          <div className="moreButton text-center">看更多</div>
+        </Link>
       </div>
 
       {/* 場地租借標題 */}
@@ -622,8 +503,12 @@ const tragArr=[]
             return (
               <li key={v.id} className="">
                 <button
-                  className={`d-inline-block recommendType text-decoration-none text-center ${ status === v.id ? "recommendActive" : ""}`}
-                  onClick={(e) => {setStatus(v.id)}}
+                  className={`d-inline-block recommendType text-decoration-none text-center ${
+                    status === v.id ? "recommendActive" : ""
+                  }`}
+                  onClick={(e) => {
+                    setStatus(v.id);
+                  }}
                 >
                   {v.name}
                 </button>
@@ -633,41 +518,41 @@ const tragArr=[]
         </ul>
 
         {/* 投票box */}
-        <div className={`${status===1?"d-block":"d-none"}`} >
-        <IndexVote 
-          vote={allArr}
-          name={textAll}
-          rankArr1={newRank2.length>0 ? newRank2[0].product_img : ""}
-          rankArr2={newRank2.length>0 ? newRank2[1].product_img : ""}
-          rankArr3={newRank2.length>0 ? newRank2[2].product_img : ""}
-           />
+        <div className={`${status === 1 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={allArr}
+            name={textAll}
+            rankArr1={newRank2.length > 0 ? newRank2[0].product_img : ""}
+            rankArr2={newRank2.length > 0 ? newRank2[1].product_img : ""}
+            rankArr3={newRank2.length > 0 ? newRank2[2].product_img : ""}
+          />
         </div>
-        <div className={`${status===2?"d-block":"d-none"}`} >
-        <IndexVote
-          vote={famiArr}
-          name={textFami}
-          rankArr1={famiRank2.length>0 ? famiRank2[0].product_img : ""}
-          rankArr2={famiRank2.length>0 ? famiRank2[1].product_img : ""}
-          rankArr3={famiRank2.length>0 ? famiRank2[2].product_img : ""}
-           />
+        <div className={`${status === 2 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={famiArr}
+            name={textFami}
+            rankArr1={famiRank2.length > 0 ? famiRank2[0].product_img : ""}
+            rankArr2={famiRank2.length > 0 ? famiRank2[1].product_img : ""}
+            rankArr3={famiRank2.length > 0 ? famiRank2[2].product_img : ""}
+          />
         </div>
-        <div className={`${status===3?"d-block":"d-none"}`} >
-        <IndexVote 
-           vote={cardArr}
-           name={textCard}
-           rankArr1={cardRank2.length>0 ? cardRank2[0].product_img : ""}
-           rankArr2={cardRank2.length>0 ? cardRank2[1].product_img : ""}
-           rankArr3={cardRank2.length>0 ? cardRank2[2].product_img : ""}
-        />
+        <div className={`${status === 3 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={cardArr}
+            name={textCard}
+            rankArr1={cardRank2.length > 0 ? cardRank2[0].product_img : ""}
+            rankArr2={cardRank2.length > 0 ? cardRank2[1].product_img : ""}
+            rankArr3={cardRank2.length > 0 ? cardRank2[2].product_img : ""}
+          />
         </div>
-        <div className={`${status===4?"d-block":"d-none"}`} >
-        <IndexVote 
-          vote={tragArr}
-          name={textTrag}
-          rankArr1={tragRank2.length>0 ? tragRank2[0].product_img : ""}
-          rankArr2={tragRank2.length>0 ? tragRank2[1].product_img : ""}
-          rankArr3={tragRank2.length>0 ? tragRank2[2].product_img : ""}
-        />
+        <div className={`${status === 4 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={tragArr}
+            name={textTrag}
+            rankArr1={tragRank2.length > 0 ? tragRank2[0].product_img : ""}
+            rankArr2={tragRank2.length > 0 ? tragRank2[1].product_img : ""}
+            rankArr3={tragRank2.length > 0 ? tragRank2[2].product_img : ""}
+          />
         </div>
         <Link to="/vote" target="_top" class="voteButton text-center" href="#/">
           前往投票
@@ -700,7 +585,12 @@ const tragArr=[]
             前往報名
           </Link>
         </div>
-        <Link to="contest" target="_top" class="contestMoreButton text-center" href="#/">
+        <Link
+          to="contest"
+          target="_top"
+          class="contestMoreButton text-center"
+          href="#/"
+        >
           看全部
         </Link>
       </div>
@@ -724,12 +614,13 @@ const tragArr=[]
             return (
               <li key={v.id} className="">
                 <button
-                  
                   className="d-inline-block recommendType text-decoration-none text-center"
-                  onClick={(e) => {setStatus(v.id)}}>
+                  onClick={(e) => {
+                    setStatus(v.id);
+                  }}
+                >
                   {v.name}
                 </button>
-                
               </li>
             );
           })}
