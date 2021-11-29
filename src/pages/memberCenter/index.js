@@ -28,25 +28,6 @@ const DetailRent = [
   },
 ];
 
-// 上方狀態欄
-const List = [
-  {
-    id: 1,
-    status: "預約中",
-    count: 1,
-  },
-  {
-    id: 2,
-    status: "訂購中",
-    count: 1,
-  },
-  {
-    id: 3,
-    status: "點數",
-    count: 50,
-  },
-];
-
 function MemberCenter(props) {
   const history = useParams().account;
   const [status, setStatus] = useState(2);
@@ -73,8 +54,6 @@ function MemberCenter(props) {
     }
     session();
   }, []);
-  // 接收產品資料
-  const [product, setProduct] = useState([]);
 
   // 過濾order-只要尚未完成的訂單
   let newOrder = order.filter((x) => x.order_check < 3);
@@ -91,16 +70,24 @@ function MemberCenter(props) {
     order();
   }, []);
 
-  // 撈取產品資料
-  useEffect((e) => {
-    async function product() {
-      let product = await axios.get(`${API_URL}/cart/`, {
-        withCredentials: true,
-      });
-      setProduct(product.data);
-    }
-    product();
-  }, []);
+  // 上方狀態欄
+  const List = [
+    {
+      id: 1,
+      status: "預約中",
+      count: 1,
+    },
+    {
+      id: 2,
+      status: "訂購中",
+      count: newOrder.length,
+    },
+    {
+      id: 3,
+      status: "點數",
+      count: sessionMember.point,
+    },
+  ];
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
@@ -134,7 +121,7 @@ function MemberCenter(props) {
           }`}
         >
           {newOrder.map((v, i) => {
-            return <MemProductItem detail={newOrder[i]} product={product} />;
+            return <MemProductItem detail={newOrder[i]} />;
           })}
         </div>
         <div
