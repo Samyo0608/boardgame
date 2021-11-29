@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
@@ -15,6 +15,14 @@ function HotGame(props) {
     product_content,
     product_vote,
   } = props;
+
+  const [hot1] = useState({
+    product_id,
+    product_name,
+    product_type,
+    product_img,
+    product_price,
+  });
 
   return (
     <>
@@ -38,8 +46,15 @@ function HotGame(props) {
           <a href="#/">
             <img className="favorite" src="/img/product/favorite.png" alt="" />
           </a>
-          <a href="#/">
-            <img className="buy" src="/img/product/buy.png" alt="" />
+          <a
+            key={hot1}
+            className="buy"
+            onClick={() => {
+              localStorage.setItem(hot1.product_name, JSON.stringify(hot1));
+            }}
+            href="#/"
+          >
+            <img src="/img/product/buy.png" alt="" />
           </a>
         </div>
       </Container>

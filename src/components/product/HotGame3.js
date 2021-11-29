@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Container } from "react-bootstrap";
 // import PropTypes from "prop-types";
 import "../../css/product.css";
@@ -15,6 +15,14 @@ const HotGame3 = (props) => {
     product_content,
     product_vote,
   } = props;
+  const [hot3] = useState({
+    product_id,
+    product_name,
+    product_type,
+    product_img,
+    product_price,
+  });
+
   return (
     <>
       {/* 第三名 */}
@@ -31,13 +39,25 @@ const HotGame3 = (props) => {
         </div>
         <span className="price3">${product_price}</span>
         <p className="p5">投票數: {product_vote} 票</p>
-        <div className="iconflex2">
-          <a href="#/">
-            <img className="favorite2" src="/img/product/favorite.png" alt="" />
-          </a>
-          <a href="#/">
-            <img className="buy2" src="/img/product/buy.png" alt="" />
-          </a>
+        <div>
+          <div className="iconflex2">
+            <a href="#/">
+              <img
+                className="favorite2"
+                src="/img/product/favorite.png"
+                alt=""
+              />
+            </a>
+            <a
+              key={hot3}
+              onClick={() => {
+                localStorage.setItem(hot3.product_name, JSON.stringify(hot3));
+              }}
+              href="#/"
+            >
+              <img className="buy2" src="/img/product/buy.png" alt="" />
+            </a>
+          </div>
         </div>
       </Container>
     </>
