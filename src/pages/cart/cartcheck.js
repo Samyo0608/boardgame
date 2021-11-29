@@ -35,6 +35,7 @@ function Cartcheck(props) {
     address: "",
     newPoint: 0,
     point: 0,
+    created_point: 0,
   });
 
   // 載入網頁就先抓資料
