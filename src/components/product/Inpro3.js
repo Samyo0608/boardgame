@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/index.css";
 import "../../css/product.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
+import { Container, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { LABELIMGS } from "../../configs/config";
@@ -25,8 +25,44 @@ const Inpro3 = (props) => {
     product_price,
     product_vote,
   });
+  const [show, setShow] = useState(false);
+  const [productName, setProductName] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = hotInex3;
+    localStorage.setItem(hotInex3.product_name, JSON.stringify(newCart));
+    // 設定資料
+    setProductName(value.name);
+    handleShow();
+  };
+  const [sessionMember] = useState({
+    id: "",
+  });
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 
-  return (
+  const display = (
     <>
       <Container>
         <div className="d-flex justify-content-evenly align-items-center inpr03">
@@ -37,7 +73,11 @@ const Inpro3 = (props) => {
             >
               <div className="recommendProductBoxM position-relative">
                 <div className="rcmpMb">
-                  <img className="rcmpMi" alt="" src={product_img} />
+                  <img
+                    className="rcmpMi"
+                    alt=""
+                    src={`/product_img/550x400/${product_img}`}
+                  />
                 </div>
                 <Link
                   to={`/aboutgame/${product_id}`}
@@ -53,10 +93,7 @@ const Inpro3 = (props) => {
                   key={hotInex3}
                   className="text-dark text-decoration-none recommendCartM d-inline-block"
                   onClick={() => {
-                    localStorage.setItem(
-                      hotInex3.product_name,
-                      JSON.stringify(hotInex3)
-                    );
+                    ToLocalStorage(hotInex3);
                   }}
                   href="#/"
                 >
@@ -82,6 +119,11 @@ const Inpro3 = (props) => {
       </Container>
     </>
   );
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 };
-
-export default Inpro3;
+export default withRouter(Inpro3);
