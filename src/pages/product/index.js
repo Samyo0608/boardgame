@@ -341,7 +341,7 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {hotproductfamily.slice(3).map((product) => {
+                {FamilyRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
@@ -423,7 +423,7 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {hotproductcard.slice(3).map((product) => {
+                {CardRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
@@ -507,7 +507,7 @@ function Product(props) {
 
             <div className="boxer123">
               <Row>
-                {hotproductstrategy.slice(3).map((product) => {
+                {StrategyRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
