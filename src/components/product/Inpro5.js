@@ -27,7 +27,6 @@ const Inpro5 = (props) => {
   });
 
   const [show, setShow] = useState(false);
-  const [productName, setProductName] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
@@ -35,7 +34,6 @@ const Inpro5 = (props) => {
     const newCart = hotInex5;
     localStorage.setItem(hotInex5.product_name, JSON.stringify(newCart));
     // 設定資料
-    setProductName(value.name);
     handleShow();
   };
 
@@ -44,7 +42,9 @@ const Inpro5 = (props) => {
       <Modal.Header closeButton>
         <Modal.Title>加入購物車訊息</Modal.Title>
       </Modal.Header>
-      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Body>
+        產品：<span className="redone">{product_name}</span> 已成功加入購物車
+      </Modal.Body>{" "}
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           繼續購物

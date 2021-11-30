@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
 import axios from "axios";
@@ -43,16 +43,47 @@ function Aboutgame(props) {
     return_detail: "",
     product_info: "",
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
+  const [show, setShow] = useState(false);
 
-  const insertCountPro = (product) => {
-    let state = [];
-    for (let i = 0; i < product.length; i++) {
-      state.push({ ...product[i], count: 1 });
-    }
-    return state;
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = aboutgame;
+    localStorage.setItem(aboutgame.product_name, JSON.stringify(newCart));
+    // 設定資料
+    handleShow();
   };
 
-  const show = (
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        產品：<span className="redone">{aboutgame.product_name}</span>{" "}
+        已成功加入購物車
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  const display = (
     <>
       <Container>
         <div>
@@ -71,7 +102,12 @@ function Aboutgame(props) {
             <article className={p6[aboutgame.product_type]}>
               {aboutgame.product_name}
             </article>
-            <img className="abb" src={aboutgame.product_img} alt="" />
+
+            <img
+              className="abb"
+              src={`/product_img/550x400/${aboutgame.product_img}`}
+              alt=""
+            />
             <div className="box456">
               <p className="ellipsis3">{aboutgame.product_content}</p>
             </div>
@@ -86,14 +122,7 @@ function Aboutgame(props) {
             <a
               key={aboutgame}
               onClick={() => {
-                localStorage.setItem(
-                  aboutgame.product_name,
-                  JSON.stringify(aboutgame)
-                );
-                // sessionStorage.setItem(
-                //   aboutgame.product_name,
-                //   JSON.stringify(aboutgame)
-                // );
+                ToLocalStorage(aboutgame);
               }}
               href="#/"
             >
@@ -194,7 +223,11 @@ function Aboutgame(props) {
       </Container>
     </>
   );
-
-  return <>{show}</>;
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 }
 export default withRouter(Aboutgame);

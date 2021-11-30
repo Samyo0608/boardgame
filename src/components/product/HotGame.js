@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { Container, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
 import { Link, withRouter } from "react-router-dom";
-import { typecolor, typecolor4, API_URL } from "../../configs/config";
+import { typecolor, typecolor4 } from "../../configs/config";
 
 function HotGame(props) {
   const {
@@ -27,7 +27,6 @@ function HotGame(props) {
   });
 
   const [show, setShow] = useState(false);
-  const [productName, setProductName] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
@@ -35,7 +34,6 @@ function HotGame(props) {
     const newCart = hot1;
     localStorage.setItem(hot1.product_name, JSON.stringify(newCart));
     // 設定資料
-    setProductName(value.name);
     handleShow();
   };
 
@@ -44,7 +42,9 @@ function HotGame(props) {
       <Modal.Header closeButton>
         <Modal.Title>加入購物車訊息</Modal.Title>
       </Modal.Header>
-      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Body>
+        產品：<span className="redone">{product_name}</span> 已成功加入購物車
+      </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           繼續購物
