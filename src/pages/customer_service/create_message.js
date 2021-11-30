@@ -61,15 +61,26 @@ const CreateMessage = (props) => {
     await fetchQuestion();
   };
 
+  function toTimestamp(string) {
+    return (new Date("2013/09/05 15:34:00").getTime()/1000);
+  }
+
+  // You could also provide specific locale, if needed. For example:
+  //function formatDate(string){
+  //    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  //    return new Date(string).toLocaleDateString('en-US',options);
+  //}
+  <div id="results"></div>;
+
   useEffect(() => {
     fetchQuestion();
   }, []);
   return (
     <>
       {/* 顧客提問紀錄 */}
+      <p className="questionNumber">問題單編號:P{toTimestamp(parseTime(question.created_at))}{question.question_id}</p>
       <div class="historicalMessageFrame">
-        <p>問題單編號:{question.question_id}</p>
-        <div class="shiftright">
+        <div class="shiftRight">
           <span>您的留言</span>
           <img
             src="/img/customer_service/miniature_head.png"
@@ -80,15 +91,15 @@ const CreateMessage = (props) => {
         <div class="historicalMessage">
           <span>{question.content}</span>
         </div>
-        <span class="shiftright">{parseTime(question.created_at)}</span>
+        <div class="shiftRight">{parseTime(question.created_at)}</div>
       </div>
       {question.messages.map((message) => {
         return (
           <div class="historicalMessageFrame">
-            <div class="shiftright">
+            <div class={message.is_from_user ?"shiftRight":"shiftLeft"}>
               <span>{message.is_from_user ? "您的留言" : "客服回覆"}</span>
               <img
-                src="/img/customer_service/miniature_head.png"
+                src={message.is_from_user ?"/img/customer_service/miniature_head.png":"/img/customer_service/manager.png"}
                 class="miniatureHead"
                 alt=""
               />
@@ -96,12 +107,11 @@ const CreateMessage = (props) => {
             <div class="historicalMessage">
               <span>{message.content}</span>
             </div>
-            <span class="shiftright">{parseTime(message.created_at)}</span>
+            <div class="shiftRight">{parseTime(message.created_at)}</div>
           </div>
         );
       })}
       {/* 顧客再次發出提問 */}
-
       <p class="subtitle">問題內容</p>
       <div>
         <textarea
@@ -114,9 +124,9 @@ const CreateMessage = (props) => {
         ></textarea>
       </div>
       <button class="backButton">
-      <a href="/customer_service_message/record">
-        <span padding="200px">回上頁</span>
-      </a>
+        <a href="/customer_service_message/record">
+          <span padding="200px">回上頁</span>
+        </a>
       </button>
       <button onClick={sendMessage} class="submitButton">
         <span>送出</span>

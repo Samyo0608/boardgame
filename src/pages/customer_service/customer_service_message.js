@@ -6,12 +6,15 @@ import QuestionRecord from "./question_record";
 import CreateMessage from "./create_message";
 import { parseUrlParametesFromLocation } from "./create_message";
 import { useLocation } from "react-router-dom";
-const CustomerServicePage = () => {
+const CustomerServicePage = (props) => {
   const { path, url } = useRouteMatch();
   const location = useLocation();
   const urlParameters = parseUrlParametesFromLocation(location.search);
   const admin = urlParameters.admin === "true";
-  console.log("admin", admin);
+  const isRecordPage = (currentPath)=>{
+    const lastPath = (currentPath.split("/")).at(-1)
+    return lastPath === "record"
+  }
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
@@ -26,11 +29,11 @@ const CustomerServicePage = () => {
         <div class="pagination">
           {admin ? null : (
             <Link to={`${url}/create`}>
-              <div>客服留言</div>
+              <div className={isRecordPage(props.location.pathname)?"unchoosenBlock":"choosenBlock"}>客服留言</div>
             </Link>
           )}
           <Link to={`${url}/record`}>
-            <div>問答紀錄</div>
+            <div className={isRecordPage(props.location.pathname)?"choosenBlock":"unchoosenBlock"}>問答紀錄</div>
           </Link>
         </div>
 

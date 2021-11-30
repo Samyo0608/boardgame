@@ -241,13 +241,11 @@ th {
   margin: auto;
   opacity: 0.9;
   font-weight: bold;
-  color: #4361ee;
+  color: #0c4499;
   transition: 0.3s;
   width:150px;
   border-radius:7%;
   text-align: center;
-}
-.expand_down {
   cursor: pointer;
 }
 .expand_down:hover {
@@ -310,7 +308,7 @@ th {
   width: 260px;
   background: none;
   text-transform: uppercase;
-  color: #4361ee;
+  color: #0c4499;
   position: relative;
   outline: none;
   box-sizing: border-box;

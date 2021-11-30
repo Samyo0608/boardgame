@@ -53,8 +53,8 @@ const QuestionRecord = () => {
 
       {/* 右側圖 */}
       <img
-        src="/img/customer_service/communication_cooperation.png"
-        class="communicationPicture"
+        src="/img/customer_service/QA.png"
+        class="helpPicture"
         alt=""
       />
     </>

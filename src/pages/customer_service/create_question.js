@@ -116,11 +116,9 @@ const CreateQuestion = () => {
       <p>
         <span class="remind">您的訊息，商店將會盡快為您進行回覆。</span>
       </p>
-      <img
-        src="/img/customer_service/shoping.png"
-        class="shopingPicture"
-        alt=""
-      />
+     <div class="mewFrame">
+      <img alt="" class="mewPicture" importance="auto" loading="auto" src="https://i.pinimg.com/originals/a1/9b/b7/a19bb75a025cd800d99ff280e554945b.gif"></img>
+    </div>
     </>
   );
 };
