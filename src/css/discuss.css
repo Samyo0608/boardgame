@@ -161,7 +161,7 @@
 }
 .indexDiscussContentQuill > div > div {
   padding: 0px;
-  max-height: 20px;
+  max-height: 18px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis !important;
@@ -215,6 +215,16 @@
 .r_discussButton:active {
   background-color: #1f8cc7;
   box-shadow: 2px 2px 15px rgba(141, 141, 141, 0.596) inset;
+}
+
+/* 分頁 */
+.discussPagination {
+  margin-top: 30px;
+}
+
+.discussPagination > ul {
+  text-align: center;
+  margin: auto;
 }
 
 /* 熱門推薦標題 */
