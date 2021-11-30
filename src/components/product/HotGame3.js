@@ -1,8 +1,7 @@
 import { React, useState } from "react";
-import { Container } from "react-bootstrap";
-// import PropTypes from "prop-types";
+import { Container, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { typecolor2, typecolor4 } from "../../configs/config";
 
 const HotGame3 = (props) => {
@@ -22,14 +21,56 @@ const HotGame3 = (props) => {
     product_img,
     product_price,
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
 
-  return (
+  const [show, setShow] = useState(false);
+  const [productName, setProductName] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = hot3;
+    localStorage.setItem(hot3.product_name, JSON.stringify(newCart));
+    // 設定資料
+    setProductName(value.name);
+    handleShow();
+  };
+
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  const display = (
     <>
       {/* 第三名 */}
       <Container className="posi2">
         <article className={typecolor4[product_type]}>{product_name}</article>
         <div>
-          <img className="abcde" src={product_img} alt="" />
+          <img
+            className="abcde"
+            src={`/product_img/550x400/${product_img}`}
+            alt=""
+          />
           <article className={typecolor2[product_type]}>{product_type}</article>
         </div>
         <div className="p3">
@@ -51,7 +92,7 @@ const HotGame3 = (props) => {
             <a
               key={hot3}
               onClick={() => {
-                localStorage.setItem(hot3.product_name, JSON.stringify(hot3));
+                ToLocalStorage(hot3);
               }}
               href="#/"
             >
@@ -62,6 +103,11 @@ const HotGame3 = (props) => {
       </Container>
     </>
   );
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 };
-
-export default HotGame3;
+export default withRouter(HotGame3);

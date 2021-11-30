@@ -183,9 +183,7 @@ function Product(props) {
           })}
         </Row>
         {/* 全部遊戲 */}
-        <div
-          className={`voteResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}
-        >
+        <div className={`PPResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}>
           <Container>
             <Row>
               {AllRank?.slice(0, 1).map((product) => {
@@ -248,23 +246,24 @@ function Product(props) {
             {/* <div>
               <A_button />
             </div> */}
-
-            <div>
-              <Row>
-                {AllRank?.slice(3, 9).map((product) => {
-                  return (
-                    <Col md={4} key={product.product_id}>
-                      <Game
-                        product_id={product.product_id}
-                        product_name={product.product_name}
-                        product_type={product.product_type}
-                        product_price={product.product_price}
-                        product_img={product.product_img}
-                      />
-                    </Col>
-                  );
-                })}
-              </Row>
+            <div className="boxer123">
+              <div>
+                <Row>
+                  {AllRank?.slice(3, 9).map((product) => {
+                    return (
+                      <Col md={4} key={product.product_id}>
+                        <Game
+                          product_id={product.product_id}
+                          product_name={product.product_name}
+                          product_type={product.product_type}
+                          product_price={product.product_price}
+                          product_img={product.product_img}
+                        />
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </div>
             </div>
             {/* 分頁 */}
             {/* <div>

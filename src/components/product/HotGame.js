@@ -1,9 +1,8 @@
 import { React, useState } from "react";
-import { Container } from "react-bootstrap";
-// import PropTypes from "prop-types";
+import { Container, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
-import { Link } from "react-router-dom";
-import { typecolor, typecolor4 } from "../../configs/config";
+import { Link, withRouter } from "react-router-dom";
+import { typecolor, typecolor4, API_URL } from "../../configs/config";
 
 function HotGame(props) {
   const {
@@ -15,7 +14,7 @@ function HotGame(props) {
     product_content,
     product_vote,
   } = props;
-
+  console.log(product_img);
   const [hot1] = useState({
     product_id,
     product_name,
@@ -23,23 +22,57 @@ function HotGame(props) {
     product_img,
     product_price,
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
 
-  // const insertCountPro = (hot1) => {
-  //   let state = [];
-  //   for (let i = 0; i < hot1.length; i++) {
-  //     state.push({ ...hot1[i], count: 1 });
-  //   }
-  //   return state;
-  // };
+  const [show, setShow] = useState(false);
+  const [productName, setProductName] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = hot1;
+    localStorage.setItem(hot1.product_name, JSON.stringify(newCart));
+    // 設定資料
+    setProductName(value.name);
+    handleShow();
+  };
 
-  return (
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  const display = (
     <>
       {/* 第一名遊戲 */}
       <Container className="shadowbox">
         <article className={typecolor4[product_type]}>{product_name}</article>
 
         <div>
-          <img className="abc" src={product_img} alt="" />
+          <img
+            className="abc"
+            src={`/product_img/550x400/${product_img}`}
+            alt=""
+          />
           <article className={typecolor[product_type]}>{product_type}</article>
         </div>
 
@@ -58,7 +91,7 @@ function HotGame(props) {
             key={hot1}
             className="buy"
             onClick={() => {
-              localStorage.setItem(hot1.product_name, JSON.stringify(hot1));
+              ToLocalStorage(hot1);
             }}
             href="#/"
           >
@@ -68,6 +101,11 @@ function HotGame(props) {
       </Container>
     </>
   );
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 }
-
-export default HotGame;
+export default withRouter(HotGame);

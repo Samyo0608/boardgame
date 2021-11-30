@@ -1,8 +1,8 @@
 import { React, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
 import { typecolor3 } from "../../configs/config";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 function Game(props) {
   const { product_name, product_type, product_img, product_price, product_id } =
@@ -14,12 +14,53 @@ function Game(props) {
     product_img,
     product_price,
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
+  const [show, setShow] = useState(false);
+  const [productName, setProductName] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = id;
+    localStorage.setItem(id.product_name, JSON.stringify(newCart));
+    // 設定資料
+    setProductName(value.name);
+    handleShow();
+  };
 
-  return (
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  const display = (
     <>
       <Row className="shadowbox4">
         <Col>
-          <img className="pic" src={product_img} alt="" />
+          <img
+            className="pic"
+            src={`/product_img/550x400/${product_img}`}
+            alt=""
+          />
           <div>
             <article className={typecolor3[product_type]}>
               {product_type}
@@ -35,7 +76,7 @@ function Game(props) {
               key={id}
               className="buy3"
               onClick={() => {
-                localStorage.setItem(id.product_name, JSON.stringify(id));
+                ToLocalStorage(id);
               }}
               href="#/"
             >
@@ -46,6 +87,12 @@ function Game(props) {
       </Row>
     </>
   );
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 }
 
-export default Game;
+export default withRouter(Game);
