@@ -10,7 +10,7 @@ import { faImage } from "@fortawesome/free-regular-svg-icons";
 Quill.register("modules/imageResize", ImageResize);
 modules.imageResize = {
   parchment: Quill.import("parchment"),
-  modules: ["Resize", "DisplaySize", "Toolbar"],
+  modules: ["Resize", "DisplaySize"],
 };
 
 // Image.className = "custom-class-to-image";

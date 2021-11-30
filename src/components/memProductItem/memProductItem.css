@@ -1,9 +1,9 @@
 /* product上層 start */
 .object-pro {
   background: #fff;
-  width: 95%;
+  width: 97%;
   border-radius: 2rem;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
   padding: 20px 0 20px 0;
 }
 
@@ -42,7 +42,8 @@
 }
 
 .pro-loading {
-  background: rgb(255, 253, 231);
+  background: rgba(255, 239, 206, 0.5);
+  border-radius: 20px;
   width: 85%;
 }
 /* product下層 end */
@@ -74,3 +75,15 @@
 }
 
 /* 箭頭轉向動畫 end*/
+
+/* 下半部產品訊息、照片*/
+.downImg {
+  width: 80px;
+}
+
+.pro-product {
+  background: rgb(238, 250, 249);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  width: 85%;
+  border-radius: 20px;
+}

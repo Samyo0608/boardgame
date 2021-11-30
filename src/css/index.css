@@ -124,6 +124,13 @@
   /* border: 1px solid rgb(211, 211, 211); */
   box-shadow: 0px 0px 2px rgb(175, 175, 175);
 }
+.recommendBox-booking {
+  background-color: #fffed9;
+  width: 100%;
+  height: 780px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 /* 推薦分類按鈕 */
 .recommendType {
@@ -132,6 +139,8 @@
   color: black;
   border-radius: 30px;
   transition: 0.3s;
+  background-color: #fffed9;
+  border: none;
 }
 .recommendType:hover {
   color: black;
@@ -141,6 +150,11 @@
 .recommendType:active {
   background-color: rgb(206, 206, 206);
   box-shadow: 1px 1px 2px rgb(88, 88, 88);
+}
+.recommendActive {
+  background-color: white;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px rgb(175, 175, 175);
 }
 
 /* 推薦內容 */
@@ -260,15 +274,58 @@
 /* 場地出租插圖 */
 .rentPicBox {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   left: 1%;
-  top: -120px;
+  top: 1530px;
   max-width: 270px;
 }
+.bookingBG {
+  width: 1150px;
+  height: 660px;
+  background: #fff;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  top: 5%;
+  box-shadow: 0px 0px 2px rgb(163, 163, 163);
+}
+/* 場地出租輪播照片 */
+.sliderIndex {
+  width: 500px;
+  height: 400px;
+  /* background-color: turquoise; */
+  position: relative;
+  left: 710px;
+  top: 20%;
+  transform: rotate(-90deg);
+}
 
+.sliderIndex img {
+  width: 100%;
+  height: 100%;
+  margin: 5px auto;
+  transform: rotate(90deg);
+}
+.slick-prev:before,
+.slick-next:before {
+  color: rgb(185, 185, 185) !important;
+}
 .rentPic {
   object-fit: contain;
   width: 100%;
+}
+/* 場地租借日曆 */
+.calendarIndex {
+  border: 1px solid #cfcece;
+  border-radius: 10px;
+  position: absolute;
+  width: 750px;
+  height: 620px;
+  top: 2%;
+  left: 1%;
+  padding: 10px;
+  font-size: 10px;
 }
 
 /* 場地出租 */
@@ -277,7 +334,7 @@
   margin-top: 50px;
   width: 95%;
   height: 500px;
-  border-radius: 15px;
+  border-radius: 20px;
   background-color: white;
   box-shadow: 0px 0px 2px rgb(163, 163, 163);
 }
@@ -320,16 +377,23 @@
   color: black;
   display: inline-block;
   border-radius: 20px;
-  width: 90px;
-  height: 25px;
-  padding-top: 2px;
+  width: 100px;
+  height: 35px;
+  padding: 5px;
   text-decoration: none;
   background-color: #81d8d0;
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
-  position: absolute;
-  right: 50%;
+  position: relative;
+  left: 40%;
   transform: translateX(50%);
-  bottom: 100px;
+  bottom: -8%;
+}
+.rentButton:hover {
+  color: black;
+  background-color: rgb(72, 223, 215);
+}
+.rentButton:active {
+  background-color: rgb(46, 194, 186);
 }
 
 /* 投票標題插圖 */
@@ -376,53 +440,13 @@
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
 }
 
-.rankBox {
-  position: relative;
-  height: 60px;
-  margin-top: 10px;
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-.rankBox1 {
-  width: 350px;
-  background-color: #f68677;
-}
-.rankBox2 {
-  width: 270px;
-  background-color: #ffe4f0;
-}
-.rankBox3 {
-  width: 250px;
-  background-color: #fab587;
-}
-.rankBox4 {
-  width: 200px;
-  background-color: #fff3b3;
-}
-.rankBox5 {
-  width: 180px;
-  background-color: #c5ecf1;
-}
-
-.rankVote {
-  position: absolute;
-  bottom: 3px;
-  right: 20px;
-}
-.rankTitle {
-  position: absolute;
-  bottom: 3px;
-  right: -80px;
-}
-
 .rankTitle:hover {
   text-decoration: underline solid rgb(102, 180, 253) 2px;
 }
 
 .voteLine {
   margin: auto;
-  margin-top: 20px;
+  margin-top: 8px;
   width: 85%;
   height: 2px;
   background-color: rgb(167, 167, 167);
@@ -441,8 +465,20 @@
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
   position: absolute;
   right: 50%;
+  top: 86%;
   transform: translateX(50%);
   bottom: 80px;
+}
+.voteButton:hover {
+  color: black;
+  background-color: rgb(72, 223, 215);
+}
+.voteButton:active {
+  background-color: rgb(46, 194, 186);
+}
+.chartBoxVote {
+  min-width: 350px;
+  min-height: 600px;
 }
 
 /* 當期比賽標題插圖 */
@@ -460,6 +496,13 @@
 .commendPic {
   object-fit: contain;
   width: 100%;
+}
+
+.slideVote {
+  background: white;
+}
+.slideVote:active {
+  background: white;
 }
 
 /* 比賽內容 */
@@ -523,13 +566,13 @@
   position: absolute;
   z-index: 0;
   left: 1%;
-  top: -170px;
+  top: -180px;
   max-width: 210px;
 }
 .discussBox {
   position: relative;
   width: 100%;
-  height: 750px;
+  padding-bottom: 40px;
   background-color: #fffed9;
   margin: auto;
   margin-top: 20px;
@@ -547,36 +590,53 @@
   background-color: white;
   box-shadow: 0px 0px 2px rgb(163, 163, 163);
 }
-
-.discussInBox {
+.indexDiscussOutBox {
   margin: auto;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 95%;
-  height: 100%;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 2px rgb(163 163 163);
+}
+
+.indexDiscussInBox {
+  position: relative;
+  margin-top: 0;
+  margin: auto;
+  width: 95%;
   background-color: white;
 }
 
-.discussBody tr th,
-.discussBody tr td {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.woodImg {
+  position: absolute;
+  left: -40px;
+  top: -35px;
+  width: 100px;
+}
+.newestDiscuss {
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  left: -26px;
+  width: 70px;
+  color: rgb(0, 0, 0);
 }
 
-.discussTag {
+.hotDiscuss {
+  text-align: center;
+  font-weight: bold;
   position: absolute;
   top: 4px;
-  left: 30px;
-  width: 70px;
-  height: 25px;
+  left: -30px;
+  width: 85px;
+  height: 30px;
+  line-height: 30px;
   color: white;
   border-radius: 5px;
-}
-
-.discussTag1 {
-  background-color: #f5b51b;
-}
-.discussTag2 {
-  background-color: #e73f3f;
+  background-color: #4759ff;
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 8px rgb(130, 180, 255) inset;
 }
 
 .discussButton {
@@ -588,11 +648,19 @@
   height: 25px;
   padding-top: 2px;
   text-decoration: none;
-  background-color: #e4e4e4;
+  background-color: #81d8d0;
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
   position: absolute;
-  right: 80px;
-  bottom: 70px;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 15px;
+}
+.discussButton:hover {
+  color: black;
+  background-color: rgb(72, 223, 215);
+}
+.discussButton:active {
+  background-color: rgb(46, 194, 186);
 }
 
 /* 關於我們 */
@@ -663,32 +731,85 @@
   margin-right: 8px;
 }
 .aboutTag {
+  display: inline-block;
   color: black;
+  font-weight: bold;
+  background: none;
+  border: none;
   text-decoration: none;
 }
+.aboutTag:hover {
+  color: rgb(24, 86, 255);
+}
 .aboutContent {
+  position: relative;
   margin: auto;
   width: 100%;
 }
 .aboutLeft {
   padding-left: 30px;
-  position: relative;
+  position: absolute;
   color: white;
   height: 430px;
   line-height: 34px;
   background-color: rgba(58, 58, 58, 0.466);
+  transition: 0.4s;
+}
+.aboutLeftContent {
+  position: absolute;
+  opacity: 1;
+  top: 0;
+}
+.disAboutLeft {
+  display: none;
 }
 .aboutRight {
+  position: absolute;
+  right: 0;
   height: 430px;
   background-color: rgba(124, 124, 124, 0.486);
 }
-
+.aboutRightContent1 {
+  transition: 1s;
+}
+.aboutRightContent {
+  position: absolute;
+  top: 0;
+  padding-left: 14px;
+  transition: 1s;
+}
+.aboutCard {
+  margin-right: 40px;
+  margin-left: 14px;
+  width: 100px;
+  height: 63px;
+}
+.aboutCard3 {
+  margin-right: 0px;
+}
+.aboutTeleport {
+  width: 180px;
+  margin-left: 28px;
+  margin-bottom: 20px;
+}
 .aboutImgBox {
   position: absolute;
   bottom: -20px;
   right: 10px;
   width: 350px;
+  transition: 1s;
 }
+.aboutImgBox2 {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  width: 300px;
+  transition: 1s;
+}
+.noAboutImg {
+  opacity: 0;
+}
+
 .aboutImg {
   object-fit: contain;
   width: 100%;

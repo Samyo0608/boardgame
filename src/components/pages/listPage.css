@@ -1,0 +1,16 @@
+.paginationButton {
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.paginationButton:hover {
+  background: rgb(100, 133, 224);
+  color: #fff;
+}
+
+.paginationButton.pagiActive {
+  background: rgb(100, 133, 224);
+  color: #fff;
+}

@@ -273,12 +273,12 @@ function Contest_info(props) {
 
         {/* 底部按鈕 */}
         <div className="buttonZone">
-          <Link to={`${pageNoFront === "0" ? "6" : pageNoFront}`} className="arrowStyle">
+          <Link to={`${pageNoFront === "0" ? "6" : pageNoFront}`} className="arrowStyle" target="_top">
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </Link>
-          <Link to="/" className="buttonStyleCon" value="/">回首頁</Link>
+          <Link to="/" className="buttonStyleCon" value="/" target="_top">回首頁</Link>
           <Link to={`${pageNoBack === "7" ? "1" : pageNoBack}`} className="arrowStyle">
-            <FontAwesomeIcon icon={faAngleDoubleRight} />
+            <FontAwesomeIcon icon={faAngleDoubleRight} target="_top"/>
           </Link>
         </div>
       </div>     

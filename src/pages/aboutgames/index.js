@@ -3,12 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import { p6 } from "../../configs/config";
-
-import { API_URL } from "../../configs/config";
+import { withRouter, Link } from "react-router-dom";
+import { API_URL, p6 } from "../../configs/config";
 const attentionButton = [
   {
     id: 1,
@@ -47,6 +44,14 @@ function Aboutgame(props) {
     product_info: "",
   });
 
+  const insertCountPro = (product) => {
+    let state = [];
+    for (let i = 0; i < product.length; i++) {
+      state.push({ ...product[i], count: 1 });
+    }
+    return state;
+  };
+
   const show = (
     <>
       <Container>
@@ -78,11 +83,24 @@ function Aboutgame(props) {
                 alt=""
               />
             </a>
-            <a href="#/">
+            <a
+              key={aboutgame}
+              onClick={() => {
+                localStorage.setItem(
+                  aboutgame.product_name,
+                  JSON.stringify(aboutgame)
+                );
+                // sessionStorage.setItem(
+                //   aboutgame.product_name,
+                //   JSON.stringify(aboutgame)
+                // );
+              }}
+              href="#/"
+            >
               <img className="buy4" src="/img/product/buy.png" alt="" />
             </a>
           </div>
-          <Link to="/product">
+          <Link to="/product" target="_top">
             <img className=" backto" src="/img/product/back.png" alt="" />
           </Link>
         </div>
@@ -99,7 +117,7 @@ function Aboutgame(props) {
         ></div>
 
         <div>
-          <Link to="/discuss">
+          <Link to="/discuss" target="_top">
             <img className="forum" src="/img/product/forum.png" alt="" />
           </Link>
           <div className="box457">

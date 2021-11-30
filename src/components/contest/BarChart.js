@@ -1,8 +1,5 @@
-import {React,useState,useEffect} from 'react';
-import PropTypes from 'prop-types';
+import {React} from 'react';
 import {Bar} from 'react-chartjs-2';
-import { API_URL } from '../../configs/config';
-import axios from "axios";
 
 // const allVote=[
 //     {
@@ -112,7 +109,7 @@ const BarChart = (props) => {
     // const [allvote,setAllvote]=useState(runLabel);
     // const [datainfos,setDatainfos]=useState(runData);
     
-    return <div>
+    return <div className="col-md" style={{height:400}}>
     
         <Bar 
             data={{

@@ -8,6 +8,7 @@ import {
   faTrashAlt,
 } from "@fortawesome//free-solid-svg-icons";
 import "../../css/cart.css";
+import Swal from "sweetalert2";
 
 function Cart1(props) {
   const { name, price, imgURL, id, type } = props;
@@ -36,6 +37,18 @@ function Cart1(props) {
     [count]
   );
 
+  //sweetAlert2 Toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    onOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const handleMinus = () => {
     setCount(count - 1);
     props.setCheck(!props.check);
@@ -51,6 +64,10 @@ function Cart1(props) {
   const handleDelete = () => {
     props.setCheck(!props.check);
     localStorage.removeItem(name);
+    Toast.fire({
+      icon: "success",
+      title: "已將商品移除購物車",
+    });
   };
 
   return (
