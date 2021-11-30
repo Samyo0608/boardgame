@@ -132,17 +132,16 @@
 
 .r_discussBody tr th,
 .r_discussBody tr td {
-  padding-top: 20px;
+  padding-top: 25px;
   padding-bottom: 20px;
 }
 
 .r_discussBody tr th {
   /* width: 450px; */
 }
-.discussNameBox {
-}
+
 .discussTitleTd {
-  padding: 0 0 0 20px !important;
+  padding: 5px 0 0 20px !important;
   line-height: 38px;
   width: 260px;
 }
@@ -154,6 +153,7 @@
   width: 80px;
 }
 .timeTd {
+  padding: 14px 0 0 0 !important;
   width: 350px;
 }
 
