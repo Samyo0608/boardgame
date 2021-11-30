@@ -100,7 +100,7 @@ function Aboutgame(props) {
               <img className="buy4" src="/img/product/buy.png" alt="" />
             </a>
           </div>
-          <Link to="/product">
+          <Link to="/product" target="_top">
             <img className=" backto" src="/img/product/back.png" alt="" />
           </Link>
         </div>
@@ -117,7 +117,7 @@ function Aboutgame(props) {
         ></div>
 
         <div>
-          <Link to="/discuss">
+          <Link to="/discuss" target="_top">
             <img className="forum" src="/img/product/forum.png" alt="" />
           </Link>
           <div className="box457">

@@ -25,7 +25,7 @@ function Game(props) {
               {product_type}
             </article>
           </div>
-          <Link to={`/aboutgame/${product_id}`} className="a1">
+          <Link to={`/aboutgame/${product_id}`} className="a1" target="_top">
             <div className="gamename">{product_name}</div>
           </Link>
           <br></br>

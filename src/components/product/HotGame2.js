@@ -34,7 +34,7 @@ const HotGame2 = (props) => {
         </div>
 
         <div className="p3">
-          <Link to={`/aboutgame/${product_id}`} className="a1">
+          <Link to={`/aboutgame/${product_id}`} className="a1" target="_top">
             <div className="ellipsis2">{product_content}</div>
           </Link>
         </div>

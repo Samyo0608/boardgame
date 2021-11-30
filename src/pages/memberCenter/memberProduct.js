@@ -103,40 +103,6 @@ function MemberProduct(props) {
               )}
             </form>
           </div>
-
-          {/* map資料 */}
-          {inputValue ? (
-            <div className="d-flex flex-column justify-content-start align-items-center">
-              {order
-                .filter((v) => {
-                  if (inputValue === "" || undefined) {
-                    return v;
-                  } else if (
-                    v.product_name.includes(inputValue) ||
-                    v.product_price.includes(inputValue) ||
-                    v.created_time.includes(inputValue)
-                  ) {
-                    return v;
-                  }
-                })
-                .map((v, i) => {
-                  return <MemProductItem key={i} detail={order[i]} />;
-                })}
-            </div>
-          ) : (
-            <div className="d-flex flex-column justify-content-start align-items-center">
-              {selectedPage.map((v, i) => {
-                return <MemProductItem key={i} detail={selectedPage[i]} />;
-              })}
-              <List
-                totalPages={totalPages}
-                handleClick={handleClick}
-                page={page}
-                setPage={setPage}
-                productPerPage={productPerPage}
-              />
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -342,7 +342,7 @@ const Index = () => {
         <div className={`${status === 4 ? "d-block" : "d-none"}`}>
           <Inprostrategy />
         </div>
-        <Link to="/product">
+        <Link to="/product" target="_top">
           <div className="moreButton text-center">看更多</div>
         </Link>
       </div>

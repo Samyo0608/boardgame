@@ -9,14 +9,21 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { LABELIMGS } from "../../configs/config";
 
 const Inpro5 = (props) => {
-  const { product_id, product_name, product_type, product_img, product_price } =
-    props;
+  const {
+    product_id,
+    product_name,
+    product_type,
+    product_img,
+    product_price,
+    product_vote,
+  } = props;
   const [hotInex5] = useState({
     product_id,
     product_name,
     product_type,
     product_img,
     product_price,
+    product_vote,
   });
 
   return (
@@ -29,10 +36,16 @@ const Inpro5 = (props) => {
                 <div className="rcmpB">
                   <img className="rcmpI" alt="" src={product_img} />
                 </div>
-                <Link to={`/aboutgame/${product_id}`} className="a1">
-                  <div className="pt-3">{product_name}</div>
-                </Link>{" "}
-                <p className="text-center">售價 : {product_price}元</p>
+                <Link
+                  to={`/aboutgame/${product_id}`}
+                  className="a1"
+                  target="_top"
+                >
+                  <div className="pt-2">{product_name}</div>
+                </Link>
+                <p className="pppice">售價 : {product_price}元</p>
+                <p className="pvote">投票數: {product_vote} 票</p>
+
                 <a
                   key={hotInex5}
                   className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
