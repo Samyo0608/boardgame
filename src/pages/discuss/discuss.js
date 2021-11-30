@@ -248,15 +248,15 @@ const Discuss = (props) => {
                               theme={"bubble"}
                             />
                           </td>
-                          <td>{v.i_user_id}</td>
+                          <td>{v.i_user_name}</td>
                           <td className="rcountTd">{v.cot}</td>
                           <td className="timeTd">
                             {moment(v.created_at.toString()).format(
                               "YYYY-MM-DD HH:mm:ss"
                             )}
-                            <span className="text-secondary ms-3">
-                              by {v.user_id}
-                            </span>
+                            <p className="text-secondary ms-3">
+                              by {v.user_name}
+                            </p>
                           </td>
                         </tr>
                       );
