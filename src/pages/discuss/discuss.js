@@ -1,3 +1,5 @@
+// import "antd/dist/antd.css";
+import "../../css/discussPagination.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +12,7 @@ import { API_URL, URL } from "../../configs/config";
 import Swal from "sweetalert2";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
+import { Pagination } from "antd";
 import "../../css/discuss.css";
 
 const gameType = [
@@ -17,8 +20,11 @@ const gameType = [
   { id: 3, name: "策略", type: "trag" },
   { id: 4, name: "卡牌", type: "card" },
 ];
-
 const Discuss = (props) => {
+  // 分頁
+  // 默認一次顯示5筆
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(5);
   const [discuss, setDiscuss] = useState([]);
   const [discussContent, setDiscussContent] = useState([
     {
@@ -157,6 +163,7 @@ const Discuss = (props) => {
           </button>
         </div>
       </form>
+
       {/* 討論區內容 */}
       <div className="r_discussBox">
         <div className="r_discussPicBox">
@@ -215,43 +222,45 @@ const Discuss = (props) => {
                   </tr>
                 </thead>
                 <tbody className="r_discussBody">
-                  {displayDiscuss.map((v, i) => {
-                    return (
-                      <tr key={v.id}>
-                        <th scope="row" className="">
-                          <div className={TYPE_COLOR[v.type]}>{v.type}</div>
-                        </th>
-                        <td className="text-start discussTitleTd">
-                          <Link
-                            className="discussTitleLink"
-                            to={`discuss/reply/${v.id}`}
-                          >
-                            {v.title}
-                          </Link>
-                          <ReactQuill
-                            className="indexDiscussContentQuill"
-                            value={
-                              discussContent.filter((dc) => {
-                                return dc.discuss_id === v.id;
-                              })[0]?.content || ""
-                            }
-                            readOnly={true}
-                            theme={"bubble"}
-                          />
-                        </td>
-                        <td>{v.i_user_id}</td>
-                        <td className="rcountTd">{v.cot}</td>
-                        <td className="timeTd">
-                          {moment(v.created_at.toString()).format(
-                            "YYYY-MM-DD HH:mm:ss"
-                          )}
-                          <span className="text-secondary ms-3">
-                            by {v.user_id}
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {displayDiscuss &&
+                    displayDiscuss.length > 0 &&
+                    displayDiscuss.slice(minValue, maxValue).map((v, i) => {
+                      return (
+                        <tr key={v.id}>
+                          <th scope="row" className="">
+                            <div className={TYPE_COLOR[v.type]}>{v.type}</div>
+                          </th>
+                          <td className="text-start discussTitleTd">
+                            <Link
+                              className="discussTitleLink"
+                              to={`discuss/reply/${v.id}`}
+                            >
+                              {v.title}
+                            </Link>
+                            <ReactQuill
+                              className="indexDiscussContentQuill"
+                              value={
+                                discussContent.filter((dc) => {
+                                  return dc.discuss_id === v.id;
+                                })[0]?.content || ""
+                              }
+                              readOnly={true}
+                              theme={"bubble"}
+                            />
+                          </td>
+                          <td>{v.i_user_id}</td>
+                          <td className="rcountTd">{v.cot}</td>
+                          <td className="timeTd">
+                            {moment(v.created_at.toString()).format(
+                              "YYYY-MM-DD HH:mm:ss"
+                            )}
+                            <span className="text-secondary ms-3">
+                              by {v.user_id}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>
@@ -278,6 +287,26 @@ const Discuss = (props) => {
           </div>
           <div></div>
         </div>
+      </div>
+
+      {/* 分頁 */}
+      <div className="discussPagination">
+        <Pagination
+          defaultCurrent={1} // 默认在第一个页面
+          defaultPageSize={5} // 默认一个页面显示5个数据
+          pageSizeOptions={["5", "10", "15", "20"]}
+          // 点击页面触发更新，点击时，默认传入页面值，例如第一页，值为1
+          onChange={(page, pageSize) => {
+            if (page <= 1) {
+              setMinValue(0);
+              setMaxValue(pageSize);
+            } else {
+              setMinValue((page - 1) * pageSize);
+              setMaxValue((page - 1) * pageSize + pageSize);
+            }
+          }}
+          total={displayDiscuss.length}
+        />
       </div>
 
       {/* 熱門推薦標題 */}
