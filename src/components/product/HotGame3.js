@@ -33,7 +33,7 @@ const HotGame3 = (props) => {
           <article className={typecolor2[product_type]}>{product_type}</article>
         </div>
         <div className="p3">
-          <Link to={`/aboutgame/${product_id}`} className="a1">
+          <Link to={`/aboutgame/${product_id}`} className="a1" target="_top">
             <div className="ellipsis2">{product_content}</div>
           </Link>
         </div>

@@ -44,7 +44,7 @@ function HotGame(props) {
         </div>
 
         <div className="p2">
-          <Link to={`/aboutgame/${product_id}`} className="a1">
+          <Link to={`/aboutgame/${product_id}`} className="a1" target="_top">
             <div className="ellipsis">{product_content}</div>
           </Link>
         </div>

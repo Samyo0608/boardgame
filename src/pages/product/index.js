@@ -249,7 +249,7 @@ function Product(props) {
               <A_button />
             </div> */}
 
-            <div className="boxer123">
+            <div>
               <Row>
                 {AllRank?.slice(3, 9).map((product) => {
                   return (

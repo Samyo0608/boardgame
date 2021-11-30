@@ -56,6 +56,7 @@ const Inprofamily = (props) => {
                   product_type={product.product_type}
                   product_price={product.product_price}
                   product_img={product.product_img}
+                  product_vote={product.product_vote}
                 />
               </Row>
             );
@@ -71,6 +72,7 @@ const Inprofamily = (props) => {
                   product_type={product.product_type}
                   product_price={product.product_price}
                   product_img={product.product_img}
+                  product_vote={product.product_vote}
                 />
               </Row>
             );
@@ -86,6 +88,7 @@ const Inprofamily = (props) => {
                   product_type={product.product_type}
                   product_price={product.product_price}
                   product_img={product.product_img}
+                  product_vote={product.product_vote}
                 />
               </Row>
             );
@@ -101,6 +104,7 @@ const Inprofamily = (props) => {
                   product_type={product.product_type}
                   product_price={product.product_price}
                   product_img={product.product_img}
+                  product_vote={product.product_vote}
                 />
               </Row>
             );
@@ -116,6 +120,7 @@ const Inprofamily = (props) => {
                   product_type={product.product_type}
                   product_price={product.product_price}
                   product_img={product.product_img}
+                  product_vote={product.product_vote}
                 />
               </Row>
             );
