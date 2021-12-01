@@ -566,7 +566,28 @@
   background: #fffed9;
   color: black;
 }
-
+.conSize {
+  min-width: 100vh;
+  height: 250px;
+  /* background-color: #fffed9; */
+}
+.conButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 50%;
+  top: 67.5%;
+  transform: translateX(50%);
+  /* bottom: 80px; */
+}
 /* 討論區標題 */
 .discussTitle {
   margin-top: 200px;
