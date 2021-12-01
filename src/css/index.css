@@ -497,7 +497,6 @@
   object-fit: contain;
   width: 100%;
 }
-
 .slideVote {
   background: white;
 }
@@ -554,6 +553,18 @@
   position: absolute;
   right: 20px;
   bottom: -50px;
+}
+.contestFit {
+  width: 100%;
+  max-height: 200px;
+}
+.slideContest {
+  background: #fffed9;
+  color: black;
+}
+.slideContest:active {
+  background: #fffed9;
+  color: black;
 }
 
 /* 討論區標題 */

@@ -9,6 +9,7 @@ import { API_URL } from "../../configs/config";
 // 輪播照片套件
 import Slider from "react-slick";
 import Calendar from "./FullCalendarIndex.js";
+import IndexContest from "../../components/contest/IndexContest";
 import Inproall from "../../components/product/Inproall";
 import Inprofamily from "../../components/product/Inprofamily";
 import Inprocard from "../../components/product/Inprocard";
@@ -31,40 +32,75 @@ const barchartRun = (b) => {
   return bar;
 };
 
+// 使用迴圈將json檔寫入contestRun的常數中做為一個陣列
+const contestRun = (c)=>{
+  const state= []  // 做一個空陣列
+    for (let i = 0; i < c.length; i++) {
+      state.push({...c[i]})
+    }
+    return state
+  }
+
+
+
 const Index = () => {
   const [about, setAbout] = useState("about");
   // 投票狀態鉤子
   const [status, setStatus] = useState(1);
   // 投票資料帶入
-  const [barno, setBarno] = useState(barchartRun(barchartRun));
+  const [barno,setBarno]=useState(barchartRun(barchartRun));
+  const[contest,setContest]=useState(contestRun(contestRun))
+
   // 從資料庫中叫出產品JSON
   useEffect(async () => {
     let res = await axios.get(`${API_URL}/vote/list`);
     setBarno(res.data);
-  }, []);
+  },[])
+ 
+　// 從資料庫叫出比賽JSON
+useEffect( () =>{
+  async function a(){
+  let res = await axios.get(`${API_URL}/contest/card`);
+  setContest(res.data)}
+  a()
+},[])
 
-  // [全系列]
-  const newrank = [...barno];
-  newrank.sort(function (a, b) {
-    var nameA = a.product_vote;
-    var nameB = b.product_vote;
-    if (nameA < nameB) {
-      return 1;
-    }
-    if (nameA > nameB) {
-      return -1;
-    }
-    return 0;
-  });
+// 取三個比賽
+const newCon1=[];
+const newcon1=()=>{
+  for(let i=0; i<contest.length;i++){
+      if (i<3)
+      newCon1.push(contest[i])
+  }
+   return newCon1
+}
+newcon1();
+console.log(newCon1)
 
-  const newRank2 = [];
-  const newIn2 = () => {
-    for (let i = 0; i < newrank.length; i++) {
-      if (i < 5) newRank2.push(newrank[i]);
-    }
-    return newRank2;
-  };
-  newIn2();
+
+ // [全系列]
+ const newrank=[...barno];
+ newrank.sort(function(a, b) {
+     var nameA = a.product_vote; 
+     var nameB = b.product_vote; 
+     if (nameA < nameB) {
+       return 1;
+     }
+     if (nameA > nameB) {
+       return -1;
+     }
+     return 0;
+   }); 
+
+const newRank2=[];
+const newIn2=()=>{
+  for(let i=0; i<newrank.length;i++){
+      if (i<5)
+      newRank2.push(newrank[i])
+  }
+   return newRank2
+}
+newIn2();
 
   // 全標籤
   const textAll = [];
@@ -400,41 +436,42 @@ const Index = () => {
         </ul>
 
         {/* 投票box */}
-        <div className={`${status === 1 ? "d-block" : "d-none"}`}>
-          <IndexVote
-            vote={allArr}
-            name={textAll}
-            rankArr1={newRank2.length > 0 ? newRank2[0].product_img : ""}
-            rankArr2={newRank2.length > 0 ? newRank2[1].product_img : ""}
-            rankArr3={newRank2.length > 0 ? newRank2[2].product_img : ""}
-          />
+        <div className={`${status===1?"d-block":"d-none"}`} >
+        <IndexVote 
+          vote={allArr}
+          name={textAll}
+          rankArr1={`../product_img/550x400/${newRank2.length>0 ? newRank2[0].product_img : ""}`}
+          rankArr2={`../product_img/550x400/${newRank2.length>0 ? newRank2[1].product_img : ""}`}
+          rankArr3={`../product_img/550x400/${newRank2.length>0 ? newRank2[2].product_img : ""}`}
+           />
         </div>
-        <div className={`${status === 2 ? "d-block" : "d-none"}`}>
-          <IndexVote
-            vote={famiArr}
-            name={textFami}
-            rankArr1={famiRank2.length > 0 ? famiRank2[0].product_img : ""}
-            rankArr2={famiRank2.length > 0 ? famiRank2[1].product_img : ""}
-            rankArr3={famiRank2.length > 0 ? famiRank2[2].product_img : ""}
-          />
+        <div className={`${status===2?"d-block":"d-none"}`} >
+        <IndexVote
+          vote={famiArr}
+          name={textFami}
+          rankArr1={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[0].product_img : ""}`}
+          rankArr2={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[1].product_img : ""}`}
+          rankArr3={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[2].product_img : ""}`}
+           />
         </div>
-        <div className={`${status === 3 ? "d-block" : "d-none"}`}>
-          <IndexVote
-            vote={cardArr}
-            name={textCard}
-            rankArr1={cardRank2.length > 0 ? cardRank2[0].product_img : ""}
-            rankArr2={cardRank2.length > 0 ? cardRank2[1].product_img : ""}
-            rankArr3={cardRank2.length > 0 ? cardRank2[2].product_img : ""}
-          />
+        <div className={`${status===3?"d-block":"d-none"}`} >
+        <IndexVote 
+           vote={cardArr}
+           name={textCard}
+           rankArr1={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[0].product_img : ""}`}
+           rankArr2={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[1].product_img : ""}`}
+           rankArr3={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[2].product_img : ""}`}
+        />
         </div>
-        <div className={`${status === 4 ? "d-block" : "d-none"}`}>
-          <IndexVote
-            vote={tragArr}
-            name={textTrag}
-            rankArr1={tragRank2.length > 0 ? tragRank2[0].product_img : ""}
-            rankArr2={tragRank2.length > 0 ? tragRank2[1].product_img : ""}
-            rankArr3={tragRank2.length > 0 ? tragRank2[2].product_img : ""}
-          />
+        <div className={`${status===4?"d-block":"d-none"}`} >
+        <IndexVote 
+          vote={tragArr}
+          name={textTrag}
+          rankArr1={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[0].product_img : ""}`}
+          rankArr2={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[1].product_img : ""}`}
+          rankArr3={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[2].product_img : ""}`}
+        />
+
         </div>
         <Link to="/vote" target="_top" class="voteButton text-center" href="#/">
           前往投票
@@ -452,30 +489,24 @@ const Index = () => {
           <img alt="" className="commendPic" src="/img/index/contest.png" />
         </div>
       </div>
-
       {/* 當期比賽內容 */}
-      <div className="row contestBox position-relative">
-        <div className="col-9 p-0 contestImgBox">
-          <img alt="" className="contestImg" src="/img/index/contest1.png" />
-        </div>
-        <div className="col-3 mt-3 p-0 text-center text-white position-relative">
-          <p className="fs-5 fw-bold">第一屆寶可夢卡牌大賽</p>
-          <p>舉辦日期 : 2021/09/01~09/07</p>
-          <p>報名期限 : 2021/09/01~09/07</p>
-          <p>尚餘名額 : 10位</p>
-          <Link class="contestButton text-center" href="#/">
-            前往報名
-          </Link>
-        </div>
-        <Link
-          to="contest"
-          target="_top"
-          class="contestMoreButton text-center"
-          href="#/"
-        >
-          看全部
-        </Link>
-      </div>
+        <IndexContest 
+        // 第一個比賽資訊
+          title1={contest.length>0 ? contest[0].contest_title : ""}
+          pic1={`../img/contest/${contest.length>0 ? contest[0].contestPic : ""}`}
+          date1={contest.length>0 ? contest[0].contestDateStart : ""}
+          num1={contest.length>0 ? contest[0].contest_limit - contest[0].contest_title_no : "" }
+          // title2={newCon1.length>0 ? newCon1[1].contest_title : ""}
+           // 第二個比賽資訊
+          // date2={contest.length>0 ? contest[1].contestDateStart : ""}
+          // num2={contest.length>0 ? contest[1].contest_limit - contest[1].contest_title_no : "" }
+           // 第三個比賽資訊
+          // title3={contest.length>0 ? contest[2].contest_title : ""}
+          // pic3={contest.length>0 ? contest[2].contestPic : ""}
+          // date3={contest.length>0 ? contest[2].contestDateStart : ""}
+          // num3={contest.length>0 ? contest[2].contest_limit - contest[1].contest_title_no : "" }
+        />
+
 
       {/* 討論區標題 */}
 
