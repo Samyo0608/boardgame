@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Row, Col,Carousel} from "react-bootstrap";
 import moment from 'moment';
 function IndexContest(props) {
-    const {title1,pic1,date1,num1,title2,pic2,date2,num2,title3,pic3,date3,num3} =props;
+    const {title1,title2,title3,pic1,pic2,pic3,date1,date2,date3,num1,num2,num3} =props;
 
     return (
         <>
@@ -50,15 +50,15 @@ function IndexContest(props) {
             <div className="contestFit">
             <img
              className="d-block w-100"
-             src= {pic1}
+             src= {pic2}
              alt="First slide"
                 />
             </div>
             </Col>
             <Col md={3} className="slideContest">
                 <p className="fs-5 fw-bold mt-5">《{title2}》</p>
-                <p>舉辦日期 : {moment(date1).format("YYYY年MM月DD日")}</p>
-                <p>剩餘名額 : {num1}</p>
+                <p>舉辦日期 : {moment(date2).format("YYYY年MM月DD日")}</p>
+                <p>剩餘名額 : {num2}</p>
             </Col> 
             </Row>
             </Carousel.Item>
@@ -69,15 +69,15 @@ function IndexContest(props) {
             <div className="contestFit">
             <img
              className="d-block w-100"
-             src= {pic1}
+             src= {pic3}
              alt="First slide"
                 />
             </div>
             </Col>
             <Col md={3} className="slideContest">
-            <p className="fs-5 fw-bold mt-5">《{title1}》</p>
-                <p>舉辦日期 : {moment(date1).format("YYYY年MM月DD日")}</p>
-                <p>剩餘名額 : {num1}</p>
+            <p className="fs-5 fw-bold mt-5">《{title3}》</p>
+            <p>舉辦日期 : {moment(date3).format("YYYY年MM月DD日")}</p>
+            <p>剩餘名額 : {num3}</p>
             </Col> 
             </Row>
             </Carousel.Item>

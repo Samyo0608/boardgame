@@ -35,7 +35,7 @@ const barchartRun = (b) => {
 // 使用迴圈將json檔寫入contestRun的常數中做為一個陣列
 const contestRun = (c)=>{
   const state= []  // 做一個空陣列
-    for (let i = 0; i < c.length; i++) {
+    for (let i = 0; c < c.length; i++) {
       state.push({...c[i]})
     }
     return state
@@ -64,18 +64,9 @@ useEffect( () =>{
   setContest(res.data)}
   a()
 },[])
-
+// console.log(barno) barno is a array, but contest is a object.
 // 取三個比賽
-const newCon1=[];
-const newcon1=()=>{
-  for(let i=0; i<contest.length;i++){
-      if (i<3)
-      newCon1.push(contest[i])
-  }
-   return newCon1
-}
-newcon1();
-console.log(newCon1)
+console.log(contest)
 
 
  // [全系列]
@@ -269,6 +260,7 @@ newIn2();
     return textTrag;
   };
   tragData();
+  
   //  console.log("策略標籤",textTrag)
   // 策略票數
   const tragArr = [];
@@ -473,7 +465,7 @@ newIn2();
         />
 
         </div>
-        <Link to="/vote" target="_top" class="voteButton text-center" href="#/">
+        <Link to="/vote" target="_top" className="voteButton text-center" href="#/">
           前往投票
         </Link>
       </div>
@@ -490,22 +482,33 @@ newIn2();
         </div>
       </div>
       {/* 當期比賽內容 */}
-        <IndexContest 
-        // 第一個比賽資訊
-          title1={contest.length>0 ? contest[0].contest_title : ""}
+      <div className="conSize">
+      <IndexContest 
+        // 標題
+          title1={contest.length>0 ?contest[0].contest_title : 0}
+          title2={contest.length>0 ?contest[1].contest_title : 0}
+          title3={contest.length>0 ?contest[2].contest_title : 0}
+        // 圖片
           pic1={`../img/contest/${contest.length>0 ? contest[0].contestPic : ""}`}
+          pic2={`../img/contest/${contest.length>0 ? contest[1].contestPic : ""}`}
+          pic3={`../img/contest/${contest.length>0 ? contest[2].contestPic : ""}`}
+        // 比賽日期
           date1={contest.length>0 ? contest[0].contestDateStart : ""}
+          date2={contest.length>0 ? contest[1].contestDateStart : ""}
+          date3={contest.length>0 ? contest[2].contestDateStart : ""}
+        // 剩餘名額
           num1={contest.length>0 ? contest[0].contest_limit - contest[0].contest_title_no : "" }
-          // title2={newCon1.length>0 ? newCon1[1].contest_title : ""}
-           // 第二個比賽資訊
-          // date2={contest.length>0 ? contest[1].contestDateStart : ""}
-          // num2={contest.length>0 ? contest[1].contest_limit - contest[1].contest_title_no : "" }
-           // 第三個比賽資訊
-          // title3={contest.length>0 ? contest[2].contest_title : ""}
-          // pic3={contest.length>0 ? contest[2].contestPic : ""}
-          // date3={contest.length>0 ? contest[2].contestDateStart : ""}
-          // num3={contest.length>0 ? contest[2].contest_limit - contest[1].contest_title_no : "" }
+          num2={contest.length>0 ? contest[1].contest_limit - contest[1].contest_title_no : "" }
+          num3={contest.length>0 ? contest[2].contest_limit - contest[2].contest_title_no : "" }
         />
+        <Link to="/contest" target="_top" class="conButton text-center" href="#/">
+          看更多
+        </Link>
+      </div>    
+      
+     
+    
+        
 
 
       {/* 討論區標題 */}
