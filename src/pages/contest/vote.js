@@ -402,18 +402,18 @@ function Vote(props) {
         {/* 圖片路徑有做判斷 */}
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[2].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${newrank.length>0 ? newrank[2].product_img : ""}`} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[0].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${newrank.length>0 ? newrank[0].product_img : ""}`} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={newrank.length>0 ? newrank[1].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${newrank.length>0 ? newrank[1].product_img : ""}`} fluid />
                 </div>
                     
             </Col>
@@ -437,7 +437,7 @@ function Vote(props) {
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
         </div>
-        <div>
+        <div >
             <Form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
 
             {
@@ -453,7 +453,7 @@ function Vote(props) {
             })}
             
             
-            <Button type="submit" className="submitVote m-3" >送  出</Button>
+            <Button type="submit" className="submitVote m-3" >送　出</Button>
             </Form>
         </div>
      </div>
@@ -485,18 +485,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[2].product_img : ""}  fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${famiRank.length>0 ? famiRank[2].product_img : ""}`}  fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[0].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${famiRank.length>0 ? famiRank[0].product_img : ""}`} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={famiRank.length>0 ? famiRank[1].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${famiRank.length>0 ? famiRank[1].product_img : ""}`} fluid />
                 </div>
                     
             </Col>
@@ -567,18 +567,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[2].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${cardRank.length>0 ? cardRank[2].product_img : ""}`} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[0].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${cardRank.length>0 ? cardRank[0].product_img : ""}`} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={cardRank.length>0 ? cardRank[1].product_img : ""}s fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${cardRank.length>0 ? cardRank[1].product_img : ""}`}s fluid />
                 </div>
                     
             </Col>
@@ -649,18 +649,18 @@ function Vote(props) {
         <Row className="d-flex justify-content-center ps-5 ms-4 pt-5">
             <Col md={4} >
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[2].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${tragRank.length>0 ? tragRank[2].product_img : ""}`} fluid />
                 </div>                     
             </Col>
             <Col md={4}>
                 <div className="votePic">
-                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[0].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${tragRank.length>0 ? tragRank[0].product_img : ""}`} fluid />
                 </div>
                      
             </Col>
             <Col md={4}>
                 <div className="votePic mt-5">
-                <img alt="遊戲圖片" className="voteImg" src={tragRank.length>0 ? tragRank[1].product_img : ""} fluid />
+                <img alt="遊戲圖片" className="voteImg" src={`../product_img/550x400/${tragRank.length>0 ? tragRank[1].product_img : ""}`} fluid />
                 </div>
                     
             </Col>

@@ -19,6 +19,7 @@
   padding-left: 35px;
   margin-bottom: 100px;
   margin-left: 40px;
+  position: relative;
 }
 .viewButton {
   background-color: white;
@@ -110,9 +111,9 @@
   background-color: white;
   color: var(--fontColor);
   max-width: 1050px;
-  min-height: 850px;
+  min-height: 85%;
   margin-top: 40px;
-  /* box-shadow: 1px 1px 1px 1px var(--shadow); */
+  /* position: relative; */
 }
 /* 按鈕 */
 .submitVote {
