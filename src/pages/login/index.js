@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 import Swal from "sweetalert2";
+import Modaltype from "../../components/login/modal";
 
 function Login(props) {
   // useState 帳號密碼存放
@@ -68,6 +69,13 @@ function Login(props) {
     }
   }
 
+  // 忘記密碼跳出視窗
+  const [show, setShow] = useState(false);
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShow(true);
+  };
+
   return (
     <div className="login">
       <img
@@ -97,7 +105,6 @@ function Login(props) {
               />
             </Col>
           </Form.Group>
-
           <Form.Group as={Row} className="mb-5" controlId="password">
             <Form.Label column sm="4" className="bold">
               密碼
@@ -117,7 +124,7 @@ function Login(props) {
             </Col>
           </Form.Group>
           <Form.Group className="mb-5 forget">
-            <Link to="/login" className="forgetA">
+            <Link to="#" className="forgetA" onClick={handleClick}>
               <FontAwesomeIcon icon={faExclamationCircle} />
               忘記密碼
             </Link>
@@ -126,6 +133,7 @@ function Login(props) {
             登入
           </Button>
         </Form>
+        <Modaltype show={show} onHide={() => setShow(false)} />
         <hr className="hrLogin" />
         <Link to="/register" className="decNone">
           <Button variant="primary" className="mb-5 button">

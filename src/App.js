@@ -12,14 +12,7 @@ import MemberDiscuss from "./pages/discuss/memberDiscuss.js";
 import NewDiscuss from "./pages/discuss/newDiscuss.js";
 import Reply from "./pages/discuss/reply.js";
 import EditReply from "./pages/discuss/editReply.js";
-import {
-  HashRouter,
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import contest from "./pages/contest/contest_index.js";
 import TopNavbar from "./components/Navbar";
 import Login from "./pages/login";

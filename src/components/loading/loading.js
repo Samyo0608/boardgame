@@ -6,7 +6,13 @@ import "./loading.css";
 function Loading(props) {
   return (
     <div>
-      <Loader type="Puff" color="#00BFFF" height={80} width={80} className="loadingPosition"/>
+      <Loader
+        type="Oval"
+        color="#00BFFF"
+        height={80}
+        width={80}
+        className="loadingPosition"
+      />
     </div>
   );
 }

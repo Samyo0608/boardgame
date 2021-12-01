@@ -5,18 +5,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome//free-solid-svg-icons";
 import MemProductItem from "../../components/memProductItem/memProductItem";
 import axios from "axios";
-import { API_URL, PRODUCT_PER_PAGE } from "../../configs/config";
+import { API_URL } from "../../configs/config";
 import { useParams } from "react-router-dom";
 import List from "../../components/pages/listPage";
+import Loading from "../../components/loading/loading";
 
 function MemberProduct(props) {
   const history = useParams().account;
   const [inputValue, setInputValue] = useState("");
   // 儲存產品資料
   const [order, setOrder] = useState([]);
+  // 分頁儲存 - 目前第幾頁
   const [page, setPage] = useState(1);
+  // 分頁儲存 - 總共頁數
   const [totalPages, setTotalPages] = useState(0);
+  // 分頁儲存 - 每頁幾筆
   const [productPerPage, setProductPerPage] = useState(3);
+  // Loading
+  const [isLoading, setIsLoading] = useState(true);
   // api order資料
   useEffect((e) => {
     async function order() {
@@ -26,9 +32,16 @@ function MemberProduct(props) {
       );
       setOrder(ProductOrder.data);
       setTotalPages(Math.ceil(ProductOrder.data.length / productPerPage));
+      window.scrollTo(0, 0);
     }
     order();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, [order]);
 
   useEffect(
     (e) => {
@@ -41,11 +54,6 @@ function MemberProduct(props) {
   const startIndex = (page - 1) * productPerPage;
   // 選擇到每頁後顯示數量，用這個做map
   const selectedPage = order.slice(startIndex, startIndex + productPerPage);
-
-  // 傳到子元件做分頁
-  const handleClick = (num) => {
-    setPage(num);
-  };
 
   return (
     <div className="mt-5">
@@ -103,39 +111,43 @@ function MemberProduct(props) {
               )}
             </form>
           </div>
-
-          {/* map資料 */}
-          {inputValue ? (
-            <div className="d-flex flex-column justify-content-start align-items-center">
-              {order
-                .filter((v) => {
-                  if (inputValue === "" || undefined) {
-                    return v;
-                  } else if (
-                    v.product_name.includes(inputValue) ||
-                    v.product_price.includes(inputValue) ||
-                    v.created_time.includes(inputValue)
-                  ) {
-                    return v;
-                  }
-                })
-                .map((v, i) => {
-                  return <MemProductItem key={i} detail={order[i]} />;
-                })}
-            </div>
+          {isLoading ? (
+            <Loading />
           ) : (
-            <div className="d-flex flex-column justify-content-start align-items-center">
-              {selectedPage.map((v, i) => {
-                return <MemProductItem key={i} detail={selectedPage[i]} />;
-              })}
-              <List
-                totalPages={totalPages}
-                handleClick={handleClick}
-                page={page}
-                setPage={setPage}
-                productPerPage={productPerPage}
-              />
-            </div>
+            <>
+              {/* map資料 */}
+              {inputValue ? (
+                <div className="d-flex flex-column justify-content-start align-items-center">
+                  {order
+                    .filter((v) => {
+                      if (inputValue === "" || undefined) {
+                        return v;
+                      } else if (
+                        v.product_name.includes(inputValue) ||
+                        v.product_price.includes(inputValue) ||
+                        v.created_time.includes(inputValue)
+                      ) {
+                        return v;
+                      }
+                    })
+                    .map((v, i) => {
+                      return <MemProductItem key={i} detail={order[i]} />;
+                    })}
+                </div>
+              ) : (
+                <div className="d-flex flex-column justify-content-start align-items-center">
+                  {selectedPage.map((v, i) => {
+                    return <MemProductItem key={i} detail={selectedPage[i]} />;
+                  })}
+                  <List
+                    totalPages={totalPages}
+                    page={page}
+                    setPage={setPage}
+                    productPerPage={productPerPage}
+                  />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@ import axios from "axios";
 import { API_URL } from "../../configs/config";
 import Swal from "sweetalert2";
 
-function Cartcheck(props) {
+const Cartcheck = (props) => {
   // 儲存api-product資料
   const [productData, setProductData] = useState([]);
   // 抓取網址上的account
@@ -331,6 +331,6 @@ function Cartcheck(props) {
       </form>
     </div>
   );
-}
+};
 
 export default Cartcheck;
