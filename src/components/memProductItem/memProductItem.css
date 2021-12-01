@@ -1,9 +1,9 @@
 /* product上層 start */
 .object-pro {
   background: #fff;
-  width: 95%;
+  width: 97%;
   border-radius: 2rem;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
   padding: 20px 0 20px 0;
 }
 

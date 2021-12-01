@@ -117,16 +117,12 @@
   /* height: 100%; */
   background-color: white;
 }
-/* .discussContentQuill {
-  width: 100% !important;
-  margin: 0px !important;
-  height: auto !important;
+
+.deletedReply {
+  padding-top: 10px;
+  color: rgb(128, 128, 128);
 }
-.discussContentQuill > div {
-  width: 100%;
-  min-height: 230px !important;
-  height: auto !important;
-} */
+
 .discussContentQuill > div > div {
   padding-top: 10px;
   padding-left: 0;
@@ -135,6 +131,23 @@
 /* 其他樓 */
 .otherF {
   margin-top: 70px;
+}
+/* 刪除和編輯 */
+.replyUserBtn {
+  line-height: 38px;
+}
+.replyDelete,
+.replyEdit {
+  margin-left: 20px;
+  text-decoration: none;
+  border: none;
+  color: gray;
+  background: none;
+  font-weight: bold;
+}
+.replyDelete:hover,
+.replyEdit:hover {
+  color: black;
 }
 /* 讚和喜歡按鈕樣式 */
 .postTime {
@@ -180,6 +193,7 @@
 }
 
 .keepButton {
+  margin-left: 25px;
   background-color: #ffffff;
   border: 3px solid #ff7676;
   color: #ff7676;

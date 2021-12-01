@@ -1,20 +1,19 @@
 import { React, useState, useEffect } from "react";
-// import reactDom from "react-dom";
-// import PropTypes from "prop-types";
 import "../../css/vote.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
+// import { render } from "react-dom";
 import HotGame from "../../components/product/HotGame";
 import Game from "../../components/product/Game";
 import HotGame2 from "../../components/product/HotGame2";
+// import A_button from "../../components/product/A_button";
 import HotGame3 from "../../components/product/HotGame3";
-// import { version } from "react-dom";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 // 分類按鈕的狀態圖
-const categoryButton = [
+const typeButton = [
   {
     id: 1,
     status: "全系列",
@@ -32,6 +31,15 @@ const categoryButton = [
     status: "策略系列",
   },
 ];
+// let active = 1;
+// let items = [];
+// for (let number = 1; number <= 3; number++) {
+//   items.push(
+//     <Pagination.Item key={number} active={number === active}>
+//       {number}
+//     </Pagination.Item>
+//   );
+// }
 
 function Product(props) {
   const [status, setStatus] = useState(1);
@@ -157,7 +165,7 @@ function Product(props) {
       </div>
       <div className="container1456">
         <Row>
-          {categoryButton.map((v, i) => {
+          {typeButton.map((v, i) => {
             return (
               <Col>
                 <button
@@ -175,64 +183,97 @@ function Product(props) {
           })}
         </Row>
         {/* 全部遊戲 */}
-        <div
-          className={`voteResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}
-        >
+        <div className={`PPResult pt-3 ${status === 1 ? "d-block" : "d-none"}`}>
           <Container>
             <Row>
-              <HotGame
-                product_id={AllRank[0]?.product_id}
-                product_vote={AllRank[0]?.product_vote}
-                product_name={AllRank[0]?.product_name}
-                product_type={AllRank[0]?.product_type}
-                product_content={AllRank[0]?.product_content}
-                product_price={AllRank[0]?.product_price}
-                product_img={AllRank[0]?.product_img}
-              />
-              <HotGame2
-                product_id={AllRank[1]?.product_id}
-                product_vote={AllRank[1]?.product_vote}
-                product_name={AllRank[1]?.product_name}
-                product_type={AllRank[1]?.product_type}
-                product_content={AllRank[1]?.product_content}
-                product_price={AllRank[1]?.product_price}
-                product_img={AllRank[1]?.product_img}
-              />
-
-              <HotGame3
-                product_id={AllRank[2]?.product_id}
-                product_vote={AllRank[2]?.product_vote}
-                product_name={AllRank[2]?.product_name}
-                product_type={AllRank[2]?.product_type}
-                product_content={AllRank[2]?.product_content}
-                product_price={AllRank[2]?.product_price}
-                product_img={AllRank[2]?.product_img}
-              />
+              {AllRank?.slice(0, 1).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
+            <Row>
+              {AllRank?.slice(1, 2).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame2
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {AllRank?.slice(2, 3).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame3
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+
             {/* 排序紐 */}
-            <div className="buttooon0">
+            {/* <div className="buttooon0">
               <Button className="button123">價格排序</Button>
               <Button className="button1234">最高</Button>
               <Button className="button12345">最低</Button>
-            </div>
-
+            </div> */}
+            {/* <div>
+              <A_button />
+            </div> */}
             <div className="boxer123">
-              <Row>
-                {hotproductall.slice(3).map((product) => {
-                  return (
-                    <Col md={4}>
-                      <Game
-                        product_id={product.product_id}
-                        product_name={product.product_name}
-                        product_type={product.product_type}
-                        product_price={product.product_price}
-                        product_img={product.product_img}
-                      />
-                    </Col>
-                  );
-                })}
-              </Row>
+              <div>
+                <Row>
+                  {AllRank?.slice(3, 9).map((product) => {
+                    return (
+                      <Col md={4} key={product.product_id}>
+                        <Game
+                          product_id={product.product_id}
+                          product_name={product.product_name}
+                          product_type={product.product_type}
+                          product_price={product.product_price}
+                          product_img={product.product_img}
+                        />
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </div>
             </div>
+            {/* 分頁 */}
+            {/* <div>
+              <Pagination>{items}</Pagination>
+              <br />
+            </div> */}
+            {/* <div>
+              <Pagination count={3} />
+              <Pagination count={3} color="primary" />
+            </div> */}
           </Container>
         </div>
         {/* 家庭系列 */}
@@ -241,46 +282,68 @@ function Product(props) {
         >
           <Container>
             <Row>
-              <HotGame
-                product_id={FamilyRank[0]?.product_id}
-                product_vote={FamilyRank[0]?.product_vote}
-                product_name={FamilyRank[0]?.product_name}
-                product_type={FamilyRank[0]?.product_type}
-                product_content={FamilyRank[0]?.product_content}
-                product_price={FamilyRank[0]?.product_price}
-                product_img={FamilyRank[0]?.product_img}
-              />
-              <HotGame2
-                product_id={FamilyRank[1]?.product_id}
-                product_vote={FamilyRank[1]?.product_vote}
-                product_name={FamilyRank[1]?.product_name}
-                product_type={FamilyRank[1]?.product_type}
-                product_content={FamilyRank[1]?.product_content}
-                product_price={FamilyRank[1]?.product_price}
-                product_img={FamilyRank[1]?.product_img}
-              />
-              <HotGame3
-                product_id={FamilyRank[2]?.product_id}
-                product_vote={FamilyRank[2]?.product_vote}
-                product_name={FamilyRank[2]?.product_name}
-                product_type={FamilyRank[2]?.product_type}
-                product_content={FamilyRank[2]?.product_content}
-                product_price={FamilyRank[2]?.product_price}
-                product_img={FamilyRank[2]?.product_img}
-              />
+              {FamilyRank?.slice(0, 1).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {FamilyRank?.slice(1, 2).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame2
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {FamilyRank?.slice(2, 3).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame3
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
             {/* 排序紐 */}
-            <div className="buttooon0">
+            {/* <div className="buttooon0">
               <Button className="button123">價格排序</Button>
               <Button className="button1234">最高</Button>
               <Button className="button12345">最低</Button>
-            </div>
+            </div> */}
 
             <div className="boxer123">
               <Row>
-                {hotproductfamily.slice(3).map((product) => {
+                {FamilyRank.slice(3).map((product) => {
                   return (
-                    <Col md={4}>
+                    <Col md={4} key={product.product_id}>
                       <Game
                         product_id={product.product_id}
                         product_name={product.product_name}
@@ -301,47 +364,68 @@ function Product(props) {
         >
           <Container>
             <Row>
-              <HotGame
-                product_id={CardRank[0]?.product_id}
-                product_vote={CardRank[0]?.product_vote}
-                product_name={CardRank[0]?.product_name}
-                product_type={CardRank[0]?.product_type}
-                product_content={CardRank[0]?.product_content}
-                product_price={CardRank[0]?.product_price}
-                product_img={CardRank[0]?.product_img}
-              />
-
-              <HotGame2
-                product_id={CardRank[1]?.product_id}
-                product_vote={CardRank[1]?.product_vote}
-                product_name={CardRank[1]?.product_name}
-                product_type={CardRank[1]?.product_type}
-                product_content={CardRank[1]?.product_content}
-                product_price={CardRank[1]?.product_price}
-                product_img={CardRank[1]?.product_img}
-              />
-              <HotGame3
-                product_id={CardRank[2]?.product_id}
-                product_vote={CardRank[2]?.product_vote}
-                product_name={CardRank[2]?.product_name}
-                product_type={CardRank[2]?.product_type}
-                product_content={CardRank[2]?.product_content}
-                product_price={CardRank[2]?.product_price}
-                product_img={CardRank[2]?.product_img}
-              />
+              {CardRank?.slice(0, 1).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {CardRank?.slice(1, 2).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame2
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {CardRank?.slice(2, 3).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame3
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
             {/* 排序紐 */}
-            <div className="buttooon0">
+            {/* <div className="buttooon0">
               <Button className="button123">價格排序</Button>
               <Button className="button1234">最高</Button>
               <Button className="button12345">最低</Button>
-            </div>
+            </div> */}
 
             <div className="boxer123">
               <Row>
-                {hotproductcard.slice(3).map((product) => {
+                {CardRank.slice(3).map((product) => {
                   return (
-                    <Col md={4}>
+                    <Col md={4} key={product.product_id}>
                       <Game
                         product_id={product.product_id}
                         product_name={product.product_name}
@@ -363,46 +447,69 @@ function Product(props) {
         >
           <Container>
             <Row>
-              <HotGame
-                product_id={StrategyRank[0]?.product_id}
-                product_vote={StrategyRank[0]?.product_vote}
-                product_name={StrategyRank[0]?.product_name}
-                product_type={StrategyRank[0]?.product_type}
-                product_content={StrategyRank[0]?.product_content}
-                product_price={StrategyRank[0]?.product_price}
-                product_img={StrategyRank[0]?.product_img}
-              />
-              <HotGame2
-                product_id={StrategyRank[1]?.product_id}
-                product_vote={StrategyRank[1]?.product_vote}
-                product_name={StrategyRank[1]?.product_name}
-                product_type={StrategyRank[1]?.product_type}
-                product_content={StrategyRank[1]?.product_content}
-                product_price={StrategyRank[1]?.product_price}
-                product_img={StrategyRank[1]?.product_img}
-              />
-              <HotGame3
-                product_id={StrategyRank[2]?.product_id}
-                product_vote={StrategyRank[2]?.product_vote}
-                product_name={StrategyRank[2]?.product_name}
-                product_type={StrategyRank[2]?.product_type}
-                product_content={StrategyRank[2]?.product_content}
-                product_price={StrategyRank[2]?.product_price}
-                product_img={StrategyRank[2]?.product_img}
-              />
+              {StrategyRank?.slice(0, 1).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
+            <Row>
+              {StrategyRank?.slice(1, 2).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame2
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+            <Row>
+              {StrategyRank?.slice(2, 3).map((product) => {
+                return (
+                  <Col key={product.product_id}>
+                    <HotGame3
+                      product_id={product.product_id}
+                      product_name={product.product_name}
+                      product_type={product.product_type}
+                      product_content={product.product_content}
+                      product_price={product.product_price}
+                      product_img={product.product_img}
+                      product_vote={product.product_vote}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+
             {/* 排序紐 */}
-            <div className="buttooon0">
+            {/* <div className="buttooon0">
               <Button className="button123">價格排序</Button>
               <Button className="button1234">最高</Button>
               <Button className="button12345">最低</Button>
-            </div>
+            </div> */}
 
             <div className="boxer123">
               <Row>
-                {hotproductstrategy.slice(3).map((product) => {
+                {StrategyRank.slice(3).map((product) => {
                   return (
-                    <Col md={4}>
+                    <Col md={4} key={product.product_id}>
                       <Game
                         product_id={product.product_id}
                         product_name={product.product_name}

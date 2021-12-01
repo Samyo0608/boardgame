@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./memProductItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome//free-solid-svg-icons";
 import moment from "moment";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
 
 function MemProductItem(props) {
-  const { detail, product } = props;
+  const { detail } = props;
   const arr = detail;
   const [display, setDisplay] = useState(false);
   const [rotate, setRotate] = useState(false);
+  const [product, setProduct] = useState([]);
 
-  console.log(product);
-  console.log(arr);
+  // 撈取產品資料
+  useEffect((e) => {
+    async function product() {
+      let product = await axios.get(`${API_URL}/cart/`, {
+        withCredentials: true,
+      });
+      setProduct(product.data);
+    }
+    product();
+  }, []);
+
   // 訂單狀態
   const status = {
     1: "訂單已接受",
@@ -64,7 +76,12 @@ function MemProductItem(props) {
     <div className="object-pro d-flex flex-column align-items-center mt-3 mb-3">
       <div className="d-flex position-relative mt-2">
         <div className="ms-4">
-          <img alt="" src={arr.image} className="objectImg" />
+          <img
+            id="img"
+            alt=""
+            src={`/product_img/550x400/${ARRR()[0]}`}
+            className="objectImg"
+          />
         </div>
         <div className="row ms-5 mt-3">
           <div className="col-6 h5 bold">訂單成立日期：{create_date}</div>
@@ -109,7 +126,9 @@ function MemProductItem(props) {
                 </figure>
                 <div className="h5 bold col-3">{v.name}</div>
                 <div className="h5 bold col-3">數量：{v.count}</div>
-                <div className="h5 bold col-3">${Number(v.price)}</div>
+                <div className="h5 bold col-3">
+                  ${Number(v.price) * Number(v.count)}
+                </div>
               </div>
             );
           })}
@@ -141,14 +160,17 @@ function MemProductItem(props) {
               </div>
             )}
           </div>
-          <div className="row ms-5">
-            <div className="col-6 h5 bold mb-5">
+          <div className="row ms-5 mt-3">
+            <div className="col-7 h5 bold mb-5">
               收件人　　　：{arr.customer_name}
             </div>
-            <div className="col-6 h5 bold mb-5">
+            <div className="col-5 h5 bold mb-5">
               連絡電話　　：{arr.customer_phone}
             </div>
-            <div className="col-12 h5 bold mb-5">收件地址　　：{address}</div>
+            <div className="col-7 h5 bold mb-5">收件地址　　：{address}</div>
+            <div className="col-5 h5 bold mb-5">
+              使用點數　　：{arr.cost_point}
+            </div>
           </div>
         </div>
       </div>

@@ -1,14 +1,11 @@
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import { p6 } from "../../configs/config";
-
-import { API_URL } from "../../configs/config";
+import { withRouter, Link } from "react-router-dom";
+import { API_URL, p6 } from "../../configs/config";
 const attentionButton = [
   {
     id: 1,
@@ -46,8 +43,47 @@ function Aboutgame(props) {
     return_detail: "",
     product_info: "",
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
+  const [show, setShow] = useState(false);
 
-  const show = (
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = aboutgame;
+    localStorage.setItem(aboutgame.product_name, JSON.stringify(newCart));
+    // 設定資料
+    handleShow();
+  };
+
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        產品：<span className="redone">{aboutgame.product_name}</span>{" "}
+        已成功加入購物車
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push(`/Cart${sessionMember}`);
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  const display = (
     <>
       <Container>
         <div>
@@ -66,7 +102,12 @@ function Aboutgame(props) {
             <article className={p6[aboutgame.product_type]}>
               {aboutgame.product_name}
             </article>
-            <img className="abb" src={aboutgame.product_img} alt="" />
+
+            <img
+              className="abb"
+              src={`/product_img/550x400/${aboutgame.product_img}`}
+              alt=""
+            />
             <div className="box456">
               <p className="ellipsis3">{aboutgame.product_content}</p>
             </div>
@@ -78,11 +119,17 @@ function Aboutgame(props) {
                 alt=""
               />
             </a>
-            <a href="#/">
+            <a
+              key={aboutgame}
+              onClick={() => {
+                ToLocalStorage(aboutgame);
+              }}
+              href="#/"
+            >
               <img className="buy4" src="/img/product/buy.png" alt="" />
             </a>
           </div>
-          <Link to="/product">
+          <Link to="/product" target="_top">
             <img className=" backto" src="/img/product/back.png" alt="" />
           </Link>
         </div>
@@ -99,7 +146,7 @@ function Aboutgame(props) {
         ></div>
 
         <div>
-          <Link to="/discuss">
+          <Link to="/discuss" target="_top">
             <img className="forum" src="/img/product/forum.png" alt="" />
           </Link>
           <div className="box457">
@@ -176,7 +223,11 @@ function Aboutgame(props) {
       </Container>
     </>
   );
-
-  return <>{show}</>;
+  return (
+    <>
+      {messageModal}
+      {display}
+    </>
+  );
 }
 export default withRouter(Aboutgame);

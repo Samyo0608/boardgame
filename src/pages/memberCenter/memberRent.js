@@ -1,33 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/memberSidebar/index";
 /* 沿用memberCenter.css 、 memberProduct.css */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome//free-solid-svg-icons";
 import MemberRentItem from "../../components/memberRent/memberRentItem";
+import moment from "moment";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
 
-const Detail = [
-  {
-    roomImg: "/img/booking/fourRoom-1.png",
-    type: "四人房",
-    userStatus: "尚未報到",
-    price: "150",
-    costStatus: "已付款",
-    predate: "2021/10/10下午(13:00-17:00)",
-    rentDate: "2021/10/01",
-  },
-  {
-    roomImg: "/img/booking/sixRoom.jpg",
-    type: "六人房",
-    userStatus: "完成報到",
-    price: "200",
-    costStatus: "已付款",
-    predate: "2021/09/20 上午(09:00-12:00)",
-    rentDate: "2021/09/15",
-  },
-];
+// const Detail = [
+//   {
+//     roomImg: "/img/booking/fourRoom-1.png",
+//     type: "四人房",
+//     userStatus: "尚未報到",
+//     price: "150",
+//     costStatus: "已付款",
+//     predate: "2021/10/10下午(13:00-17:00)",
+//     rentDate: "2021/10/01",
+//   },
+//   {
+//     roomImg: "/img/booking/sixRoom.jpg",
+//     type: "六人房",
+//     userStatus: "完成報到",
+//     price: "200",
+//     costStatus: "已付款",
+//     predate: "2021/09/20 上午(09:00-12:00)",
+//     rentDate: "2021/09/15",
+//   },
+// ];
 
 function MemberRent(props) {
   const [inputRent, setInputRent] = useState("");
+
+  const [bookingContent, setbookingContent] = useState([]);
+  useEffect(async () => {
+    let bookingContent = await axios.get(`${API_URL}/booking/rent`, {
+      withCredentials: true,
+    });
+    setbookingContent(bookingContent.data);
+  }, []);
+
+  bookingContent &&
+    bookingContent
+      .filter((match) => !match.repeatExecute)
+      .forEach((item) => {
+        if (item.room === "fourRoom") {
+          item.room = "四人房";
+          item.roomImg = "/img/booking/fourRoom-1.png";
+          item.price = "150";
+        } else if (item.room === "sixRoom") {
+          item.room = "六人房";
+          item.roomImg = "/img/booking/sixRoom.jpg";
+          item.price = "200";
+        }
+
+        // console.log(item.endTime);
+        item.roomImg = item.roomImg;
+        item.type = item.room;
+        item.userStatus = "未報到";
+        item.price = item.price;
+        item.costStatus = "未付款";
+        item.predate = moment(item.startTime).format("YYYY-MM-DD HH:mm");
+        item.rentDate = moment(item.order_date).format("YYYY-MM-DD");
+      });
+
   return (
     <div className="mt-5">
       <div className="d-flex">
@@ -49,7 +85,7 @@ function MemberRent(props) {
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </form>
-          {Detail.map((v, i) => {
+          {bookingContent.map((v, i) => {
             const rent = () => {
               return (
                 <MemberRentItem
@@ -83,4 +119,3 @@ function MemberRent(props) {
 }
 
 export default MemberRent;
-
