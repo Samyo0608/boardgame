@@ -492,7 +492,7 @@ const Index = () => {
           <img alt="" className="rentPic" src="/img/index/discuss.png" />
         </div>
         <IndexDiscuss />
-        <a class="discussButton text-center" href="#/">
+        <a class="discussButton text-center" href="/discuss">
           看更多
         </a>
         <div></div>

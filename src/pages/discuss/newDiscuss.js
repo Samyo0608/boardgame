@@ -172,7 +172,15 @@ const NewDiscuss = (props) => {
               setAddDiscuss={setAddDiscuss}
               setQuillContent={setQuillContent}
             />
-            <button className="newdiscussSubmitButton text-center">送出</button>
+            <button
+              type="submit"
+              className="newdiscussSubmitButton text-center"
+            >
+              送出
+            </button>
+            <a className="newdiscussCancelButton text-center" href="../discuss">
+              取消
+            </a>
           </form>
         </div>
       </div>
