@@ -57,7 +57,7 @@ function MemberRent(props) {
         // console.log(item.endTime);
         item.roomImg = item.roomImg;
         item.type = item.room;
-        item.userStatus = "未報到";
+        item.userStatus = item.status;
         item.price = item.price;
         item.costStatus = "未付款";
         item.predate = moment(item.startTime).format("YYYY-MM-DD HH:mm");
