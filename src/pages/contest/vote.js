@@ -10,7 +10,7 @@ import VoteLabel from '../../components/contest/VoteLabel.js'
 import {withRouter} from "react-router-dom"
 import axios from "axios";
 import { API_URL } from '../../configs/config';
-import { faAmbulance } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2'
 // 分類按鈕的狀態圖
 const categoryButton=[
     {
@@ -100,6 +100,24 @@ function Vote(props) {
 
     // 投票用送出函式
     async function handleSubmit(e) {
+
+        // Sweetalert
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+          })
+          
+          Swal.fire({
+            icon: 'success',
+            title: '投票成功!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
         e.preventDefault();
         try{
             let res = await axios.post(`${API_URL}/vote/addVoted`,
@@ -437,8 +455,8 @@ function Vote(props) {
             <img alt="" className="titleLine mb-3" src="img/index/line.png" />
         </div>
         </div>
-        <div >
-            <Form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+        <div>
+            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
 
             {
                 barno.map((v,i) => {
@@ -453,8 +471,8 @@ function Vote(props) {
             })}
             
             
-            <Button type="submit" className="submitVote m-3" >送　出</Button>
-            </Form>
+            <input type="submit" value="送  出" className="submitVote m-3" />
+            </form>
         </div>
      </div>
 </div>
@@ -702,10 +720,7 @@ function Vote(props) {
             })}
             
             
-            <Button type="submit" className="submitVote m-3" 
-            onClick={(e)=>{
-                
-            }}>送  出</Button>
+            <input type="submit" value="送  出" className="submitVote m-3" />
             </Form>
         </div>
      </div>

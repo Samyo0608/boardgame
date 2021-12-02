@@ -219,7 +219,7 @@ const IndexDiscuss = (props) => {
                         <td>{v.i_user_name}</td>
                         <td className="rcountTd">{v.cot}</td>
                         <td className="timeTd">
-                          {moment(v.created_at.toString()).format(
+                          {moment(v.created_at?.toString()).format(
                             "YYYY-MM-DD HH:mm:ss"
                           )}
                           <p className="text-secondary ms-3">
