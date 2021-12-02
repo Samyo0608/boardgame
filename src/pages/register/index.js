@@ -49,6 +49,11 @@ function Register(props) {
             icon: "error",
             title: "此帳號已有人使用",
           });
+        } else if (req.data.code === "103") {
+          Toast.fire({
+            icon: "error",
+            title: "註冊失敗，請洽管理員",
+          });
         } else {
           Swal.fire({
             icon: "success",

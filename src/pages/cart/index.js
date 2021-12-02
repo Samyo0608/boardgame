@@ -65,9 +65,32 @@ function Cart(props) {
     return total;
   };
 
+  useEffect(() => {
+    const totalMoney = (lcl) => {
+      let total = 0;
+      for (let i = 0; i < lcl.length; i++) {
+        total = total + lcl[i].product_price;
+      }
+      return total;
+    };
+    setTotalCost(totalMoney(localList));
+  }, [product]);
+
+  const [totalCost, setTotalCost] = useState(0);
   let localtotal = totalMoney(localList);
 
-  // 載入資料庫
+  const countEND = () => {
+    if (localtotal > totalCost) {
+      return localtotal;
+    } else if (localtotal === 0 || totalCost === 0) {
+      return 0;
+    } else {
+      return totalCost;
+    }
+  };
+
+  console.log(totalCost);
+  // 載入產品資料庫
   useEffect((e) => {
     async function product() {
       let productItem = await axios.get(`${API_URL}/cart/`, {
@@ -163,7 +186,7 @@ function Cart(props) {
 
           <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
             <span className="bold me-1 ms-5">共計　</span>
-            <span className="text-danger bold">{localtotal}　</span>
+            <span className="text-danger bold">{countEND()}　</span>
             <span className="bold me-3">元</span>
           </div>
         </div>
