@@ -82,12 +82,9 @@ function HotGame(props) {
             <div className="ellipsis">{product_content}</div>
           </Link>
         </div>
-        <span>${product_price}</span>
+        <span>售價 : {product_price}元</span>
         <p className="p8">投票數: {product_vote} 票</p>
         <div className="favorbox">
-          <a href="#/">
-            <img className="favorite" src="/img/product/favorite.png" alt="" />
-          </a>
           <a
             key={hot1}
             className="buy"

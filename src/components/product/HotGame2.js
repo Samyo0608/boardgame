@@ -79,12 +79,9 @@ const HotGame2 = (props) => {
             <div className="ellipsis2">{product_content}</div>
           </Link>
         </div>
-        <span>${product_price}</span>
+        <span>售價 : {product_price}元</span>
         <p className="p5">投票數: {product_vote} 票</p>
         <div className="iconflex2">
-          <a href="#/">
-            <img className="favorite2" src="/img/product/favorite.png" alt="" />
-          </a>
           <a
             key={hot2}
             onClick={() => {
