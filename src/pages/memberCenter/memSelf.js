@@ -870,7 +870,9 @@ function MemSelf(props) {
                       maxlength="4"
                       minlength="4"
                       className="me-2"
-                      defaultValue={user.birth.split("/")[0]}
+                      defaultValue={
+                        user.birth !== null ? user.birth.split("/")[0] : ""
+                      }
                       onChange={(e) => {
                         setYear(e.target.value);
                       }}
@@ -888,7 +890,9 @@ function MemSelf(props) {
                       placeholder="月"
                       maxlength="2"
                       className="me-2"
-                      defaultValue={user.birth.split("/")[1]}
+                      defaultValue={
+                        user.birth !== null ? user.birth.split("/")[1] : ""
+                      }
                       onChange={(e) => {
                         setMonth(e.target.value);
                       }}
@@ -906,7 +910,9 @@ function MemSelf(props) {
                       placeholder="日"
                       maxlength="2"
                       className="me-2"
-                      defaultValue={user.birth.split("/")[2]}
+                      defaultValue={
+                        user.birth !== null ? user.birth.split("/")[2] : ""
+                      }
                       onChange={(e) => {
                         setDay(e.target.value);
                       }}
@@ -975,7 +981,9 @@ function MemSelf(props) {
                     <Form.Control
                       type="text"
                       placeholder="剩餘完整地址"
-                      defaultValue={user.address.split(",")[2]}
+                      defaultValue={
+                        user.address !== null ? user.address.split(",")[2] : ""
+                      }
                       onChange={(e) => {
                         setOtherAddress(e.target.value);
                       }}
