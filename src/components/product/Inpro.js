@@ -86,14 +86,10 @@ const Inpro = (props) => {
                   <div className="pt-2">{product_name}</div>
                 </Link>
 
-                <img
-                  alt=""
-                  className="inproflag"
-                  src="/img/product/flag2.png"
-                />
+                <img alt="" className="inproflag" src="/img/product/lion.png" />
 
                 <p className="pppice">售價 : {product_price}元</p>
-                <p className="pvote">{product_vote}</p>
+                <p className="pvote">{product_vote}票</p>
 
                 <a
                   key={hotInex1}

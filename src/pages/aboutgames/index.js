@@ -5,7 +5,7 @@ import "../../css/aboutgame.css";
 import "../../css/product.css";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
-import { API_URL, p6 } from "../../configs/config";
+import { API_URL, p6, typecolor } from "../../configs/config";
 const attentionButton = [
   {
     id: 1,
@@ -39,8 +39,10 @@ function Aboutgame(props) {
     product_name: "",
     product_img: "",
     product_content: "",
+    product_vote: "",
     product_price: "",
     return_detail: "",
+    product_type: "",
     product_info: "",
   });
   const [sessionMember] = useState({
@@ -115,6 +117,7 @@ function Aboutgame(props) {
             <div className="box4567">
               <p className="pprice ">售價 : {aboutgame.product_price}元</p>
             </div>
+
             <a
               key={aboutgame}
               onClick={() => {
