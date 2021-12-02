@@ -61,118 +61,122 @@ const [isTrag,setIsTrag]=useState("");
 
     return (
       <>
+        <div className="bodyHigh">
         {/* 活動資訊 */}
         <h2 className="text-center">活動資訊</h2>
-        <div className="titleLineBox">
-            <img alt="" className="titleLine" src="img/index/line.png" />
-        </div>
+          <div className="titleLineBox">
+              <img alt="" className="titleLine" src="img/index/line.png" />
+          </div>
 
-      <div className="searchBar row">
-        <div className="d-flex">
-        <Form className="p-1">
-        <FormControl
-            type="search"
-            placeholder="找活動"
-            className="me-2 formControl"
-            aria-label="Search"
-            onChange={(e) => {
-              setSearchitem(e.target.value)
-            }}
-          />
-        <Button variant="link" className="searchIcon">
-            <div>
-              <FontAwesomeIcon icon={faSearch} />
-            </div>
-          </Button>
-        </Form>
-        
-        
-            <p className="fs-3 fontColor">分類:</p>
-            <form action="" className="d-inline">
-                <input type="checkbox" className="checkboxCon" value="卡牌" id="card"
-                
-                  onChange={(e)=>{setIsCard(e.target.checked ? e.target.value : "")}}
-                />
-                <label For="card" className="fs-3 fontColor">卡牌</label>
-
-                <input type="checkbox" className="checkboxCon" value="家庭" id="family" 
+        <div className="searchBar row">
+          <div className="d-flex">
+          <Form className="p-1">
+          <FormControl
+              type="search"
+              placeholder="找活動"
+              className="me-2 formControl"
+              aria-label="Search"
+              onChange={(e) => {
+                setSearchitem(e.target.value)
+              }}
+            />
+          <Button variant="link" className="searchIcon">
+              <div>
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+            </Button>
+          </Form>
+          
+          
+              <p className="fs-3 fontColor">分類:</p>
+              <form action="" className="d-inline">
+                  <input type="checkbox" className="checkboxCon" value="卡牌" id="card"
                   
-                  onChange={(e)=>{setIsFami(e.target.checked ? e.target.value : "")}}
-                />
+                    onChange={(e)=>{setIsCard(e.target.checked ? e.target.value : "")}}
+                  />
+                  <label For="card" className="fs-3 fontColor">卡牌</label>
 
-                <label for="family" className="fs-3 fontColor">家庭</label>
-                <input type="checkbox" className="checkboxCon" value="策略" id="trag" 
-                 
-                  onChange={(e)=>{setIsTrag(e.target.checked ? e.target.value : "")}}
-                />
-                <label for="trag" className="fs-3 fontColor"> 策略</label>
-                <label className="fs-3 fontColor">
-                    <span className="deleButton"
-                    onClick={(e)=>{setIsCard("");setIsFami("");setIsTrag("");
-                    document.getElementById("family").checked=false
-                    document.getElementById("trag").checked=false
-                    document.getElementById("card").checked=false
-                    }}
-                    >&#10005; 清除結果</span>
-                </label>
-            </form> 
-        
-        </div>
-    </div>
-    <div>
-    
-    {/* <BarChart/> */}
-    <img src="../img/contest/conBg01.png" alt="" className="bagd" />
-       {/* 活動資訊卡片 */}
-     <Container >
-        <Row>{isFami || isTrag || isCard || searchitem ? 
-        (<>{contest.filter((v) =>{
-          if(v.category===isFami || v.category===isTrag || v.category === isCard || v.contest_inner_text.includes(searchitem)&&searchitem!="" ){
-            return(v)
+                  <input type="checkbox" className="checkboxCon" value="家庭" id="family" 
+                    
+                    onChange={(e)=>{setIsFami(e.target.checked ? e.target.value : "")}}
+                  />
+
+                  <label for="family" className="fs-3 fontColor">家庭</label>
+                  <input type="checkbox" className="checkboxCon" value="策略" id="trag" 
+                  
+                    onChange={(e)=>{setIsTrag(e.target.checked ? e.target.value : "")}}
+                  />
+                  <label for="trag" className="fs-3 fontColor"> 策略</label>
+                  <label className="fs-3 fontColor">
+                      <span className="deleButton"
+                      onClick={(e)=>{setIsCard("");setIsFami("");setIsTrag("");
+                      document.getElementById("family").checked=false
+                      document.getElementById("trag").checked=false
+                      document.getElementById("card").checked=false
+                      }}
+                      >&#10005; 清除結果</span>
+                  </label>
+              </form> 
+          
+          </div>
+      </div>
+      <div>
+      
+      {/* <BarChart/> */}
+      <img src="../img/contest/conBg01.png" alt="" className="bagd" />
+        {/* 活動資訊卡片 */}
+      <Container >
+          <Row>{isFami || isTrag || isCard || searchitem ? 
+          (<>{contest.filter((v) =>{
+            if(v.category===isFami || v.category===isTrag || v.category === isCard || v.contest_inner_text.includes(searchitem)&&searchitem!=="" ){
+              return(v)
+            }
+
+          })
+          .map((v,i) => {         
+              return(
+              <ContestCard
+              key={i}
+              id={v.contest_id}
+              date={v.contestDateStart}
+              title={v.contest_title}
+              innertext={v.contest_inner_text}
+              limit={v.contest_limit}
+              category={v.category}
+              img={`../img/contest/${v.contestPic}`}
+              no={v.contest_title_no}
+            />
+            );
+          })
+
+          }</>) : (
+            <>{contest.map((v,i) => {         
+              return(
+              <ContestCard
+              key={i}
+              id={v.contest_id}
+              date={v.contestDateStart}
+              title={v.contest_title}
+              innertext={v.contest_inner_text}
+              limit={v.contest_limit}
+              category={v.category}
+              img={`../img/contest/${v.contestPic}`}
+              no={v.contest_title_no}
+            />
+            );
+          })
+
+          }</>
+          )
+
           }
+          
+          </Row>
+  </Container>
+  </div>
 
-        })
-        .map((v,i) => {         
-            return(
-            <ContestCard
-            key={i}
-            id={v.contest_id}
-            date={v.contestDateStart}
-            title={v.contest_title}
-            innertext={v.contest_inner_text}
-            limit={v.contest_limit}
-            category={v.category}
-            img={`../product_img/550x400/${v.contestPic}`}
-            no={v.contest_title_no}
-          />
-          );
-        })
-
-        }</>) : (
-          <>{contest.map((v,i) => {         
-            return(
-            <ContestCard
-            key={i}
-            id={v.contest_id}
-            date={v.contestDateStart}
-            title={v.contest_title}
-            innertext={v.contest_inner_text}
-            limit={v.contest_limit}
-            category={v.category}
-            img={`../img/contest/${v.contestPic}`}
-            no={v.contest_title_no}
-          />
-          );
-        })
-
-        }</>
-        )
-
-        }
+        </div>
         
-        </Row>
-</Container>
-</div>
     
     
         </>

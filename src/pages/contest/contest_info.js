@@ -96,7 +96,7 @@ function Contest_info(props) {
 
   async function handleSubmit(e) {
 
-    // SweatAlert
+    // SweetAlert
     
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {

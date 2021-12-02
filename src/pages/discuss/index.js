@@ -392,14 +392,14 @@ const Index = () => {
       </div>
       {/* 投票排行標題 */}
 
-      <div className="position-relative">
+      <div className="position-relative voteTop">
         <h2 className="text-center">最新排行</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
       </div>
       {/* 投票排行內容 */}
-      <div class="recommendBox">
+      <div class="voteBox">
         <div className="voteBirdBox">
           <img alt="" className="voteBirdPic" src="/img/index/bird1.png" />
         </div>
