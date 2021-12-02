@@ -6,9 +6,9 @@ import "../../css/cart.css";
 import Cart1 from "../../components/cart/Cart1";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import Swal from "sweetalert2";
 function Cart(props) {
   const [check, setCheck] = useState(false);
-  const [fullCheck, setFullCheck] = useState(false);
   const [product, setProduct] = useState([
     {
       product_id: 0,
@@ -24,17 +24,6 @@ function Cart(props) {
     account: "",
     point: "",
   });
-
-  // 加入count
-  const insertCountPro = (product) => {
-    let state = [];
-    for (let i = 0; i < product.length; i++) {
-      state.push({ ...product[i], count: 1 });
-    }
-    return state;
-  };
-  //product加入count後要定義
-  const finalProduct = insertCountPro(product);
 
   //將localStorage推入陣列
   const cartSave = [];
@@ -104,12 +93,26 @@ function Cart(props) {
     session();
   }, []);
 
+  //sweetAlert2 Toast
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    onOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   //刪除購物車按鈕
-  const deleteClicks = (e) => {
-    if (fullCheck) {
-      localStorage.clear();
-      setFullCheck(false);
-    }
+  const deleteClicks = () => {
+    Toast.fire({
+      icon: "success",
+      title: "已清空購物車",
+    });
+    localStorage.clear();
+    setLocal([]);
   };
 
   return (
@@ -134,43 +137,28 @@ function Cart(props) {
 
         {/* container cart1 component*/}
         <div className="CartListBG d-flex flex-column justify-content-between align-items-center">
-          {/* localStorage假資料按鈕 */}
-          <div className="d-flex flex-column justify-content-start align-items-center">
-            {/* 這個div之後要拔掉 */}
-            <div className="d-flex justify-content-around flex-wrap align-items-center mt-3">
-              {finalProduct.map((v, i) => {
-                return (
-                  <button
-                    key={i}
-                    className="btn btn-info me-2 mb-1"
-                    onClick={() => {
-                      localStorage.setItem(v.product_name, JSON.stringify(v));
-                      let newLocal = [...local];
-                      newLocal.push(
-                        JSON.parse(localStorage.getItem(v.product_name))
-                      );
-                      setLocal(newLocal);
-                    }}
-                  >
-                    {v.product_name}
-                  </button>
-                );
-              })}
-            </div>
-            {localList.map((v, i) => {
-              return (
-                <Cart1
-                  key={i}
-                  name={v.product_name}
-                  price={v.product_price}
-                  imgURL={v.product_img}
-                  id={v.product_id}
-                  type={v.product_type}
-                  check={check}
-                  setCheck={setCheck}
-                />
-              );
-            })}
+          <div className="d-flex flex-column justify-content-start align-items-center mt-4">
+            {local.length !== 0 ? (
+              <>
+                {localList.map((v, i) => {
+                  return (
+                    <Cart1
+                      key={v.product_id}
+                      list={localList[i]}
+                      check={check}
+                      setCheck={setCheck}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <div className="box123 d-flex flex-column justify-content-center align-items-center">
+                <p className="bold h3">購物車目前沒有東西呦</p>
+                <Link to="/Product">
+                  <button className="btn btn-primary bold">前往商品頁面</button>
+                </Link>
+              </div>
+            )}
           </div>
 
           <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
@@ -188,16 +176,15 @@ function Cart(props) {
             </Button>
           </Link>
           <div className="">
-            <Link to={`/Cartcheck${sessionMember.account}`}>
-              <Button
-                className="buttoncheck"
-                variant="success"
-                disabled={local.length === 0 ? true : false}
-              >
-                確認訂單
-                {console.log(local)}
-              </Button>
-            </Link>
+            {local.length !== 0 ? (
+              <Link to={`/Cartcheck${sessionMember.account}`}>
+                <Button className="buttoncheck" variant="success">
+                  確認訂單
+                </Button>
+              </Link>
+            ) : (
+              <></>
+            )}
             <Link to="/Product">
               <button className="btn btn-light comebuy ms-3">繼續購物</button>
             </Link>

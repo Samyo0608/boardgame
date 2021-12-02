@@ -11,27 +11,27 @@ import "../../css/cart.css";
 import Swal from "sweetalert2";
 
 function Cart1(props) {
-  const { name, price, imgURL, id, type } = props;
+  const { list } = props;
   const [count, setCount] = useState(1);
-  const oneProductPrice = price * count;
+  const oneProductPrice = list.product_price * count;
 
   // 利用原本的localStorege資料存入state狀態
   const [cartLocal, setCartLocal] = useState(
-    JSON.parse(localStorage.getItem(name))
+    JSON.parse(localStorage.getItem(list.product_name))
   );
 
   // 只要count做更動便會將傳入的值帶回去
   useEffect(
     (e) => {
       let newStorage = { ...cartLocal };
-      newStorage.product_name = name;
+      newStorage.product_name = list.product_name;
       newStorage.count = count;
-      newStorage.product_id = id;
-      newStorage.product_img = imgURL;
-      newStorage.product_type = type;
-      newStorage.product_price = price;
+      newStorage.product_id = list.product_id;
+      newStorage.product_img = list.product_img;
+      newStorage.product_type = list.product_type;
+      newStorage.product_price = list.product_price;
       // 此時cartLocal已經做變動了，再將這個值產生localStorage覆蓋原本的值
-      localStorage.setItem(name, JSON.stringify(newStorage));
+      localStorage.setItem(list.product_name, JSON.stringify(newStorage));
       // console.log(name);
     },
     [count]
@@ -52,18 +52,18 @@ function Cart1(props) {
   const handleMinus = () => {
     setCount(count - 1);
     props.setCheck(!props.check);
-    console.log(JSON.parse(localStorage.getItem(name)));
+    console.log(JSON.parse(localStorage.getItem(list.product_name)));
   };
 
   const handlePlus = () => {
     setCount(count + 1);
     props.setCheck(!props.check);
-    console.log(JSON.parse(localStorage.getItem(name)));
+    console.log(JSON.parse(localStorage.getItem(list.product_name)));
   };
 
   const handleDelete = () => {
     props.setCheck(!props.check);
-    localStorage.removeItem(name);
+    localStorage.removeItem(list.product_name);
     Toast.fire({
       icon: "success",
       title: "已將商品移除購物車",
@@ -77,13 +77,13 @@ function Cart1(props) {
           <div className="col-3">
             <img
               className="cartpic"
-              src={`/product_img/550x400/${imgURL}`}
+              src={`/product_img/550x400/${list.product_img}`}
               alt=""
             />
           </div>
 
           <div className="col-3">
-            <span className="h3 mt-2 bold">{name}</span>
+            <span className="h3 mt-2 bold">{list.product_name}</span>
           </div>
 
           <div className="col-3">

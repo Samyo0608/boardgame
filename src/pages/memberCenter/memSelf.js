@@ -674,7 +674,6 @@ function MemSelf(props) {
     }
   }
   // 圖片上傳 function end
-
   const handleChange = (e) => {
     let newUser = { ...user };
     newUser[e.target.name] = e.target.value;
