@@ -4,6 +4,8 @@ import "../../css/product.css";
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Container, Button, Modal } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { LABELIMGS } from "../../configs/config";
 
 const Inpro2 = (props) => {
@@ -83,25 +85,22 @@ const Inpro2 = (props) => {
                 </Link>
                 <img
                   alt=""
-                  className="inproflag"
-                  src="/img/product/flag2.png"
+                  className="inproflag2"
+                  src="/img/product/panda.png"
                 />
 
                 <p className="pppice">售價 : {product_price}元</p>
-                <p className="pvote">{product_vote}</p>
+                <p className="pvote">{product_vote}票</p>
 
                 <a
                   key={hotInex2}
+                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
                   onClick={() => {
                     ToLocalStorage(hotInex2);
                   }}
                   href="#/"
                 >
-                  <img
-                    className="indexbuy "
-                    src="/img/product/buy2.png"
-                    alt=""
-                  />
+                  <FontAwesomeIcon icon={faShoppingCart} />
                 </a>
                 <a
                   href="#/"

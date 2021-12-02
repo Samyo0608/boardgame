@@ -86,9 +86,15 @@ const Inpro3 = (props) => {
                 >
                   <div className="pt-4">{product_name}</div>
                 </Link>
-                <p className="pt-3">售價 : {product_price}元</p>
-                <p className="p_vote">投票數: {product_vote} 票</p>
+                <img
+                  alt=""
+                  className="inproflag3"
+                  src="/img/product/forest.png"
+                />
 
+                <p className="pt-3">售價 : {product_price}元</p>
+                <p className="p_vote">{product_vote} 票</p>
+                <img alt="" className="crown" src="/img/product/crown.png" />
                 <a
                   key={hotInex3}
                   onClick={() => {

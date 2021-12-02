@@ -500,11 +500,10 @@
 /* 投票數 */
 .pvote {
   position: absolute;
-  color: rgba(247, 38, 38, 0.836);
-  font-size: 20px;
-  top: 172px;
+  color: rgba(41, 81, 88, 0.836);
+  font-size: 18px;
+  top: 215px;
   font-weight: bold;
-  left: 3px;
 }
 
 .pppice {
@@ -515,11 +514,17 @@
   right: 80px;
 }
 
-.p_vote {
+.p_vote1 {
   position: absolute;
-  color: rgba(247, 38, 38, 0.836);
-  font-size: 15px;
-  top: 470px;
+  color: rgba(41, 81, 88, 0.836);
+  font-size: 25px;
+  top: 446px;
+  left: 160px;
+  font-weight: bold;
+}
+.crown {
+  position: absolute;
+  top: 465px;
   left: 20px;
 }
 
@@ -550,8 +555,22 @@
 
 .inproflag {
   position: absolute;
-  top: 160px;
-  left: -40px;
-  width: 100px;
-  height: 250;
+  top: 175px;
+  left: -25px;
+  width: 75px;
+  height: 70px;
+}
+.inproflag2 {
+  position: absolute;
+  top: 175px;
+  left: -10px;
+  width: 60px;
+  height: 70px;
+}
+.inproflag3 {
+  position: absolute;
+  top: 425px;
+  left: 0px;
+  width: 160px;
+  height: 80px;
 }
