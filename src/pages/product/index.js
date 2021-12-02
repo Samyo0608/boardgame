@@ -11,6 +11,7 @@ import HotGame2 from "../../components/product/HotGame2";
 import HotGame3 from "../../components/product/HotGame3";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import { Pagination } from "antd";
 
 // 分類按鈕的狀態圖
 const typeButton = [
@@ -31,6 +32,7 @@ const typeButton = [
     status: "策略系列",
   },
 ];
+
 // let active = 1;
 // let items = [];
 // for (let number = 1; number <= 3; number++) {
@@ -43,6 +45,8 @@ const typeButton = [
 
 function Product(props) {
   const [status, setStatus] = useState(1);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(6);
 
   // 全部遊戲
   const [hotproductall, sethotproductall] = useState([]);
@@ -246,6 +250,7 @@ function Product(props) {
             {/* <div>
               <A_button />
             </div> */}
+
             <div className="boxer123">
               <div>
                 <Row>

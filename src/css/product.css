@@ -536,3 +536,9 @@
   position: absolute;
   top: 180px;
 }
+
+.x-3 {
+  position: relative;
+  right: 40px;
+  top: -245px;
+}

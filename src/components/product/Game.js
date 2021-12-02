@@ -21,7 +21,6 @@ function Game(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
-    const Cart = localStorage.getItem("") || [];
     const newCart = id;
     localStorage.setItem(id.product_name, JSON.stringify(newCart));
     // 設定資料
@@ -37,8 +36,9 @@ function Game(props) {
         產品：<span className="redone">{product_name}</span> 已成功加入購物車
       </Modal.Body>{" "}
       <Modal.Footer>
+        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
         <Button variant="secondary" onClick={handleClose}>
-          繼續購物
+          繼續選購
         </Button>
         <Button
           variant="primary"
@@ -70,7 +70,9 @@ function Game(props) {
             <div className="gamename">{product_name}</div>
           </Link>
           <br></br>
-          <span>${product_price}</span>
+          <div className="x-3">
+            <span>${product_price}</span>
+          </div>
           <div className="iconflex">
             <a
               key={id}
