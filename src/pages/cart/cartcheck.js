@@ -93,7 +93,7 @@ const Cartcheck = (props) => {
     let proPriceString = "";
     let proCountString = "";
     Arr.forEach((v) => {
-      productName.push(v.product_name);
+      productName.push([v.product_name]);
       productPrice.push(v.product_price);
       productCount.push(v.count);
       proNameString = productName.toString();

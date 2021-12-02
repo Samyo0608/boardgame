@@ -32,6 +32,8 @@ function TopNavbar(props) {
     account: "",
     point: "",
   });
+  const [product, setProduct] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   // 初始載入資料
   useEffect((e) => {
@@ -47,6 +49,23 @@ function TopNavbar(props) {
     }
     session();
   }, []);
+
+  // 抓取產品資料
+  useEffect(() => {
+    async function product() {
+      try {
+        let product = await axios.get(`${API_URL}/cart/`, {
+          withCredentials: true,
+        });
+        setProduct(product.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    product();
+  }, []);
+
+  console.log(product);
 
   // logout按鈕事件
   const handleClick = async (e) => {
@@ -154,10 +173,13 @@ function TopNavbar(props) {
         </Navbar.Brand>
         <Form className="d-flex searchInput">
           <FormControl
-            type="search"
+            type="text"
             placeholder="找遊戲"
+            name="search"
             className="me-2 formControl"
-            aria-label="Search"
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
           />
           <Button variant="link" className="faSearch">
             <div>
