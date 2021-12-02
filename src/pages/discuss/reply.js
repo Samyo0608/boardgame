@@ -1,8 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal } from "react-bootstrap";
 import "../../css/reply.css";
-import React, { Component } from "react";
+import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +12,7 @@ import Swal from "sweetalert2";
 import DiscussQuill from "../../components/discuss/discussQuill";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
+import { Pagination } from "antd";
 
 const Reply = () => {
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
@@ -22,8 +21,27 @@ const Reply = () => {
   // 標題設定狀態
   const [replyTitle, setreplyTitle] = useState([]);
 
+  // 分頁
+  // 默認一次顯示5筆
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(5);
+
   // 內容設定狀態
   const [discussContent, setDiscussContent] = useState([]);
+  const [hotDiscuss, setHotDiscuss] = useState([]);
+  const [displayHotDiscuss, setDisplayHotDiscuss] = useState([]);
+  const [totalDiscussContent, setTotalDiscussContent] = useState([
+    {
+      discuss_id: "",
+      content: "",
+      created_at: "",
+    },
+  ]);
+  const TYPE_COLOR = {
+    家庭: "discussTagFamily",
+    策略: "discussTagTrag",
+    卡牌: "discussTagCard",
+  };
 
   // 統計發文數設定狀態
   const [discussCount, setDiscussCount] = useState([{ user_id: "", cot: "" }]);
@@ -163,6 +181,18 @@ const Reply = () => {
     setreplyTitle(resTitle.data[0]);
   }, []);
 
+  // 撈熱門討論區資料
+  useEffect(async () => {
+    let res = await axios.get(`http://localhost:3001/api/discuss/discussCount`);
+    setHotDiscuss(res.data);
+    setDisplayHotDiscuss(res.data);
+  }, []);
+  // 撈討論區內容
+  useEffect(async () => {
+    let res = await axios.get(`http://localhost:3001/api/discuss/indexContent`);
+    setTotalDiscussContent(res.data);
+  }, []);
+
   // 統計每人發文數
   useEffect(async () => {
     let resDiscussCount = await axios.get(
@@ -228,7 +258,7 @@ const Reply = () => {
       <div className="replyBannerBox">
         <img
           className="replyBannerImg"
-          src="../../img/reply/banner.png"
+          src="../../../img/reply/banner.png"
           alt=""
         />
         <div className="bannerContent text-end">
@@ -244,246 +274,276 @@ const Reply = () => {
         </a>
       </div>
       <div className="replyPicBox">
-        <img alt="" className="replyPic" src="../../img/reply/reply1.png" />
+        <img alt="" className="replyPic" src="../../../img/reply/reply1.png" />
       </div>
       <a className="replyButton text-center" href="#replyTarget">
         回覆
       </a>
       {/* 討論區內容 */}
-      {discussContent.map((v, i) => {
-        return (
-          <div key={v.id} className="firstF row mx-2">
-            {/* 發表者 */}
-            <div className="col-2">
-              <div className="replyerBox text-center fw-bold">
-                <p className="floorName">{i === 0 ? `樓主` : i + 1 + `樓`}</p>
-                <div className="replyerImgBox">
-                  <img
-                    alt=""
-                    src={
-                      v.photo === ""
-                        ? `../../img/reply/replyer1.png`
-                        : `${PHOTO_URL}/public/uploads/${v.photo}`
-                    }
-                    className="replyerImg"
-                  />
+      {discussContent &&
+        discussContent.length > 0 &&
+        discussContent.slice(minValue, maxValue).map((v, i) => {
+          return (
+            <div key={v.id} className="firstF row mx-2">
+              {/* 發表者 */}
+              <div className="col-2">
+                <div className="replyerBox text-center fw-bold">
+                  <p className="floorName">
+                    {i + minValue === 0 ? `樓主` : `${i + 1 + minValue}樓`}
+                  </p>
+                  <div className="replyerImgBox">
+                    <img
+                      alt=""
+                      src={
+                        v.photo === ""
+                          ? `../../../img/reply/unprofile.png`
+                          : `${PHOTO_URL}/public/uploads/${v.photo}`
+                      }
+                      className="replyerImg"
+                    />
+                  </div>
+                  <p>{v.account}</p>
+                  <p>
+                    {discussCount.filter((dv) => {
+                      return dv.user_id === Number(v.user_id);
+                    })[0]?.cot === undefined
+                      ? "0"
+                      : discussCount.filter((dv) => {
+                          return dv.user_id === Number(v.user_id);
+                        })[0]?.cot}
+                    {`篇發表`}
+                  </p>
+                  <p>
+                    {replyCount.filter((rv) => {
+                      return rv.user_id === Number(v.user_id);
+                    })[0]?.cot === undefined
+                      ? "0"
+                      : replyCount.filter((rv) => {
+                          return rv.user_id === Number(v.user_id);
+                        })[0]?.cot}
+                    {`篇回覆`}
+                  </p>
                 </div>
-                <p>{v.account}</p>
-                <p>
-                  {discussCount.filter((dv) => {
-                    return dv.user_id === Number(v.user_id);
-                  })[0]?.cot === undefined
-                    ? "0"
-                    : discussCount.filter((dv) => {
-                        return dv.user_id === Number(v.user_id);
-                      })[0]?.cot}
-                  {`篇發表`}
-                </p>
-                <p>
-                  {replyCount.filter((rv) => {
-                    return rv.user_id === Number(v.user_id);
-                  })[0]?.cot === undefined
-                    ? "0"
-                    : replyCount.filter((rv) => {
-                        return rv.user_id === Number(v.user_id);
-                      })[0]?.cot}
-                  {`篇回覆`}
-                </p>
               </div>
-            </div>
-            {/* 留言內容 */}
-            <div className="col-10">
-              <div className="replyBox">
-                <div className="replyOutBox">
-                  <div className="replyInBox">
-                    {/* 文章內容 */}
-                    {v.valid === 0 ? (
-                      <p className="deletedReply">
-                        =====此回覆已被使用者刪除=====
-                      </p>
-                    ) : (
-                      <ReactQuill
-                        className="discussContentQuill"
-                        value={v.content}
-                        readOnly={true}
-                        theme={"bubble"}
-                      />
-                    )}
-
-                    <p className="postTime text-secondary">
-                      發表於 :{" "}
-                      {moment(v.created_at.toString()).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                      )}
-                    </p>
-
-                    {/* 編輯和刪除 */}
-                    <div className="twoButton d-flex">
-                      {v.user_id === sessionMember.id && v.valid === 1 ? (
-                        <div className="replyUserBtn">
-                          <button
-                            type="button"
-                            onClick={async () => {
-                              Swal.fire({
-                                title: "確定要刪除此則回覆嗎?",
-                                text: "此操作無法復原",
-                                icon: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#3085d6",
-                                cancelButtonColor: "#d33",
-                                confirmButtonText: "確定",
-                                cancelButtonText: "不要",
-                              }).then(async (result) => {
-                                if (result.isConfirmed) {
-                                  let resDiscussKeep = await axios.post(
-                                    `http://localhost:3001/api/discuss/deleteReply`,
-                                    { id: v.id },
-                                    {
-                                      withCredentials: true,
-                                    }
-                                  );
-                                  Swal.fire(
-                                    "刪除成功!",
-                                    "您的回覆已經被刪除",
-                                    "success"
-                                  );
-                                  let res = await axios.get(
-                                    `http://localhost:3001/api/discuss/reply/${discuss_id}`
-                                  );
-                                  setDiscussContent(res.data);
-                                }
-                              });
-                            }}
-                            className="replyDelete"
-                          >
-                            刪除
-                          </button>
-                          <Link
-                            discuss_content_id={v.id}
-                            to={{
-                              pathname: "../editReply",
-                              discuss_content_id: v.id,
-                              discuss_id: discuss_id,
-                            }}
-                            className="replyEdit"
-                            onClick={() => {
-                              setEditStatus(v.id);
-                            }}
-                          >
-                            編輯
-                          </Link>
-                        </div>
+              {/* 留言內容 */}
+              <div className="col-10">
+                <div className="replyBox">
+                  <div className="replyOutBox">
+                    <div className="replyInBox">
+                      {/* 文章內容 */}
+                      {v.valid === 0 ? (
+                        <p className="deletedReply">
+                          =====此回覆已被使用者刪除=====
+                        </p>
                       ) : (
-                        ""
+                        <ReactQuill
+                          className="discussContentQuill"
+                          value={v.content}
+                          readOnly={true}
+                          theme={"bubble"}
+                        />
                       )}
 
-                      <a
-                        href="#/"
-                        className={`keepButton col-2 d-flex justify-content-evenly align-items-center ${
-                          keepStatus === true ? "keepButtonActive" : ""
-                        } ${i === 0 ? "" : "d-none"}`}
-                        onClick={keepClick}
-                      >
-                        收藏
-                        <FontAwesomeIcon className="keepImg" icon={faHeart} />
-                      </a>
+                      <p className="postTime text-secondary">
+                        發表於 :{" "}
+                        {moment(v.created_at.toString()).format(
+                          "YYYY-MM-DD HH:mm:ss"
+                        )}
+                      </p>
 
-                      <a
-                        href="#/"
-                        className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
-                          discussLikeData.filter((lv) => {
-                            return (
-                              lv.user_id === sessionMember.id &&
-                              lv.discuss_content_id === v.id
-                            );
-                          }).length === 0
-                            ? ""
-                            : "likeButtonActive"
-                        }`}
-                        onClick={async () => {
-                          if (!sessionMember.id) {
-                            alert("請先登入");
-                            window.location.href = `/login`;
-                          } else {
-                            const likeData = {
-                              user_id: sessionMember.id,
-                              discuss_content_id: v.id,
-                            };
+                      {/* 編輯和刪除 */}
+                      <div className="twoButton d-flex">
+                        {v.user_id === sessionMember.id && v.valid === 1 ? (
+                          <div className="replyUserBtn">
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                Swal.fire({
+                                  title: "確定要刪除此則回覆嗎?",
+                                  text: "此操作無法復原",
+                                  icon: "warning",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#3085d6",
+                                  cancelButtonColor: "#d33",
+                                  confirmButtonText: "確定",
+                                  cancelButtonText: "不要",
+                                }).then(async (result) => {
+                                  if (result.isConfirmed) {
+                                    let resDiscussKeep = await axios.post(
+                                      `http://localhost:3001/api/discuss/deleteReply`,
+                                      { id: v.id },
+                                      {
+                                        withCredentials: true,
+                                      }
+                                    );
+                                    Swal.fire(
+                                      "刪除成功!",
+                                      "您的回覆已經被刪除",
+                                      "success"
+                                    );
+                                    let res = await axios.get(
+                                      `http://localhost:3001/api/discuss/reply/${discuss_id}`
+                                    );
+                                    setDiscussContent(res.data);
+                                  }
+                                });
+                              }}
+                              className="replyDelete"
+                            >
+                              刪除
+                            </button>
+                            <Link
+                              discuss_content_id={v.id}
+                              to={{
+                                pathname: "../editReply",
+                                discuss_content_id: v.id,
+                                discuss_id: discuss_id,
+                              }}
+                              className="replyEdit"
+                              onClick={() => {
+                                setEditStatus(v.id);
+                              }}
+                            >
+                              編輯
+                            </Link>
+                          </div>
+                        ) : (
+                          ""
+                        )}
 
-                            if (
-                              discussLikeData.filter((lv) => {
-                                return (
-                                  lv.user_id === sessionMember.id &&
-                                  lv.discuss_content_id === v.id
-                                );
-                              }).length === 0
-                            ) {
-                              let resLike = await axios.post(
-                                `http://localhost:3001/api/discuss/like`,
-                                likeData,
-                                {
-                                  withCredentials: true,
-                                }
+                        <a
+                          href="#/"
+                          className={`keepButton col-2 d-flex justify-content-evenly align-items-center ${
+                            keepStatus === true ? "keepButtonActive" : ""
+                          } ${i === 0 ? "" : "d-none"}`}
+                          onClick={keepClick}
+                        >
+                          收藏
+                          <FontAwesomeIcon className="keepImg" icon={faHeart} />
+                        </a>
+
+                        <a
+                          href="#/"
+                          className={`likeButton col-2 d-flex justify-content-evenly align-items-center ${
+                            discussLikeData.filter((lv) => {
+                              return (
+                                lv.user_id === sessionMember.id &&
+                                lv.discuss_content_id === v.id
                               );
-                              let resDiscussLikeData = await axios.post(
-                                `http://localhost:3001/api/discuss/likeData`,
-                                {
-                                  withCredentials: true,
-                                }
-                              );
-                              setDiscussLikeData(resDiscussLikeData.data);
-                              Swal.fire(
-                                "Good job!",
-                                "已發送您的讚!",
-                                "success"
-                              );
+                            }).length === 0
+                              ? ""
+                              : "likeButtonActive"
+                          }`}
+                          onClick={async () => {
+                            if (!sessionMember.id) {
+                              alert("請先登入");
+                              window.location.href = `/login`;
                             } else {
-                              let resLikeDelete = await axios.post(
-                                `http://localhost:3001/api/discuss/likeDelete`,
-                                likeData,
-                                {
-                                  withCredentials: true,
-                                }
-                              );
-                              let resDiscussLikeDataDel = await axios.post(
-                                `http://localhost:3001/api/discuss/likeData`,
-                                {
-                                  withCredentials: true,
-                                }
-                              );
-                              setDiscussLikeData(resDiscussLikeDataDel.data);
-                              Swal.fire(
-                                "Good job!",
-                                "已收回您的讚!",
-                                "success"
-                              );
+                              const likeData = {
+                                user_id: sessionMember.id,
+                                discuss_content_id: v.id,
+                              };
+
+                              if (
+                                discussLikeData.filter((lv) => {
+                                  return (
+                                    lv.user_id === sessionMember.id &&
+                                    lv.discuss_content_id === v.id
+                                  );
+                                }).length === 0
+                              ) {
+                                let resLike = await axios.post(
+                                  `http://localhost:3001/api/discuss/like`,
+                                  likeData,
+                                  {
+                                    withCredentials: true,
+                                  }
+                                );
+                                let resDiscussLikeData = await axios.post(
+                                  `http://localhost:3001/api/discuss/likeData`,
+                                  {
+                                    withCredentials: true,
+                                  }
+                                );
+                                setDiscussLikeData(resDiscussLikeData.data);
+                                Swal.fire(
+                                  "Good job!",
+                                  "已發送您的讚!",
+                                  "success"
+                                );
+                              } else {
+                                let resLikeDelete = await axios.post(
+                                  `http://localhost:3001/api/discuss/likeDelete`,
+                                  likeData,
+                                  {
+                                    withCredentials: true,
+                                  }
+                                );
+                                let resDiscussLikeDataDel = await axios.post(
+                                  `http://localhost:3001/api/discuss/likeData`,
+                                  {
+                                    withCredentials: true,
+                                  }
+                                );
+                                setDiscussLikeData(resDiscussLikeDataDel.data);
+                                Swal.fire(
+                                  "Good job!",
+                                  "已收回您的讚!",
+                                  "success"
+                                );
+                              }
                             }
+                          }}
+                        >
+                          {
+                            discussLikeData.filter((lv) => {
+                              return lv.discuss_content_id === v.id;
+                            }).length
                           }
-                        }}
-                      >
-                        {
-                          discussLikeData.filter((lv) => {
-                            return lv.discuss_content_id === v.id;
-                          }).length
-                        }
-                        <FontAwesomeIcon
-                          className="awesomeImg"
-                          icon={faThumbsUp}
-                        />
-                      </a>
+                          <FontAwesomeIcon
+                            className="awesomeImg"
+                            icon={faThumbsUp}
+                          />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+
+      {/* 分頁 */}
+      <div className="discussPagination">
+        <Pagination
+          defaultPage={2}
+          defaultCurrent={1} // 預設在第一個頁面
+          defaultPageSize={5} // 預設一個頁面顯示5個數據
+          pageSizeOptions={["5", "10", "15", "20"]}
+          // showSizeChanger={true}
+          onChange={(page, pageSize) => {
+            if (page <= 1) {
+              setMinValue(0);
+              setMaxValue(pageSize);
+            } else {
+              setMinValue((page - 1) * pageSize);
+              setMaxValue((page - 1) * pageSize + pageSize);
+            }
+            window.scrollTo(0, 0);
+          }}
+          total={discussContent.length}
+        />
+      </div>
 
       {/* 參加討論 */}
       <div className="newReplyBox d-flex" id="replyTarget">
         <div className="redBirdBox mx-4">
-          <img className="redBirdImg" src="../../img/reply/bird3.png" alt="" />
+          <img
+            className="redBirdImg"
+            src="../../../img/reply/bird3.png"
+            alt=""
+          />
         </div>
         <div className="ms-5">
           <p className="fw-bold">參加討論</p>
@@ -492,7 +552,7 @@ const Reply = () => {
               <img
                 className="greenBirdImg"
                 alt=""
-                src="../../img/reply/bird2.png"
+                src="../../../img/reply/bird2.png"
               />
             </div>
             <div className="textareaBox">
@@ -514,45 +574,64 @@ const Reply = () => {
         </div>
       </div>
 
-      {/* 相關討論標題 */}
+      {/* 熱門推薦標題 */}
 
       <div className="position-relative r_discussTitle mb-4">
-        <h2 className="text-center">相關討論</h2>
+        <h2 className="text-center">熱門推薦</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="../../img/index/line.png" />
         </div>
       </div>
 
       <div className="discussRecommendBoxOut mb-5">
+        <div className="hotDiscussBox">
+          <img
+            alt=""
+            className="hotDiscussPic"
+            src="../../img/discuss/fire2.png"
+          />
+        </div>
         <div className="discussRecommendBoxIn row">
-          <div className="col d-flex drBox">
-            <div className="drImgBox">
-              <img
-                className="drImg"
-                alt=""
-                src="../../img/discuss/discussRecommend1.png"
-              />
-            </div>
-            <div className="drTextBox">
-              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
-              <a href="#/">繼續閱讀...</a>
-              <p className="mt-3 text-secondary">15個人說讚</p>
-            </div>
-          </div>
-          <div className="col d-flex drBox">
-            <div className="drImgBox">
-              <img
-                className="drImg"
-                alt=""
-                src="../../img/discuss/discussRecommend1.png"
-              />
-            </div>
-            <div className="drTextBox">
-              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
-              <a href="#/">繼續閱讀...</a>
-              <p className="mt-3 text-secondary">15個人說讚</p>
-            </div>
-          </div>
+          {displayHotDiscuss.slice(0, 4).map((v, i) => {
+            return (
+              <div key={v.id} className="col drBox">
+                <a href={`../reply/${v.id}`} className="hotDiscussLink">
+                  <div className="drImgBox">
+                    {totalDiscussContent
+                      .filter((dc) => {
+                        return dc.discuss_id === v.id;
+                      })[0]
+                      ?.content.indexOf("<img src=") === -1 ? (
+                      <div className="unpicBox">
+                        <img src={`../../img/discuss/unpic.png`} alt="" />
+                      </div>
+                    ) : (
+                      <ReactQuill
+                        className="picDiscussContentQuill hotpicDiscussContentQuill"
+                        value={
+                          totalDiscussContent.filter((dc) => {
+                            return dc.discuss_id === v.id;
+                          })[0]?.content || ""
+                        }
+                        readOnly={true}
+                        theme={"bubble"}
+                      />
+                    )}
+                  </div>
+                  <div className="drTextBox">
+                    <div className="discussHotTitle">{v.title}</div>
+                    <p className="mt-1 text-secondary">
+                      <span className={`hotType ${TYPE_COLOR[v.type]}`}>
+                        {v.type}
+                      </span>{" "}
+                      {v.cot}
+                      篇回覆
+                    </p>
+                  </div>
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
 

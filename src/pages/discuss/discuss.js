@@ -24,8 +24,9 @@ const Discuss = (props) => {
   // 分頁
   // 默認一次顯示5筆
   const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(5);
+  const [maxValue, setMaxValue] = useState(10);
   const [discuss, setDiscuss] = useState([]);
+  const [hotDiscuss, setHotDiscuss] = useState([]);
   const [discussContent, setDiscussContent] = useState([
     {
       discuss_id: "",
@@ -34,17 +35,7 @@ const Discuss = (props) => {
     },
   ]);
   const [displayDiscuss, setDisplayDiscuss] = useState([]);
-  const [displayDiscussContent, setDisplayDiscussContent] = useState([
-    {
-      id: "",
-      type: "",
-      title: "",
-      i_user_id: "",
-      user_id: "",
-      created_at: "",
-      cot: "",
-    },
-  ]);
+  const [displayHotDiscuss, setDisplayHotDiscuss] = useState([]);
   const [discussType, setDiscussType] = useState("all");
   const [searchDiscuss, setSearchDiscuss] = useState({
     keyword: "",
@@ -72,11 +63,9 @@ const Discuss = (props) => {
         `http://localhost:3001/api/discuss/searchDiscuss`,
         searchDiscuss
       );
-      // console.log(resNewDiscuss.data);
       setDiscuss(resSearch.data);
       setDisplayDiscuss(resSearch.data);
       setDiscussType("all");
-      // window.location.reload();
     } catch (e) {
       console.log("handleSearchSubmit", e);
     }
@@ -88,6 +77,13 @@ const Discuss = (props) => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
     setDiscuss(res.data);
     setDisplayDiscuss(res.data);
+  }, []);
+
+  // 撈熱門討論區資料
+  useEffect(async () => {
+    let res = await axios.get(`http://localhost:3001/api/discuss/discussCount`);
+    setHotDiscuss(res.data);
+    setDisplayHotDiscuss(res.data);
   }, []);
 
   // 撈討論區內容
@@ -146,13 +142,13 @@ const Discuss = (props) => {
           >
             x
           </a>
-          <select className="form-select disSearchSelect">
+          {/* <select className="form-select disSearchSelect">
             <option>找標題</option>
             <option>找內容</option>
             <option>找作者</option>
-          </select>
+          </select> */}
           <input
-            placeholder="輸入關鍵字..."
+            placeholder="請輸入關鍵字... (標題、內文、作者)"
             className="discussSearch form-control"
             name="keyword"
             value={searchDiscuss.keyword}
@@ -178,6 +174,7 @@ const Discuss = (props) => {
               }`}
               onClick={async () => {
                 setDisplayDiscuss(discuss);
+                setDisplayHotDiscuss(hotDiscuss);
                 setDiscussType("all");
               }}
             >
@@ -192,11 +189,15 @@ const Discuss = (props) => {
                   className={`d-inline-block mx-5 recommendType text-decoration-none text-center ${
                     discussType === v.type ? "recommendTypeActive" : ""
                   }`}
-                  onClick={async () => {
+                  onClick={() => {
                     let handleDiscussFilter = discuss.filter((dv) => {
                       return dv.type === v.name;
                     });
+                    let handleHotDiscussFilter = hotDiscuss.filter((hdv) => {
+                      return hdv.type === v.name;
+                    });
                     setDisplayDiscuss(handleDiscussFilter);
+                    setDisplayHotDiscuss(handleHotDiscussFilter);
                     setDiscussType(v.type);
                   }}
                 >
@@ -215,6 +216,7 @@ const Discuss = (props) => {
                 <thead>
                   <tr className="text-secondary">
                     <th scope="col">分類</th>
+                    <th scope="col">預覽</th>
                     <th scope="col">標題</th>
                     <th scope="col">發文者</th>
                     <th scope="col">回覆數</th>
@@ -230,6 +232,31 @@ const Discuss = (props) => {
                           <th scope="row" className="">
                             <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                           </th>
+                          <td className="disPicTd">
+                            {discussContent
+                              .filter((dc) => {
+                                return dc.discuss_id === v.id;
+                              })[0]
+                              ?.content.indexOf("<img src=") === -1 ? (
+                              <div className="unpicBox">
+                                <img
+                                  src={`img/discuss/${TYPE_COLOR[v.type]}.png`}
+                                  alt=""
+                                />
+                              </div>
+                            ) : (
+                              <ReactQuill
+                                className="picDiscussContentQuill"
+                                value={
+                                  discussContent.filter((dc) => {
+                                    return dc.discuss_id === v.id;
+                                  })[0]?.content || ""
+                                }
+                                readOnly={true}
+                                theme={"bubble"}
+                              />
+                            )}
+                          </td>
                           <td className="text-start discussTitleTd">
                             <Link
                               className="discussTitleLink"
@@ -292,10 +319,10 @@ const Discuss = (props) => {
       {/* 分頁 */}
       <div className="discussPagination">
         <Pagination
-          defaultCurrent={1} // 默认在第一个页面
-          defaultPageSize={5} // 默认一个页面显示5个数据
+          defaultCurrent={1} // 預設在第一個頁面
+          defaultPageSize={10} // 預設一個頁面顯示5個數據
           pageSizeOptions={["5", "10", "15", "20"]}
-          // 点击页面触发更新，点击时，默认传入页面值，例如第一页，值为1
+          showSizeChanger={true}
           onChange={(page, pageSize) => {
             if (page <= 1) {
               setMinValue(0);
@@ -323,34 +350,48 @@ const Discuss = (props) => {
           <img alt="" className="hotDiscussPic" src="img/discuss/fire2.png" />
         </div>
         <div className="discussRecommendBoxIn row">
-          <div className="col d-flex drBox">
-            <div className="drImgBox">
-              <img
-                className="drImg"
-                alt=""
-                src="img/discuss/discussRecommend1.png"
-              />
-            </div>
-            <div className="drTextBox">
-              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
-              <a href="#/">繼續閱讀...</a>
-              <p className="mt-3 text-secondary">15個人說讚</p>
-            </div>
-          </div>
-          <div className="col d-flex drBox">
-            <div className="drImgBox">
-              <img
-                className="drImg"
-                alt=""
-                src="img/discuss/discussRecommend1.png"
-              />
-            </div>
-            <div className="drTextBox">
-              <p className="fw-bold">【卡牌】有人能幫忙看一下牌組嗎?</p>
-              <a href="#/">繼續閱讀...</a>
-              <p className="mt-3 text-secondary">15個人說讚</p>
-            </div>
-          </div>
+          {displayHotDiscuss.slice(0, 4).map((v, i) => {
+            return (
+              <div key={v.id} className="col drBox">
+                <div className="drInBox">
+                  <Link to={`discuss/reply/${v.id}`} className="hotDiscussLink">
+                    <div className="drImgBox">
+                      {discussContent
+                        .filter((dc) => {
+                          return dc.discuss_id === v.id;
+                        })[0]
+                        ?.content.indexOf("<img src=") === -1 ? (
+                        <div className="unpicBox">
+                          <img src={`img/discuss/unpic.png`} alt="" />
+                        </div>
+                      ) : (
+                        <ReactQuill
+                          className="picDiscussContentQuill hotpicDiscussContentQuill"
+                          value={
+                            discussContent.filter((dc) => {
+                              return dc.discuss_id === v.id;
+                            })[0]?.content || ""
+                          }
+                          readOnly={true}
+                          theme={"bubble"}
+                        />
+                      )}
+                    </div>
+                    <div className="drTextBox">
+                      <div className="discussHotTitle">{v.title}</div>
+                      <p className="mt-1 text-secondary">
+                        <span className={`hotType ${TYPE_COLOR[v.type]}`}>
+                          {v.type}
+                        </span>{" "}
+                        {v.cot}
+                        篇回覆
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
