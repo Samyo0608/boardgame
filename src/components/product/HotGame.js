@@ -30,24 +30,25 @@ function HotGame(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
-    const Cart = localStorage.getItem("") || [];
     const newCart = hot1;
     localStorage.setItem(hot1.product_name, JSON.stringify(newCart));
     // 設定資料
+
     handleShow();
   };
 
   const messageModal = (
     <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
       <Modal.Header closeButton>
-        <Modal.Title>加入購物車訊息</Modal.Title>
+        <Modal.Title>這是購物車訊息</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        產品：<span className="redone">{product_name}</span> 已成功加入購物車
+        產品：<span className="redone">{product_name}</span> 已成功加入購物車!
       </Modal.Body>
       <Modal.Footer>
+        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
         <Button variant="secondary" onClick={handleClose}>
-          繼續購物
+          繼續選購
         </Button>
         <Button
           variant="primary"

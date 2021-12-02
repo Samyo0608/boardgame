@@ -68,8 +68,9 @@ function Aboutgame(props) {
         已成功加入購物車
       </Modal.Body>
       <Modal.Footer>
+        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
         <Button variant="secondary" onClick={handleClose}>
-          繼續購物
+          繼續選購
         </Button>
         <Button
           variant="primary"

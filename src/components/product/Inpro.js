@@ -26,11 +26,9 @@ const Inpro = (props) => {
     product_vote,
   });
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
-    const Cart = localStorage.getItem("") || [];
     const newCart = hotInex1;
     localStorage.setItem(hotInex1.product_name, JSON.stringify(newCart));
     // 設定資料
@@ -49,8 +47,9 @@ const Inpro = (props) => {
         產品：<span className="redone">{product_name}</span> 已成功加入購物車
       </Modal.Body>{" "}
       <Modal.Footer>
+        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
         <Button variant="secondary" onClick={handleClose}>
-          繼續購物
+          繼續選購
         </Button>
         <Button
           variant="primary"
