@@ -33,65 +33,61 @@ const barchartRun = (b) => {
 };
 
 // 使用迴圈將json檔寫入contestRun的常數中做為一個陣列
-const contestRun = (c)=>{
-  const state= []  // 做一個空陣列
-    for (let i = 0; c < c.length; i++) {
-      state.push({...c[i]})
-    }
-    return state
+const contestRun = (c) => {
+  const state = []; // 做一個空陣列
+  for (let i = 0; c < c.length; i++) {
+    state.push({ ...c[i] });
   }
-
-
+  return state;
+};
 
 const Index = () => {
   const [about, setAbout] = useState("about");
   // 投票狀態鉤子
   const [status, setStatus] = useState(1);
   // 投票資料帶入
-  const [barno,setBarno]=useState(barchartRun(barchartRun));
-  const[contest,setContest]=useState(contestRun(contestRun))
+  const [barno, setBarno] = useState(barchartRun(barchartRun));
+  const [contest, setContest] = useState(contestRun(contestRun));
 
   // 從資料庫中叫出產品JSON
   useEffect(async () => {
     let res = await axios.get(`${API_URL}/vote/list`);
     setBarno(res.data);
-  },[])
- 
-　// 從資料庫叫出比賽JSON
-useEffect( () =>{
-  async function a(){
-  let res = await axios.get(`${API_URL}/contest/card`);
-  setContest(res.data)}
-  a()
-},[])
-// console.log(barno) barno is a array, but contest is a object.
-// 取三個比賽
-console.log(contest)
+  }, []); // 從資料庫叫出比賽JSON
 
+  useEffect(() => {
+    async function a() {
+      let res = await axios.get(`${API_URL}/contest/card`);
+      setContest(res.data);
+    }
+    a();
+  }, []);
+  // console.log(barno) barno is a array, but contest is a object.
+  // 取三個比賽
+  console.log(contest);
 
- // [全系列]
- const newrank=[...barno];
- newrank.sort(function(a, b) {
-     var nameA = a.product_vote; 
-     var nameB = b.product_vote; 
-     if (nameA < nameB) {
-       return 1;
-     }
-     if (nameA > nameB) {
-       return -1;
-     }
-     return 0;
-   }); 
+  // [全系列]
+  const newrank = [...barno];
+  newrank.sort(function (a, b) {
+    var nameA = a.product_vote;
+    var nameB = b.product_vote;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
 
-const newRank2=[];
-const newIn2=()=>{
-  for(let i=0; i<newrank.length;i++){
-      if (i<5)
-      newRank2.push(newrank[i])
-  }
-   return newRank2
-}
-newIn2();
+  const newRank2 = [];
+  const newIn2 = () => {
+    for (let i = 0; i < newrank.length; i++) {
+      if (i < 5) newRank2.push(newrank[i]);
+    }
+    return newRank2;
+  };
+  newIn2();
 
   // 全標籤
   const textAll = [];
@@ -260,7 +256,7 @@ newIn2();
     return textTrag;
   };
   tragData();
-  
+
   //  console.log("策略標籤",textTrag)
   // 策略票數
   const tragArr = [];
@@ -316,9 +312,8 @@ newIn2();
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
-
         <div className="commendPicBox">
-          <img alt="" className="commendPic" src="/img/index/commend.png" />
+          <img alt="" className="commendPic" src="/img/product/commend1.png" />
         </div>
       </div>
 
@@ -428,44 +423,72 @@ newIn2();
         </ul>
 
         {/* 投票box */}
-        <div className={`${status===1?"d-block":"d-none"}`} >
-        <IndexVote 
-          vote={allArr}
-          name={textAll}
-          rankArr1={`../product_img/550x400/${newRank2.length>0 ? newRank2[0].product_img : ""}`}
-          rankArr2={`../product_img/550x400/${newRank2.length>0 ? newRank2[1].product_img : ""}`}
-          rankArr3={`../product_img/550x400/${newRank2.length>0 ? newRank2[2].product_img : ""}`}
-           />
+        <div className={`${status === 1 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={allArr}
+            name={textAll}
+            rankArr1={`../product_img/550x400/${
+              newRank2.length > 0 ? newRank2[0].product_img : ""
+            }`}
+            rankArr2={`../product_img/550x400/${
+              newRank2.length > 0 ? newRank2[1].product_img : ""
+            }`}
+            rankArr3={`../product_img/550x400/${
+              newRank2.length > 0 ? newRank2[2].product_img : ""
+            }`}
+          />
         </div>
-        <div className={`${status===2?"d-block":"d-none"}`} >
-        <IndexVote
-          vote={famiArr}
-          name={textFami}
-          rankArr1={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[0].product_img : ""}`}
-          rankArr2={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[1].product_img : ""}`}
-          rankArr3={`../product_img/550x400/${famiRank2.length>0 ? famiRank2[2].product_img : ""}`}
-           />
+        <div className={`${status === 2 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={famiArr}
+            name={textFami}
+            rankArr1={`../product_img/550x400/${
+              famiRank2.length > 0 ? famiRank2[0].product_img : ""
+            }`}
+            rankArr2={`../product_img/550x400/${
+              famiRank2.length > 0 ? famiRank2[1].product_img : ""
+            }`}
+            rankArr3={`../product_img/550x400/${
+              famiRank2.length > 0 ? famiRank2[2].product_img : ""
+            }`}
+          />
         </div>
-        <div className={`${status===3?"d-block":"d-none"}`} >
-        <IndexVote 
-           vote={cardArr}
-           name={textCard}
-           rankArr1={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[0].product_img : ""}`}
-           rankArr2={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[1].product_img : ""}`}
-           rankArr3={`../product_img/550x400/${cardRank2.length>0 ? cardRank2[2].product_img : ""}`}
-        />
+        <div className={`${status === 3 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={cardArr}
+            name={textCard}
+            rankArr1={`../product_img/550x400/${
+              cardRank2.length > 0 ? cardRank2[0].product_img : ""
+            }`}
+            rankArr2={`../product_img/550x400/${
+              cardRank2.length > 0 ? cardRank2[1].product_img : ""
+            }`}
+            rankArr3={`../product_img/550x400/${
+              cardRank2.length > 0 ? cardRank2[2].product_img : ""
+            }`}
+          />
         </div>
-        <div className={`${status===4?"d-block":"d-none"}`} >
-        <IndexVote 
-          vote={tragArr}
-          name={textTrag}
-          rankArr1={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[0].product_img : ""}`}
-          rankArr2={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[1].product_img : ""}`}
-          rankArr3={`../product_img/550x400/${tragRank2.length>0 ? tragRank2[2].product_img : ""}`}
-        />
-
+        <div className={`${status === 4 ? "d-block" : "d-none"}`}>
+          <IndexVote
+            vote={tragArr}
+            name={textTrag}
+            rankArr1={`../product_img/550x400/${
+              tragRank2.length > 0 ? tragRank2[0].product_img : ""
+            }`}
+            rankArr2={`../product_img/550x400/${
+              tragRank2.length > 0 ? tragRank2[1].product_img : ""
+            }`}
+            rankArr3={`../product_img/550x400/${
+              tragRank2.length > 0 ? tragRank2[2].product_img : ""
+            }`}
+          />
         </div>
-        <Link to="/vote" target="_top" className="voteButton text-center" href="#/">
+        <Link
+          to="/vote"
+          target="_top"
+          className="voteButton text-center"
+          href="#/"
+        >
           前往投票
         </Link>
       </div>
@@ -483,33 +506,51 @@ newIn2();
       </div>
       {/* 當期比賽內容 */}
       <div className="conSize">
-      <IndexContest 
-        // 標題
-          title1={contest.length>0 ?contest[0].contest_title : 0}
-          title2={contest.length>0 ?contest[1].contest_title : 0}
-          title3={contest.length>0 ?contest[2].contest_title : 0}
-        // 圖片
-          pic1={`../img/contest/${contest.length>0 ? contest[0].contestPic : ""}`}
-          pic2={`../img/contest/${contest.length>0 ? contest[1].contestPic : ""}`}
-          pic3={`../img/contest/${contest.length>0 ? contest[2].contestPic : ""}`}
-        // 比賽日期
-          date1={contest.length>0 ? contest[0].contestDateStart : ""}
-          date2={contest.length>0 ? contest[1].contestDateStart : ""}
-          date3={contest.length>0 ? contest[2].contestDateStart : ""}
-        // 剩餘名額
-          num1={contest.length>0 ? contest[0].contest_limit - contest[0].contest_title_no : "" }
-          num2={contest.length>0 ? contest[1].contest_limit - contest[1].contest_title_no : "" }
-          num3={contest.length>0 ? contest[2].contest_limit - contest[2].contest_title_no : "" }
+        <IndexContest
+          // 標題
+          title1={contest.length > 0 ? contest[0].contest_title : 0}
+          title2={contest.length > 0 ? contest[1].contest_title : 0}
+          title3={contest.length > 0 ? contest[2].contest_title : 0}
+          // 圖片
+          pic1={`../img/contest/${
+            contest.length > 0 ? contest[0].contestPic : ""
+          }`}
+          pic2={`../img/contest/${
+            contest.length > 0 ? contest[1].contestPic : ""
+          }`}
+          pic3={`../img/contest/${
+            contest.length > 0 ? contest[2].contestPic : ""
+          }`}
+          // 比賽日期
+          date1={contest.length > 0 ? contest[0].contestDateStart : ""}
+          date2={contest.length > 0 ? contest[1].contestDateStart : ""}
+          date3={contest.length > 0 ? contest[2].contestDateStart : ""}
+          // 剩餘名額
+          num1={
+            contest.length > 0
+              ? contest[0].contest_limit - contest[0].contest_title_no
+              : ""
+          }
+          num2={
+            contest.length > 0
+              ? contest[1].contest_limit - contest[1].contest_title_no
+              : ""
+          }
+          num3={
+            contest.length > 0
+              ? contest[2].contest_limit - contest[2].contest_title_no
+              : ""
+          }
         />
-        <Link to="/contest" target="_top" class="conButton text-center" href="#/">
+        <Link
+          to="/contest"
+          target="_top"
+          class="conButton text-center"
+          href="#/"
+        >
           看更多
         </Link>
-      </div>    
-      
-     
-    
-        
-
+      </div>
 
       {/* 討論區標題 */}
 

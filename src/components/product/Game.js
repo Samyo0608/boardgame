@@ -70,9 +70,8 @@ function Game(props) {
             <div className="gamename">{product_name}</div>
           </Link>
           <br></br>
-          <div className="x-3">
-            <span>${product_price}</span>
-          </div>
+
+          <span>售價:{product_price}元</span>
           <div className="iconflex">
             <a
               key={id}

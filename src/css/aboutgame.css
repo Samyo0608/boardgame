@@ -59,6 +59,7 @@
   border-radius: 15px;
   margin-top: -30px;
 }
+
 .ellipsis3 {
   position: absolute;
   overflow: hidden;
@@ -136,10 +137,20 @@
 }
 .pprice {
   position: absolute;
-  font-size: 40px;
-  left: 860px;
-  top: 380px;
+  font-size: 30px;
   font-weight: bold;
+}
+.box4567 {
+  position: absolute;
+  width: 420px;
+  background-color: rgba(255, 255, 255, 0.767);
+  height: 50px;
+  top: 380px;
+  left: 520px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 15px;
 }
 /* 遊戲敘述 */
 .box457 {

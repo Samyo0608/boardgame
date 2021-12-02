@@ -112,14 +112,9 @@ function Aboutgame(props) {
             <div className="box456">
               <p className="ellipsis3">{aboutgame.product_content}</p>
             </div>
-            <p className="pprice">${aboutgame.product_price}</p>
-            <a href="#/">
-              <img
-                className="favorite4"
-                src="/img/product/favorite.png"
-                alt=""
-              />
-            </a>
+            <div className="box4567">
+              <p className="pprice ">售價 : {aboutgame.product_price}元</p>
+            </div>
             <a
               key={aboutgame}
               onClick={() => {
