@@ -55,6 +55,7 @@ function MemberRent(props) {
         }
 
         // console.log(item.endTime);
+        item.roomId = item.booking_id;
         item.roomImg = item.roomImg;
         item.type = item.room;
         item.userStatus = item.status;
@@ -62,6 +63,7 @@ function MemberRent(props) {
         item.costStatus = "未付款";
         item.predate = moment(item.startTime).format("YYYY-MM-DD HH:mm");
         item.rentDate = moment(item.order_date).format("YYYY-MM-DD");
+        item.roomValid = item.valid;
       });
 
   return (
@@ -89,6 +91,7 @@ function MemberRent(props) {
             const rent = () => {
               return (
                 <MemberRentItem
+                  roomId={v.booking_id}
                   key={i}
                   roomImg={v.roomImg}
                   type={v.type}
@@ -97,6 +100,7 @@ function MemberRent(props) {
                   costStatus={v.costStatus}
                   predate={v.predate}
                   rentDate={v.rentDate}
+                  roomValid={v.valid}
                 />
               );
             };
