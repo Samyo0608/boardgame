@@ -308,7 +308,7 @@ const Index = () => {
 
       {/* 推薦桌遊標題+插圖 */}
       <div className="position-relative">
-        <h2 className="text-center">推薦桌遊</h2>
+        <h2 className="text-center">人氣遊戲推薦</h2>
         <div className="titleLineBox">
           <img alt="" className="titleLine" src="img/index/line.png" />
         </div>
