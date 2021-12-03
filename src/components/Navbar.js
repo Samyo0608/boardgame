@@ -34,6 +34,7 @@ function TopNavbar(props) {
   });
   const [product, setProduct] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [member, setMember] = useState({ point: "" });
 
   // 初始載入資料
   useEffect((e) => {
@@ -48,6 +49,20 @@ function TopNavbar(props) {
       }
     }
     session();
+  }, []);
+
+  // 抓取會員資料
+  useEffect(() => {
+    async function getMemberData() {
+      let member = await axios.get(
+        `${API_URL}/cart/${sessionStorage.getItem("account")}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setMember(member.data[0]);
+    }
+    getMemberData();
   }, []);
 
   // 抓取產品資料
@@ -264,7 +279,8 @@ function TopNavbar(props) {
                 {sessionMember.account ? sessionMember.account : "會員您好"}
               </p>
               <div className="d-flex align-items-center">
-                點數<div className="point me-1">P</div> : {sessionMember.point}
+                點數<div className="point me-1">P</div> :{" "}
+                {member ? member.point : sessionMember.point}
               </div>
               <div className="ms-1">
                 <FontAwesomeIcon
