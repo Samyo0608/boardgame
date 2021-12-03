@@ -71,7 +71,7 @@ function Game(props) {
           </Link>
           <br></br>
 
-          <span>售價:{product_price}元</span>
+          <span>售價 : {product_price}元</span>
           <div className="iconflex">
             <a
               key={id}

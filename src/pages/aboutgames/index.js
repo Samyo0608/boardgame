@@ -117,7 +117,6 @@ function Aboutgame(props) {
             <div className="box4567">
               <p className="pprice ">售價 : {aboutgame.product_price}元</p>
             </div>
-
             <a
               key={aboutgame}
               onClick={() => {

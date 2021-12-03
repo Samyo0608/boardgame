@@ -94,13 +94,16 @@ const Inpro2 = (props) => {
 
                 <a
                   key={hotInex2}
-                  className="text-dark text-decoration-none recommendCart d-inline-block pt-1"
                   onClick={() => {
                     ToLocalStorage(hotInex2);
                   }}
                   href="#/"
                 >
-                  <FontAwesomeIcon icon={faShoppingCart} />
+                  <img
+                    className="indexbuy "
+                    src="/img/product/buy2.png"
+                    alt=""
+                  />
                 </a>
                 <a
                   href="#/"
