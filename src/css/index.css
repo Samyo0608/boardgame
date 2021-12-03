@@ -264,11 +264,20 @@
   height: 25px;
   padding-top: 2px;
   text-decoration: none;
-  background-color: #e4e4e4;
+  background-color: #81d8d0;
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
   position: absolute;
   right: 20px;
   bottom: 20px;
+  right: 70px;
+  transform: translateX(50%);
+}
+.moreButton:hover {
+  color: black;
+  background-color: rgb(72, 223, 215);
+}
+.moreButton:active {
+  background-color: rgb(46, 194, 186);
 }
 
 /* 場地出租插圖 */

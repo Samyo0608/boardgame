@@ -4,8 +4,6 @@ import "../../css/product.css";
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Container, Button, Modal } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { LABELIMGS } from "../../configs/config";
 
 const Inpro3 = (props) => {
