@@ -270,35 +270,6 @@ function Product(props) {
                 total={AllRank.length}
               />
             </div>
-
-            {/* <div className="boxer123">
-              <div>
-                <Row>
-                  {AllRank?.slice(3, 9).map((product) => {
-                    return (
-                      <Col md={4} key={product.product_id}>
-                        <Game
-                          product_id={product.product_id}
-                          product_name={product.product_name}
-                          product_type={product.product_type}
-                          product_price={product.product_price}
-                          product_img={product.product_img}
-                        />
-                      </Col>
-                    );
-                  })}
-                </Row>
-              </div>
-            </div> */}
-            {/* 分頁 */}
-            {/* <div>
-              <Pagination>{items}</Pagination>
-              <br />
-            </div> */}
-            {/* <div>
-              <Pagination count={3} />
-              <Pagination count={3} color="primary" />
-            </div> */}
           </Container>
         </div>
 
@@ -358,13 +329,6 @@ function Product(props) {
                 );
               })}
             </Row>
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
-
             <div className="boxer123">
               <Row>
                 {FamilyRank.slice(3).map((product) => {
@@ -440,12 +404,6 @@ function Product(props) {
                 );
               })}
             </Row>
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
 
             <div className="boxer123">
               <Row>
@@ -523,13 +481,6 @@ function Product(props) {
                 );
               })}
             </Row>
-
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
 
             <div className="boxer123">
               <Row>
