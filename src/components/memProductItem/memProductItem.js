@@ -7,7 +7,7 @@ import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function MemProductItem(props) {
-  const { detail } = props;
+  const { detail, isLoading } = props;
   const arr = detail;
   const [display, setDisplay] = useState(false);
   const [rotate, setRotate] = useState(false);
@@ -16,10 +16,13 @@ function MemProductItem(props) {
   // 撈取產品資料
   useEffect((e) => {
     async function product() {
-      let product = await axios.get(`${API_URL}/cart/`, {
-        withCredentials: true,
-      });
-      setProduct(product.data);
+      let product = await axios
+        .get(`${API_URL}/cart/`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setProduct(res.data);
+        });
     }
     product();
   }, []);
@@ -79,7 +82,7 @@ function MemProductItem(props) {
           <img
             id="img"
             alt=""
-            src={`/product_img/550x400/${ARRR()[0]}`}
+            src={product ? `/product_img/550x400/${ARRR()[0]}` : ""}
             className="objectImg"
           />
         </div>
@@ -119,7 +122,7 @@ function MemProductItem(props) {
               <div className="row align-items-center mt-2">
                 <figure className="col-3">
                   <img
-                    src={`/product_img/550x400/${v.imgURL}`}
+                    src={product ? `/product_img/550x400/${v.imgURL}` : ""}
                     alt=""
                     className="downImg"
                   />

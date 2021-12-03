@@ -15,6 +15,7 @@ import {
 import "../../css/memberCenter.css";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import Loading from "../../components/loading/loading";
 
 const DetailRent = [
   {
@@ -30,45 +31,44 @@ const DetailRent = [
 
 function MemberCenter(props) {
   const history = useParams().account;
+  const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState(2);
-  // 接收session
-  const [sessionMember, setSessionMember] = useState({
-    id: "",
-    email: "",
-    account: "",
-    point: "",
-  });
+  const [member, setMember] = useState({});
   // 接收order
   const [order, setOrder] = useState([]);
-  // 撈取session
-  useEffect((e) => {
-    async function session() {
-      try {
-        let memberSession = await axios.get(`${API_URL}/session/member`, {
-          withCredentials: true,
-        });
-        setSessionMember(memberSession.data);
-      } catch (e) {
-        alert("獲取資料失敗");
-      }
-    }
-    session();
-  }, []);
 
-  // 過濾order-只要尚未完成的訂單
-  let newOrder = order.filter((x) => x.order_check < 3);
+  // 抓取會員資料
+  useEffect(() => {
+    async function getMemberData() {
+      let member = await axios.get(`${API_URL}/cart/${history}`, {
+        withCredentials: true,
+      });
+      setMember(member.data[0]);
+    }
+    getMemberData();
+  }, []);
 
   // 撈取產品訂單(product_order)資料，且只要非訂單完成的部分
   useEffect((e) => {
     async function order() {
-      let ProductOrder = await axios.get(
-        `${API_URL}/member/productOrder/${history}`,
-        { withCredentials: true }
-      );
-      setOrder(ProductOrder.data);
+      await axios
+        .get(`${API_URL}/member/productOrder/${history}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          let newOrder2 = res.data.filter((x) => x.order_check < 3);
+          setOrder(newOrder2);
+        });
     }
     order();
   }, []);
+
+  // Loading計時
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, [order]);
 
   // 上方狀態欄
   const List = [
@@ -80,12 +80,12 @@ function MemberCenter(props) {
     {
       id: 2,
       status: "訂購中",
-      count: newOrder.length,
+      count: order.length,
     },
     {
       id: 3,
       status: "點數",
-      count: sessionMember.point,
+      count: member.point,
     },
   ];
 
@@ -120,9 +120,21 @@ function MemberCenter(props) {
             status === 2 ? "d-block" : "d-none"
           }`}
         >
-          {newOrder.map((v, i) => {
-            return <MemProductItem detail={newOrder[i]} />;
-          })}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {order.map((v, i) => {
+                return (
+                  <MemProductItem
+                    key={order[i].product}
+                    detail={order[i]}
+                    isLoading={isLoading}
+                  />
+                );
+              })}
+            </>
+          )}
         </div>
         <div
           className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
@@ -147,9 +159,7 @@ function MemberCenter(props) {
           <div className="d-flex justify-content-center pointDiv mt-3">
             <div className="d-flex justify-content-center align-items-center ms-3">
               <div className="me-1 bold point point-mem h4">P</div>
-              <span className="h1 text-main me-5 bold">
-                {sessionMember.point}
-              </span>
+              <span className="h1 text-main me-5 bold">{member.point}</span>
             </div>
           </div>
         </div>
@@ -159,13 +169,13 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">個人資料</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <Link to={`/memberCenter${sessionMember.account}/memSelf`}>
+            <Link to={`/memberCenter${member.account}/memSelf`}>
               <FontAwesomeIcon icon={faUser} className="me-1" />
               基本資料
             </Link>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <Link to={`/memberCenter${sessionMember.account}/rePassword`}>
+            <Link to={`/memberCenter${member.account}/rePassword`}>
               <FontAwesomeIcon icon={faKey} className="me-1" />
               密碼修改
             </Link>
@@ -174,13 +184,13 @@ function MemberCenter(props) {
         <p className="h2 text-main bold">消費紀錄</p>
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
-            <Link to={`/memberCenter${sessionMember.account}/memberProduct`}>
+            <Link to={`/memberCenter${member.account}/memberProduct`}>
               <FontAwesomeIcon icon={faChessBoard} className="me-1" />
               桌遊購買
             </Link>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <Link to={`/memberCenter${sessionMember.account}/memberRent`}>
+            <Link to={`/memberCenter${member.account}/memberRent`}>
               <FontAwesomeIcon icon={faEthernet} className="me-1" />
               場地租賃
             </Link>
@@ -190,7 +200,7 @@ function MemberCenter(props) {
         <div className="row memberLink">
           <div className="col bold h3 memberLinkHeight">
             <Link
-              to={`/memberCenter${sessionMember.account}/memberPoint`}
+              to={`/memberCenter${member.account}/memberPoint`}
               className="d-flex align-items-center justify-content-center"
             >
               <div className="me-1 bold point point-mem">P</div>
@@ -198,7 +208,7 @@ function MemberCenter(props) {
             </Link>
           </div>
           <div className="col bold h3 memberLinkHeight">
-            <Link to={`/memberCenter${sessionMember.account}/memberDiscuss`}>
+            <Link to={`/memberCenter${member.account}/memberDiscuss`}>
               <FontAwesomeIcon icon={faCommentDots} className="me-1" />
               收藏文章
             </Link>

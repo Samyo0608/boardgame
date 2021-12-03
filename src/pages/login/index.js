@@ -51,6 +51,7 @@ function Login(props) {
             title: "登入成功",
             text: "登入成功，回首頁",
           }).then((res) => {
+            sessionStorage.setItem("account", member.email.split("@")[0]);
             window.location.replace("/");
           });
         }
