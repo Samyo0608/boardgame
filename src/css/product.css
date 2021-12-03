@@ -433,6 +433,7 @@
 }
 .boxer123 {
   position: relative;
+  top: -10px;
   width: 1000px;
   height: 950px;
 }
@@ -462,6 +463,13 @@
   padding-left: 35px;
   margin-bottom: 100px;
   margin-left: 40px;
+}
+.productPagination {
+  position: relative;
+  top: -20px;
+  left: 360px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 /* 首頁 */
@@ -540,11 +548,6 @@
   position: absolute;
   top: 465px;
   left: 20px;
-}
-
-.viewwButton {
-  position: absolute;
-  top: 180px;
 }
 
 .x-3 {
