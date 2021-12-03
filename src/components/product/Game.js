@@ -3,6 +3,7 @@ import { Col, Row, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
 import { typecolor3 } from "../../configs/config";
 import { Link, withRouter } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Game(props) {
   const { product_name, product_type, product_img, product_price, product_id } =
@@ -17,42 +18,13 @@ function Game(props) {
   const [sessionMember] = useState({
     id: "",
   });
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   const ToLocalStorage = (value) => {
     const newCart = id;
     localStorage.setItem(id.product_name, JSON.stringify(newCart));
-    // 設定資料
-    handleShow();
   };
 
-  const messageModal = (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>加入購物車訊息</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        產品：<span className="redone">{product_name}</span> 已成功加入購物車
-      </Modal.Body>{" "}
-      <Modal.Footer>
-        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
-        <Button variant="secondary" onClick={handleClose}>
-          繼續選購
-        </Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            props.history.push(`/Cart${sessionMember}`);
-          }}
-        >
-          前往購物車結帳
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
-
-  const display = (
+  return (
     <>
       <Row className="shadowbox4">
         <Col>
@@ -78,6 +50,14 @@ function Game(props) {
               className="buy3"
               onClick={() => {
                 ToLocalStorage(id);
+                Swal.fire({
+                  icon: "success",
+                  title: `${product_name}`,
+                  text: "已加入購物車",
+                  footer: `<a href="Cart${sessionMember}" class="btn btn-light">
+                      前往購物車
+                    </a>`,
+                });
               }}
               href="#/"
             >
@@ -86,12 +66,6 @@ function Game(props) {
           </div>
         </Col>
       </Row>
-    </>
-  );
-  return (
-    <>
-      {messageModal}
-      {display}
     </>
   );
 }
