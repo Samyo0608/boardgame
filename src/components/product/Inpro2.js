@@ -66,58 +66,44 @@ const Inpro2 = (props) => {
     <>
       <Container>
         <div className="d-flex justify-content-evenly align-items-center inpr02">
-          <div>
-            <a href="#/" className="text-dark text-decoration-none text-center">
-              <div className="recommendProductBox position-relative">
-                <div className="rcmpB">
-                  <img
-                    className="rcmpI"
-                    alt=""
-                    src={`/product_img/550x400/${product_img}`}
-                  />
-                </div>
-                <Link
-                  to={`/aboutgame/${product_id}`}
-                  className="a1"
-                  target="_top"
-                >
-                  <div className="pt-2">{product_name}</div>
-                </Link>
+          <div className="text-dark text-decoration-none text-center">
+            <div className="recommendProductBox position-relative">
+              <div className="rcmpB">
                 <img
+                  className="rcmpI"
                   alt=""
-                  className="inproflag2"
-                  src="/img/product/panda.png"
+                  src={`/product_img/550x400/${product_img}`}
                 />
-
-                <p className="pppice">售價 : {product_price}元</p>
-                <p className="pvote">{product_vote}票</p>
-
-                <a
-                  key={hotInex2}
-                  onClick={() => {
-                    ToLocalStorage(hotInex2);
-                  }}
-                  href="#/"
-                >
-                  <img
-                    className="indexbuy "
-                    src="/img/product/buy2.png"
-                    alt=""
-                  />
-                </a>
-                <a
-                  href="#/"
-                  className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
-                >
-                  <img
-                    alt=""
-                    src={LABELIMGS[product_type]}
-                    className="tagImg"
-                  />
-                  <p className="tagText">{product_type}</p>
-                </a>
               </div>
-            </a>
+              <Link
+                to={`/aboutgame/${product_id}`}
+                className="a1"
+                target="_top"
+              >
+                <div className="pt-2">{product_name}</div>
+              </Link>
+              <img alt="" className="inproflag2" src="/img/product/panda.png" />
+
+              <p className="pppice">售價 : {product_price}元</p>
+              <p className="pvote">{product_vote}票</p>
+
+              <a
+                key={hotInex2}
+                onClick={() => {
+                  ToLocalStorage(hotInex2);
+                }}
+                href="#/"
+              >
+                <img className="indexbuy " src="/img/product/buy2.png" alt="" />
+              </a>
+              <a
+                href="#/"
+                className="text-dark text-decoration-none recommendTag d-inline-block pt-1"
+              >
+                <img alt="" src={LABELIMGS[product_type]} className="tagImg" />
+                <p className="tagText">{product_type}</p>
+              </a>
+            </div>
           </div>
         </div>
       </Container>

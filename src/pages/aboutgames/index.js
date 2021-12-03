@@ -5,7 +5,7 @@ import "../../css/aboutgame.css";
 import "../../css/product.css";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
-import { API_URL, p6, typecolor } from "../../configs/config";
+import { API_URL, p6 } from "../../configs/config";
 const attentionButton = [
   {
     id: 1,
