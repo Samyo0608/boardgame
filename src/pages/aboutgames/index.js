@@ -73,20 +73,20 @@ function Aboutgame(props) {
               height: "510px",
             }}
           >
-            <article className={p6[aboutgame.product_type]}>
-              {aboutgame.product_name}
+            <article className={p6[aboutgame?.product_type]}>
+              {aboutgame?.product_name}
             </article>
 
             <img
               className="abb"
-              src={`/product_img/550x400/${aboutgame.product_img}`}
+              src={`/product_img/550x400/${aboutgame?.product_img}`}
               alt=""
             />
             <div className="box456">
-              <p className="ellipsis3">{aboutgame.product_content}</p>
+              <p className="ellipsis3">{aboutgame?.product_content}</p>
             </div>
             <div className="box4567">
-              <p className="pprice ">售價 : {aboutgame.product_price}元</p>
+              <p className="pprice ">售價 : {aboutgame?.product_price}元</p>
             </div>
             <a
               key={aboutgame}
@@ -96,7 +96,7 @@ function Aboutgame(props) {
                   icon: "success",
                   title: `${aboutgame.product_name}`,
                   text: "已加入購物車",
-                  footer: `<a href="Cart${sessionMember}" class="btn btn-light">
+                  footer: `<a href="../Cart${sessionMember}" class="btn btn-light">
                       前往購物車
                     </a>`,
                 });
@@ -151,7 +151,7 @@ function Aboutgame(props) {
                 status === 1 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.product_info}</p>
+              <p className="ellipsis6">{aboutgame?.product_info}</p>
             </div>
             {/* 遊戲內容 */}
 
@@ -160,7 +160,7 @@ function Aboutgame(props) {
                 status === 2 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.return_detail}</p>
+              <p className="ellipsis6">{aboutgame?.return_detail}</p>
             </div>
 
             {/* 退換貨說明 */}
