@@ -13,8 +13,12 @@ import DiscussQuill from "../../components/discuss/discussQuill";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { Pagination } from "antd";
+import Loading from "../../components/loading/loading";
 
 const Reply = () => {
+  // Loading
+  const [isLoading, setIsLoading] = useState(true);
+
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
   const { discuss_id } = useParams();
   const history = useHistory();
@@ -106,8 +110,14 @@ const Reply = () => {
     // e.preventDefault();
     try {
       if (!sessionMember.id) {
-        alert("請先登入");
-        window.location.href = `/login`;
+        Swal.fire({
+          icon: "info",
+          title: "請先登入",
+          text: "尚未登入呦，請先登入網站再進入會員中心^_^",
+          footer: '<a href="/" class="btn btn-light">回首頁</a>',
+        }).then((res) => {
+          window.location.replace("/login");
+        });
       } else {
         // json 格式無法傳檔案，改成用 form data
         let formData = new FormData();
@@ -133,8 +143,8 @@ const Reply = () => {
             `http://localhost:3001/api/discuss/reply/${discuss_id}`
           );
           setDiscussContent(resreply.data);
-          window.scrollBy(0, -700);
-          // window.location.reload();
+          // window.scrollBy(0, -700);
+          window.location.reload();
         });
       }
     } catch (e) {
@@ -145,8 +155,14 @@ const Reply = () => {
   // 收藏功能
   const keepClick = async () => {
     if (!sessionMember.id) {
-      alert("請先登入");
-      window.location.href = `/login`;
+      Swal.fire({
+        icon: "info",
+        title: "請先登入",
+        text: "尚未登入呦，請先登入網站再進入會員中心^_^",
+        footer: '<a href="/" class="btn btn-light">回首頁</a>',
+      }).then((res) => {
+        window.location.replace("/login");
+      });
     } else {
       if (keepStatus === false) {
         let resKeep = await axios.post(
@@ -173,6 +189,12 @@ const Reply = () => {
   };
 
   // 初始渲染
+  // Loading計時
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 400);
+  }, []);
 
   // 抓標題和回覆內容
   useEffect(async () => {
@@ -264,7 +286,7 @@ const Reply = () => {
       <div className="replyBannerBox">
         <img
           className="replyBannerImg"
-          src="../../../img/reply/banner.png"
+          src="../../../img/discuss/banner3.png"
           alt=""
         />
         <div className="bannerContent text-end">
@@ -291,7 +313,12 @@ const Reply = () => {
         回覆
       </a>
       {/* 討論區內容 */}
-      {discussContent &&
+      {isLoading ? (
+        <div className="discussLoading">
+          <Loading />
+        </div>
+      ) : (
+        discussContent &&
         discussContent.length > 0 &&
         discussContent.slice(minValue, maxValue).map((v, i) => {
           return (
@@ -447,8 +474,15 @@ const Reply = () => {
                           }`}
                           onClick={async () => {
                             if (!sessionMember.id) {
-                              alert("請先登入");
-                              window.location.href = `/login`;
+                              Swal.fire({
+                                icon: "info",
+                                title: "請先登入",
+                                text: "尚未登入呦，請先登入網站再進入會員中心^_^",
+                                footer:
+                                  '<a href="/" class="btn btn-light">回首頁</a>',
+                              }).then((res) => {
+                                window.location.replace("/login");
+                              });
                             } else {
                               const likeData = {
                                 user_id: sessionMember.id,
@@ -523,7 +557,8 @@ const Reply = () => {
               </div>
             </div>
           );
-        })}
+        })
+      )}
 
       {/* 分頁 */}
       <div className="discussPagination">

@@ -36,7 +36,9 @@ function MemberRentItem(props) {
               withCredentials: true,
             }
           );
-          Swal.fire("已將您的預約取消😢", "", "success");
+          Swal.fire("已將您的預約取消😢", "", "success").then(() => {
+            window.location.reload();
+          });
         } else if (result.isDenied) {
           Swal.fire("很高興您不取消預約😄", "", "info");
         }

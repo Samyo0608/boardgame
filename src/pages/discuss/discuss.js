@@ -14,6 +14,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { Pagination } from "antd";
 import "../../css/discuss.css";
+import Loading from "../../components/loading/loading";
 
 const gameType = [
   { id: 2, name: "家庭", type: "family" },
@@ -21,8 +22,9 @@ const gameType = [
   { id: 4, name: "卡牌", type: "card" },
 ];
 const Discuss = (props) => {
-  // 分頁
-  // 默認一次顯示5筆
+  // Loading
+  const [isLoading, setIsLoading] = useState(true);
+  // 分頁>>默認一次顯示10筆
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10);
   const [discuss, setDiscuss] = useState([]);
@@ -72,6 +74,12 @@ const Discuss = (props) => {
   }
 
   // 初始渲染
+  // Loading計時
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+  }, []);
   // 撈討論區資料
   useEffect(async () => {
     let res = await axios.get(`http://localhost:3001/api/discuss/`);
@@ -219,41 +227,68 @@ const Discuss = (props) => {
           <div className="r_discussInBox pt-2">
             {/* 最新討論 */}
             <div className="discussNew position-relative">
-              <table className="table table-hover text-center fw-bold">
-                <thead>
-                  <tr className="text-secondary">
-                    <th scope="col">分類</th>
-                    <th scope="col">預覽</th>
-                    <th scope="col">標題</th>
-                    <th scope="col">發文者</th>
-                    <th scope="col">回覆數</th>
-                    <th scope="col">最後回覆</th>
-                  </tr>
-                </thead>
-                <tbody className="r_discussBody">
-                  {displayDiscuss &&
-                    displayDiscuss.length > 0 &&
-                    displayDiscuss.slice(minValue, maxValue).map((v, i) => {
-                      return (
-                        <tr key={v.id}>
-                          <th scope="row" className="typeTh">
-                            <div className={TYPE_COLOR[v.type]}>{v.type}</div>
-                          </th>
-                          <td className="disPicTd">
-                            {discussContent
-                              .filter((dc) => {
-                                return dc.discuss_id === v.id;
-                              })[0]
-                              ?.content.indexOf("<img src=") === -1 ? (
-                              <div className="unpicBox">
-                                <img
-                                  src={`img/discuss/${TYPE_COLOR[v.type]}.png`}
-                                  alt=""
+              {isLoading ? (
+                <div className="discussLoading">
+                  <Loading />
+                </div>
+              ) : (
+                <table className="table table-hover text-center fw-bold">
+                  <thead>
+                    <tr className="text-secondary">
+                      <th scope="col">分類</th>
+                      <th scope="col">預覽</th>
+                      <th scope="col">標題</th>
+                      <th scope="col">發文者</th>
+                      <th scope="col">回覆數</th>
+                      <th scope="col">最後回覆</th>
+                    </tr>
+                  </thead>
+
+                  <tbody className="r_discussBody">
+                    {displayDiscuss &&
+                      displayDiscuss.length > 0 &&
+                      displayDiscuss.slice(minValue, maxValue).map((v, i) => {
+                        return (
+                          <tr key={v.id}>
+                            <th scope="row" className="typeTh">
+                              <div className={TYPE_COLOR[v.type]}>{v.type}</div>
+                            </th>
+                            <td className="disPicTd">
+                              {discussContent
+                                .filter((dc) => {
+                                  return dc.discuss_id === v.id;
+                                })[0]
+                                ?.content.indexOf("<img src=") === -1 ? (
+                                <div className="unpicBox">
+                                  <img
+                                    src={`img/discuss/${
+                                      TYPE_COLOR[v.type]
+                                    }.png`}
+                                    alt=""
+                                  />
+                                </div>
+                              ) : (
+                                <ReactQuill
+                                  className="picDiscussContentQuill"
+                                  value={
+                                    discussContent.filter((dc) => {
+                                      return dc.discuss_id === v.id;
+                                    })[0]?.content || ""
+                                  }
+                                  readOnly={true}
+                                  theme={"bubble"}
                                 />
-                              </div>
-                            ) : (
+                              )}
+                            </td>
+                            <td className="text-start discussTitleTd">
+                              <Link
+                                className="discussTitleLink"
+                                to={`discuss/reply/${v.id}`}
+                              >
+                                <span>{v.title}</span>
+                              </Link>
                               <ReactQuill
-                                className="picDiscussContentQuill"
+                                className="indexDiscussContentQuill"
                                 value={
                                   discussContent.filter((dc) => {
                                     return dc.discuss_id === v.id;
@@ -262,41 +297,23 @@ const Discuss = (props) => {
                                 readOnly={true}
                                 theme={"bubble"}
                               />
-                            )}
-                          </td>
-                          <td className="text-start discussTitleTd">
-                            <Link
-                              className="discussTitleLink"
-                              to={`discuss/reply/${v.id}`}
-                            >
-                              <span>{v.title}</span>
-                            </Link>
-                            <ReactQuill
-                              className="indexDiscussContentQuill"
-                              value={
-                                discussContent.filter((dc) => {
-                                  return dc.discuss_id === v.id;
-                                })[0]?.content || ""
-                              }
-                              readOnly={true}
-                              theme={"bubble"}
-                            />
-                          </td>
-                          <td className="dUserTd">{v.i_user_name}</td>
-                          <td className="rcountTd">{v.cot - 1}</td>
-                          <td className="timeTd">
-                            {moment(v.created_at.toString()).format(
-                              "YYYY-MM-DD HH:mm:ss"
-                            )}
-                            <p className="text-secondary ms-3">
-                              by {v.user_name}
-                            </p>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
+                            </td>
+                            <td className="dUserTd">{v.i_user_name}</td>
+                            <td className="rcountTd">{v.cot - 1}</td>
+                            <td className="timeTd">
+                              {moment(v.created_at.toString()).format(
+                                "YYYY-MM-DD HH:mm:ss"
+                              )}
+                              <p className="text-secondary ms-3">
+                                by {v.user_name}
+                              </p>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              )}
             </div>
             <Link
               className="r_discussButton text-center"
