@@ -29,7 +29,6 @@ import Aboutgame from "./pages/aboutgames";
 import Product from "./pages/product";
 import Cart from "./pages/cart";
 import Cartcheck from "./pages/cart/cartcheck";
-import Loading from "./pages/loading/loading";
 function App() {
   return (
     <>
