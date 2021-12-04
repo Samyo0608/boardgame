@@ -4,16 +4,17 @@
 .adjustTitleFram{
   margin: 0 0 0 50px;
   position: relative;
+  text-align: center;
 }
 .adjustTitle{
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 550;
 }
 .csDice {
-  width: 300px;
+  width: 200px;
   position: absolute;
-  top: -5px;
-  left: 400px;
+  top: 15px;
+  right:450px;
 }
 /* 外框背景 */
 .messageOuter {
@@ -45,6 +46,30 @@
 .pagination a {
   text-decoration: none;
 }
+.unchoosenBlock{
+  width: 185px;
+  height: 52px;
+  display: inline-block;
+  border-right: 1px solid rgb(204, 204, 204)!important;
+  border-bottom: 1px solid rgb(204, 204, 204)!important;
+  border-top: 3px solid rgb(216, 216, 216)!important;
+  background-color: rgb(236, 236, 236) !important;
+  text-align: center;
+  box-sizing: border-box;
+
+}
+.choosenBlock{
+  width: 185px;
+  height: 52px;
+  display: inline-block;
+  border-right: 1px solid rgb(204, 204, 204)!important;
+  border-bottom: 1px solid transparent!important;
+  border-top: 3px solid rgb(51, 51, 51)!important;
+  text-align: center;
+  box-sizing: border-box;
+  background: white;
+
+}
 /* 內文內框 */
 .messageInner {
   border: 1px solid rgb(126, 124, 124);
@@ -67,8 +92,10 @@
   border: 1px solid black;
   border-radius: 4px;
   width: 250px;
-  height: 40px;
+  height:45px;
   line-height: 50px;
+  padding:0 0 0 5px;
+  appearance: auto;
 }
 .problemItemOuter {
   border: 1px solid black;
@@ -90,10 +117,18 @@
   color: rgb(97, 97, 102);
   margin-left: 40px;
 }
-.shopingPicture {
-  width: 400px;
-  height: 370px;
+.mewFrame {
+  width: 250px;
+  height: 250PX;
   position: absolute;
-  right: 60px;
-  bottom: 30px;
+  right: 110px;
+  bottom: 90px;
+  border-radius: 50%;
+  overflow:hidden;
+  display: flex;
+  justify-content:center;
+
+}
+.mewPicture {
+  width: 300px;
 }

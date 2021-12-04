@@ -35,20 +35,32 @@
   width: 1020px;
   height: 700px;
   background-color: rgb(255, 255, 255);
+  overflow: auto;
+  padding: 20px 300px 5px 0px;
+
+}
+.questionNumber{
+  padding-left:20px;
+  font-weight: bold;
 }
 .historicalMessageFrame{
   margin: 10px 0px 10px 40px; 
 }
 .historicalMessage{
-  width: 650px;
   border-radius:10px;
   border:1px solid black;
   min-height:50px;
-  padding:15px
+  padding:15px;
 }
 
-.shiftright{
-
+.shiftRight{
+  text-align: right;
+}
+.shiftLeft{
+  text-align: left;
+}
+.miniatureHead{
+  width:24px;
 }
 .subtitle
 {
@@ -86,10 +98,9 @@ color:rgb(97, 97, 102);
 margin-left: 40px;
 }
 /* 右側圖 */
-.communicationPicture2{
-  width: 400px;
-  height: 320px;
+.helpPicture{
+  width: 300px;
   position: absolute;
-  right:30px;
+  right:115px;
   bottom: 30px;
 }

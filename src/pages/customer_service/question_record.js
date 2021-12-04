@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 import { useHistory } from "react-router-dom";
+import { parseUrlParametesFromLocation } from "./create_message";
+import { useLocation } from "react-router-dom";
 
 const USER_ID = 1;
 
 const QuestionRecord = () => {
   const history = useHistory();
   const [questions, setQuestions] = useState([]);
+  const location = useLocation();
+  const urlParameters = parseUrlParametesFromLocation(location.search);
+  const admin = urlParameters.admin === "true";
   
   useEffect(() => {
     async function fetchQuestions() {
@@ -26,7 +31,7 @@ const QuestionRecord = () => {
   const enterQuestionPage = (question) => {
     history.replace({
       pathname: "create_message",
-      search: `?question_id=${question.question_id}`,
+      search: `?question_id=${question.question_id}&admin=${admin}`,
       state: { isActive: true },
     });
   };
@@ -48,8 +53,8 @@ const QuestionRecord = () => {
 
       {/* 右側圖 */}
       <img
-        src="/img/customer_service/communication_cooperation.png"
-        class="communicationPicture"
+        src="/img/customer_service/QA.png"
+        class="helpPicture"
         alt=""
       />
     </>

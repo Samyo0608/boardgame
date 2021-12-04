@@ -133,7 +133,7 @@ const IndexDiscuss = (props) => {
                   displayDiscuss.slice(0, 3).map((v, i) => {
                     return (
                       <tr key={v.id}>
-                        <th scope="row" className="">
+                        <th scope="row" className="typeTh">
                           <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                         </th>
                         <td className="text-start discussTitleTd">
@@ -154,7 +154,7 @@ const IndexDiscuss = (props) => {
                             theme={"bubble"}
                           />
                         </td>
-                        <td>{v.i_user_name}</td>
+                        <td className="dUserTd">{v.i_user_name}</td>
                         <td className="rcountTd">{v.cot}</td>
                         <td className="timeTd">
                           {moment(v.created_at.toString()).format(
@@ -195,7 +195,7 @@ const IndexDiscuss = (props) => {
                   displayDiscussHot.slice(0, 3).map((v, i) => {
                     return (
                       <tr key={v.id}>
-                        <th scope="row" className="">
+                        <th scope="row" className="typeTh">
                           <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                         </th>
                         <td className="text-start discussTitleTd">
@@ -216,7 +216,7 @@ const IndexDiscuss = (props) => {
                             theme={"bubble"}
                           />
                         </td>
-                        <td>{v.i_user_name}</td>
+                        <td className="dUserTd">{v.i_user_name}</td>
                         <td className="rcountTd">{v.cot}</td>
                         <td className="timeTd">
                           {moment(v.created_at?.toString()).format(

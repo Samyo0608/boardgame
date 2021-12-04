@@ -5,8 +5,10 @@ import "../../css/aboutgame.css";
 import "../../css/product.css";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
-import { API_URL, p6, typecolor } from "../../configs/config";
-const attentionButton = [
+import { API_URL, p6 } from "../../configs/config";
+import Swal from "sweetalert2";
+
+const detailButton = [
   {
     id: 1,
     status: "遊戲詳情",
@@ -48,45 +50,14 @@ function Aboutgame(props) {
   const [sessionMember] = useState({
     id: "",
   });
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
     const Cart = localStorage.getItem("") || [];
     const newCart = aboutgame;
     localStorage.setItem(aboutgame.product_name, JSON.stringify(newCart));
-    // 設定資料
-    handleShow();
   };
 
-  const messageModal = (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>加入購物車訊息</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        產品：<span className="redone">{aboutgame.product_name}</span>{" "}
-        已成功加入購物車
-      </Modal.Body>
-      <Modal.Footer>
-        <Modal.Body>一套不夠，我要加碼!!</Modal.Body>
-        <Button variant="secondary" onClick={handleClose}>
-          繼續選購
-        </Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            props.history.push(`/Cart${sessionMember}`);
-          }}
-        >
-          前往購物車結帳
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
-
-  const display = (
+  return (
     <>
       <Container>
         <div>
@@ -102,25 +73,33 @@ function Aboutgame(props) {
               height: "510px",
             }}
           >
-            <article className={p6[aboutgame.product_type]}>
-              {aboutgame.product_name}
+            <article className={p6[aboutgame?.product_type]}>
+              {aboutgame?.product_name}
             </article>
 
             <img
               className="abb"
-              src={`/product_img/550x400/${aboutgame.product_img}`}
+              src={`/product_img/550x400/${aboutgame?.product_img}`}
               alt=""
             />
             <div className="box456">
-              <p className="ellipsis3">{aboutgame.product_content}</p>
+              <p className="ellipsis3">{aboutgame?.product_content}</p>
             </div>
             <div className="box4567">
-              <p className="pprice ">售價 : {aboutgame.product_price}元</p>
+              <p className="pprice ">售價 : {aboutgame?.product_price}元</p>
             </div>
             <a
               key={aboutgame}
               onClick={() => {
                 ToLocalStorage(aboutgame);
+                Swal.fire({
+                  icon: "success",
+                  title: `${aboutgame.product_name}`,
+                  text: "已加入購物車",
+                  footer: `<a href="../Cart${sessionMember}" class="btn btn-light">
+                      前往購物車
+                    </a>`,
+                });
               }}
               href="#/"
             >
@@ -149,7 +128,7 @@ function Aboutgame(props) {
           </Link>
           <div className="box457">
             <Row>
-              {attentionButton.map((v, i) => {
+              {detailButton.map((v, i) => {
                 return (
                   <Col>
                     <button
@@ -172,7 +151,7 @@ function Aboutgame(props) {
                 status === 1 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.product_info}</p>
+              <p className="ellipsis6">{aboutgame?.product_info}</p>
             </div>
             {/* 遊戲內容 */}
 
@@ -181,7 +160,7 @@ function Aboutgame(props) {
                 status === 2 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.return_detail}</p>
+              <p className="ellipsis6">{aboutgame?.return_detail}</p>
             </div>
 
             {/* 退換貨說明 */}
@@ -219,12 +198,6 @@ function Aboutgame(props) {
           </div>
         </div>
       </Container>
-    </>
-  );
-  return (
-    <>
-      {messageModal}
-      {display}
     </>
   );
 }

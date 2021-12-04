@@ -25,19 +25,22 @@
 
 /* 麵包屑 */
 .replyBread {
+  color: white;
   position: absolute;
   margin-top: 200px;
   top: 150px;
   left: 0px;
   background-color: #2196d4;
   padding-left: 50px;
+  padding-right: 20px;
   height: 30px;
   box-shadow: #c1efeb 15px 10px;
 }
 
 .replyBreadContent {
   color: white;
-  margin-right: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
   text-decoration: none;
   line-height: 30px;
 }
@@ -126,6 +129,9 @@
 .discussContentQuill > div > div {
   padding-top: 10px;
   padding-left: 0;
+}
+.discussContentQuill > div > .ql-editor {
+  line-height: 26px !important;
 }
 
 /* 其他樓 */

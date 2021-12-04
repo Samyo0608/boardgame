@@ -166,7 +166,7 @@ const EditReply = (props) => {
             <div className="position-relative">
               <button
                 type="button"
-                className="quillDiscussContentBtn"
+                className="quillEditContentBtn"
                 onClick={() => setIsShowModal(true)}
               >
                 <FontAwesomeIcon
