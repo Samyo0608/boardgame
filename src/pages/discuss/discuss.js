@@ -116,7 +116,11 @@ const Discuss = (props) => {
     <div className="overflow-hidden">
       {/* banner */}
       <div className="discussBannerBox">
-        <img className="discussBannerImg" src="img/discuss/banner.png" alt="" />
+        <img
+          className="discussBannerImg"
+          src="img/discuss/banner2.png"
+          alt=""
+        />
         <div className="bannerContent text-end">
           <p className="fs-2">遊戲職人</p>
           <p className="fs-5">討論區</p>
@@ -125,9 +129,11 @@ const Discuss = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="discussBreadContent" href="#/">
-          首頁{`>>`}討論區
+        <a className="discussBreadContent" href="http://localhost:3000">
+          首頁
         </a>
+        {`>> `}
+        討論區
       </div>
 
       {/* 搜尋列 */}
@@ -148,7 +154,7 @@ const Discuss = (props) => {
             <option>找作者</option>
           </select> */}
           <input
-            placeholder="請輸入關鍵字... (標題、內文、作者)"
+            placeholder="請輸入關鍵字..."
             className="discussSearch form-control"
             name="keyword"
             value={searchDiscuss.keyword}
@@ -199,6 +205,7 @@ const Discuss = (props) => {
                     setDisplayDiscuss(handleDiscussFilter);
                     setDisplayHotDiscuss(handleHotDiscussFilter);
                     setDiscussType(v.type);
+                    setMinValue(0);
                   }}
                 >
                   {v.name}
@@ -229,7 +236,7 @@ const Discuss = (props) => {
                     displayDiscuss.slice(minValue, maxValue).map((v, i) => {
                       return (
                         <tr key={v.id}>
-                          <th scope="row" className="">
+                          <th scope="row" className="typeTh">
                             <div className={TYPE_COLOR[v.type]}>{v.type}</div>
                           </th>
                           <td className="disPicTd">
@@ -262,7 +269,7 @@ const Discuss = (props) => {
                               className="discussTitleLink"
                               to={`discuss/reply/${v.id}`}
                             >
-                              {v.title}
+                              <span>{v.title}</span>
                             </Link>
                             <ReactQuill
                               className="indexDiscussContentQuill"
@@ -275,8 +282,8 @@ const Discuss = (props) => {
                               theme={"bubble"}
                             />
                           </td>
-                          <td>{v.i_user_name}</td>
-                          <td className="rcountTd">{v.cot}</td>
+                          <td className="dUserTd">{v.i_user_name}</td>
+                          <td className="rcountTd">{v.cot - 1}</td>
                           <td className="timeTd">
                             {moment(v.created_at.toString()).format(
                               "YYYY-MM-DD HH:mm:ss"
@@ -331,6 +338,7 @@ const Discuss = (props) => {
               setMinValue((page - 1) * pageSize);
               setMaxValue((page - 1) * pageSize + pageSize);
             }
+            window.scrollTo(0, 0);
           }}
           total={displayDiscuss.length}
         />
@@ -361,7 +369,7 @@ const Discuss = (props) => {
                           return dc.discuss_id === v.id;
                         })[0]
                         ?.content.indexOf("<img src=") === -1 ? (
-                        <div className="unpicBox">
+                        <div className="unpicBoxHot">
                           <img src={`img/discuss/unpic.png`} alt="" />
                         </div>
                       ) : (
@@ -378,12 +386,14 @@ const Discuss = (props) => {
                       )}
                     </div>
                     <div className="drTextBox">
-                      <div className="discussHotTitle">{v.title}</div>
+                      <div className="discussHotTitle">
+                        <span className="discussHotTitle">{v.title}</span>
+                      </div>
                       <p className="mt-1 text-secondary">
                         <span className={`hotType ${TYPE_COLOR[v.type]}`}>
                           {v.type}
                         </span>{" "}
-                        {v.cot}
+                        {v.cot - 1}
                         篇回覆
                       </p>
                     </div>
@@ -417,9 +427,7 @@ const Discuss = (props) => {
           </div>
         </div>
       </div>
-      <a href="https://www.freepik.com/photos/mockup">
-        Mockup photo created by master1305 - www.freepik.com
-      </a>
+
       {/* 尾巴 */}
     </div>
   );

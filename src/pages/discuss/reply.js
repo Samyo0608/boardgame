@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import moment from "moment";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { API_URL, URL, PHOTO_URL } from "../../configs/config";
 import Swal from "sweetalert2";
 import DiscussQuill from "../../components/discuss/discussQuill";
@@ -17,6 +17,7 @@ import { Pagination } from "antd";
 const Reply = () => {
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
   const { discuss_id } = useParams();
+  const history = useHistory();
 
   // 標題設定狀態
   const [replyTitle, setreplyTitle] = useState([]);
@@ -127,8 +128,13 @@ const Reply = () => {
           icon: "success",
           title: "回覆成功",
           text: "已提交您的回覆",
-        }).then((res) => {
-          window.location.reload();
+        }).then(async (res) => {
+          let resreply = await axios.get(
+            `http://localhost:3001/api/discuss/reply/${discuss_id}`
+          );
+          setDiscussContent(resreply.data);
+          window.scrollBy(0, -700);
+          // window.location.reload();
         });
       }
     } catch (e) {
@@ -196,7 +202,7 @@ const Reply = () => {
   // 統計每人發文數
   useEffect(async () => {
     let resDiscussCount = await axios.get(
-      `http://localhost:3001/api/discuss/discussCount`
+      `http://localhost:3001/api/discuss/discussCountNum`
     );
     setDiscussCount(resDiscussCount.data);
   }, []);
@@ -268,10 +274,15 @@ const Reply = () => {
       </div>
       {/* 麵包屑 */}
       <div className="replyBread text-end">
-        <a className="replyBreadContent" href="#/">
-          首頁{`>>`}討論區{`>>`}
-          {replyTitle.title}
+        <a className="replyBreadContent" href="http://localhost:3000">
+          首頁
         </a>
+        {">>"}
+        <a className="replyBreadContent" href="http://localhost:3000/discuss">
+          討論區
+        </a>
+        {">>"}
+        {replyTitle.title}
       </div>
       <div className="replyPicBox">
         <img alt="" className="replyPic" src="../../../img/reply/reply1.png" />
@@ -521,7 +532,7 @@ const Reply = () => {
           defaultCurrent={1} // 預設在第一個頁面
           defaultPageSize={5} // 預設一個頁面顯示5個數據
           pageSizeOptions={["5", "10", "15", "20"]}
-          // showSizeChanger={true}
+          showSizeChanger={true}
           onChange={(page, pageSize) => {
             if (page <= 1) {
               setMinValue(0);
@@ -602,7 +613,7 @@ const Reply = () => {
                         return dc.discuss_id === v.id;
                       })[0]
                       ?.content.indexOf("<img src=") === -1 ? (
-                      <div className="unpicBox">
+                      <div className="unpicBoxHot">
                         <img src={`../../img/discuss/unpic.png`} alt="" />
                       </div>
                     ) : (
@@ -624,7 +635,7 @@ const Reply = () => {
                       <span className={`hotType ${TYPE_COLOR[v.type]}`}>
                         {v.type}
                       </span>{" "}
-                      {v.cot}
+                      {v.cot - 1}
                       篇回覆
                     </p>
                   </div>
