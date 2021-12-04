@@ -1,59 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./memberRentItem.css";
+import axios from "axios";
+import { API_URL } from "../../configs/config";
+
+const Swal = require("sweetalert2");
 
 function MemberRentItem(props) {
-  const { roomImg, type, userStatus, price, costStatus, predate, rentDate } =
-    props;
+  const {
+    roomId,
+    roomImg,
+    type,
+    userStatus,
+    price,
+    costStatus,
+    predate,
+    rentDate,
+    roomValid,
+  } = props;
 
-  const [changeTime, setChangeTime] = useState(true);
-
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      Swal.fire({
+        title: "是否確認取消預約❓",
+        text: "此項更動無法復原，請確認是否是要執行＂取消預約＂",
+        showDenyButton: true,
+        confirmButtonText: "是的，我要取消",
+        denyButtonText: `不，我不取消`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(
+            `http://localhost:3001/api/booking/deleteRent`,
+            { roomId },
+            {
+              withCredentials: true,
+            }
+          );
+          Swal.fire("已將您的預約取消😢", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("很高興您不取消預約😄", "", "info");
+        }
+      });
+    } catch {
+      console.log("handleSubmit", e);
+    }
+  }
   return (
-    <div className="object-rent d-flex flex-column mt-3 mb-3">
-      <div>
-        <div className="d-flex position-relative mt-2">
-          {/* Rent上面左邊圖片 start*/}
-          <div className="ms-4">
-            <img alt="123" src={roomImg} className="imgRent" />
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="rent">
+          <div className="rentImg">
+            <img alt={roomImg} src={roomImg} />
           </div>
-          {/* Rent上面左邊圖片 end*/}
-
-          {/* Rent上面右邊部分 start*/}
-          <div className="row ms-5">
-            <div className="col-6 h5 bold mb-5">房間種類　　：{type}</div>
-            <div className="col-6 h5 bold mb-5">
-              預約狀態　：<span className="text-danger">{userStatus}</span>
-            </div>
-            <div className="col-6 h5 bold mb-5">價格　　　　：{price}</div>
-            <div className="col-6 h5 bold mb-5">
-              訂單狀態　：<span className="text-danger">{costStatus}</span>
-            </div>
-            <div className="col-12 h5 bold mb-5">
-              <span className="text-danger">預約時間</span>　　： {predate}
-            </div>
-            <div className="col-12 h5 bold">
-              訂單成立日期：　　　　{rentDate}
+          <div className="rentWord">
+            <p>訂單編號：{roomId}</p>
+            <p>訂單成立日期：{rentDate}</p>
+            <p>房間種類：{type}</p>
+            <p>
+              預約狀態：<span>{userStatus}</span>
+            </p>
+            <p>預約時間：{predate}</p>
+            <p>
+              訂單狀態：<span>{costStatus}</span>
+            </p>
+            <p>價格：{price}</p>
+            <div className="rentBtn">
+              <button
+                disabled={roomValid === 0 ? true : false}
+                className="btn changeBtn"
+                name="changeTime"
+              >
+                取消預約
+              </button>
             </div>
           </div>
-          {/* Rent上面右邊部分 end*/}
         </div>
-      </div>
-      {/* Rent下面button start*/}
-      <div className="d-flex justify-content-end">
-        <button
-          className="BtnRentChange me-3 bold"
-          disabled={userStatus !== "尚未報到" ? true : false}
-        >
-          更換時間
-        </button>
-        <button
-          className="BtnRentCancel me-5 bold"
-          disabled={userStatus !== "尚未報到" ? true : false}
-        >
-          取消預約
-        </button>
-      </div>
-      {/* Rent下面button end*/}
-    </div>
+      </form>
+    </>
   );
 }
 

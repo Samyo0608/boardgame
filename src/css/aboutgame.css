@@ -59,6 +59,7 @@
   border-radius: 15px;
   margin-top: -30px;
 }
+
 .ellipsis3 {
   position: absolute;
   overflow: hidden;
@@ -107,15 +108,14 @@
   top: 100px;
   left: 30px;
 }
-.favorite4 {
-  position: absolute;
-  top: 443px;
-  left: 730px;
-}
 .buy4 {
   position: absolute;
   top: 440px;
-  left: 860px;
+  left: 840px;
+}
+.buy4:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
 }
 
 /* 討論區 */
@@ -136,11 +136,34 @@
 }
 .pprice {
   position: absolute;
-  font-size: 40px;
-  left: 860px;
-  top: 380px;
+  font-size: 30px;
   font-weight: bold;
 }
+.box4567 {
+  position: absolute;
+  width: 420px;
+  background-color: rgba(255, 255, 255, 0.767);
+  height: 50px;
+  top: 380px;
+  left: 520px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 15px;
+}
+.box4568 {
+  position: absolute;
+  width: 420px;
+  background-color: rgba(255, 255, 255, 0.767);
+  height: 50px;
+  top: 430px;
+  left: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 15px;
+}
+
 /* 遊戲敘述 */
 .box457 {
   position: absolute;
@@ -194,4 +217,27 @@
 /* 紅字提醒 */
 .redone {
   color: red;
+}
+
+.typeposi {
+  position: relative;
+  left: 40px;
+  top: 105px;
+  width: 200px;
+}
+
+.inproflag4 {
+  position: absolute;
+  top: 410px;
+  left: 50px;
+  width: 230px;
+  height: 80px;
+}
+.p_vote {
+  position: absolute;
+  color: rgba(41, 81, 88, 0.836);
+  font-size: 25px;
+  top: 462px;
+  left: 80px;
+  font-weight: bold;
 }

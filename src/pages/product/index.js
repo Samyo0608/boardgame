@@ -3,14 +3,13 @@ import "../../css/vote.css";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row, Container } from "react-bootstrap";
-// import { render } from "react-dom";
 import HotGame from "../../components/product/HotGame";
 import Game from "../../components/product/Game";
 import HotGame2 from "../../components/product/HotGame2";
-// import A_button from "../../components/product/A_button";
 import HotGame3 from "../../components/product/HotGame3";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
+import { Pagination } from "antd";
 
 // 分類按鈕的狀態圖
 const typeButton = [
@@ -31,18 +30,12 @@ const typeButton = [
     status: "策略系列",
   },
 ];
-// let active = 1;
-// let items = [];
-// for (let number = 1; number <= 3; number++) {
-//   items.push(
-//     <Pagination.Item key={number} active={number === active}>
-//       {number}
-//     </Pagination.Item>
-//   );
-// }
 
 function Product(props) {
   const [status, setStatus] = useState(1);
+  const [displayproduct, setDisplayproduct] = useState([]);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(6);
 
   // 全部遊戲
   const [hotproductall, sethotproductall] = useState([]);
@@ -237,45 +230,49 @@ function Product(props) {
               })}
             </Row>
 
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
-            {/* <div>
-              <A_button />
-            </div> */}
             <div className="boxer123">
-              <div>
-                <Row>
-                  {AllRank?.slice(3, 9).map((product) => {
-                    return (
-                      <Col md={4} key={product.product_id}>
-                        <Game
-                          product_id={product.product_id}
-                          product_name={product.product_name}
-                          product_type={product.product_type}
-                          product_price={product.product_price}
-                          product_img={product.product_img}
-                        />
-                      </Col>
-                    );
-                  })}
-                </Row>
-              </div>
+              <Row>
+                {AllRank &&
+                  AllRank.length > 0 &&
+                  AllRank.slice(3)
+                    .slice(minValue, maxValue)
+                    .map((v, i) => {
+                      return (
+                        <Col md={4} key={v.product_id}>
+                          <Game
+                            product_id={v.product_id}
+                            product_name={v.product_name}
+                            product_type={v.product_type}
+                            product_price={v.product_price}
+                            product_img={v.product_img}
+                          />
+                        </Col>
+                      );
+                    })}
+              </Row>
             </div>
             {/* 分頁 */}
-            {/* <div>
-              <Pagination>{items}</Pagination>
-              <br />
-            </div> */}
-            {/* <div>
-              <Pagination count={3} />
-              <Pagination count={3} color="primary" />
-            </div> */}
+            <div className="productPagination">
+              <Pagination
+                defaultCurrent={1} // 預設在第一個頁面
+                defaultPageSize={6} // 預設一個頁面顯示6個數據
+                pageSizeOptions={["6"]}
+                showSizeChanger={true}
+                onChange={(page, pageSize) => {
+                  if (page <= 1) {
+                    setMinValue(0);
+                    setMaxValue(pageSize);
+                  } else {
+                    setMinValue((page - 1) * pageSize);
+                    setMaxValue((page - 1) * pageSize + pageSize);
+                  }
+                }}
+                total={AllRank.length}
+              />
+            </div>
           </Container>
         </div>
+
         {/* 家庭系列 */}
         <div
           className={`voteResult pt-3 ${status === 2 ? "d-block" : "d-none"}`}
@@ -332,16 +329,9 @@ function Product(props) {
                 );
               })}
             </Row>
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
-
             <div className="boxer123">
               <Row>
-                {hotproductfamily.slice(3).map((product) => {
+                {FamilyRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
@@ -414,16 +404,10 @@ function Product(props) {
                 );
               })}
             </Row>
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
 
             <div className="boxer123">
               <Row>
-                {hotproductcard.slice(3).map((product) => {
+                {CardRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game
@@ -498,16 +482,9 @@ function Product(props) {
               })}
             </Row>
 
-            {/* 排序紐 */}
-            {/* <div className="buttooon0">
-              <Button className="button123">價格排序</Button>
-              <Button className="button1234">最高</Button>
-              <Button className="button12345">最低</Button>
-            </div> */}
-
             <div className="boxer123">
               <Row>
-                {hotproductstrategy.slice(3).map((product) => {
+                {StrategyRank.slice(3).map((product) => {
                   return (
                     <Col md={4} key={product.product_id}>
                       <Game

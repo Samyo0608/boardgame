@@ -96,7 +96,7 @@ function Contest_info(props) {
 
   async function handleSubmit(e) {
 
-    // SweatAlert
+    // SweetAlert
     
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -148,12 +148,14 @@ function Contest_info(props) {
      
       <div>
       <div className="firstTitle bold">{info.contest_title}</div>
-
+      <div className="contestInfoBox">
         <img
-          alt="活動示意圖"
-          src={info.contestPic}
-          className="conInner"
-        />
+            alt="活動示意圖"
+            src={`../img/contest/${info.contestPic}`}
+            className="conInner"
+          />
+      </div>
+        
         <div className="conDirectionR">
           <h2 className="text-center">活動說明</h2>
           <div className="titleLineBox">
@@ -172,8 +174,11 @@ function Contest_info(props) {
             <Col  md={4} className="mt-4"> <FontAwesomeIcon icon={faDice} />比賽方法:</Col>
             <Col  md={8} className="mt-4">{info.contestMethod}</Col>
 
-            <Col md={12} className="mt-4 justify-content-end"><div  className="d-flex justify-content-end me-5"><Link to="/contestInfo" >
-            附檔:寶可夢卡牌對戰方式與規則</Link></div></Col>
+            <Col md={12} className="mt-4 justify-content-end"><div  className="d-flex justify-content-end me-5">
+            <a href="https://drive.google.com/u/0/uc?id=10Xlj52w3Xq3bIQwH97r1jFAK3XS2KKAj&export=download" 
+                download="比賽規則及方式.pdf"  >
+                附檔:遊戲對戰方式與規則</a>
+            </div></Col>
           </Row>
         </div>
 
@@ -277,8 +282,8 @@ function Contest_info(props) {
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </Link>
           <Link to="/" className="buttonStyleCon" value="/" target="_top">回首頁</Link>
-          <Link to={`${pageNoBack === "7" ? "1" : pageNoBack}`} className="arrowStyle">
-            <FontAwesomeIcon icon={faAngleDoubleRight} target="_top"/>
+          <Link to={`${pageNoBack === "7" ? "1" : pageNoBack}`} className="arrowStyle" target="_top">
+            <FontAwesomeIcon icon={faAngleDoubleRight} />
           </Link>
         </div>
       </div>     

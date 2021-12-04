@@ -13,29 +13,6 @@ function IndexVote(props) {
                <div className="clanderContentBox">
           <Row className="row">
             <Col md={6} className="col ms-5 mt-5">
-              {/* <div className="position-relative voteImgBox">
-                <div className="voteImgB">
-                  <img className="voteImg" alt="" src="img/index/game1.jpg" />
-                  <a
-                    href="#/"
-                    className="text-decoration-none text-center recommendTag d-inline-block pt-1"
-                  >
-                    <img
-                      alt=""
-                      src="img/index/family-tag.png"
-                      className="tagImg"
-                    />
-                    <p className="tagText fs-6 fw-normal">家庭</p>
-                  </a>
-                  <a
-                    href="#/"
-                    className="text-dark text-center text-decoration-none voteCart d-inline-block"
-                  >
-                    <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
-                    購買
-                  </a>
-                </div>
-              </div> */}
               <Carousel variant="dark" >
                 <Carousel.Item>
                    <img

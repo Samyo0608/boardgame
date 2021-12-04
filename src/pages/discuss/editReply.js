@@ -71,6 +71,7 @@ const EditReply = (props) => {
 
   //  撈文章內容資料
   useEffect(async () => {
+    window.scrollTo(0, 0);
     let res = await axios.post(
       `${API_URL}/discuss/editReplyContent`,
       editReplyId
@@ -165,7 +166,7 @@ const EditReply = (props) => {
             <div className="position-relative">
               <button
                 type="button"
-                className="quillDiscussContentBtn"
+                className="quillEditContentBtn"
                 onClick={() => setIsShowModal(true)}
               >
                 <FontAwesomeIcon

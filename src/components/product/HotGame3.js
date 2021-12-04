@@ -3,6 +3,7 @@ import { Container, Button, Modal } from "react-bootstrap";
 import "../../css/product.css";
 import { Link, withRouter } from "react-router-dom";
 import { typecolor2, typecolor4 } from "../../configs/config";
+import Swal from "sweetalert2";
 
 const HotGame3 = (props) => {
   const {
@@ -25,42 +26,12 @@ const HotGame3 = (props) => {
     id: "",
   });
 
-  const [show, setShow] = useState(false);
-  const [productName, setProductName] = useState("");
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const ToLocalStorage = (value) => {
-    const Cart = localStorage.getItem("") || [];
     const newCart = hot3;
     localStorage.setItem(hot3.product_name, JSON.stringify(newCart));
-    // 設定資料
-    setProductName(value.name);
-    handleShow();
   };
 
-  const messageModal = (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>加入購物車訊息</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          繼續購物
-        </Button>
-        <Button
-          variant="primary"
-          onClick={() => {
-            props.history.push(`/Cart${sessionMember}`);
-          }}
-        >
-          前往購物車結帳
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
-
-  const display = (
+  return (
     <>
       {/* 第三名 */}
       <Container className="posi2">
@@ -78,21 +49,22 @@ const HotGame3 = (props) => {
             <div className="ellipsis2">{product_content}</div>
           </Link>
         </div>
-        <span className="price3">${product_price}</span>
+        <span>售價 : {product_price}元</span>
         <p className="p5">投票數: {product_vote} 票</p>
         <div>
           <div className="iconflex2">
-            <a href="#/">
-              <img
-                className="favorite2"
-                src="/img/product/favorite.png"
-                alt=""
-              />
-            </a>
             <a
               key={hot3}
               onClick={() => {
                 ToLocalStorage(hot3);
+                Swal.fire({
+                  icon: "success",
+                  title: `${product_name}`,
+                  text: "已加入購物車",
+                  footer: `<a href="Cart${sessionMember}" class="btn btn-light">
+                      前往購物車
+                    </a>`,
+                });
               }}
               href="#/"
             >
@@ -101,12 +73,6 @@ const HotGame3 = (props) => {
           </div>
         </div>
       </Container>
-    </>
-  );
-  return (
-    <>
-      {messageModal}
-      {display}
     </>
   );
 };

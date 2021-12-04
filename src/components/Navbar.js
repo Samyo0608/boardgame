@@ -32,6 +32,9 @@ function TopNavbar(props) {
     account: "",
     point: "",
   });
+  const [product, setProduct] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [member, setMember] = useState({ point: "" });
 
   // 初始載入資料
   useEffect((e) => {
@@ -47,6 +50,37 @@ function TopNavbar(props) {
     }
     session();
   }, []);
+
+  // 抓取會員資料
+  useEffect(() => {
+    async function getMemberData() {
+      let member = await axios.get(
+        `${API_URL}/cart/${sessionStorage.getItem("account")}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setMember(member.data[0]);
+    }
+    getMemberData();
+  }, []);
+
+  // 抓取產品資料
+  useEffect(() => {
+    async function product() {
+      try {
+        let product = await axios.get(`${API_URL}/cart/`, {
+          withCredentials: true,
+        });
+        setProduct(product.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    product();
+  }, []);
+
+  console.log(product);
 
   // logout按鈕事件
   const handleClick = async (e) => {
@@ -154,10 +188,13 @@ function TopNavbar(props) {
         </Navbar.Brand>
         <Form className="d-flex searchInput">
           <FormControl
-            type="search"
+            type="text"
             placeholder="找遊戲"
+            name="search"
             className="me-2 formControl"
-            aria-label="Search"
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
           />
           <Button variant="link" className="faSearch">
             <div>
@@ -242,7 +279,8 @@ function TopNavbar(props) {
                 {sessionMember.account ? sessionMember.account : "會員您好"}
               </p>
               <div className="d-flex align-items-center">
-                點數<div className="point me-1">P</div> : {sessionMember.point}
+                點數<div className="point me-1">P</div> :{" "}
+                {member ? member.point : sessionMember.point}
               </div>
               <div className="ms-1">
                 <FontAwesomeIcon

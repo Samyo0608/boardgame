@@ -1,34 +1,51 @@
-.object-rent {
+.rent {
+  width: 800px;
+  height: 350px;
   background: #fff;
-  width: 95%;
-  border-radius: 2rem;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
-  padding: 20px 0 20px 0;
+  margin: 10px;
+  border-radius: 20px;
+}
+.rentImg {
+  position: relative;
+  top: 60px;
+  left: 30px;
+}
+.rentImg Img {
+  width: 300px;
+  border-radius: 10px;
 }
 
-.imgRent {
-  max-width: 250px;
-  height: 300px;
-  border-radius: 2rem;
+.rentWord {
+  width: 420px;
+  height: 250px;
+  /* background-color: chartreuse; */
+  position: relative;
+  left: 375px;
+  top: -195px;
+  font-size: 18px;
+  font-weight: bold;
 }
-
-.BtnRentChange {
-  max-width: 120px;
-  background: none;
-  padding: 5px 20px 5px 20px;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+.rentWord span {
+  color: rgb(255, 41, 41);
 }
-
-.BtnRentCancel {
-  max-width: 120px;
-  width: 100%;
-  background: #2196d4;
-  color: #fff;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+.rentBtn {
+  position: relative;
+  left: 270px;
+  top: -50px;
 }
-
-.BtnRentCancel:disabled {
-  opacity: 0.6;
+.changeBtn {
+  width: 120px;
+  height: 45px;
+  font-size: 18px;
+  background: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.swalForm {
+  text-align: right;
+}
+.swalForm input {
+  width: 250px;
+}
+.swalForm select {
+  width: 250px;
 }

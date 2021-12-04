@@ -264,11 +264,20 @@
   height: 25px;
   padding-top: 2px;
   text-decoration: none;
-  background-color: #e4e4e4;
+  background-color: #81d8d0;
   box-shadow: 2px 2px 3px rgb(148, 148, 148);
   position: absolute;
   right: 20px;
   bottom: 20px;
+  right: 70px;
+  transform: translateX(50%);
+}
+.moreButton:hover {
+  color: black;
+  background-color: rgb(72, 223, 215);
+}
+.moreButton:active {
+  background-color: rgb(46, 194, 186);
 }
 
 /* 場地出租插圖 */
@@ -480,7 +489,22 @@
   min-width: 350px;
   min-height: 600px;
 }
-
+.voteTop {
+  margin-top: 200px;
+}
+.voteBox {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  background-color: #fffed9;
+  margin: auto;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  /* border: 1px solid rgb(211, 211, 211); */
+  box-shadow: 0px 0px 2px rgb(175, 175, 175);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 /* 當期比賽標題插圖 */
 .contestTitle {
   margin-top: 250px;
@@ -497,7 +521,6 @@
   object-fit: contain;
   width: 100%;
 }
-
 .slideVote {
   background: white;
 }
@@ -555,7 +578,42 @@
   right: 20px;
   bottom: -50px;
 }
-
+.contestFit {
+  width: 100%;
+  max-height: 200px;
+}
+.slideContest {
+  background: #fffed9;
+  color: black;
+}
+.slideContest:active {
+  background: #fffed9;
+  color: black;
+}
+.conSize {
+  min-width: 100vh;
+  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* background-color: #fffed9; */
+}
+.conButton {
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border-radius: 20px;
+  width: 90px;
+  height: 25px;
+  padding-top: 2px;
+  text-decoration: none;
+  background-color: #81d8d0;
+  box-shadow: 2px 2px 3px rgb(148, 148, 148);
+  position: absolute;
+  right: 50%;
+  top: 64%;
+  transform: translateX(50%);
+  /* bottom: 80px; */
+}
 /* 討論區標題 */
 .discussTitle {
   margin-top: 200px;
@@ -610,15 +668,15 @@
 .woodImg {
   position: absolute;
   left: -40px;
-  top: -35px;
-  width: 100px;
+  top: -40px;
+  width: 90px;
 }
 .newestDiscuss {
   text-align: center;
   font-weight: bold;
   position: absolute;
-  top: -20px;
-  left: -26px;
+  top: -25px;
+  left: -31px;
   width: 70px;
   color: rgb(0, 0, 0);
 }

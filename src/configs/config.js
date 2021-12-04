@@ -35,5 +35,3 @@ export const p6 = {
   策略: "p6-2",
   卡牌: "p6-3",
 };
-
-export const PRODUCT_PER_PAGE = 1;

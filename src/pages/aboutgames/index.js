@@ -1,12 +1,14 @@
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import "../../css/aboutgame.css";
 import "../../css/product.css";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 import { API_URL, p6 } from "../../configs/config";
-const attentionButton = [
+import Swal from "sweetalert2";
+
+const detailButton = [
   {
     id: 1,
     status: "遊戲詳情",
@@ -39,20 +41,23 @@ function Aboutgame(props) {
     product_name: "",
     product_img: "",
     product_content: "",
+    product_vote: "",
     product_price: "",
     return_detail: "",
+    product_type: "",
     product_info: "",
   });
+  const [sessionMember] = useState({
+    id: "",
+  });
 
-  const insertCountPro = (product) => {
-    let state = [];
-    for (let i = 0; i < product.length; i++) {
-      state.push({ ...product[i], count: 1 });
-    }
-    return state;
+  const ToLocalStorage = (value) => {
+    const Cart = localStorage.getItem("") || [];
+    const newCart = aboutgame;
+    localStorage.setItem(aboutgame.product_name, JSON.stringify(newCart));
   };
 
-  const show = (
+  return (
     <>
       <Container>
         <div>
@@ -68,32 +73,33 @@ function Aboutgame(props) {
               height: "510px",
             }}
           >
-            <article className={p6[aboutgame.product_type]}>
-              {aboutgame.product_name}
+            <article className={p6[aboutgame?.product_type]}>
+              {aboutgame?.product_name}
             </article>
-            <img className="abb" src={aboutgame.product_img} alt="" />
+
+            <img
+              className="abb"
+              src={`/product_img/550x400/${aboutgame?.product_img}`}
+              alt=""
+            />
             <div className="box456">
-              <p className="ellipsis3">{aboutgame.product_content}</p>
+              <p className="ellipsis3">{aboutgame?.product_content}</p>
             </div>
-            <p className="pprice">${aboutgame.product_price}</p>
-            <a href="#/">
-              <img
-                className="favorite4"
-                src="/img/product/favorite.png"
-                alt=""
-              />
-            </a>
+            <div className="box4567">
+              <p className="pprice ">售價 : {aboutgame?.product_price}元</p>
+            </div>
             <a
               key={aboutgame}
               onClick={() => {
-                localStorage.setItem(
-                  aboutgame.product_name,
-                  JSON.stringify(aboutgame)
-                );
-                // sessionStorage.setItem(
-                //   aboutgame.product_name,
-                //   JSON.stringify(aboutgame)
-                // );
+                ToLocalStorage(aboutgame);
+                Swal.fire({
+                  icon: "success",
+                  title: `${aboutgame.product_name}`,
+                  text: "已加入購物車",
+                  footer: `<a href="../Cart${sessionMember}" class="btn btn-light">
+                      前往購物車
+                    </a>`,
+                });
               }}
               href="#/"
             >
@@ -122,7 +128,7 @@ function Aboutgame(props) {
           </Link>
           <div className="box457">
             <Row>
-              {attentionButton.map((v, i) => {
+              {detailButton.map((v, i) => {
                 return (
                   <Col>
                     <button
@@ -145,7 +151,7 @@ function Aboutgame(props) {
                 status === 1 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.product_info}</p>
+              <p className="ellipsis6">{aboutgame?.product_info}</p>
             </div>
             {/* 遊戲內容 */}
 
@@ -154,7 +160,7 @@ function Aboutgame(props) {
                 status === 2 ? "d-block" : "d-none"
               }`}
             >
-              <p className="ellipsis6">{aboutgame.return_detail}</p>
+              <p className="ellipsis6">{aboutgame?.return_detail}</p>
             </div>
 
             {/* 退換貨說明 */}
@@ -194,7 +200,5 @@ function Aboutgame(props) {
       </Container>
     </>
   );
-
-  return <>{show}</>;
 }
 export default withRouter(Aboutgame);
