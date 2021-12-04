@@ -130,6 +130,7 @@ function MemberCenter(props) {
                     key={order[i].product}
                     detail={order[i]}
                     isLoading={isLoading}
+                    setIsLoading={setIsLoading}
                   />
                 );
               })}

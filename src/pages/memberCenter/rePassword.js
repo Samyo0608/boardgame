@@ -60,7 +60,7 @@ function RePassword(props) {
             title: "密碼更新成功",
             text: "請小心管理您的密碼",
           }).then((res) => {
-            window.location.replace(`/memberCenter${paramsData.account}`);
+            window.location.replace(`/`);
           });
         }
       } catch (e) {
