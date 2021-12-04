@@ -7,7 +7,7 @@ import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function MemProductItem(props) {
-  const { detail, isLoading } = props;
+  const { detail } = props;
   const arr = detail;
   const [display, setDisplay] = useState(false);
   const [rotate, setRotate] = useState(false);
@@ -170,7 +170,10 @@ function MemProductItem(props) {
             <div className="col-5 h5 bold mb-5">
               連絡電話　　：{arr.customer_phone}
             </div>
-            <div className="col-7 h5 bold mb-5">收件地址　　：{address}</div>
+            <div className="col-7 h5 bold mb-5">
+              收件地址　　：
+              {address.includes(",") ? address : arr.customer_address}
+            </div>
             <div className="col-5 h5 bold mb-5">
               使用點數　　：{arr.cost_point}
             </div>

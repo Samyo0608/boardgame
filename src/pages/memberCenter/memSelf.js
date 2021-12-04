@@ -871,7 +871,7 @@ function MemSelf(props) {
                       minlength="4"
                       className="me-2"
                       defaultValue={
-                        user.birth !== null ? user.birth.split("/")[0] : ""
+                        year !== null ? user.birth.split("/")[0] : ""
                       }
                       onChange={(e) => {
                         setYear(e.target.value);
@@ -891,7 +891,7 @@ function MemSelf(props) {
                       maxlength="2"
                       className="me-2"
                       defaultValue={
-                        user.birth !== null ? user.birth.split("/")[1] : ""
+                        month !== null ? user.birth.split("/")[1] : ""
                       }
                       onChange={(e) => {
                         setMonth(e.target.value);
@@ -911,7 +911,7 @@ function MemSelf(props) {
                       maxlength="2"
                       className="me-2"
                       defaultValue={
-                        user.birth !== null ? user.birth.split("/")[2] : ""
+                        day !== null ? user.birth.split("/")[2] : ""
                       }
                       onChange={(e) => {
                         setDay(e.target.value);

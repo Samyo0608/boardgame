@@ -158,7 +158,7 @@ const Cartcheck = (props) => {
           text: "感謝您的消費",
         }).then((result) => {
           localStorage.clear();
-          window.location.replace(`/memberCenter${accParams.account}`);
+          window.location.replace(`/`);
         });
       } else {
         Swal.fire({
