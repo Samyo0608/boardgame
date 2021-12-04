@@ -668,15 +668,15 @@
 .woodImg {
   position: absolute;
   left: -40px;
-  top: -35px;
-  width: 100px;
+  top: -40px;
+  width: 90px;
 }
 .newestDiscuss {
   text-align: center;
   font-weight: bold;
   position: absolute;
-  top: -20px;
-  left: -26px;
+  top: -25px;
+  left: -31px;
   width: 70px;
   color: rgb(0, 0, 0);
 }

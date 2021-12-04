@@ -24,19 +24,21 @@
 
 /* 麵包屑 */
 .discussBread {
+  color: white;
   position: absolute;
   margin-top: 200px;
   top: 150px;
   left: 0px;
   background-color: #2196d4;
   padding-left: 50px;
+  padding-right: 20px;
   height: 30px;
   box-shadow: #c1efeb 15px 10px;
 }
 
 .discussBreadContent {
   color: white;
-  margin-right: 20px;
+  margin-right: 5px;
   text-decoration: none;
   line-height: 30px;
 }
@@ -161,31 +163,50 @@
   border-radius: 5px;
   width: 60px;
 }
-
+.typeTh {
+  width: 60px;
+}
 .discussTitleTd {
   padding: 5px 0 0 20px !important;
   line-height: 38px;
   width: 260px;
 }
 .discussTitleLink {
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
+}
+.discussTitleLink > span {
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  max-width: 260px;
+}
+.dUserTd {
+  font-size: 14px;
+  width: 100px;
 }
 .rcountTd {
   width: 80px;
+  font-size: 14px;
 }
 .timeTd {
   padding: 14px 0 0 0 !important;
-  width: 260px;
+  width: 160px;
+  font-size: 14px;
 }
 /* 預覽圖片 */
 .disPicTd {
-  padding: 10px 15px 0 15px !important;
+  padding: 5px 15px 5px 15px !important;
   overflow: hidden;
   width: 160px;
 }
 .picDiscussContentQuill > div > div {
+  margin: auto;
   border-radius: 5px;
+  width: 130px;
   overflow: hidden;
   height: 60px;
 }
@@ -194,7 +215,8 @@
 }
 .picDiscussContentQuill img {
   object-fit: cover;
-  width: 100%;
+  width: 130px;
+  margin: auto !important;
   height: 60px;
 }
 .picDiscussContentQuill > div > div > iframe,
@@ -216,6 +238,14 @@
 }
 
 .unpicBox {
+  margin: auto;
+  width: 130px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.unpicBoxHot {
+  margin: auto;
+  width: 160px;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -242,14 +272,17 @@
   overflow: hidden;
   text-overflow: ellipsis !important;
 }
-.indexDiscussContentQuill > div > div > p {
+.indexDiscussContentQuill > div > div > p,
+.indexDiscussContentQuill > div > div > strong {
   font-size: 14px !important;
+  font-weight: unset !important;
   color: rgb(105, 105, 105) !important;
   max-width: 260px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;
 }
+.indexDiscussContentQuill > div > div > p > br,
 .indexDiscussContentQuill > div > div > p > img,
 .indexDiscussContentQuill > div > div > iframe {
   display: none !important;
@@ -284,11 +317,14 @@
 /* 分頁 */
 .discussPagination {
   margin-top: 30px;
+  text-align: center;
 }
 
 .discussPagination > ul {
+  margin-left: 150px;
+  display: inline-block;
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
 }
 
 /* 熱門推薦標題 */
@@ -349,6 +385,7 @@
   border-radius: 5px;
   overflow: hidden;
   height: 160px;
+  width: 160px;
 }
 .hotpicDiscussContentQuill > div > div > * {
   cursor: pointer;
@@ -369,6 +406,10 @@
 }
 .discussHotTitle {
   font-weight: bold;
+  max-width: 247px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
 }
 .hotType {
   margin-right: 10px;

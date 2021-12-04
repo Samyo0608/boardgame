@@ -141,6 +141,7 @@ const NewDiscuss = (props) => {
       <div className="newDiscussBoxOut">
         <div className="newdiscussFormBox position-relative">
           <form onSubmit={handleNewDiscussSubmit}>
+            <label className="dTitleLabel mt-1">分類 :</label>
             <select
               className="form-select discussSelect my-3"
               name="type"
@@ -158,6 +159,7 @@ const NewDiscuss = (props) => {
                 );
               })}
             </select>
+            <label className="dTitleLabel">標題 :</label>
             <input
               type="text"
               className="form-control newdiscussTitle mb-3"
@@ -167,6 +169,7 @@ const NewDiscuss = (props) => {
               onChange={handleNewDiscussChange}
               required
             />
+            <label className="dTitleLabel">內容 : </label>
             <DiscussQuill
               addDiscuss={addDiscuss}
               setAddDiscuss={setAddDiscuss}

@@ -7,14 +7,27 @@
   box-shadow: 0px 0px 2px rgb(100, 100, 100);
 }
 
+.quillEditContentBtn {
+  border: none;
+  position: absolute;
+  top: 9px;
+  right: -4px;
+  background-color: #a2e2ea;
+}
+
 .newdiscussFormBox {
   margin: auto;
   padding-top: 5px;
   width: 90%;
 }
 
+.dTitleLabel {
+  margin-bottom: 5px;
+}
+
 .discussSelect {
   width: 115px;
+  margin-top: 0px !important;
 }
 
 .newdiscussTitle {
