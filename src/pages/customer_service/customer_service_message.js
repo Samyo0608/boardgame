@@ -15,6 +15,7 @@ const CustomerServicePage = (props) => {
     const lastPath = (currentPath.split("/")).at(-1)
     return lastPath === "record"
   }
+  
   return (
     <div className="container justify-content-center flex-column">
       {/* header */}
