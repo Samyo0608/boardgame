@@ -1,4 +1,8 @@
 /* banner */
+.discussLoading {
+  margin: auto;
+  width: 80px;
+}
 .discussBannerBox {
   position: relative;
   margin: auto;

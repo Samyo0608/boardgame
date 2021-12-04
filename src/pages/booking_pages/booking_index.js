@@ -93,12 +93,15 @@ function Booking() {
         showDenyButton: true,
         confirmButtonText: "確認",
         denyButtonText: `取消`,
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-          axios.post(`http://localhost:3001/api/booking/order`, fields, {
+          await axios.post(`http://localhost:3001/api/booking/order`, fields, {
             withCredentials: true,
           });
-          Swal.fire("感謝您的訂購!", "", "success");
+          console.log(fields);
+          Swal.fire("感謝您的訂購!", "", "success").then(() => {
+            window.location.reload();
+          });
         } else if (result.isDenied) {
           Swal.fire("期待您的下次訂購", "", "info");
         }
