@@ -118,7 +118,7 @@ const Discuss = (props) => {
       <div className="discussBannerBox">
         <img
           className="discussBannerImg"
-          src="img/discuss/banner2.png"
+          src="img/discuss/banner3.png"
           alt=""
         />
         <div className="bannerContent text-end">
