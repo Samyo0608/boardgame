@@ -7,6 +7,8 @@ import Cart1 from "../../components/cart/Cart1";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 import Swal from "sweetalert2";
+import Loading from "../../components/loading/loading";
+
 function Cart(props) {
   const [check, setCheck] = useState(false);
   const [product, setProduct] = useState([
@@ -138,6 +140,16 @@ function Cart(props) {
     setLocal([]);
   };
 
+    // Loading
+    const [isLoading, setIsLoading] = useState(true);
+
+  // Loading計時
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
       {/* 頂端 */}
@@ -161,6 +173,9 @@ function Cart(props) {
         {/* container cart1 component*/}
         <div className="CartListBG d-flex flex-column justify-content-between align-items-center">
           <div className="d-flex flex-column justify-content-start align-items-center mt-4">
+          {isLoading ? (
+            <Loading />
+          ) : (<>
             {local.length !== 0 ? (
               <>
                 {localList.map((v, i) => {
@@ -182,6 +197,8 @@ function Cart(props) {
                 </Link>
               </div>
             )}
+          </>
+          )}
           </div>
 
           <div className="total d-flex justify-content-end align-items-center mb-3 py-3">
