@@ -63,12 +63,10 @@
   height: 120px;
   padding: 10px;
 }
-
 /* 右側圖 */
-.communicationPicture {
-  width: 400px;
-  height: 320px;
+.communicationPicture2{
+  width: 315px;
   position: absolute;
-  right: 60px;
+  right:90px;
   bottom: 30px;
 }
