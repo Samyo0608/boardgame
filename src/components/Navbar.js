@@ -66,21 +66,21 @@ function TopNavbar(props) {
   }, []);
 
   // 抓取產品資料
-  useEffect(() => {
-    async function product() {
-      try {
-        let product = await axios.get(`${API_URL}/cart/`, {
-          withCredentials: true,
-        });
-        setProduct(product.data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    product();
-  }, []);
+  // useEffect(() => {
+  //   async function product() {
+  //     try {
+  //       let product = await axios.get(`${API_URL}/cart/`, {
+  //         withCredentials: true,
+  //       });
+  //       setProduct(product.data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   product();
+  // }, []);
 
-  console.log(product);
+  // console.log(product);
 
   // logout按鈕事件
   const handleClick = async (e) => {

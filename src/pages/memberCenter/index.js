@@ -36,39 +36,67 @@ function MemberCenter(props) {
   const [member, setMember] = useState({});
   // 接收order
   const [order, setOrder] = useState([]);
+  const [loadingCount, setLoadingCount] = useState(2);
+  const [product, setProduct] = useState([]);
 
-  // 抓取會員資料
+  // 撈取產品資料
+  useEffect((e) => {
+    async function product() {
+      let product = await axios
+        .get(`${API_URL}/cart/`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setProduct(res.data);
+        });
+    }
+    product();
+  }, []);
+
+  // 抓取member資料
   useEffect(() => {
     async function getMemberData() {
-      let member = await axios.get(`${API_URL}/cart/${history}`, {
-        withCredentials: true,
-      });
-      setMember(member.data[0]);
+      let member = await axios
+        .get(`${API_URL}/cart/${history}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 3000);
+          setMember(res.data[0]);
+          setLoadingCount(loadingCount - 1);
+        });
     }
     getMemberData();
   }, []);
 
   // 撈取產品訂單(product_order)資料，且只要非訂單完成的部分
-  useEffect((e) => {
-    async function order() {
-      await axios
-        .get(`${API_URL}/member/productOrder/${history}`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          let newOrder2 = res.data.filter((x) => x.order_check < 3);
-          setOrder(newOrder2);
-        });
-    }
-    order();
-  }, []);
+  useEffect(
+    (e) => {
+      async function order() {
+        await axios
+          .get(`${API_URL}/member/productOrder/${history}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            let newOrder2 = res.data.filter((x) => x.order_check < 3);
+            setOrder(newOrder2);
+            setLoadingCount(loadingCount - 1);
+          });
+      }
+      order();
+    },
+    [setLoadingCount]
+  );
 
+  console.log(loadingCount);
   // Loading計時
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, [order]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, [order]);
 
   // 上方狀態欄
   const List = [
@@ -127,6 +155,7 @@ function MemberCenter(props) {
               {order.map((v, i) => {
                 return (
                   <MemProductItem
+                    product={product}
                     key={order[i].product}
                     detail={order[i]}
                     isLoading={isLoading}
