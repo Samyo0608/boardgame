@@ -42,12 +42,11 @@ const NewDiscuss = (props) => {
     let newAddDiscuss = { ...addDiscuss };
     newAddDiscuss[e.target.name] = e.target.value;
     setAddDiscuss(newAddDiscuss);
+    // console.log(addDiscuss);
   }
 
   useEffect(async () => {
-    let res = await axios.get(
-      `http://localhost:3001/api/discuss/newDiscussType`
-    );
+    let res = await axios.get(`${API_URL}/discuss/newDiscussType`);
     setNewDiscussType(res.data);
   }, []);
 
@@ -76,49 +75,60 @@ const NewDiscuss = (props) => {
       if (!sessionMember.id) {
         alert("請先登入");
         window.location.href = `/login`;
+      } else if (
+        addDiscuss.content === "" ||
+        addDiscuss.title === "" ||
+        addDiscuss.type === ""
+      ) {
+        Swal.fire("有欄位尚未填寫", "不可有空白欄位", "error");
       } else {
         let resNewDiscuss = await axios.post(
-          `http://localhost:3001/api/discuss/addNewDiscuss`,
+          `${API_URL}/discuss/addNewDiscuss`,
           addDiscuss,
           { withCredentials: true }
         );
         let newAddDiscuss = { ...addDiscuss };
         newAddDiscuss.lastId = resNewDiscuss.data;
-        setAddDiscuss(newAddDiscuss);
-        setStateLastId(resNewDiscuss.data);
-        //  let resNewDiscussContent = await axios.post(
-        //    `http://localhost:3001/api/discuss/addNewDiscussContent`,
-        //    addDiscuss
-        //  );
-        // window.location.reload();
+        let resNewDiscussContent = await axios.post(
+          `${API_URL}/discuss/addNewDiscussContent`,
+          newAddDiscuss,
+          { withCredentials: true }
+        );
+        Swal.fire({
+          icon: "success",
+          title: "回覆成功",
+          text: "已提交您的回覆",
+        }).then((res) => {
+          window.location.href = `${URL}/discuss`;
+        });
       }
     } catch (e) {
       console.log("handleNewDiscussSubmit", e);
     }
   }
 
-  const isFirstRun = useRef(true);
-  useEffect(() => {
-    async function secondSubmit() {
-      if (isFirstRun.current) {
-        isFirstRun.current = false;
-        return;
-      }
-      let resNewDiscussContent = await axios.post(
-        `http://localhost:3001/api/discuss/addNewDiscussContent`,
-        addDiscuss,
-        { withCredentials: true }
-      );
-      Swal.fire({
-        icon: "success",
-        title: "回覆成功",
-        text: "已提交您的回覆",
-      }).then((res) => {
-        window.location.href = `http://localhost:3000/discuss`;
-      });
-    }
-    secondSubmit();
-  }, [stateLastId]);
+  // const isFirstRun = useRef(true);
+  // useEffect(() => {
+  //   async function secondSubmit() {
+  //     if (isFirstRun.current) {
+  //       isFirstRun.current = false;
+  //       return;
+  //     }
+  //     let resNewDiscussContent = await axios.post(
+  //       `${API_URL}/discuss/addNewDiscussContent`,
+  //       addDiscuss,
+  //       { withCredentials: true }
+  //     );
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "回覆成功",
+  //       text: "已提交您的回覆",
+  //     }).then((res) => {
+  //       window.location.href = `http://localhost:3000/discuss`;
+  //     });
+  //   }
+  //   secondSubmit();
+  // }, [stateLastId]);
 
   return (
     <div className="overflow-hidden">
@@ -133,9 +143,14 @@ const NewDiscuss = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="discussBreadContent" href="#/">
-          首頁{`>>`}討論區{`>>`}開新話題
+        <a className="replyBreadContent" href={`${URL}`}>
+          首頁
         </a>
+        {">>"}
+        <a className="replyBreadContent" href={`${URL}/discuss`}>
+          討論區
+        </a>
+        {">>"}開新話題
       </div>
       {/* form */}
       <div className="newDiscussBoxOut">
@@ -148,7 +163,6 @@ const NewDiscuss = (props) => {
               aria-label="Default select example"
               onChange={handleNewDiscussChange}
               value={addDiscuss.type}
-              required
             >
               <option value="">選擇分類</option>
               {newDiscussType.map((v, i) => {
@@ -167,7 +181,6 @@ const NewDiscuss = (props) => {
               name="title"
               value={addDiscuss.title}
               onChange={handleNewDiscussChange}
-              required
             />
             <label className="dTitleLabel">內容 : </label>
             <DiscussQuill

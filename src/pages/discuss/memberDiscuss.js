@@ -51,7 +51,7 @@ function MemberDiscuss(props) {
       return;
     }
     let res = await axios.post(
-      `http://localhost:3001/api/discuss/memberDiscuss`,
+      `${API_URL}/discuss/memberDiscuss`,
       sessionDiscussMember
     );
     setDiscuss(res.data);
@@ -67,10 +67,6 @@ function MemberDiscuss(props) {
           <p className="h2 mt-5 bold">收藏文章</p>
 
           {/* 討論區內容 */}
-
-          {/* <div className="r_discussPicBox">
-          <img alt="" className="rentPic" src="/img/discuss/bird5.png" />
-         </div> */}
           <div className="m_discussOutBox">
             <div className="m_discussInBox">
               {/* 最新討論 */}
@@ -127,14 +123,14 @@ function MemberDiscuss(props) {
                                   }).then(async (result) => {
                                     if (result.isConfirmed) {
                                       let resKeepDelete = await axios.post(
-                                        `http://localhost:3001/api/discuss/keepDelete`,
+                                        `${API_URL}/discuss/keepDelete`,
                                         {
                                           discuss_id: v.id,
                                         },
                                         { withCredentials: true }
                                       );
                                       let res = await axios.post(
-                                        `http://localhost:3001/api/discuss/memberDiscuss`,
+                                        `${API_URL}/discuss/memberDiscuss`,
                                         sessionDiscussMember
                                       );
                                       setDiscuss(res.data);

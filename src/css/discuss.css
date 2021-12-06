@@ -100,6 +100,41 @@
   bottom: 9px;
 }
 
+.searchHint {
+  position: absolute;
+  top: -40px;
+  left: 570px;
+  transform: translateX(-50%);
+}
+
+.cancelSearch {
+  margin-left: 20px;
+  border: none;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  color: white;
+  background-color: rgb(255, 43, 43);
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 8px rgb(255, 130, 130) inset;
+}
+.cancelSearch:hover {
+  background-color: rgb(253, 71, 71);
+  box-shadow: 1px 1px 2px rgb(121, 121, 121);
+}
+.cancelSearch:active {
+  /* background-color: rgb(196, 15, 15); */
+  box-shadow: 2px 2px 8px rgba(95, 95, 95, 0.37) inset;
+}
+
+/* 分類select */
+.discussTypeSelect {
+  width: 165px;
+  position: absolute;
+  top: -50px;
+  left: 0px;
+}
+
 /* 討論區內容 */
 .r_discussPicBox {
   position: absolute;
@@ -114,7 +149,7 @@
   padding-bottom: 20px;
   background-color: #fffed9;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 0px;
   border-radius: 8px;
   /* border: 1px solid rgb(211, 211, 211); */
@@ -302,7 +337,8 @@
   padding-top: 2px;
   text-decoration: none;
   background-color: #2196d4;
-  box-shadow: 1px 1px 2px rgb(184, 184, 184);
+  box-shadow: 1px 1px 2px rgb(184, 184, 184),
+    2px 2px 4px rgb(119, 204, 253) inset;
   position: absolute;
   right: 40px;
   top: 55px;
@@ -315,7 +351,7 @@
 }
 .r_discussButton:active {
   background-color: #1f8cc7;
-  box-shadow: 2px 2px 15px rgba(141, 141, 141, 0.596) inset;
+  box-shadow: 2px 2px 15px rgba(179, 179, 179, 0.596) inset;
 }
 
 /* 分頁 */

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import moment from "moment";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { API_URL, URL, PHOTO_URL } from "../../configs/config";
 import Swal from "sweetalert2";
 import DiscussQuill from "../../components/discuss/discussQuill";
@@ -21,7 +21,6 @@ const Reply = () => {
 
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
   const { discuss_id } = useParams();
-  const history = useHistory();
 
   // 標題設定狀態
   const [replyTitle, setreplyTitle] = useState([]);
@@ -72,22 +71,22 @@ const Reply = () => {
     },
   ]);
 
-  // 按讚功能設定狀態
-  const [discussLike, setDiscussLike] = useState([
-    { discusss_content_id: "", user_id: "" },
-  ]);
-  // 按讚功能設定狀態
-  const [likeStatus, setLikeStatus] = useState({});
+  // // 按讚功能設定狀態
+  // const [discussLike, setDiscussLike] = useState([
+  //   { discusss_content_id: "", user_id: "" },
+  // ]);
+  // // 按讚功能設定狀態
+  // const [likeStatus, setLikeStatus] = useState({});
 
-  // 新增回覆資料
-  const [insertDiscuss, setInsertDiscuss] = useState({
-    discuss_id: discuss_id,
-    user_id: "",
-    content: "",
-    floor: "1",
-  });
+  // // 新增回覆資料
+  // const [insertDiscuss, setInsertDiscuss] = useState({
+  //   discuss_id: discuss_id,
+  //   user_id: "",
+  //   content: "",
+  //   floor: "1",
+  // });
 
-  const [quillContent, setQuillContent] = useState({});
+  const [quillContent, setQuillContent] = useState("");
   const [addDiscuss, setAddDiscuss] = useState({
     user_id: "",
     type: "",
@@ -118,7 +117,10 @@ const Reply = () => {
         }).then((res) => {
           window.location.replace("/login");
         });
+      } else if (quillContent === "" || quillContent === "<p><br></p>") {
+        Swal.fire("有欄位尚未填寫", "回覆欄位不可為空白", "error");
       } else {
+        console.log(quillContent);
         // json 格式無法傳檔案，改成用 form data
         let formData = new FormData();
         formData.append("discuss_id", discuss_id);
@@ -130,7 +132,7 @@ const Reply = () => {
         //   console.log(key[0] + ", " + key[1]);
         // }
         let res = await axios.post(
-          `http://localhost:3001/api/discuss/insertDiscuss`,
+          `${API_URL}/discuss/insertDiscuss`,
           formData,
           { withCredentials: true }
         );
@@ -140,7 +142,7 @@ const Reply = () => {
           text: "已提交您的回覆",
         }).then(async (res) => {
           let resreply = await axios.get(
-            `http://localhost:3001/api/discuss/reply/${discuss_id}`
+            `${API_URL}/discuss/reply/${discuss_id}`
           );
           setDiscussContent(resreply.data);
           // window.scrollBy(0, -700);
@@ -166,7 +168,7 @@ const Reply = () => {
     } else {
       if (keepStatus === false) {
         let resKeep = await axios.post(
-          `http://localhost:3001/api/discuss/keep`,
+          `${API_URL}/discuss/keep`,
           { discuss_id },
           {
             withCredentials: true,
@@ -176,7 +178,7 @@ const Reply = () => {
         Swal.fire("Good job!", "已將此文章加入收藏!", "success");
       } else {
         let resKeepDelete = await axios.post(
-          `http://localhost:3001/api/discuss/keepDelete`,
+          `${API_URL}/discuss/keepDelete`,
           { discuss_id },
           {
             withCredentials: true,
@@ -199,41 +201,34 @@ const Reply = () => {
   // 抓標題和回覆內容
   useEffect(async () => {
     window.scrollTo(0, 0);
-    let res = await axios.get(
-      `http://localhost:3001/api/discuss/reply/${discuss_id}`
-    );
-    let resTitle = await axios.get(
-      `http://localhost:3001/api/discuss/title/${discuss_id}`
-    );
+    let res = await axios.get(`${API_URL}/discuss/reply/${discuss_id}`);
+    let resTitle = await axios.get(`${API_URL}/discuss/title/${discuss_id}`);
     setDiscussContent(res.data);
     setreplyTitle(resTitle.data[0]);
   }, []);
 
   // 撈熱門討論區資料
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/discussCount`);
+    let resf = await axios.get(`${API_URL}/discuss/getType/${discuss_id}`);
+    let res = await axios.get(`${API_URL}/discuss/replyHot/${resf.data}`);
     setHotDiscuss(res.data);
     setDisplayHotDiscuss(res.data);
   }, []);
   // 撈討論區內容
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/indexContent`);
+    let res = await axios.get(`${API_URL}/discuss/indexContent`);
     setTotalDiscussContent(res.data);
   }, []);
 
   // 統計每人發文數
   useEffect(async () => {
-    let resDiscussCount = await axios.get(
-      `http://localhost:3001/api/discuss/discussCountNum`
-    );
+    let resDiscussCount = await axios.get(`${API_URL}/discuss/discussCountNum`);
     setDiscussCount(resDiscussCount.data);
   }, []);
 
   // 統計每人回覆數
   useEffect(async () => {
-    let resReplyCount = await axios.get(
-      `http://localhost:3001/api/discuss/replyCount`
-    );
+    let resReplyCount = await axios.get(`${API_URL}/discuss/replyCount`);
     setReplyCount(resReplyCount.data);
   }, []);
 
@@ -261,7 +256,7 @@ const Reply = () => {
     }
 
     let resDiscussKeep = await axios.post(
-      `http://localhost:3001/api/discuss/keepStatus`,
+      `${API_URL}/discuss/keepStatus`,
       { discuss_id },
       {
         withCredentials: true,
@@ -272,12 +267,9 @@ const Reply = () => {
     } else {
       setKeepStatus(true);
     }
-    let resDiscussLikeData = await axios.post(
-      `http://localhost:3001/api/discuss/likeData`,
-      {
-        withCredentials: true,
-      }
-    );
+    let resDiscussLikeData = await axios.post(`${API_URL}/discuss/likeData`, {
+      withCredentials: true,
+    });
     setDiscussLikeData(resDiscussLikeData.data);
   }, [sessionMember]);
 
@@ -296,11 +288,11 @@ const Reply = () => {
       </div>
       {/* 麵包屑 */}
       <div className="replyBread text-end">
-        <a className="replyBreadContent" href="http://localhost:3000">
+        <a className="replyBreadContent" href={`${URL}`}>
           首頁
         </a>
         {">>"}
-        <a className="replyBreadContent" href="http://localhost:3000/discuss">
+        <a className="replyBreadContent" href={`${URL}/discuss`}>
           討論區
         </a>
         {">>"}
@@ -408,7 +400,7 @@ const Reply = () => {
                                 }).then(async (result) => {
                                   if (result.isConfirmed) {
                                     let resDiscussKeep = await axios.post(
-                                      `http://localhost:3001/api/discuss/deleteReply`,
+                                      `${API_URL}/discuss/deleteReply`,
                                       { id: v.id },
                                       {
                                         withCredentials: true,
@@ -420,7 +412,7 @@ const Reply = () => {
                                       "success"
                                     );
                                     let res = await axios.get(
-                                      `http://localhost:3001/api/discuss/reply/${discuss_id}`
+                                      `${API_URL}/discuss/reply/${discuss_id}`
                                     );
                                     setDiscussContent(res.data);
                                   }
@@ -498,14 +490,14 @@ const Reply = () => {
                                 }).length === 0
                               ) {
                                 let resLike = await axios.post(
-                                  `http://localhost:3001/api/discuss/like`,
+                                  `${API_URL}/discuss/like`,
                                   likeData,
                                   {
                                     withCredentials: true,
                                   }
                                 );
                                 let resDiscussLikeData = await axios.post(
-                                  `http://localhost:3001/api/discuss/likeData`,
+                                  `${API_URL}/discuss/likeData`,
                                   {
                                     withCredentials: true,
                                   }
@@ -518,14 +510,14 @@ const Reply = () => {
                                 );
                               } else {
                                 let resLikeDelete = await axios.post(
-                                  `http://localhost:3001/api/discuss/likeDelete`,
+                                  `${API_URL}/discuss/likeDelete`,
                                   likeData,
                                   {
                                     withCredentials: true,
                                   }
                                 );
                                 let resDiscussLikeDataDel = await axios.post(
-                                  `http://localhost:3001/api/discuss/likeData`,
+                                  `${API_URL}/discuss/likeData`,
                                   {
                                     withCredentials: true,
                                   }
