@@ -32,8 +32,9 @@ function TopNavbar(props) {
     account: "",
     point: "",
   });
-  const [product, setProduct] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState({
+    search: "",
+  });
   const [member, setMember] = useState({ point: "" });
 
   // 初始載入資料
@@ -65,22 +66,38 @@ function TopNavbar(props) {
     getMemberData();
   }, []);
 
-  // 抓取產品資料
-  // useEffect(() => {
-  //   async function product() {
-  //     try {
-  //       let product = await axios.get(`${API_URL}/cart/`, {
-  //         withCredentials: true,
-  //       });
-  //       setProduct(product.data);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   product();
-  // }, []);
-
-  // console.log(product);
+  // 搜尋遊戲
+  const gameSubmit = async (e) => {
+    e.preventDefault();
+    console.log(inputValue);
+    try {
+      async function product() {
+        try {
+          await axios
+            .post(`${API_URL}/cart/nav`, inputValue, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              if (res.data[0] !== undefined) {
+                window.location.replace(
+                  `http://localhost:3000/aboutgame/${res.data[0].product_id}`
+                );
+              } else {
+                Swal.fire({
+                  icon: "info",
+                  title: "沒有找到您要的產品",
+                });
+              }
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      product();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // logout按鈕事件
   const handleClick = async (e) => {
@@ -186,17 +203,25 @@ function TopNavbar(props) {
         <Navbar.Brand href="/">
           <Image src="../../img/LOGO.png" style={{ maxWidth: "180px" }} />
         </Navbar.Brand>
-        <Form className="d-flex searchInput">
+        <Form
+          method="post"
+          className="d-flex searchInput"
+          onSubmit={gameSubmit}
+        >
           <FormControl
             type="text"
             placeholder="找遊戲"
             name="search"
             className="me-2 formControl"
             onChange={(e) => {
-              setInputValue(e.target.value);
+              setInputValue({ search: e.target.value });
             }}
           />
-          <Button variant="link" className="faSearch">
+          <Button
+            type="submit"
+            variant="link"
+            className="faSearch"
+          >
             <div>
               <FontAwesomeIcon icon={faSearch} />
             </div>
