@@ -62,7 +62,7 @@ const CreateMessage = (props) => {
   };
 
   function toTimestamp(string) {
-    return (new Date("2013/09/05 15:34:00").getTime()/1000);
+    return new Date("2013/09/05 15:34:00").getTime() / 1000;
   }
 
   // You could also provide specific locale, if needed. For example:
@@ -78,7 +78,10 @@ const CreateMessage = (props) => {
   return (
     <>
       {/* 顧客提問紀錄 */}
-      <p className="questionNumber">問題單編號:P{toTimestamp(parseTime(question.created_at))}{question.question_id}</p>
+      <p className="questionNumber">
+        問題單編號:P{toTimestamp(parseTime(question.created_at))}
+        {question.question_id}
+      </p>
       <div class="historicalMessageFrame">
         <div class="shiftRight">
           <span>您的留言</span>
@@ -96,10 +99,14 @@ const CreateMessage = (props) => {
       {question.messages.map((message) => {
         return (
           <div class="historicalMessageFrame">
-            <div class={message.is_from_user ?"shiftRight":"shiftLeft"}>
+            <div class={message.is_from_user ? "shiftRight" : "shiftLeft"}>
               <span>{message.is_from_user ? "您的留言" : "客服回覆"}</span>
               <img
-                src={message.is_from_user ?"/img/customer_service/miniature_head.png":"/img/customer_service/manager.png"}
+                src={
+                  message.is_from_user
+                    ? "/img/customer_service/miniature_head.png"
+                    : "/img/customer_service/manager.png"
+                }
                 class="miniatureHead"
                 alt=""
               />

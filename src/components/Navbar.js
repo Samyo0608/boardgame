@@ -174,7 +174,7 @@ function TopNavbar(props) {
       secondItem3: "客服留言",
       url1: "/faq",
       url2: "/instant_QA",
-      url3: "/customer_service_message",
+      url3: "/customer_service_message/create",
       isShow: true,
       isNull: true,
     },
