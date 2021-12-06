@@ -64,20 +64,18 @@ const Discuss = (props) => {
     setDiscussOrder(e.target.value);
     if (searchDiscuss.keyword === "") {
       if (e.target.value === "most") {
-        let res = await axios.get(
-          `http://localhost:3001/api/discuss/discussCount`
-        );
+        let res = await axios.get(`${API_URL}/discuss/discussCount`);
         setDiscuss(res.data);
         setDisplayDiscuss(res.data);
       } else {
-        let res = await axios.get(`http://localhost:3001/api/discuss`);
+        let res = await axios.get(`${API_URL}/discuss`);
         setDiscuss(res.data);
         setDisplayDiscuss(res.data);
       }
     } else {
       if (e.target.value === "most") {
         let resSearch = await axios.post(
-          `http://localhost:3001/api/discuss/searchMost`,
+          `${API_URL}/discuss/searchMost`,
           searchDiscuss
         );
         setDiscuss(resSearch.data);
@@ -85,7 +83,7 @@ const Discuss = (props) => {
         setDiscussType("all");
       } else {
         let resSearch = await axios.post(
-          `http://localhost:3001/api/discuss/searchDiscuss`,
+          `${API_URL}/discuss/searchDiscuss`,
           searchDiscuss
         );
         setDiscuss(resSearch.data);
@@ -101,7 +99,7 @@ const Discuss = (props) => {
     try {
       if (discussOrder === "newest") {
         let resSearch = await axios.post(
-          `http://localhost:3001/api/discuss/searchDiscuss`,
+          `${API_URL}/discuss/searchDiscuss`,
           searchDiscuss
         );
         setDiscuss(resSearch.data);
@@ -109,7 +107,7 @@ const Discuss = (props) => {
         setDiscussType("all");
       } else {
         let resSearch = await axios.post(
-          `http://localhost:3001/api/discuss/searchMost`,
+          `${API_URL}/discuss/searchMost`,
           searchDiscuss
         );
         setDiscuss(resSearch.data);
@@ -131,21 +129,21 @@ const Discuss = (props) => {
   }, []);
   // 撈討論區資料
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss`);
+    let res = await axios.get(`${API_URL}/discuss`);
     setDiscuss(res.data);
     setDisplayDiscuss(res.data);
   }, []);
 
   // 撈熱門討論區資料
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/discussCount`);
+    let res = await axios.get(`${API_URL}/discuss/discussCount`);
     setHotDiscuss(res.data);
     setDisplayHotDiscuss(res.data);
   }, []);
 
   // 撈討論區內容
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/indexContent`);
+    let res = await axios.get(`${API_URL}/discuss/indexContent`);
     setDiscussContent(res.data);
   }, []);
 
@@ -192,7 +190,7 @@ const Discuss = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="discussBreadContent" href="http://localhost:3000">
+        <a className="discussBreadContent" href={`${URL}`}>
           首頁
         </a>
         {`>> `}

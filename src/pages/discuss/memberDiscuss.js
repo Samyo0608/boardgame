@@ -51,7 +51,7 @@ function MemberDiscuss(props) {
       return;
     }
     let res = await axios.post(
-      `http://localhost:3001/api/discuss/memberDiscuss`,
+      `${API_URL}/discuss/memberDiscuss`,
       sessionDiscussMember
     );
     setDiscuss(res.data);
@@ -123,14 +123,14 @@ function MemberDiscuss(props) {
                                   }).then(async (result) => {
                                     if (result.isConfirmed) {
                                       let resKeepDelete = await axios.post(
-                                        `http://localhost:3001/api/discuss/keepDelete`,
+                                        `${API_URL}/discuss/keepDelete`,
                                         {
                                           discuss_id: v.id,
                                         },
                                         { withCredentials: true }
                                       );
                                       let res = await axios.post(
-                                        `http://localhost:3001/api/discuss/memberDiscuss`,
+                                        `${API_URL}/discuss/memberDiscuss`,
                                         sessionDiscussMember
                                       );
                                       setDiscuss(res.data);

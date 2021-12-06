@@ -42,13 +42,11 @@ const NewDiscuss = (props) => {
     let newAddDiscuss = { ...addDiscuss };
     newAddDiscuss[e.target.name] = e.target.value;
     setAddDiscuss(newAddDiscuss);
-    console.log(addDiscuss);
+    // console.log(addDiscuss);
   }
 
   useEffect(async () => {
-    let res = await axios.get(
-      `http://localhost:3001/api/discuss/newDiscussType`
-    );
+    let res = await axios.get(`${API_URL}/discuss/newDiscussType`);
     setNewDiscussType(res.data);
   }, []);
 
@@ -85,14 +83,14 @@ const NewDiscuss = (props) => {
         Swal.fire("有欄位尚未填寫", "不可有空白欄位", "error");
       } else {
         let resNewDiscuss = await axios.post(
-          `http://localhost:3001/api/discuss/addNewDiscuss`,
+          `${API_URL}/discuss/addNewDiscuss`,
           addDiscuss,
           { withCredentials: true }
         );
         let newAddDiscuss = { ...addDiscuss };
         newAddDiscuss.lastId = resNewDiscuss.data;
         let resNewDiscussContent = await axios.post(
-          `http://localhost:3001/api/discuss/addNewDiscussContent`,
+          `${API_URL}/discuss/addNewDiscussContent`,
           newAddDiscuss,
           { withCredentials: true }
         );
@@ -101,7 +99,7 @@ const NewDiscuss = (props) => {
           title: "回覆成功",
           text: "已提交您的回覆",
         }).then((res) => {
-          window.location.href = `http://localhost:3000/discuss`;
+          window.location.href = `${URL}/discuss`;
         });
       }
     } catch (e) {
@@ -117,7 +115,7 @@ const NewDiscuss = (props) => {
   //       return;
   //     }
   //     let resNewDiscussContent = await axios.post(
-  //       `http://localhost:3001/api/discuss/addNewDiscussContent`,
+  //       `${API_URL}/discuss/addNewDiscussContent`,
   //       addDiscuss,
   //       { withCredentials: true }
   //     );
@@ -145,11 +143,11 @@ const NewDiscuss = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="replyBreadContent" href="http://localhost:3000">
+        <a className="replyBreadContent" href={`${URL}`}>
           首頁
         </a>
         {">>"}
-        <a className="replyBreadContent" href="http://localhost:3000/discuss">
+        <a className="replyBreadContent" href={`${URL}/discuss`}>
           討論區
         </a>
         {">>"}開新話題

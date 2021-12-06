@@ -130,7 +130,7 @@ const EditReply = (props) => {
           title: "修改成功",
           text: "已修改您的回覆",
         }).then((res) => {
-          window.location.href = `http://localhost:3000/discuss/reply/${props.location.discuss_id}`;
+          window.location.href = `${URL}/discuss/reply/${props.location.discuss_id}`;
         });
       }
     } catch (e) {
@@ -155,10 +155,14 @@ const EditReply = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="discussBreadContent" href="http://localhost:3000">
+        <a className="replyBreadContent" href={`${URL}`}>
           首頁
         </a>
-        {`>> `}
+        {">>"}
+        <a className="replyBreadContent" href={`${URL}/discuss`}>
+          討論區
+        </a>
+        {">>"}
         編輯文章內容
       </div>
       {/* form */}
@@ -206,7 +210,7 @@ const EditReply = (props) => {
           <button
             type="button"
             onClick={() => {
-              window.location.href = `http://localhost:3000/discuss/reply/${props.location.discuss_id}`;
+              window.location.href = `${URL}/discuss/reply/${props.location.discuss_id}`;
             }}
             className="newdiscussCancelButton text-center"
           >
