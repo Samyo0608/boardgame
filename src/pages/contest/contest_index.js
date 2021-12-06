@@ -72,7 +72,7 @@ const [isTrag,setIsTrag]=useState("");
           <div className="d-flex">
           <Form className="p-1">
           <FormControl
-              type="search"
+              type="text"
               placeholder="找活動"
               className="me-2 formControl"
               aria-label="Search"
