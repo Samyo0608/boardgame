@@ -16,18 +16,7 @@ import "../../css/memberCenter.css";
 import axios from "axios";
 import { API_URL } from "../../configs/config";
 import Loading from "../../components/loading/loading";
-
-const DetailRent = [
-  {
-    roomImg: "/img/booking/fourRoom-1.png",
-    type: "四人房",
-    userStatus: "尚未報到",
-    price: "150",
-    costStatus: "已付款",
-    predate: "2021/10/10下午(13:00-17:00)",
-    rentDate: "2021/10/01",
-  },
-];
+import moment from "moment";
 
 function MemberCenter(props) {
   const history = useParams().account;
@@ -36,8 +25,8 @@ function MemberCenter(props) {
   const [member, setMember] = useState({});
   // 接收order
   const [order, setOrder] = useState([]);
-  const [loadingCount, setLoadingCount] = useState(2);
   const [product, setProduct] = useState([]);
+  const [booking, setBooking] = useState([]);
 
   // 撈取產品資料
   useEffect((e) => {
@@ -56,7 +45,7 @@ function MemberCenter(props) {
   // 抓取member資料
   useEffect(() => {
     async function getMemberData() {
-      let member = await axios
+      await axios
         .get(`${API_URL}/cart/${history}`, {
           withCredentials: true,
         })
@@ -65,45 +54,71 @@ function MemberCenter(props) {
             setIsLoading(false);
           }, 3000);
           setMember(res.data[0]);
-          setLoadingCount(loadingCount - 1);
         });
     }
     getMemberData();
   }, []);
 
   // 撈取產品訂單(product_order)資料，且只要非訂單完成的部分
-  useEffect(
-    (e) => {
-      async function order() {
-        await axios
-          .get(`${API_URL}/member/productOrder/${history}`, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            let newOrder2 = res.data.filter((x) => x.order_check < 3);
-            setOrder(newOrder2);
-            setLoadingCount(loadingCount - 1);
-          });
-      }
-      order();
-    },
-    [setLoadingCount]
-  );
+  useEffect((e) => {
+    async function order() {
+      await axios
+        .get(`${API_URL}/member/productOrder/${history}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          let newOrder2 = res.data.filter((x) => x.order_check < 3);
+          setOrder(newOrder2);
+        });
+    }
+    order();
+  }, []);
 
-  console.log(loadingCount);
-  // Loading計時
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 3000);
-  // }, [order]);
+  // 撈取租賃訂單(product_order)資料，且只要非訂單完成的部分
+  useEffect((e) => {
+    async function booking() {
+      await axios
+        .get(`${API_URL}/booking/rent`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          let newbooking = res.data.filter((x) => x.valid === 1);
+          setBooking(newbooking);
+        });
+    }
+    booking();
+  }, []);
+
+  booking &&
+    booking
+      .filter((match) => !match.repeatExecute)
+      .forEach((item) => {
+        if (item.room === "fourRoom") {
+          item.room = "四人房";
+          item.roomImg = "/img/booking/fourRoom-1.png";
+          item.price = "150";
+        } else if (item.room === "sixRoom") {
+          item.room = "六人房";
+          item.roomImg = "/img/booking/sixRoom.jpg";
+          item.price = "200";
+        }
+
+        // console.log(item.endTime);
+        item.roomId = item.booking_id;
+        item.type = item.room;
+        item.userStatus = item.status;
+        item.costStatus = "未付款";
+        item.predate = moment(item.startTime).format("YYYY-MM-DD HH:mm");
+        item.rentDate = moment(item.order_date).format("YYYY-MM-DD");
+        item.roomValid = item.valid;
+      });
 
   // 上方狀態欄
   const List = [
     {
       id: 1,
       status: "預約中",
-      count: 1,
+      count: booking.length,
     },
     {
       id: 2,
@@ -148,38 +163,39 @@ function MemberCenter(props) {
             status === 2 ? "d-block" : "d-none"
           }`}
         >
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <>
-              {order.map((v, i) => {
-                return (
-                  <MemProductItem
-                    product={product}
-                    key={order[i].product}
-                    detail={order[i]}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                  />
-                );
-              })}
-            </>
-          )}
+          {order.map((v, i) => {
+            return (
+              <MemProductItem
+                product={product}
+                key={order[i].product}
+                detail={order[i]}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            );
+          })}
         </div>
         <div
           className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
             status === 1 ? "d-block" : "d-none"
           }`}
         >
-          <MemberRentItem
-            roomImg={DetailRent[0].roomImg}
-            type={DetailRent[0].type}
-            userStatus={DetailRent[0].userStatus}
-            price={DetailRent[0].price}
-            costStatus={DetailRent[0].costStatus}
-            predate={DetailRent[0].predate}
-            rentDate={DetailRent[0].rentDate}
-          />
+          {booking.map((v, i) => {
+            return (
+              <MemberRentItem
+                roomId={v.booking_id}
+                key={i}
+                roomImg={v.roomImg}
+                type={v.type}
+                userStatus={v.userStatus}
+                price={v.price}
+                costStatus={v.costStatus}
+                predate={v.predate}
+                rentDate={v.rentDate}
+                roomValid={v.valid}
+              />
+            );
+          })}
         </div>
         <div
           className={`d-flex justify-content-center objectDiv pt-3 pb-4 ${
