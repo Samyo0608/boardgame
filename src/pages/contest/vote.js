@@ -456,7 +456,7 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3" onSubmit={handleSubmit}>
 
             {
                 barno.map((v,i) => {
@@ -620,7 +620,7 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <form action="" className="fs-2 p-2 justify-content-left align-items-center mb-3" onSubmit={handleSubmit}>
            
             {
                 
@@ -702,7 +702,7 @@ function Vote(props) {
         </div>
         </div>
         <div>
-            <Form method="post" className="fs-2 p-2 justify-content-left align-items-center mb-3">
+            <form method="post" className="fs-2 p-2 justify-content-left align-items-center mb-3" onSubmit={handleSubmit}>
             
             {
                 
@@ -712,16 +712,15 @@ function Vote(props) {
                             <VoteLabel 
                                 name={v.product_name} 
                                 vote={v.product_vote}
-                                count={count}
-                                setCount={setCount}
+                                votename={votename}
+                                setVotename={setVotename}
                             />
                         )
                     }                   
             })}
             
-            
             <input type="submit" value="送  出" className="submitVote m-3" />
-            </Form>
+            </form>
         </div>
      </div>
 </div>
