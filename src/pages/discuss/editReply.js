@@ -155,9 +155,11 @@ const EditReply = (props) => {
 
       {/* 麵包屑 */}
       <div className="discussBread text-end">
-        <a className="discussBreadContent" href="#/">
-          首頁{`>>`}討論區{`>>`}編輯文章內容
+        <a className="discussBreadContent" href="http://localhost:3000">
+          首頁
         </a>
+        {`>> `}
+        編輯文章內容
       </div>
       {/* form */}
       <div className="newDiscussBoxOut">

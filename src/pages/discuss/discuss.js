@@ -28,6 +28,7 @@ const Discuss = (props) => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10);
   const [discuss, setDiscuss] = useState([]);
+  const [discussOrder, setDiscussOrder] = useState("newest");
   const [hotDiscuss, setHotDiscuss] = useState([]);
   const [discussContent, setDiscussContent] = useState([
     {
@@ -42,6 +43,7 @@ const Discuss = (props) => {
   const [searchDiscuss, setSearchDiscuss] = useState({
     keyword: "",
   });
+  const [displaySearch, setDisplaySearch] = useState(false);
   // 登入狀態
   const [sessionMember, setSessionMember] = useState({
     id: "",
@@ -57,17 +59,64 @@ const Discuss = (props) => {
     setSearchDiscuss(newSearchDiscuss);
   }
 
+  // 處理選擇分類欄位變動
+  async function handleSelectDiscussChange(e) {
+    setDiscussOrder(e.target.value);
+    if (searchDiscuss.keyword === "") {
+      if (e.target.value === "most") {
+        let res = await axios.get(
+          `http://localhost:3001/api/discuss/discussCount`
+        );
+        setDiscuss(res.data);
+        setDisplayDiscuss(res.data);
+      } else {
+        let res = await axios.get(`http://localhost:3001/api/discuss`);
+        setDiscuss(res.data);
+        setDisplayDiscuss(res.data);
+      }
+    } else {
+      if (e.target.value === "most") {
+        let resSearch = await axios.post(
+          `http://localhost:3001/api/discuss/searchMost`,
+          searchDiscuss
+        );
+        setDiscuss(resSearch.data);
+        setDisplayDiscuss(resSearch.data);
+        setDiscussType("all");
+      } else {
+        let resSearch = await axios.post(
+          `http://localhost:3001/api/discuss/searchDiscuss`,
+          searchDiscuss
+        );
+        setDiscuss(resSearch.data);
+        setDisplayDiscuss(resSearch.data);
+        setDiscussType("all");
+      }
+    }
+  }
+
   // 提交搜尋申請
   async function handleSearchSubmit(e) {
     e.preventDefault();
     try {
-      let resSearch = await axios.post(
-        `http://localhost:3001/api/discuss/searchDiscuss`,
-        searchDiscuss
-      );
-      setDiscuss(resSearch.data);
-      setDisplayDiscuss(resSearch.data);
-      setDiscussType("all");
+      if (discussOrder === "newest") {
+        let resSearch = await axios.post(
+          `http://localhost:3001/api/discuss/searchDiscuss`,
+          searchDiscuss
+        );
+        setDiscuss(resSearch.data);
+        setDisplayDiscuss(resSearch.data);
+        setDiscussType("all");
+      } else {
+        let resSearch = await axios.post(
+          `http://localhost:3001/api/discuss/searchMost`,
+          searchDiscuss
+        );
+        setDiscuss(resSearch.data);
+        setDisplayDiscuss(resSearch.data);
+        setDiscussType("all");
+      }
+      setDisplaySearch(true);
     } catch (e) {
       console.log("handleSearchSubmit", e);
     }
@@ -82,7 +131,7 @@ const Discuss = (props) => {
   }, []);
   // 撈討論區資料
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/`);
+    let res = await axios.get(`http://localhost:3001/api/discuss`);
     setDiscuss(res.data);
     setDisplayDiscuss(res.data);
   }, []);
@@ -120,6 +169,12 @@ const Discuss = (props) => {
     策略: "discussTagTrag",
     卡牌: "discussTagCard",
   };
+  const TYPE_SEARCH = {
+    all: "全部",
+    family: "家庭",
+    trag: "策略",
+    card: "卡牌",
+  };
   return (
     <div className="overflow-hidden">
       {/* banner */}
@@ -147,7 +202,7 @@ const Discuss = (props) => {
       {/* 搜尋列 */}
       <form onSubmit={handleSearchSubmit}>
         <div className="disSearchBox text-center">
-          <a
+          {/* <a
             className="searchCancel"
             onClick={() => {
               window.location.reload();
@@ -155,7 +210,7 @@ const Discuss = (props) => {
             href="#/"
           >
             x
-          </a>
+          </a> */}
           {/* <select className="form-select disSearchSelect">
             <option>找標題</option>
             <option>找內容</option>
@@ -301,7 +356,7 @@ const Discuss = (props) => {
                             <td className="dUserTd">{v.i_user_name}</td>
                             <td className="rcountTd">{v.cot - 1}</td>
                             <td className="timeTd">
-                              {moment(v.created_at.toString()).format(
+                              {moment(v.created_at?.toString()).format(
                                 "YYYY-MM-DD HH:mm:ss"
                               )}
                               <p className="text-secondary ms-3">
@@ -335,6 +390,36 @@ const Discuss = (props) => {
             >
               開新話題
             </Link>
+            {/* 排序功能 */}
+            <select
+              className="form-select discussTypeSelect"
+              name="type"
+              aria-label="Default select example"
+              onChange={handleSelectDiscussChange}
+              value={discussOrder}
+              required
+            >
+              <option value="newest">排序 : 最新回覆</option>
+              <option value="most">排序 : 最多回覆</option>
+            </select>
+            {displaySearch === false ? (
+              ""
+            ) : (
+              <div className="searchHint">
+                正在搜尋"{searchDiscuss?.keyword}" , 分類 :{" "}
+                {TYPE_SEARCH[discussType]} , 共{displayDiscuss?.length}
+                筆資料
+                <button
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                  type="button"
+                  className="cancelSearch"
+                >
+                  取消搜尋
+                </button>
+              </div>
+            )}
           </div>
           <div></div>
         </div>
@@ -355,7 +440,7 @@ const Discuss = (props) => {
               setMinValue((page - 1) * pageSize);
               setMaxValue((page - 1) * pageSize + pageSize);
             }
-            window.scrollTo(0, 0);
+            // window.scrollTo(0, 0);
           }}
           total={displayDiscuss.length}
         />

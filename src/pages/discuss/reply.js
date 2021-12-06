@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import moment from "moment";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { API_URL, URL, PHOTO_URL } from "../../configs/config";
 import Swal from "sweetalert2";
 import DiscussQuill from "../../components/discuss/discussQuill";
@@ -21,7 +21,6 @@ const Reply = () => {
 
   // 網址取值，定義的名稱要與路由器path上定義的/:discuss_title一樣
   const { discuss_id } = useParams();
-  const history = useHistory();
 
   // 標題設定狀態
   const [replyTitle, setreplyTitle] = useState([]);
@@ -72,22 +71,22 @@ const Reply = () => {
     },
   ]);
 
-  // 按讚功能設定狀態
-  const [discussLike, setDiscussLike] = useState([
-    { discusss_content_id: "", user_id: "" },
-  ]);
-  // 按讚功能設定狀態
-  const [likeStatus, setLikeStatus] = useState({});
+  // // 按讚功能設定狀態
+  // const [discussLike, setDiscussLike] = useState([
+  //   { discusss_content_id: "", user_id: "" },
+  // ]);
+  // // 按讚功能設定狀態
+  // const [likeStatus, setLikeStatus] = useState({});
 
-  // 新增回覆資料
-  const [insertDiscuss, setInsertDiscuss] = useState({
-    discuss_id: discuss_id,
-    user_id: "",
-    content: "",
-    floor: "1",
-  });
+  // // 新增回覆資料
+  // const [insertDiscuss, setInsertDiscuss] = useState({
+  //   discuss_id: discuss_id,
+  //   user_id: "",
+  //   content: "",
+  //   floor: "1",
+  // });
 
-  const [quillContent, setQuillContent] = useState({});
+  const [quillContent, setQuillContent] = useState("");
   const [addDiscuss, setAddDiscuss] = useState({
     user_id: "",
     type: "",
@@ -118,7 +117,10 @@ const Reply = () => {
         }).then((res) => {
           window.location.replace("/login");
         });
+      } else if (quillContent === "" || quillContent === "<p><br></p>") {
+        Swal.fire("有欄位尚未填寫", "回覆欄位不可為空白", "error");
       } else {
+        console.log(quillContent);
         // json 格式無法傳檔案，改成用 form data
         let formData = new FormData();
         formData.append("discuss_id", discuss_id);
@@ -211,7 +213,12 @@ const Reply = () => {
 
   // 撈熱門討論區資料
   useEffect(async () => {
-    let res = await axios.get(`http://localhost:3001/api/discuss/discussCount`);
+    let resf = await axios.get(
+      `http://localhost:3001/api/discuss/getType/${discuss_id}`
+    );
+    let res = await axios.get(
+      `http://localhost:3001/api/discuss/replyHot/${resf.data}`
+    );
     setHotDiscuss(res.data);
     setDisplayHotDiscuss(res.data);
   }, []);

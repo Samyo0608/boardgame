@@ -67,10 +67,6 @@ function MemberDiscuss(props) {
           <p className="h2 mt-5 bold">收藏文章</p>
 
           {/* 討論區內容 */}
-
-          {/* <div className="r_discussPicBox">
-          <img alt="" className="rentPic" src="/img/discuss/bird5.png" />
-         </div> */}
           <div className="m_discussOutBox">
             <div className="m_discussInBox">
               {/* 最新討論 */}
