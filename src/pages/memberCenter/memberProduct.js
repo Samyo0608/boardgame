@@ -24,6 +24,21 @@ function MemberProduct(props) {
   // Loading
   const [isLoading, setIsLoading] = useState(true);
   // api order資料
+  const [product, setProduct] = useState([]);
+
+  // 撈取產品資料
+  useEffect((e) => {
+    async function product() {
+      let product = await axios
+        .get(`${API_URL}/cart/`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setProduct(res.data);
+        });
+    }
+    product();
+  }, []);
   useEffect((e) => {
     async function order() {
       let ProductOrder = await axios.get(
@@ -131,13 +146,25 @@ function MemberProduct(props) {
                       }
                     })
                     .map((v, i) => {
-                      return <MemProductItem key={i} detail={order[i]} />;
+                      return (
+                        <MemProductItem
+                          product={product}
+                          key={i}
+                          detail={order[i]}
+                        />
+                      );
                     })}
                 </div>
               ) : (
                 <div className="d-flex flex-column justify-content-start align-items-center">
                   {selectedPage.map((v, i) => {
-                    return <MemProductItem key={i} detail={selectedPage[i]} />;
+                    return (
+                      <MemProductItem
+                        product={product}
+                        key={i}
+                        detail={selectedPage[i]}
+                      />
+                    );
                   })}
                   <List
                     totalPages={totalPages}

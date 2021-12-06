@@ -7,25 +7,25 @@ import axios from "axios";
 import { API_URL } from "../../configs/config";
 
 function MemProductItem(props) {
-  const { detail } = props;
+  const { detail, product } = props;
   const arr = detail;
   const [display, setDisplay] = useState(false);
   const [rotate, setRotate] = useState(false);
-  const [product, setProduct] = useState([]);
+  // const [product, setProduct] = useState([]);
 
   // 撈取產品資料
-  useEffect((e) => {
-    async function product() {
-      let product = await axios
-        .get(`${API_URL}/cart/`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setProduct(res.data);
-        });
-    }
-    product();
-  }, []);
+  // useEffect((e) => {
+  //   async function product() {
+  //     let product = await axios
+  //       .get(`${API_URL}/cart/`, {
+  //         withCredentials: true,
+  //       })
+  //       .then((res) => {
+  //         setProduct(res.data);
+  //       });
+  //   }
+  //   product();
+  // }, []);
 
   // 訂單狀態
   const status = {
@@ -82,7 +82,11 @@ function MemProductItem(props) {
           <img
             id="img"
             alt=""
-            src={product ? `/product_img/550x400/${ARRR()[0]}` : ""}
+            src={
+              product
+                ? `/product_img/550x400/${ARRR()[0]}`
+                : `/product_img/550x400/Seasons.png`
+            }
             className="objectImg"
           />
         </div>
@@ -122,7 +126,11 @@ function MemProductItem(props) {
               <div className="row align-items-center mt-2">
                 <figure className="col-3">
                   <img
-                    src={product ? `/product_img/550x400/${v.imgURL}` : ""}
+                    src={
+                      product
+                        ? `/product_img/550x400/${v.imgURL}`
+                        : `/product_img/550x400/Seasons.png`
+                    }
                     alt=""
                     className="downImg"
                   />
