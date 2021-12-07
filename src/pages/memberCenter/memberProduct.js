@@ -85,6 +85,7 @@ function MemberProduct(props) {
                 className="proSelsect"
                 onChange={(e) => {
                   setProductPerPage(e.target.value);
+                  console.log(e.target.value);
                 }}
               >
                 <option value="3">3</option>
