@@ -45,6 +45,9 @@ function MemberProduct(props) {
         `${API_URL}/member/productOrder/${history}`,
         { withCredentials: true }
       );
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
       setOrder(ProductOrder.data);
       setTotalPages(Math.ceil(ProductOrder.data.length / productPerPage));
       window.scrollTo(0, 0);
@@ -52,17 +55,11 @@ function MemberProduct(props) {
     order();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, [order]);
-
   useEffect(
     (e) => {
       setTotalPages(Math.ceil(order.length / productPerPage));
     },
-    [productPerPage]
+    [order.length, productPerPage]
   );
 
   // 分頁 - slice定義顯示數量用
@@ -86,7 +83,7 @@ function MemberProduct(props) {
                 name="select"
                 id=""
                 className="proSelsect"
-                onClick={(e) => {
+                onChange={(e) => {
                   setProductPerPage(e.target.value);
                 }}
               >
