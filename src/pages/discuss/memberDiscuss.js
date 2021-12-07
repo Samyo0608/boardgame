@@ -101,7 +101,7 @@ function MemberDiscuss(props) {
                                 {v.title}
                               </Link>
                             </td>
-                            <td className="mduserTd">{v.i_user_id}</td>
+                            <td className="mduserTd">{v.account}</td>
                             <td className="mdtimeTd">
                               {moment(v.created_at.toString()).format(
                                 "YYYY-MM-DD HH:mm:ss"
@@ -136,8 +136,8 @@ function MemberDiscuss(props) {
                                       setDiscuss(res.data);
 
                                       Swal.fire(
-                                        "Deleted!",
-                                        "Your file has been deleted.",
+                                        "已刪除!",
+                                        "已刪除此篇文章",
                                         "success"
                                       );
                                     }
