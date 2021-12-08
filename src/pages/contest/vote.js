@@ -102,27 +102,32 @@ function Vote(props) {
     async function handleSubmit(e) {
 
         // Sweetalert
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: 'btn btn-success',
-              cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-          })
-          
-          Swal.fire({
-            icon: 'success',
-            title: '投票成功!',
-            showConfirmButton: false,
-            timer: 1500
-          })
-
         e.preventDefault();
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //     customClass: {
+        //       confirmButton: 'btn btn-success',
+        //       cancelButton: 'btn btn-danger'
+        //     },
+        //     buttonsStyling: false
+        //   })
+          
+        
+
+       
         try{
             let res = await axios.post(`${API_URL}/vote/addVoted`,
             voted,{withCredentials:true},
-            window.location.reload()
+            Swal.fire({
+                icon: "success",
+                title: "Good Job!",
+                text: "投票成功",
+              }).then((res) => {
+                if (res.isConfirmed) {
+                  window.location.reload();
+                }
+              })
+        //     window.location.reload(),
+        //     console.log("a")
         );
         } catch(e) {
             console.log("handleSubmit",e)
